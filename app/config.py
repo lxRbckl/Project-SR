@@ -1,0 +1,16 @@
+from dash import Dash
+
+from dash_bootstrap_components import themes
+
+
+currentVersion = "1.0.0"
+
+
+app = Dash(
+   
+   name = "Project SW104SR",
+   title = "Project SW104SR",
+   assets_folder = "app/assets",
+   suppress_callback_exceptions = True
+   
+)
