@@ -8,6 +8,7 @@
 
 
 from dash_bootstrap_components import (
+   Row,
    Container
 )
 from dash import html
@@ -26,14 +27,25 @@ class Layout:
    def Build(self):
       '''  '''
 
-      return Container(
+      return Row(
 
-         fluid = True,
-         className = "layoutContainer",
+         className = "example",
          children = [
 
-            html.H1("test")
+            html.H1("ok")
 
          ]
 
       )
+
+      # return Container(
+
+      #    fluid = True,
+      #    className = "layoutContainer",
+      #    children = [
+
+      #       Row(children = html.H1("ok"))
+
+      #    ]
+
+      # )
