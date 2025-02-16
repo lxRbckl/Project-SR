@@ -1,7 +1,3 @@
-.bodyAccordion {
-   border-top: var(--borderGray);
-}
-
 .bodyAccordionItem {
    border: none;
 }

@@ -1,5 +1,6 @@
 .headerRow {
    margin: 0px;
+   border-bottom: var(--borderGray);
 }
 
 .headerColTitle {
@@ -9,7 +10,7 @@
 .headerTitleH1 {
    padding: 0px;
    color: var(--colorBlack);
-   margin: 0px 0px 0px -3px;
+   margin: 0px 0px 0px -2px;
 }
 
 .headerColVersion {
