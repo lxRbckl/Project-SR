@@ -1,6 +1,5 @@
-from ...config import app
-from .run import Run as RunCallback
-from .build import Build as BuildCallback
+from ...config import (app)
+from dash.dependencies import (Input, Output)
 
 
 class Body:
@@ -9,4 +8,16 @@ class Body:
    def __init__(self):
       '''  '''
 
-      pass
+      self.accordionCallback()
+
+
+   def accordionCallback(self):
+      '''  '''
+
+      @app.callback(
+
+         inputs = [Input("bodyAccordionId", "children")],
+         outputs = Output("bodyAccordionId", "value")
+
+      )
+      def func(arg): return None

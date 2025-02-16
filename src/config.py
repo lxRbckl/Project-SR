@@ -6,6 +6,10 @@ from dash_bootstrap_components import themes
 columnWidth = 8
 currentVersion = "1.0.0"
 projectName = "Project FSR"
+
+
+# remove once Dash 3 comes out #
+# React conflict, because Dash 2 uses React 16 where 18 is used. #
 dash._dash_renderer._set_react_version('18.2.0')
 
 
