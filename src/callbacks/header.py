@@ -16,8 +16,8 @@ class Header:
 
       @app.callback(
 
-         inputs = [Input("headerColTitleId", "children")],
-         output = Output("headerTitle", "children")
+         output = Output("headerTitle", "children"),
+         inputs = [Input("headerColTitleId", "children")]
 
       )
       def func(arg): return projectName
@@ -28,8 +28,8 @@ class Header:
 
       @app.callback(
 
-         inputs = [Input("headerColVersionId", "children")],
-         output = Output("headerVersion", "children")
+         output = Output("headerVersion", "children"),
+         inputs = [Input("headerColVersionId", "children")]
 
       )
       def func(arg): return currentVersion

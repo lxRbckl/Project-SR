@@ -3,13 +3,15 @@ from dash_mantine_components import styles
 from dash_bootstrap_components import themes
 
 
-columnWidth = 8
+columnWidth = 9
+accordionLoadTime = 1.2
 currentVersion = "1.0.0"
 projectName = "Project FSR"
+defaultAccordionItem = "Build"
 
 
-# remove once Dash 3 comes out #
-# React conflict, because Dash 2 uses React 16 where 18 is used. #
+# Remove once Dash 3 comes out #
+# React conflict, because Dash 2.x.x uses React 16 #
 dash._dash_renderer._set_react_version('18.2.0')
 
 

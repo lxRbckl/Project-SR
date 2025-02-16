@@ -18,6 +18,7 @@ class Body:
 
       return dmc.Accordion(
 
+         value = None,
          children = self.items,
          id = "bodyAccordionId",
          className = "bodyAccordion"

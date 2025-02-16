@@ -17,8 +17,9 @@ class Header:
 
       return dbc.Row(
 
+         id = "headerRowId",
          justify = "between",
-         className = "headerRow example2",
+         className = "headerRow",
          children = [
 
             # (title, version) <
