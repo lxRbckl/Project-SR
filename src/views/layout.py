@@ -40,8 +40,8 @@ class Layout:
          headerView().Build,
          bodyView(items = [
 
-            buildView().Build,
-            runView().Build
+            buildView(),
+            runView()
             
          ]).Build,
          footerView().Build

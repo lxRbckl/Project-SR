@@ -9,36 +9,16 @@ class Run:
    def __init__(self):
       '''  '''
 
-      pass
+      self.id = "runId"
+      self.value = "Run"
 
 
    @property
    def Build(self):
       '''  '''
 
-      return dmc.AccordionItem(
+      return dbc.Row(
 
-         id = "runId",
-         value = "Run",
-         className = "bodyAccordionItem",
-         children = [
-
-            dmc.AccordionControl(
-               
-               children = "Run",
-               className = "bodyAccordionControl"
-               
-            ),
-            dmc.AccordionPanel(
-               
-               children = [
-
-
-
-               ]
-               
-            )
-
-         ]
+         children = html.H1("Run")
 
       )

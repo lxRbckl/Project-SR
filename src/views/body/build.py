@@ -9,36 +9,16 @@ class Build:
    def __init__(self):
       '''  '''
 
-      pass
+      self.id = "buildId"
+      self.value = "Build"
 
 
    @property
    def Build(self):
       '''  '''
 
-      return dmc.AccordionItem(
+      return dbc.Row(
 
-         id = "buildId",
-         value = "Build",
-         className = "bodyAccordionItem",
-         children = [
-
-            dmc.AccordionControl(
-               
-               children = "Build", 
-               className = "bodyAccordionControl"
-               
-            ),
-            dmc.AccordionPanel(
-
-               children = [
-
-
-
-               ]
-
-            )
-
-         ]
+         children = html.H1("Build")
 
       )

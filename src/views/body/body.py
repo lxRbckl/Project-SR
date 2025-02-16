@@ -19,8 +19,34 @@ class Body:
       return dmc.Accordion(
 
          value = None,
-         children = self.items,
          id = "bodyAccordionId",
-         className = "bodyAccordion"
+         className = "bodyAccordion",
+         children = [
+
+            dmc.AccordionItem(
+
+               id = item.id,
+               value = item.value,
+               className = "bodyAccordionItem",
+               children = [
+
+                  dmc.AccordionControl(
+
+                     children = item.value,
+                     className = "bodyAccordionControl"
+
+                  ),
+                  dmc.AccordionPanel(
+
+                     children = item.Build,
+                     className = "bodyAccordionPanel",
+
+                  )
+
+               ]
+
+            )
+
+         for item in self.items]
 
       )

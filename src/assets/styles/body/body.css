@@ -3,7 +3,7 @@
 }
 
 .bodyAccordionItem {
-   border-bottom: var(--borderGray);
+   border: none;
 }
 
 .bodyAccordionControl {
@@ -12,4 +12,10 @@
 }
 .bodyAccordionControl:hover {
    background-color: var(--colorWhite);
+}
+
+.bodyAccordionPanel {
+   padding: 5px;
+   border: var(--borderGray);
+   border-radius: var(--borderRadius);
 }
