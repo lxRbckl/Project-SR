@@ -40,7 +40,9 @@ class Layout:
             width = columnWidth,
             children = [
 
-               self.header.Build
+               self.header.Build,
+               self.body.Build,
+               self.footer.Build
 
             ]
 

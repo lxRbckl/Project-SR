@@ -20,28 +20,30 @@ class Header:
 
       return dbc.Row(
 
-         className = "example",
-         justify = "end",
+         align = "end",
+         justify = "between",
          children = [
 
-            # title <
-            # version <
+            # (title, version, breaker) <
             dbc.Col(
 
-               width = 1,
-               children = html.H1("Project")
+               width = "auto",
+               children = None,
+               id = "headerTitle",
+               className = "headerTitle"
 
             ),
             dbc.Col(
 
-               width = 1,
-               children = html.P("version")
+               width = "auto",
+               children = None,
+               id = "headerVersion",
+               className = "headerVersion"
 
             ),
+            html.Hr()
 
             # >
-
-            html.Hr()
 
          ]
 
