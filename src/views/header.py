@@ -1,4 +1,5 @@
 from dash import html
+import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
 class Header:
@@ -17,9 +18,10 @@ class Header:
       return dbc.Row(
 
          justify = "between",
+         className = "headerRow example2",
          children = [
 
-            # (title, version, breaker) <
+            # (title, version) <
             dbc.Col(
 
                width = "auto",
@@ -48,8 +50,7 @@ class Header:
 
                )
 
-            ),
-            html.Hr()
+            )
 
             # >
 

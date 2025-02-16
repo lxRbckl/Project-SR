@@ -18,12 +18,10 @@ class Footer:
       return dbc.Row(
 
          justify = None,
+         className = "footerRow",
          children = [
 
-            # (breaker, ...) <
-            html.Hr()
 
-            # >
 
          ]
 

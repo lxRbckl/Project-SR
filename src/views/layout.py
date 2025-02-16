@@ -8,6 +8,7 @@
 
 
 from dash import html
+import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
 from ..config import columnWidth
@@ -64,15 +65,35 @@ class Layout:
    def Build(self):
       '''  '''
 
-      return dbc.Row(
+      return dmc.MantineProvider(
 
-         justify = "center",
-         className = "layoutRow",
-         children = dbc.Col(
+         children = dbc.Row(
 
-            width = columnWidth,
-            children = self.colChildren
+            justify = "center",
+            className = "layoutRow",
+            children = dbc.Col(
+
+               width = columnWidth,
+               children = self.colChildren
+
+            )
 
          )
 
       )
+
+      # return dbc.Row(
+
+      #    justify = "center",
+      #    className = "layoutRow",
+      #    children = dmc.MantimeProvider(
+            
+
+      #       children = dbc.Col(
+
+      #       width = columnWidth,
+      #       children = self.colChildren
+
+      #    )
+
+      # )

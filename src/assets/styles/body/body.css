@@ -1,3 +1,12 @@
-.example {
-   background-color: red;
+.bodyAccordion {
+   border-top: var(--borderBlack);
+   border-bottom: var(--borderBlack);
+}
+
+.bodyAccordionItem {
+   border: none;
+}
+
+.bodyAccordionControl {
+   padding: 0px;
 }
