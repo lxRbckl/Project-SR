@@ -2,6 +2,7 @@ from dash import Dash
 from dash_bootstrap_components import themes
 
 
+columnWidth = 8
 currentVersion = "1.0.0"
 
 
