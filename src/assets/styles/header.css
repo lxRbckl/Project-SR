@@ -6,6 +6,16 @@
    padding: 0px;
 }
 
+.headerTitleH1 {
+   padding: 0px;
+   color: var(--colorBlack);
+   margin: 0px 0px 0px -3px;
+}
+
 .headerColVersion {
    padding: 0px;
+}
+
+.headerVersionLabel {
+   color: var(--colorBlack);
 }

@@ -1,12 +1,14 @@
 .bodyAccordion {
-   border-top: var(--borderBlack);
-   border-bottom: var(--borderBlack);
+   border-top: var(--borderGray);
 }
 
 .bodyAccordionItem {
-   border: none;
+   border-bottom: var(--borderGray);
 }
 
 .bodyAccordionControl {
    padding: 0px;
+}
+.bodyAccordionControl:hover {
+   background-color: var(--colorWhite);
 }

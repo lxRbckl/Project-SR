@@ -31,7 +31,7 @@ class Header:
 
                   children = None,
                   id = "headerTitle",
-                  className = "card-title"
+                  className = "headerTitleH1"
 
                )
 
@@ -46,7 +46,8 @@ class Header:
 
                   size = "sm",
                   children = None,
-                  id = "headerVersion"
+                  id = "headerVersion",
+                  className = "headerVersionLabel"
 
                )
 
