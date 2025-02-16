@@ -25,7 +25,7 @@ class Header:
             dbc.Col(
 
                width = "auto",
-               id = "headerColTitle",
+               id = "headerColTitleId",
                className = "headerColTitle",
                children = html.H1(
 
@@ -40,7 +40,7 @@ class Header:
 
                align = "end",
                width = "auto",
-               id = "headerColVersion",
+               id = "headerColVersionId",
                className = "headerColVersion",
                children = dbc.Label(
 

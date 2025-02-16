@@ -19,6 +19,7 @@ class Body:
       return dmc.Accordion(
 
          children = self.items,
+         id = "bodyAccordionId",
          className = "bodyAccordion"
 
       )

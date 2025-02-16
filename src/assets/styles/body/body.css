@@ -8,6 +8,7 @@
 
 .bodyAccordionControl {
    padding: 0px;
+   color: var(--colorBlack);
 }
 .bodyAccordionControl:hover {
    background-color: var(--colorWhite);

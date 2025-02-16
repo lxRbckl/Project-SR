@@ -81,19 +81,3 @@ class Layout:
          )
 
       )
-
-      # return dbc.Row(
-
-      #    justify = "center",
-      #    className = "layoutRow",
-      #    children = dmc.MantimeProvider(
-            
-
-      #       children = dbc.Col(
-
-      #       width = columnWidth,
-      #       children = self.colChildren
-
-      #    )
-
-      # )
