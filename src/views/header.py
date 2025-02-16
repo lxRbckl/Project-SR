@@ -20,7 +20,7 @@ class Header:
 
       return dbc.Row(
 
-         className = "",
+         className = "example",
          justify = "end",
          children = [
 
@@ -28,12 +28,14 @@ class Header:
             # version <
             dbc.Col(
 
+               width = 1,
                children = html.H1("Project")
 
             ),
             dbc.Col(
 
-               children = html.H3("version")
+               width = 1,
+               children = html.P("version")
 
             ),
 
