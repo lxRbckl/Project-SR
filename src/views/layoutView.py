@@ -10,7 +10,7 @@
 from dash_bootstrap_components import (
    Container
 )
-from dash import H1
+from dash import html
 
 
 class Layout:
@@ -32,7 +32,7 @@ class Layout:
          className = "layoutContainer",
          children = [
 
-            H1("test")
+            html.H1("test")
 
          ]
 
