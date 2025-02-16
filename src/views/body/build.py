@@ -1,5 +1,4 @@
 from dash import html
-import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
 
@@ -16,14 +15,14 @@ class Build:
    def Build(self):
       '''  '''
 
-      return dmc.AccordionItem(
+      return dbc.AccordionItem(
 
          id = "buildId",
-         label = "Build",
+         title = "Build",
          children = [
 
 
-            
+
          ]
 
       )

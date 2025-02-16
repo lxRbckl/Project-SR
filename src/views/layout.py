@@ -11,12 +11,16 @@ from dash import html
 import dash_bootstrap_components as dbc
 
 from ..config import columnWidth
+from .body.run import Run as runView
 from .body.body import Body as bodyView
 from .header import Header as headerView
 from .footer import Footer as footerView
+from .body.build import Build as buildView
+from ..callbacks.body.run import Run as runCallback
 from ..callbacks.body.body import Body as bodyCallback
 from ..callbacks.header import Header as headerCallback
 from ..callbacks.footer import Footer as footerCallback
+from ..callbacks.body.build import Build as buildCallback
 
 class Layout:
 
@@ -33,7 +37,12 @@ class Layout:
       self.colChildren = [
 
          headerView().Build,
-         bodyView().Build,
+         bodyView(items = [
+
+            buildView().Build,
+            runView().Build
+            
+         ]).Build,
          footerView().Build
 
       ]
@@ -43,7 +52,11 @@ class Layout:
       '''  '''
 
       headerCallback()
+
       bodyCallback()
+      buildCallback()
+      runCallback()
+      
       footerCallback()
 
 

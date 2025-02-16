@@ -1,5 +1,4 @@
 from dash import html
-import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
 
@@ -13,4 +12,20 @@ class Body:
 
 
    @property
-   def Build(self): return dmc.Accordion(children = self.items)
+   def Build(self): 
+      '''  '''
+
+      return dbc.Accordion(
+         
+         flush = True,
+         children = self.items,
+         className = "bodyAccordion"
+         
+      )
+   
+
+#    .section-expandable .section-expandable-title 
+
+# padding:0;
+
+# }
