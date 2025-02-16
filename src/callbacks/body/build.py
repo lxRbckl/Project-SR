@@ -1,7 +1,7 @@
-from ..config import app
+from ...config import app
 
 
-class Body:
+class Build:
 
 
    def __init__(self):

@@ -11,10 +11,10 @@ from dash import html
 import dash_bootstrap_components as dbc
 
 from ..config import columnWidth
-from .body import Body as bodyView
+from .body.body import Body as bodyView
 from .header import Header as headerView
 from .footer import Footer as footerView
-from ..callbacks.body import Body as bodyCallback
+from ..callbacks.body.body import Body as bodyCallback
 from ..callbacks.header import Header as headerCallback
 from ..callbacks.footer import Footer as footerCallback
 

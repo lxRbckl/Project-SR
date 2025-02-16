@@ -1,8 +1,9 @@
 from dash import html
+import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
 
-class Footer:
+class Build:
 
 
    def __init__(self):
@@ -15,16 +16,14 @@ class Footer:
    def Build(self):
       '''  '''
 
-      return dbc.Row(
+      return dmc.AccordionItem(
 
-         justify = None,
+         id = "buildId",
+         label = "Build",
          children = [
 
-            # (breaker, ...) <
-            html.Hr()
 
-            # >
-
+            
          ]
 
       )
