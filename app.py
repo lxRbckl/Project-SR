@@ -7,6 +7,8 @@ from src.views.layout import Layout
 
 
 layout = Layout()
+layout.RegisterViews()
+layout.RegisterCallbacks()
 
 
 app.layout = layout.Build

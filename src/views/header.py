@@ -1,9 +1,5 @@
-import dash_bootstrap_components as dbc
-
-from ..config import currentVersion
-
 from dash import html
-
+import dash_bootstrap_components as dbc
 
 class Header:
 
@@ -20,7 +16,6 @@ class Header:
 
       return dbc.Row(
 
-         align = "end",
          justify = "between",
          children = [
 
@@ -28,17 +23,30 @@ class Header:
             dbc.Col(
 
                width = "auto",
-               children = None,
-               id = "headerTitle",
-               className = "headerTitle"
+               id = "headerColTitle",
+               className = "headerColTitle",
+               children = html.H1(
+
+                  children = None,
+                  id = "headerTitle",
+                  className = "card-title"
+
+               )
 
             ),
             dbc.Col(
 
+               align = "end",
                width = "auto",
-               children = None,
-               id = "headerVersion",
-               className = "headerVersion"
+               id = "headerColVersion",
+               className = "headerColVersion",
+               children = dbc.Label(
+
+                  size = "sm",
+                  children = None,
+                  id = "headerVersion"
+
+               )
 
             ),
             html.Hr()

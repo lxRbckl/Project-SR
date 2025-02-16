@@ -7,14 +7,16 @@
 # view -> component -> callback -> controller(callback)
 
 
-from .body import Body
-from .header import Header
-from .footer import Footer
-from ..config import columnWidth
-
 from dash import html
 import dash_bootstrap_components as dbc
 
+from ..config import columnWidth
+from .body import Body as bodyView
+from .header import Header as headerView
+from .footer import Footer as footerView
+from ..callbacks.body import Body as bodyCallback
+from ..callbacks.header import Header as headerCallback
+from ..callbacks.footer import Footer as footerCallback
 
 class Layout:
 
@@ -22,9 +24,27 @@ class Layout:
    def __init__(self):
       '''  '''
 
-      self.body = Body()
-      self.header = Header()
-      self.footer = Footer()
+      self.colChildren = None
+
+
+   def RegisterViews(self):
+      '''  '''
+
+      self.colChildren = [
+
+         headerView().Build,
+         bodyView().Build,
+         footerView().Build
+
+      ]
+
+
+   def RegisterCallbacks(self):
+      '''  '''
+
+      headerCallback()
+      bodyCallback()
+      footerCallback()
 
 
    @property
@@ -38,13 +58,7 @@ class Layout:
          children = dbc.Col(
 
             width = columnWidth,
-            children = [
-
-               self.header.Build,
-               self.body.Build,
-               self.footer.Build
-
-            ]
+            children = self.colChildren
 
          )
 
