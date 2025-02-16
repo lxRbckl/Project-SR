@@ -5,7 +5,7 @@ from dash_bootstrap_components import themes
 
 columnWidth = 8
 currentVersion = "1.0.0"
-projectName = "Project SW104-SR"
+projectName = "Project FSR"
 dash._dash_renderer._set_react_version('18.2.0')
 
 
