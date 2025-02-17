@@ -4,7 +4,7 @@ from dash_bootstrap_components import themes
 
 
 columnWidth = 9
-accordionLoadTime = 1.2
+accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project FSR"
 defaultAccordionItem = "Build"
@@ -19,7 +19,7 @@ app = dash.Dash(
    
    name = projectName,
    title = projectName,
-   assets_folder = "./src/assets",
+   assets_folder = "./frontend/assets",
    suppress_callback_exceptions = True,
    external_stylesheets = [
    

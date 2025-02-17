@@ -51,8 +51,7 @@ class Build:
 
                      size = "xs",
                      children = "Submit",
-                     id = "buildSubmitButtonId",
-                     className = "buildSubmitButton"
+                     id = "buildSubmitButtonId"
 
                   )
 

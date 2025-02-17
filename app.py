@@ -1,5 +1,5 @@
-from src.config import app
-from src.views.layout import Layout
+from frontend.config import app
+from frontend.views.layout import Layout
 
 
 layout = Layout()

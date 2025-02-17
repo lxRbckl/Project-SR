@@ -1,7 +1,7 @@
 from ...config import app
 
 from time import sleep
-from dash.dependencies import (Input, Output)
+from dash.dependencies import (Input, Output, State)
 
 
 class Build:
@@ -23,6 +23,11 @@ class Build:
          output = [
 
             Output("bodyAccordionId", "value", allow_duplicate = True)
+
+         ],
+         state = [
+
+            
 
          ]
 
