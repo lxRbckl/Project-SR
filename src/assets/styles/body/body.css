@@ -11,6 +11,7 @@
 }
 
 .bodyAccordionPanel {
+   margin: 0px;
    padding: 5px;
    border: var(--borderGray);
    border-radius: var(--borderRadius);

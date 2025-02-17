@@ -20,6 +20,7 @@ class Body:
 
          value = None,
          id = "bodyAccordionId",
+         transitionDuration = 400,
          children = [
 
             dmc.AccordionItem(
@@ -38,7 +39,7 @@ class Body:
                   dmc.AccordionPanel(
 
                      children = item.Build,
-                     className = "bodyAccordionPanel",
+                     className = "bodyAccordionPanel"
 
                   )
 

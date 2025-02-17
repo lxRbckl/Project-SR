@@ -17,8 +17,46 @@ class Build:
    def Build(self):
       '''  '''
 
-      return dbc.Row(
+      return [
 
-         children = html.H1("Build")
+         # (commands, controls) <
+         dbc.Row(
 
-      )
+            children = dmc.Textarea(
+
+               minRows = 5,
+               maxRows = 20,
+               error = None,
+               autosize = True,
+               id = "buildTextareaId",
+               className = "buildTextarea"
+
+            )
+
+         ),
+
+         dbc.Row(
+
+            justify = "between",
+            children = [
+
+               dbc.Col(
+
+                  className = "buildSubmitCol",
+                  children = dmc.Button(
+
+                     size = "xs",
+                     children = "Submit",
+                     id = "buildSubmitButtonId"
+
+                  )
+
+               )
+
+            ]
+
+         )
+
+         # >
+
+      ]
