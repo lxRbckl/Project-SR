@@ -30,7 +30,8 @@ class Build:
                error = None,
                autosize = True,
                id = "buildTextareaId",
-               className = "buildTextarea"
+               className = "buildTextarea",
+               placeholder = "Insert Commands"
 
             )
 

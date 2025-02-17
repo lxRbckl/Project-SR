@@ -8,10 +8,3 @@ class Build:
       '''  '''
 
       pass
-
-
-   @property
-   def Build(self):
-      '''  '''
-
-      pass
