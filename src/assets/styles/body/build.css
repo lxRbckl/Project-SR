@@ -1,9 +1,21 @@
+.buildCommandsRow {
+   padding: 0px;
+}
+
 .buildTextarea {
    margin: 0px;
-   padding: 0px 0px 0px 0px;
+   padding: 0px;
+}
+
+.buildControlsRow {
+   margin-bottom: -10px;
+   padding: 5px 0px 0px 0px;
 }
 
 .buildSubmitCol {
-   margin: 0px 0px -10px 0px;
-   padding: 10px 0px 0px 0px;
+   padding: 0px;
+}
+
+.buildSubmitButton {
+   margin: 0px;
 }

@@ -22,6 +22,7 @@ class Build:
          # (commands, controls) <
          dbc.Row(
 
+            className = "buildCommandsRow",
             children = dmc.Textarea(
 
                minRows = 5,
@@ -34,24 +35,29 @@ class Build:
             )
 
          ),
-
          dbc.Row(
 
             justify = "between",
+            className = "buildControlsRow",
             children = [
 
+               # (Submit) <
                dbc.Col(
 
+                  width = "auto",
                   className = "buildSubmitCol",
                   children = dmc.Button(
 
                      size = "xs",
                      children = "Submit",
-                     id = "buildSubmitButtonId"
+                     id = "buildSubmitButtonId",
+                     className = "buildSubmitButton"
 
                   )
 
                )
+
+               # >
 
             ]
 
