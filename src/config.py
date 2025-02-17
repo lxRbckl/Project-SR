@@ -4,7 +4,7 @@ from dash_bootstrap_components import themes
 
 
 columnWidth = 9
-accordionLoadTime = 0
+accordionLoadTime = 1.2
 currentVersion = "1.0.0"
 projectName = "Project FSR"
 defaultAccordionItem = "Build"
