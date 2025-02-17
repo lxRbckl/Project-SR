@@ -38,7 +38,6 @@ class Build:
          ),
          dbc.Row(
 
-            justify = "between",
             className = "buildControlsRow",
             children = [
 

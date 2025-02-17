@@ -7,7 +7,7 @@ columnWidth = 9
 accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project FSR"
-defaultAccordionItem = "Build"
+defaultAccordionItem = "Run"
 
 
 # Remove once Dash 3 comes out #

@@ -1,0 +1,15 @@
+.runStepsRow {
+   padding: 5px;
+   min-height: 250px;
+   max-height: 500px;
+   border: var(--borderGray);
+   background-color: white;
+   border-radius: var(--borderRadius);
+}
+
+.runControlsRow {
+   background-color: red;
+
+   margin-bottom: -10px;
+   padding: 5px 0px 0px 0px;
+}
