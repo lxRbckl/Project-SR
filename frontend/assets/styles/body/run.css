@@ -8,8 +8,14 @@
 }
 
 .runControlsRow {
-   background-color: red;
-
    margin-bottom: -10px;
    padding: 5px 0px 0px 0px;
+}
+
+.runLeftCol {
+   padding: 0px;
+}
+
+.runRightCol {
+   padding: 0px;
 }

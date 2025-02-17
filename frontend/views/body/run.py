@@ -30,39 +30,40 @@ class Run:
          ),
          dbc.Row(
 
-            justify = "start",
+            justify = "between",
             className = "runControlsRow",
             children = [
 
-               # (run, continue, reset) <
+               # (left, right) <
                dbc.Col(
 
                   width = "auto",
-                  children = dmc.Button(
+                  className = "runLeftCol",
+                  children = [
 
-                     size = "xs",
-                     children = "Run",
-                     id = "runRunButtonId"
+                     dmc.Button(
 
-                  )
+                        size = "xs",
+                        children = "Run",
+                        id = "runRunButtonId"
+
+                     ),
+                     dmc.Button(
+
+                        size = "xs",
+                        disabled = True,
+                        children = "Continue",
+                        id = "runContinueButtonId"
+
+                     )
+
+                  ]
 
                ),
                dbc.Col(
 
                   width = "auto",
-                  children = dmc.Button(
-
-                     size = "xs",
-                     disabled = True,
-                     children = "Continue",
-                     id = "runContinueButtonId"
-
-                  )
-
-               ),
-               dbc.Col(
-
-                  width = "auto",
+                  className = "runRightCol",
                   children = dmc.Button(
 
                      size = "xs",
