@@ -1,4 +1,4 @@
-from dash.dependencies import (Input, Output)
+from dash.dependencies import (Input, Output, State)
 from ..config import (app, projectName, currentVersion)
 
 class Header:

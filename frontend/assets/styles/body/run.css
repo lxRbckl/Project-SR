@@ -14,7 +14,7 @@
    padding: 5px 0px 0px 0px;
 }
 
-.runLeftCol {
+.runStartCol {
    padding: 0px;
 }
 
@@ -22,6 +22,6 @@
    margin-left: 5px;
 }
 
-.runRightCol {
+.runEndCol {
    padding: 0px;
 }

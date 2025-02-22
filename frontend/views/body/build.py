@@ -40,22 +40,26 @@ class Build:
             className = "buildControlsRow",
             children = [
 
-               # (Submit) <
                dbc.Col(
 
                   width = "auto",
-                  className = "buildSubmitCol",
-                  children = dmc.Button(
+                  className = "buildCol",
+                  children = [
 
-                     size = "xs",
-                     children = "Submit",
-                     id = "buildSubmitButtonId"
+                     # (create) <
+                     dmc.Button(
 
-                  )
+                        size = "xs",
+                        children = "Create",
+                        id = "buildCreateButtonId"
+
+                     )
+
+                     # >
+
+                  ]
 
                )
-
-               # >
 
             ]
 

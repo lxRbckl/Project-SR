@@ -33,18 +33,19 @@ class Run:
             className = "runControlsRow",
             children = [
 
-               # (left, right) <
+               # (start, end) <
                dbc.Col(
 
                   width = "auto",
-                  className = "runLeftCol",
+                  className = "runStartCol",
                   children = [
 
+                     # (start, continue) <
                      dmc.Button(
 
                         size = "xs",
-                        children = "Run",
-                        id = "runRunButtonId"
+                        children = "Start",
+                        id = "runStartButtonId"
 
                      ),
                      dmc.Button(
@@ -57,21 +58,30 @@ class Run:
 
                      )
 
+                     # >
+
                   ]
 
                ),
                dbc.Col(
 
                   width = "auto",
-                  className = "runRightCol",
-                  children = dmc.Button(
+                  className = "runEndCol",
+                  children = [
 
-                     size = "xs",
-                     disabled = True,
-                     children = "Stop",
-                     id = "runStopButtonId"
+                     # (stop) <
+                     dmc.Button(
 
-                  )
+                        size = "xs",
+                        disabled = True,
+                        children = "Stop",
+                        id = "runStopButtonId"
+
+                     )
+
+                     # >
+
+                  ]
 
                )
 

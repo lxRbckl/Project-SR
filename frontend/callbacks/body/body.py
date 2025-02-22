@@ -7,7 +7,7 @@ from ...config import (
 )
 
 from time import sleep
-from dash.dependencies import (Input, Output)
+from dash.dependencies import (Input, Output, State)
 
 
 class Body:

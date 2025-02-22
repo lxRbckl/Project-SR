@@ -1,5 +1,5 @@
 from ..config import app
-from dash.dependencies import (Input, Output)
+from dash.dependencies import (Input, Output, State)
 
 
 class Footer:
