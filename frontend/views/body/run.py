@@ -75,7 +75,9 @@ class Run:
                         size = "xs",
                         disabled = True,
                         children = "Stop",
-                        id = "runStopButtonId"
+                        id = "runStopButtonId",
+
+                        className = "test"
 
                      )
 

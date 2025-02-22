@@ -19,7 +19,11 @@ class Build:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = [Input("buildSubmitButtonId", "n_clicks")],
+         inputs = [
+            
+            Input("buildCreateButtonId", "n_clicks")
+            
+         ],
          output = [
 
             Output("bodyAccordionId", "value", allow_duplicate = True)
