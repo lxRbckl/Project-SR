@@ -1,5 +1,4 @@
 from dash import html
-from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
@@ -53,7 +52,8 @@ class Run:
                         size = "xs",
                         disabled = True,
                         children = "Continue",
-                        id = "runContinueButtonId"
+                        id = "runContinueButtonId",
+                        className = "runContinueButton"
 
                      )
 
@@ -67,13 +67,9 @@ class Run:
                   children = dmc.Button(
 
                      size = "xs",
-                     id = "runResetButtonId",
-                     children = DashIconify(
-
-                        width = 15,
-                        icon = "carbon:reset"
-
-                     )
+                     disabled = True,
+                     children = "Stop",
+                     id = "runStopButtonId"
 
                   )
 
