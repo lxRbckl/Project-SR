@@ -1,10 +1,21 @@
-.runOutputRow {
+/* .runOutputRow {
+   margin: 0px;
+   background-color: red;
+
    padding: 10px;
    min-height: 250px;
    max-height: 500px;
    overflow-y: scroll;
    border: var(--borderGray);
    background-color: white;
+   border-radius: var(--borderRadius);
+} */
+
+.runOutputStack {
+   min-height: 250px;
+   max-height: 450px;
+   border: var(--borderGray);
+   margin: 0px -10px 0px -10px;
    border-radius: var(--borderRadius);
 }
 

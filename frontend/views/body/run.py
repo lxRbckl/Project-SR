@@ -20,11 +20,13 @@ class Run:
       return [
 
          # (output, controls) <
-         dbc.Row(
+         dbc.Stack(
 
             children = None,
-            id = "runOutputRowId",
-            className = "runOutputRow"
+            # id = "runOutputRowId",
+            id = "runOutputStackId",
+            # className = "runOutputRow"
+            className = "runOutputStack"
 
          ),
          dbc.Row(

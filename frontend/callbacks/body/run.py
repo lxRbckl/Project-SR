@@ -8,11 +8,40 @@ class Run:
    def __init__(self):
       '''  '''
 
-      self.stopCallback()
-      self.startCallback()
-   
+      self.stackOnInputCallback()
+      self.startOnClickCallback()
+      self.stopOnClickCallback()
 
-   def startCallback(self):
+
+   def stackOnInputCallback(self):
+      '''  '''
+   
+      @app.callback(
+
+         prevent_initial_call = False,
+         inputs = [
+
+            Input("runOutputStackId", "children")
+
+         ],
+         output = [
+
+            Output("runStartButtonId", "disabled")
+
+         ],
+         state = [
+
+
+
+         ]
+
+      )
+      def func(*args):
+         print("stackOnInputCallback", args) # remove
+         return [True]
+
+
+   def startOnClickCallback(self):
       '''  '''
 
       @app.callback(
@@ -30,15 +59,20 @@ class Run:
             Output("runStartButtonId", "disabled", allow_duplicate = True),
             Output("buildCreateButtonId", "disabled", allow_duplicate = True)
 
+         ],
+         state = [
+
+            State("runOutputRowId", "children")
+
          ]
 
       )
       def func(*args):
-
+         print("startOnClickCallback", args) # remove
          return [False, "...", True, True]
       
    
-   def stopCallback(self):
+   def stopOnClickCallback(self):
       '''  '''
 
       @app.callback(
@@ -56,9 +90,14 @@ class Run:
             Output("runStartButtonId", "disabled", allow_duplicate = True),
             Output("buildCreateButtonId", "disabled", allow_duplicate = True)
 
+         ],
+         state = [
+
+
+            
          ]
 
       )
       def func(*args): 
-         
+         print("stopOnClickCallback", args) # remove
          return [True, "Start", False, False]
