@@ -19,10 +19,10 @@ class Build:
 
       return [
 
-         # (commands, controls) <
+         # (input, controls) <
          dbc.Row(
 
-            className = "buildCommandsRow",
+            className = "buildInputRow",
             children = dmc.Textarea(
 
                value = "",
