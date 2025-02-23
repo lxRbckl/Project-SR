@@ -25,6 +25,7 @@ class Build:
             className = "buildCommandsRow",
             children = dmc.Textarea(
 
+               value = "",
                minRows = 5,
                maxRows = 20,
                error = None,
@@ -72,6 +73,7 @@ class Build:
                      dmc.Button(
 
                         size = "xs",
+                        disabled = None,
                         children = "Clear",
                         id = "buildClearButtonId"
 

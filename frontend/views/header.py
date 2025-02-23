@@ -25,7 +25,6 @@ class Header:
             dbc.Col(
 
                width = "auto",
-               id = "headerColTitleId",
                className = "colExtended",
                children = [
 
@@ -47,7 +46,6 @@ class Header:
 
                align = "end",
                width = "auto",
-               id = "headerColVersionId",
                className = "colExtended",
                children = [
 

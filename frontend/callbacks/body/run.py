@@ -59,7 +59,4 @@ class Run:
          ]
 
       )
-      def func(*args):
-         
-         print(args)
-         return [True, "Start", False, False]
+      def func(*args): return [True, "Start", False, False]

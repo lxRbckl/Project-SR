@@ -10,7 +10,7 @@ projectName = "Project SR"
 defaultAccordionItem = "Run"
 
 
-# Remove once Dash 3 comes out #
+# Remove once Dash 3.x.x comes out #
 # React conflict, because Dash 2.x.x uses React 16 #
 dash._dash_renderer._set_react_version('18.2.0')
 

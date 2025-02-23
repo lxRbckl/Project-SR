@@ -16,10 +16,10 @@ class Body:
    def __init__(self):
       '''  '''
 
-      self.accordionCallback()
+      self.accordionOnLoadCallback()
 
 
-   def accordionCallback(self):
+   def accordionOnLoadCallback(self):
       '''  '''
 
       @app.callback(

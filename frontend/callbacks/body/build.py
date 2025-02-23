@@ -10,20 +10,23 @@ class Build:
    def __init__(self):
       '''  '''
 
-      self.textareaCallback()
-      self.submitCallback()
-      self.clearCallback()
+      self.redirectTo = "Run"
+
+      self.clearOnClickCallback()
+      self.createOnClickCallback()
+      self.textareaOnInputCallback()
+      self.clearOnDisabledCallback()
 
 
-   def textareaCallback(self):
+   def textareaOnInputCallback(self):
       '''  '''
 
       @app.callback(
 
-         prevent_initial_call = True,
+         prevent_initial_call = False,
          inputs = [
 
-            Input("buildTextareaId", "children")
+            Input("buildTextareaId", "value")
 
          ],
          output = [
@@ -38,12 +41,14 @@ class Build:
          ]
 
       )
-      def func(arg):
-         print("textareaCallback", arg)
-         return [False]
+      def func(textareaValue):
+
+         isEmpty = (textareaValue == "")
+
+         return [isEmpty]
 
 
-   def submitCallback(self):
+   def createOnClickCallback(self):
       '''  '''
 
       @app.callback(
@@ -61,22 +66,20 @@ class Build:
          ],
          state = [
 
-            
+            State("buildTextareaId", "value")
 
          ]
 
       )
-      def func(arg):
-
-         return ["Run"]
+      def func(createClick, textareaValue): return [self.redirectTo]
       
 
-   def clearCallback(self):
+   def clearOnDisabledCallback(self):
       '''  '''
 
       @app.callback(
 
-         precent_initial_call = True,
+         prevent_initial_call = True,
          inputs = [
 
             Input("buildCreateButtonId", "disabled")
@@ -84,7 +87,7 @@ class Build:
          ],
          output = [
 
-            Output("buildClearButtonId", "disabled")
+            Output("buildClearButtonId", "disabled", allow_duplicate = True)
 
          ],
          state = [
@@ -94,4 +97,30 @@ class Build:
          ]
 
       )
-      def func(arg): return [arg]
+      def func(createDisabled): return [createDisabled]
+
+
+   def clearOnClickCallback(self):
+      '''  '''
+
+      @app.callback(
+
+         prevent_initial_call = True,
+         inputs = [
+
+            Input("buildClearButtonId", "n_clicks")
+
+         ],
+         output = [
+
+            Output("buildTextareaId", "value", allow_duplicate = True)
+
+         ],
+         state = [
+
+            
+
+         ]
+
+      )
+      def func(clearClick): return [""]
