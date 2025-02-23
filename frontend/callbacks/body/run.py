@@ -36,9 +36,7 @@ class Run:
          ]
 
       )
-      def func(*args):
-         print("stackOnInputCallback", args) # remove
-         return [True]
+      def func(outputValue): return [True]
 
 
    def startOnClickCallback(self):
@@ -67,8 +65,8 @@ class Run:
          ]
 
       )
-      def func(*args):
-         print("startOnClickCallback", args) # remove
+      def func(startClick, outpuValue):
+
          return [False, "...", True, True]
       
    
@@ -94,10 +92,10 @@ class Run:
          state = [
 
 
-            
+
          ]
 
       )
-      def func(*args): 
-         print("stopOnClickCallback", args) # remove
+      def func(stopClick): 
+
          return [True, "Start", False, False]

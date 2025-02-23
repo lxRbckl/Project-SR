@@ -10,7 +10,7 @@ from time import sleep
 from dash.dependencies import (Input, Output, State)
 
 
-class Command:
+class Instruction:
 
 
    def __init__(self):
