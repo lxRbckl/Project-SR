@@ -15,6 +15,7 @@
    min-height: 250px;
    max-height: 450px;
    border: var(--borderGray);
+   background-color: white;
    margin: 0px -10px 0px -10px;
    border-radius: var(--borderRadius);
 }

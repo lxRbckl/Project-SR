@@ -23,9 +23,7 @@ class Run:
          dbc.Stack(
 
             children = None,
-            # id = "runOutputRowId",
             id = "runOutputStackId",
-            # className = "runOutputRow"
             className = "runOutputStack"
 
          ),

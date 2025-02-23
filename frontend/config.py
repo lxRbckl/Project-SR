@@ -7,7 +7,7 @@ columnWidth = 9
 accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project SR"
-defaultAccordionItem = "Run"
+defaultAccordionItem = "Build"
 
 
 # Remove once Dash 3.x.x comes out #
