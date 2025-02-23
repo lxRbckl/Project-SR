@@ -1,7 +1,4 @@
-.layoutRow {
-   margin: 0;
-   padding: 5%;
-   width: 100vw;
+.layoutCenter {
    height: 100vh;
    background-color: var(--colorWhite);
 }

@@ -60,10 +60,9 @@ class Layout:
 
       return dmc.MantineProvider(
 
-         children = dbc.Row(
+         children = dmc.Center(
 
-            justify = "center",
-            className = "layoutRow",
+            className = "layoutCenter",
             children = dbc.Col(
 
                width = columnWidth,
