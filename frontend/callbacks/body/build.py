@@ -80,6 +80,21 @@ class Build:
             print(c)
             commands.append(c)
 
+            # here we are going to want to import the command view
+            # and build the row component to display what's going on
+            # from here.
+            # then we will have a event listener/callback section that
+            # will send commands to run->controllers based on what is
+            # currently running (command-wise)
+            # once we have MADE all the callbacks (above may change now)
+            # then in RUN they will be ran. in ran's callback we will control
+            # the continue button accordingly, and that will control the   
+            # runtime of each command that is generated
+            
+            # TD;DR
+            # insert and send views here. IDs:callback will be an issue (dynamic?)
+            # then in the run callback we will control the runtime and execution of these
+
          return [self.redirectTo, commands]
       
 
