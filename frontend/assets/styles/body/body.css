@@ -1,10 +1,9 @@
 .bodyAccordionItem {
-   border: none;
+   border-bottom: var(--borderGray);
 }
 
 .bodyAccordionControl {
-   padding-left: 0px;
-   padding-right: 0px;
+   padding: 0px;
    color: var(--colorBlack);
 }
 .bodyAccordionControl:hover {
@@ -13,6 +12,7 @@
 
 .bodyAccordionPanel {
    padding: 5px;
+   margin: 0px 0px 5px 0px;
    border: var(--borderGray);
    border-radius: var(--borderRadius);
 }

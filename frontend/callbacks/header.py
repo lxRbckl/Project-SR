@@ -16,11 +16,11 @@ class Header:
 
       @app.callback(
 
-         output = Output("headerTitle", "children"),
+         output = Output("headerTitleH1Id", "children"),
          inputs = Input("headerRowId", "children")
 
       )
-      def func(titleValue): return projectName
+      def func(rowValue): return projectName
 
 
    def versionOnLoadCallback(self):
@@ -28,8 +28,21 @@ class Header:
 
       @app.callback(
 
-         output = Output("headerVersion", "children"),
+         output = Output("headerVersionButtonId", "children"),
          inputs = Input("headerRowId", "children")
 
       )
-      def func(versionValue): return currentVersion
+      def func(rowValue): return currentVersion
+
+
+   # def versionOnClickCallback(self):
+   #    '''  '''
+
+   #    @app.callback(
+
+   #       output = Output("", "")
+   #       inputs = Input("", "")
+
+   #    )
+   #    def func(arg):
+

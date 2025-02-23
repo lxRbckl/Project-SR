@@ -32,7 +32,7 @@ class Header:
                   html.H1(
 
                      children = None,
-                     id = "headerTitle",
+                     id = "headerTitleH1Id",
                      className = "headerTitleH1"
 
                   )
@@ -50,12 +50,11 @@ class Header:
                children = [
 
                   # (version) <
-                  dbc.Label(
+                  dmc.Button(
 
-                     size = "sm",
                      children = None,
-                     id = "headerVersion",
-                     className = "headerVersionLabel"
+                     size = "compact-xs",
+                     id = "headerVersionButtonId"
 
                   )
 

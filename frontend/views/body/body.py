@@ -20,7 +20,7 @@ class Body:
 
          value = None,
          id = "bodyAccordionId",
-         transitionDuration = 400,
+         transitionDuration = 300,
          children = [
 
             dmc.AccordionItem(

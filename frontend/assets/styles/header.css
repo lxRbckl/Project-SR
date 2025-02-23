@@ -1,14 +1,11 @@
 .headerRow {
-   margin: 0px 0px 5px 0px;
+   margin: 0px;
+   padding: 0px 0px 10px 0px;
    border-bottom: var(--borderGray);
 }
 
 .headerTitleH1 {
    padding: 0px;
    color: var(--colorBlack);
-   margin: 0px 0px 0px -2px;
-}
-
-.headerVersionLabel {
-   color: var(--colorBlack);
+   margin: 0px 0px -10px -2px;
 }
