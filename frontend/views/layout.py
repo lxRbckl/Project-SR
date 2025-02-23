@@ -22,6 +22,7 @@ from ..callbacks.body.body import Body as bodyCallback
 from ..callbacks.header import Header as headerCallback
 from ..callbacks.footer import Footer as footerCallback
 from ..callbacks.body.build import Build as buildCallback
+from ..callbacks.body.command import Command as commandCallback
 
 class Layout:
 
@@ -54,9 +55,10 @@ class Layout:
 
       headerCallback()
 
+      runCallback()
       bodyCallback()
       buildCallback()
-      runCallback()
+      commandCallback()
       
       footerCallback()
 

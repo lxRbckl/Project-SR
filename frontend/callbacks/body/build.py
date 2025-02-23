@@ -61,7 +61,8 @@ class Build:
          ],
          output = [
 
-            Output("bodyAccordionId", "value", allow_duplicate = True)
+            Output("bodyAccordionId", "value", allow_duplicate = True),
+            Output("runOutputStackId", "children", allow_duplicate = True)
 
          ],
          state = [
@@ -71,7 +72,15 @@ class Build:
          ]
 
       )
-      def func(createClick, textareaValue): return [self.redirectTo]
+      def func(createClick, textareaValue): 
+
+         commands = []
+         for c in textareaValue:
+
+            print(c)
+            commands.append(c)
+
+         return [self.redirectTo, commands]
       
 
    def clearOnDisabledCallback(self):
