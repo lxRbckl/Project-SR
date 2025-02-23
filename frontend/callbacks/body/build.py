@@ -90,10 +90,11 @@ class Build:
             # then in RUN they will be ran. in ran's callback we will control
             # the continue button accordingly, and that will control the   
             # runtime of each command that is generated
-            
+
             # TD;DR
             # insert and send views here. IDs:callback will be an issue (dynamic?)
             # then in the run callback we will control the runtime and execution of these
+            # commands we decipher from build should follow a hierchy of important approach
 
          return [self.redirectTo, commands]
       
