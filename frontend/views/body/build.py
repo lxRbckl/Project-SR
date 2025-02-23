@@ -51,6 +51,7 @@ class Build:
                      dmc.Button(
 
                         size = "xs",
+                        disabled = None,
                         children = "Create",
                         id = "buildCreateButtonId"
 
