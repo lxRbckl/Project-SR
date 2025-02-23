@@ -8,6 +8,7 @@ from .body.body import Body as bodyView
 from .header import Header as headerView
 from .footer import Footer as footerView
 from .body.build import Build as buildView
+from .documentation import Documentation as documentationView
 from ..callbacks.body.run import Run as runCallback
 from ..callbacks.body.body import Body as bodyCallback
 from ..callbacks.header import Header as headerCallback
@@ -30,6 +31,7 @@ class Layout:
       self.colChildren = [
 
          headerView().Build,
+         documentationView().Build,
          bodyView(items = [
 
             buildView(),

@@ -3,7 +3,7 @@ import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
 
-class Command:
+class Instruction:
 
 
    def __init__(self):

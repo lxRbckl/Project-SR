@@ -9,6 +9,7 @@ class Header:
 
       self.titleOnLoadCallback()
       self.versionOnLoadCallback()
+      self.versionOnClickCallback()
 
 
    def titleOnLoadCallback(self):
@@ -35,14 +36,14 @@ class Header:
       def func(rowValue): return currentVersion
 
 
-   # def versionOnClickCallback(self):
-   #    '''  '''
+   def versionOnClickCallback(self):
+      '''  '''
 
-   #    @app.callback(
+      @app.callback(
 
-   #       output = Output("", "")
-   #       inputs = Input("", "")
+         prevent_initial_call = True,
+         output = Output("documentationModalId", "opened"),
+         inputs = Input("headerVersionButtonId", "n_clicks")
 
-   #    )
-   #    def func(arg):
-
+      )
+      def func(versionClick): print(versionClick); return True
