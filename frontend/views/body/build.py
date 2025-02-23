@@ -37,13 +37,14 @@ class Build:
          ),
          dbc.Row(
 
+            justify = "between",
             className = "buildControlsRow",
             children = [
 
                dbc.Col(
 
                   width = "auto",
-                  className = "buildCol",
+                  className = "colExtended",
                   children = [
 
                      # (create) <
@@ -52,6 +53,26 @@ class Build:
                         size = "xs",
                         children = "Create",
                         id = "buildCreateButtonId"
+
+                     )
+
+                     # >
+
+                  ]
+
+               ),
+               dbc.Col(
+
+                  width = "auto",
+                  className = "colExtended",
+                  children = [
+
+                     # (clear) <
+                     dmc.Button(
+
+                        size = "xs",
+                        children = "Clear",
+                        id = "buildClearButtonId"
 
                      )
 

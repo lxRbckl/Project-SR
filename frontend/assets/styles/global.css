@@ -9,3 +9,8 @@
    --borderWhite: 1px solid var(--colorWhite);
 
 }
+
+
+.colExtended {
+   padding: 0px;
+}

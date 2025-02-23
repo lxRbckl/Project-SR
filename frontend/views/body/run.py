@@ -33,11 +33,10 @@ class Run:
             className = "runControlsRow",
             children = [
 
-               # (start, end) <
                dbc.Col(
 
                   width = "auto",
-                  className = "runStartCol",
+                  className = "colExtended",
                   children = [
 
                      # (start, continue) <
@@ -66,7 +65,7 @@ class Run:
                dbc.Col(
 
                   width = "auto",
-                  className = "runEndCol",
+                  className = "colExtended",
                   children = [
 
                      # (stop) <
@@ -75,9 +74,7 @@ class Run:
                         size = "xs",
                         disabled = True,
                         children = "Stop",
-                        id = "runStopButtonId",
-
-                        className = "test"
+                        id = "runStopButtonId"
 
                      )
 
@@ -86,8 +83,6 @@ class Run:
                   ]
 
                )
-
-               # >
 
             ]
             

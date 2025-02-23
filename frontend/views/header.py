@@ -22,19 +22,25 @@ class Header:
          className = "headerRow",
          children = [
 
-            # (title, version) <
             dbc.Col(
 
                width = "auto",
                id = "headerColTitleId",
-               className = "headerColTitle",
-               children = html.H1(
+               className = "colExtended",
+               children = [
 
-                  children = None,
-                  id = "headerTitle",
-                  className = "headerTitleH1"
+                  # (title) <
+                  html.H1(
 
-               )
+                     children = None,
+                     id = "headerTitle",
+                     className = "headerTitleH1"
+
+                  )
+
+                  # >
+
+               ]
 
             ),
             dbc.Col(
@@ -42,19 +48,24 @@ class Header:
                align = "end",
                width = "auto",
                id = "headerColVersionId",
-               className = "headerColVersion",
-               children = dbc.Label(
+               className = "colExtended",
+               children = [
 
-                  size = "sm",
-                  children = None,
-                  id = "headerVersion",
-                  className = "headerVersionLabel"
+                  # (version) <
+                  dbc.Label(
 
-               )
+                     size = "sm",
+                     children = None,
+                     id = "headerVersion",
+                     className = "headerVersionLabel"
+
+                  )
+
+                  # >
+
+               ]
 
             )
-
-            # >
 
          ]
 
