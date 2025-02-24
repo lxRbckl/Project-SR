@@ -3,7 +3,7 @@ from dash_mantine_components import styles
 from dash_bootstrap_components import themes
 
 
-columnWidth = 9
+layoutColWidth = 9
 accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project SR"

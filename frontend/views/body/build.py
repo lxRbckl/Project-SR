@@ -6,11 +6,13 @@ import dash_bootstrap_components as dbc
 class Build:
 
 
-   def __init__(self):
+   def __init__(self, instruction):
       '''  '''
 
       self.id = "buildId"
       self.value = "Build"
+
+      self.instruction = instruction
 
 
    @property
