@@ -46,4 +46,4 @@ class Header:
          inputs = Input("headerVersionButtonId", "n_clicks")
 
       )
-      def func(versionClick): print(versionClick); return True
+      def func(versionClick): return True

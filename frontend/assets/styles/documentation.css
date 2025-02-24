@@ -1,3 +1,13 @@
 .documentationModal {
-   
+
+}
+
+.documentationMarkdown {
+   padding: 5px;
+   min-height: 500px;
+   max-height: 850px;
+   overflow-y: scroll;
+   border: var(--borderGray);
+   background-color: white;
+   border-radius: var(--borderRadius);
 }
