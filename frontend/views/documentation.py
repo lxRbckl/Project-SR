@@ -27,11 +27,16 @@ class Documentation:
          centered = True,
          title = "Documentation",
          id = "documentationModalId",
-         children = dcc.Markdown(
+         closeOnClickOutside = False,
+         children = [
 
-            children = self.value,
-            className = "documentationMarkdown"
+            dcc.Markdown(
 
-         )
+               children = self.value,
+               className = "documentationMarkdown"
+
+            )
+
+         ]
 
       )
