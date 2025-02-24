@@ -32,6 +32,7 @@ class Build:
                maxRows = 20,
                error = None,
                autosize = True,
+               autoComplete = "on",
                id = "buildTextareaId",
                className = "buildTextarea"
 

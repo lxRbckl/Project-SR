@@ -82,7 +82,7 @@ class Build:
             commands.append(c)
 
 
-         return ["Tomato", self.redirectTo, commands]
+         return [None, self.redirectTo, commands]
       
 
    def clearOnDisabledCallback(self):
