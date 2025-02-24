@@ -23,20 +23,15 @@ class Documentation:
       return dmc.Modal(
 
          size = "85%",
-         opened = True,
+         opened = None,
          centered = True,
          title = "Documentation",
          id = "documentationModalId",
-         className = "documentationModal",
-         children = [
+         children = dcc.Markdown(
 
-            dcc.Markdown(
+            children = self.value,
+            className = "documentationMarkdown"
 
-               children = self.value,
-               className = "documentationMarkdown"
-
-            )
-
-         ]
+         )
 
       )
