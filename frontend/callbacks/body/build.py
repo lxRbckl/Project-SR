@@ -61,6 +61,7 @@ class Build:
          ],
          output = [
 
+            Output("buildTextareaId", "error", allow_duplicate = True),
             Output("bodyAccordionId", "value", allow_duplicate = True),
             Output("runOutputStackId", "children", allow_duplicate = True)
 
@@ -79,9 +80,9 @@ class Build:
 
             print(c)
             commands.append(c)
-   
 
-         return [self.redirectTo, commands]
+
+         return ["Tomato", self.redirectTo, commands]
       
 
    def clearOnDisabledCallback(self):
@@ -97,6 +98,7 @@ class Build:
          ],
          output = [
 
+            Output("buildTextareaId", "error", allow_duplicate = True),
             Output("buildClearButtonId", "disabled", allow_duplicate = True)
 
          ],
@@ -107,7 +109,7 @@ class Build:
          ]
 
       )
-      def func(createDisabled): return [createDisabled]
+      def func(createDisabled): return [None, createDisabled]
 
 
    def clearOnClickCallback(self):
