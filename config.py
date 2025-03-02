@@ -20,7 +20,7 @@ app = dash.Dash(
    
    name = projectName,
    title = projectName,
-   assets_folder = "./frontend/assets",
+   assets_folder = "./assets",
    suppress_callback_exceptions = True,
    external_stylesheets = [
    

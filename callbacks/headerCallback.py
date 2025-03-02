@@ -1,5 +1,5 @@
 from dash.dependencies import (Input, Output, State)
-from ..config import (app, projectName, currentVersion)
+from config import (app, projectName, currentVersion)
 
 class Header:
 
@@ -42,7 +42,7 @@ class Header:
       @app.callback(
 
          prevent_initial_call = True,
-         output = Output("documentationModalId", "opened"),
+         output = Output("guideModalId", "opened"),
          inputs = Input("headerVersionButtonId", "n_clicks")
 
       )

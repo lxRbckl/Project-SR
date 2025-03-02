@@ -1,4 +1,4 @@
-from ...config import emptyValue
+from config import emptyValue
 
 from dash import html
 import dash_mantine_components as dmc
@@ -8,14 +8,12 @@ import dash_bootstrap_components as dbc
 class Build:
 
 
-   def __init__(self, instruction):
+   def __init__(self):
       '''  '''
 
       self.id = "buildId"
       self.value = "Build"
       self.isDisabled = False
-
-      self.instruction = instruction
 
 
    @property
@@ -36,8 +34,8 @@ class Build:
                autosize = True,
                value = emptyValue,
                autoComplete = "on",
-               id = "buildTextareaId",
-               className = "buildTextarea"
+               id = "buildInputTextareaId",
+               className = "buildInputTextarea"
 
             )
 

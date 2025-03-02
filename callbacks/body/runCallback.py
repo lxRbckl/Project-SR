@@ -1,4 +1,4 @@
-from ...config import app
+from config import app
 
 from time import sleep
 from dash.dependencies import (Input, Output, State)
@@ -7,15 +7,16 @@ from dash.dependencies import (Input, Output, State)
 class Run:
 
 
-   def __init__(self):
+   def __init__(self, stepsModel):
       '''  '''
-
-      self.isRunning = True
-      self.redirectTo = "Result"
 
       self.stopOnClickCallback()
       self.stackOnInputCallback()
       self.startOnClickCallback()
+
+      self.isRunning = True
+      self.redirectTo = "Result"
+      self.stepsModel = stepsModel
 
 
    def stackOnInputCallback(self):
@@ -24,7 +25,7 @@ class Run:
       @app.callback(
 
          prevent_initial_call = False,
-         inputs = Input("runOutputStackId", "children"),
+         inputs = Input("runStepsStackId", "children"),
          output = Output("runStartButtonId", "disabled")
 
       )

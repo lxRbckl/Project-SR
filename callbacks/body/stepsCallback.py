@@ -1,8 +1,8 @@
-from ...config import app
+from config import app
 from dash.dependencies import (Input, Output, State)
 
 
-class Instruction:
+class Steps:
 
 
    def __init__(self):
@@ -26,16 +26,10 @@ class Instruction:
 
 
 
-#    from time import sleep
+# from time import sleep
 # import pyautogui
 # import pytesseract
 # from PIL import Image
-
-
-
-
-# # THIS IS AN EXAMPLE
-
 
 
 # # Set path for tesseract if it's not in your PATH

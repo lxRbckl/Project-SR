@@ -1,4 +1,4 @@
-from ..config import app
+from config import app
 from dash.dependencies import (Input, Output, State)
 
 

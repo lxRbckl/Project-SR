@@ -21,12 +21,12 @@ class Run:
 
       return [
 
-         # (output, controls) <
+         # (steps, controls) <
          dbc.Stack(
 
             children = None,
-            id = "runOutputStackId",
-            className = "runOutputStack"
+            id = "runStepsStackId",
+            className = "runStepsStack"
 
          ),
          dbc.Row(

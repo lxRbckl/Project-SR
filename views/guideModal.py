@@ -3,14 +3,14 @@ import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
 
-class Documentation:
+class Guide:
 
 
    def __init__(self):
       '''  '''
 
       self.value = None
-      self.filepath = "frontend/assets/data/documentation.md"
+      self.filepath = "./assets/data/guide.md"
 
       with open(self.filepath, 'r') as fin:
          self.value = fin.read()
@@ -24,16 +24,16 @@ class Documentation:
 
          size = "85%",
          opened = None,
+         title = "Guide",
          centered = True,
-         title = "Documentation",
-         id = "documentationModalId",
+         id = "guideModalId",
          closeOnClickOutside = False,
          children = [
 
             dcc.Markdown(
 
                children = self.value,
-               className = "documentationMarkdown"
+               className = "guideMarkdown"
 
             )
 

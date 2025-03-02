@@ -1,14 +1,15 @@
-from ...config import (app, emptyValue)
+from config import (app, emptyValue)
 from dash.dependencies import (Input, Output, State)
 
 
 class Build:
 
 
-   def __init__(self):
+   def __init__(self, stepsModel):
       '''  '''
 
       self.redirectTo = "Run"
+      self.stepsModel = stepsModel
 
       self.clearOnClickCallback()
       self.createOnClickCallback()
@@ -22,7 +23,7 @@ class Build:
       @app.callback(
 
          prevent_initial_call = False,
-         inputs = Input("buildTextareaId", "value"),
+         inputs = Input("buildInputTextareaId", "value"),
          output = Output("buildCreateButtonId", "disabled")
 
       )
@@ -38,16 +39,16 @@ class Build:
          inputs = Input("buildCreateButtonId", "n_clicks"),
          output = [
 
-            Output("buildTextareaId", "error", allow_duplicate = True),
             Output("bodyAccordionId", "value", allow_duplicate = True),
-            Output("runOutputStackId", "children", allow_duplicate = True)
+            Output("runStepsStackId", "children", allow_duplicate = True),
+            Output("buildInputTextareaId", "error", allow_duplicate = True)
 
          ],
          state = [
 
-            State("buildTextareaId", "value"),
             State("bodyAccordionId", "value"),
-            State("runOutputStackId", "children")
+            State("runStepsStackId", "children"),
+            State("buildInputTextareaId", "value")
 
          ],
          running = [
@@ -58,15 +59,19 @@ class Build:
          ]
 
       )
-      def func(createClick, textareaValue, stackChildren, accordionValue):
+      def func(createClick, accordionValue, stepsChildren, textareaValue):
 
          try:
 
-            pass
-            # result = 
+            return [
 
-         except KeyError: errorMessage = "There was an error."
-         finally: return [errorMessage, accordionValue, stackChildren]
+               self.redirectTo,
+               'insert algorithm above return',
+               None
+
+            ]
+
+         except KeyError: return [accordionValue, stepsChildren, "There was an error."]
       
 
    def clearOnDisabledCallback(self):
@@ -78,7 +83,7 @@ class Build:
          inputs = Input("buildCreateButtonId", "disabled"),
          output = [
 
-            Output("buildTextareaId", "error", allow_duplicate = True),
+            Output("buildInputTextareaId", "error", allow_duplicate = True),
             Output("buildClearButtonId", "disabled", allow_duplicate = True)
 
          ]
@@ -94,7 +99,7 @@ class Build:
 
          prevent_initial_call = True,
          inputs = Input("buildClearButtonId", "n_clicks"),
-         output = Output("buildTextareaId", "value", allow_duplicate = True)
+         output = Output("buildInputTextareaId", "value", allow_duplicate = True)
 
       )
       def func(clearClick): return emptyValue
