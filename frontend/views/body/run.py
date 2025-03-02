@@ -11,6 +11,7 @@ class Run:
 
       self.id = "runId"
       self.value = "Run"
+      self.isPaused = False
       self.isDisabled = False
 
 

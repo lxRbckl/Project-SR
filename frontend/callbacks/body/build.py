@@ -45,7 +45,9 @@ class Build:
          ],
          state = [
 
-            State("buildTextareaId", "value")
+            State("buildTextareaId", "value"),
+            State("bodyAccordionId", "value"),
+            State("runOutputStackId", "children")
 
          ],
          running = [
@@ -56,9 +58,15 @@ class Build:
          ]
 
       )
-      def func(createClick, textareaValue): 
-         
-         return [None, self.redirectTo, "body"]
+      def func(createClick, textareaValue, stackChildren, accordionValue):
+
+         try:
+
+            pass
+            # result = 
+
+         except KeyError: errorMessage = "There was an error."
+         finally: return [errorMessage, accordionValue, stackChildren]
       
 
    def clearOnDisabledCallback(self):
