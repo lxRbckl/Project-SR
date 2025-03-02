@@ -1,4 +1,6 @@
 from ...config import app
+
+from time import sleep
 from dash.dependencies import (Input, Output, State)
 
 
@@ -8,9 +10,12 @@ class Run:
    def __init__(self):
       '''  '''
 
+      self.isRunning = True
+      self.redirectTo = "Result"
+
+      self.stopOnClickCallback()
       self.stackOnInputCallback()
       self.startOnClickCallback()
-      self.stopOnClickCallback()
 
 
    def stackOnInputCallback(self):
@@ -19,24 +24,13 @@ class Run:
       @app.callback(
 
          prevent_initial_call = False,
-         inputs = [
-
-            Input("runOutputStackId", "children")
-
-         ],
-         output = [
-
-            Output("runStartButtonId", "disabled")
-
-         ],
-         state = [
-
-
-
-         ]
+         inputs = Input("runOutputStackId", "children"),
+         output = Output("runStartButtonId", "disabled")
 
       )
-      def func(outputValue): return [True]
+      def func(stackValue): 
+         print('stackOnInputCallback')
+         return (stackValue == None)
 
 
    def startOnClickCallback(self):
@@ -45,29 +39,26 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = [
+         inputs = Input("runStartButtonId", "n_clicks"),
+         output = Output("result", "children", allow_duplicate = True),
+         running = [
 
-            Input("runStartButtonId", "n_clicks")
-
-         ],
-         output = [
-
-            Output("runStopButtonId", "disabled", allow_duplicate = True),
-            Output("runStartButtonId", "children", allow_duplicate = True),
-            Output("runStartButtonId", "disabled", allow_duplicate = True),
-            Output("buildCreateButtonId", "disabled", allow_duplicate = True)
-
-         ],
-         state = [
-
-            State("runOutputRowId", "children")
+            (Output("runStartButtonId", "loading"), True, False),
+            (Output("runStopButtonId", "disabled"), False, True),
+            (Output("buildCreateButtonId", "disabled"), True, False)
 
          ]
 
       )
-      def func(startClick, outpuValue):
+      def func(startClick):
+         print('startOnClickCallback')
+         self.isRunning = True
+         while (self.isRunning == True):
 
-         return [False, "...", True, True]
+            print('running')
+            sleep(1)
+         
+         return None
       
    
    def stopOnClickCallback(self):
@@ -76,26 +67,13 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = [
-
-            Input("runStopButtonId", "n_clicks")
-
-         ],
-         output = [
-
-            Output("runStopButtonId", "disabled", allow_duplicate = True),
-            Output("runStartButtonId", "children", allow_duplicate = True),
-            Output("runStartButtonId", "disabled", allow_duplicate = True),
-            Output("buildCreateButtonId", "disabled", allow_duplicate = True)
-
-         ],
-         state = [
-
-
-
-         ]
+         inputs = Input("runStopButtonId", "n_clicks"),
+         output = Output("result", "children", allow_duplicate = True)
 
       )
       def func(stopClick): 
 
-         return [True, "Start", False, False]
+         print('stopOnClickCallback')
+         print('stop clicked')
+         self.isRunning = False
+         return None

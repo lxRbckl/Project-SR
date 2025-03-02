@@ -11,6 +11,7 @@ class Run:
 
       self.id = "runId"
       self.value = "Run"
+      self.isDisabled = False
 
 
    @property
@@ -43,8 +44,10 @@ class Run:
                      dmc.Button(
 
                         size = "xs",
+                        disabled = True,
                         children = "Start",
-                        id = "runStartButtonId"
+                        id = "runStartButtonId",
+                        loaderProps = {"type" : "dots"}
 
                      ),
                      dmc.Button(

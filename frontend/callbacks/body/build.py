@@ -1,6 +1,4 @@
-from ...config import app
-
-from time import sleep
+from ...config import (app, emptyValue)
 from dash.dependencies import (Input, Output, State)
 
 
@@ -24,28 +22,13 @@ class Build:
       @app.callback(
 
          prevent_initial_call = False,
-         inputs = [
-
-            Input("buildTextareaId", "value")
-
-         ],
-         output = [
-
-            Output("buildCreateButtonId", "disabled")
-
-         ],
-         state = [
-
-
-
-         ]
+         inputs = Input("buildTextareaId", "value"),
+         output = Output("buildCreateButtonId", "disabled")
 
       )
-      def func(textareaValue):
-
-         isEmpty = (textareaValue == "")
-
-         return [isEmpty]
+      def func(textareaValue): 
+         print('textareaOnInputCallback')
+         return (textareaValue == emptyValue)
 
 
    def createOnClickCallback(self):
@@ -54,11 +37,7 @@ class Build:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = [
-            
-            Input("buildCreateButtonId", "n_clicks")
-            
-         ],
+         inputs = Input("buildCreateButtonId", "n_clicks"),
          output = [
 
             Output("buildTextareaId", "error", allow_duplicate = True),
@@ -70,19 +49,18 @@ class Build:
 
             State("buildTextareaId", "value")
 
+         ],
+         running = [
+
+            (Output("buildCreateButtonId", "loading"), True, False),
+            (Output("buildClearButtonId", "disabled"), True, False)
+
          ]
 
       )
       def func(createClick, textareaValue): 
-
-         commands = []
-         for c in textareaValue:
-
-            print(c)
-            commands.append(c)
-
-
-         return [None, self.redirectTo, commands]
+         print('createOnClickCallback')
+         return [None, self.redirectTo, "body"]
       
 
    def clearOnDisabledCallback(self):
@@ -91,25 +69,18 @@ class Build:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = [
-
-            Input("buildCreateButtonId", "disabled")
-
-         ],
+         inputs = Input("buildCreateButtonId", "disabled"),
          output = [
 
             Output("buildTextareaId", "error", allow_duplicate = True),
             Output("buildClearButtonId", "disabled", allow_duplicate = True)
 
-         ],
-         state = [
-
-
-
          ]
 
       )
-      def func(createDisabled): return [None, createDisabled]
+      def func(createDisabled): 
+         print('clearOnDisabledCallback')
+         return [None, createDisabled]
 
 
    def clearOnClickCallback(self):
@@ -118,21 +89,10 @@ class Build:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = [
-
-            Input("buildClearButtonId", "n_clicks")
-
-         ],
-         output = [
-
-            Output("buildTextareaId", "value", allow_duplicate = True)
-
-         ],
-         state = [
-
-            
-
-         ]
+         inputs = Input("buildClearButtonId", "n_clicks"),
+         output = Output("buildTextareaId", "value", allow_duplicate = True)
 
       )
-      def func(clearClick): return [""]
+      def func(clearClick): 
+         print('clearOnClickCallback')
+         return emptyValue

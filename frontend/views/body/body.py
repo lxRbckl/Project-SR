@@ -33,6 +33,7 @@ class Body:
                   dmc.AccordionControl(
 
                      children = item.value,
+                     disabled = item.isDisabled,
                      className = "bodyAccordionControl"
 
                   ),

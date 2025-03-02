@@ -1,3 +1,5 @@
+from ...config import emptyValue
+
 from dash import html
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
@@ -11,6 +13,7 @@ class Build:
 
       self.id = "buildId"
       self.value = "Build"
+      self.isDisabled = False
 
       self.instruction = instruction
 
@@ -27,11 +30,11 @@ class Build:
             className = "buildInputRow",
             children = dmc.Textarea(
 
-               value = "",
                minRows = 5,
                maxRows = 20,
                error = None,
                autosize = True,
+               value = emptyValue,
                autoComplete = "on",
                id = "buildTextareaId",
                className = "buildTextarea"
@@ -57,7 +60,8 @@ class Build:
                         size = "xs",
                         disabled = None,
                         children = "Create",
-                        id = "buildCreateButtonId"
+                        id = "buildCreateButtonId",
+                        loaderProps = {"type" : "dots"}
 
                      )
 
