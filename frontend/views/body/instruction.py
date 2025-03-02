@@ -9,8 +9,7 @@ class Instruction:
    def __init__(self):
       '''  '''
 
-      self.id = "commandId"
-      self.value = "Command"
+      pass
 
 
    @property
