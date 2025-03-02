@@ -28,9 +28,7 @@ class Run:
          output = Output("runStartButtonId", "disabled")
 
       )
-      def func(stackValue): 
-         print('stackOnInputCallback')
-         return (stackValue == None)
+      def func(stackValue): return (stackValue == None)
 
 
    def startOnClickCallback(self):
@@ -51,11 +49,10 @@ class Run:
 
       )
       def func(startClick):
-         print('startOnClickCallback')
+
          self.isRunning = True
          while (self.isRunning == True):
 
-            print('running')
             sleep(1)
          
          return None
@@ -73,7 +70,5 @@ class Run:
       )
       def func(stopClick): 
 
-         print('stopOnClickCallback')
-         print('stop clicked')
          self.isRunning = False
          return None

@@ -26,9 +26,7 @@ class Build:
          output = Output("buildCreateButtonId", "disabled")
 
       )
-      def func(textareaValue): 
-         print('textareaOnInputCallback')
-         return (textareaValue == emptyValue)
+      def func(textareaValue): return (textareaValue == emptyValue)
 
 
    def createOnClickCallback(self):
@@ -58,9 +56,7 @@ class Build:
          ]
 
       )
-      def func(createClick, textareaValue): 
-         print('createOnClickCallback')
-         return [None, self.redirectTo, "body"]
+      def func(createClick, textareaValue): return [None, self.redirectTo, "body"]
       
 
    def clearOnDisabledCallback(self):
@@ -78,9 +74,7 @@ class Build:
          ]
 
       )
-      def func(createDisabled): 
-         print('clearOnDisabledCallback')
-         return [None, createDisabled]
+      def func(createDisabled): return [None, createDisabled]
 
 
    def clearOnClickCallback(self):
@@ -93,6 +87,4 @@ class Build:
          output = Output("buildTextareaId", "value", allow_duplicate = True)
 
       )
-      def func(clearClick): 
-         print('clearOnClickCallback')
-         return emptyValue
+      def func(clearClick): return emptyValue
