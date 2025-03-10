@@ -9,6 +9,7 @@ accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project SR"
 defaultAccordionItem = "Run"
+notificationPosition = "bottom-right"
 
 
 # Remove once Dash 3.x.x comes out #
@@ -24,9 +25,10 @@ app = dash.Dash(
    suppress_callback_exceptions = True,
    external_stylesheets = [
    
-      styles.ALL,
+      # styles.ALL,
       themes.GRID,
-      themes.BOOTSTRAP
+      themes.BOOTSTRAP,
+      styles.NOTIFICATIONS
 
    ]
    

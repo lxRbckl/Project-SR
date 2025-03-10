@@ -1,8 +1,8 @@
-from config import layoutColWidth
-
 from dash import html
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
+
+from config import (layoutColWidth, notificationPosition)
 
 
 class Layout:
@@ -25,7 +25,12 @@ class Layout:
 
          children = [
 
-            dmc.NotificationProvider(),
+            dmc.NotificationProvider(
+
+               autoClose = False,
+               position = notificationPosition
+
+            ),
             dmc.Center(
 
                className = "layoutCenter",
