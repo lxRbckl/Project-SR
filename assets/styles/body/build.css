@@ -1,13 +1,14 @@
 .buildInputRow {
    padding: 0;
+   margin: 0 -10px 0 -10px;
 }
 
 .buildInputTextarea {
-   margin: 0;
+   margin: 0 0 5px 0;
    padding: 0;
 }
 
 .buildControlsRow {
-   padding: 5px 0 0 0;
-   margin-bottom: -10px;
+   padding: 0;
+   margin: 0 -10px -10px -10px;
 }

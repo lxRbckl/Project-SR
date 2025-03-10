@@ -1,10 +1,9 @@
-.headerRow {
-   margin: 0;
-   padding: 0 0 10px 0;
-}
-
 .headerTitleH1 {
    padding: 0;
+   margin: 0 0 0 -2px;
    color: var(--colorBlack);
-   margin: 0 0 -10px -2px;
+}
+
+.headerVersionButton {
+   margin: 0 0 10px 0;
 }

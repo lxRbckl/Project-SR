@@ -2,6 +2,8 @@ from dash import html
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
+from config import (projectName, currentVersion)
+
 
 class Header:
 
@@ -20,7 +22,7 @@ class Header:
 
          id = "headerRowId",
          justify = "between",
-         className = "headerRow",
+         className = "rowExtended",
          children = [
 
             dbc.Col(
@@ -32,8 +34,8 @@ class Header:
                   # (title) <
                   html.H1(
 
-                     children = None,
                      id = "headerTitleH1Id",
+                     children = projectName,
                      className = "headerTitleH1"
 
                   )
@@ -53,9 +55,10 @@ class Header:
                   # (version) <
                   dmc.Button(
 
-                     children = None,
                      size = "compact-xs",
-                     id = "headerVersionButtonId"
+                     children = currentVersion,
+                     id = "headerVersionButtonId",
+                     className = "headerVersionButton"
 
                   )
 

@@ -7,33 +7,7 @@ class Header:
    def __init__(self):
       """  """
 
-      self.titleOnLoadCallback()
-      self.versionOnLoadCallback()
       self.versionOnClickCallback()
-
-
-   def titleOnLoadCallback(self):
-      """  """
-
-      @app.callback(
-
-         output = Output("headerTitleH1Id", "children"),
-         inputs = Input("headerRowId", "children")
-
-      )
-      def func(rowValue): return projectName
-
-
-   def versionOnLoadCallback(self):
-      """  """
-
-      @app.callback(
-
-         output = Output("headerVersionButtonId", "children"),
-         inputs = Input("headerRowId", "children")
-
-      )
-      def func(rowValue): return currentVersion
 
 
    def versionOnClickCallback(self):
