@@ -1,3 +1,4 @@
 .footerRow {
    margin: 0;
+   border-top: var(--borderGray);
 }

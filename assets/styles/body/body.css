@@ -1,13 +1,12 @@
 .bodyAccordionItem {
    border: none;
    margin-top: 5px;
-   border-top: var(--borderGray);
    border-bottom: none;
-   /*border-bottom: var(--borderGray);*/
+   border-top: var(--borderGray);
 }
 
 .bodyAccordionControl {
-   padding: 5px 0 0 0;
+   padding: 0;
    color: var(--colorBlack);
 }
 
@@ -16,9 +15,6 @@
 }
 
 .bodyAccordionPanel {
-   /*padding: 5px;*/
-   /*margin: 0 0 50px 0;*/
    border: var(--borderGray);
-   /*border-bottom: var(--borderGray);*/
    border-radius: var(--borderRadius);
 }
