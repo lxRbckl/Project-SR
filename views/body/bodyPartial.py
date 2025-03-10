@@ -7,20 +7,20 @@ class Body:
 
 
    def __init__(self, items):
-      '''  '''
+      """  """
 
       self.items = items
 
 
    @property
-   def Build(self): 
-      '''  '''
+   def build(self):
+      """  """
 
       return dmc.Accordion(
 
          value = None,
          id = "bodyAccordionId",
-         transitionDuration = 300,
+         # transitionDuration = 300,
          children = [
 
             dmc.AccordionItem(
@@ -39,7 +39,7 @@ class Body:
                   ),
                   dmc.AccordionPanel(
 
-                     children = item.Build,
+                     children = item.build,
                      className = "bodyAccordionPanel"
 
                   )

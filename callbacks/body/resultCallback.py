@@ -6,6 +6,6 @@ class Result:
 
 
    def __init__(self, stepsModel):
-      '''  '''
+      """  """
 
       self.stepsModel = stepsModel

@@ -9,7 +9,7 @@ class Layout:
 
    
    def __init__(self, guide, header, body, footer):
-      '''  '''
+      """  """
 
       self.body = body
       self.guide = guide
@@ -18,8 +18,8 @@ class Layout:
 
 
    @property
-   def Build(self):
-      '''  '''
+   def build(self):
+      """  """
 
       return dmc.MantineProvider(
 
@@ -31,10 +31,10 @@ class Layout:
                width = layoutColWidth,
                children = [
 
-                  self.guide.Build,
-                  self.header.Build,
-                  self.body.Build,
-                  self.footer.Build
+                  self.guide.build,
+                  self.header.build,
+                  self.body.build,
+                  self.footer.build
 
                ]
 

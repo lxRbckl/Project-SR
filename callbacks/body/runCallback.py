@@ -8,7 +8,7 @@ class Run:
 
 
    def __init__(self, stepsModel):
-      '''  '''
+      """  """
 
       self.stopOnClickCallback()
       self.stackOnInputCallback()
@@ -20,7 +20,7 @@ class Run:
 
 
    def stackOnInputCallback(self):
-      '''  '''
+      """  """
    
       @app.callback(
 
@@ -33,7 +33,7 @@ class Run:
 
 
    def startOnClickCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 
@@ -60,7 +60,7 @@ class Run:
       
    
    def stopOnClickCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 

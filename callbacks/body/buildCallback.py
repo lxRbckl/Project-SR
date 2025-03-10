@@ -6,7 +6,7 @@ class Build:
 
 
    def __init__(self, stepsModel):
-      '''  '''
+      """  """
 
       self.redirectTo = "Run"
       self.stepsModel = stepsModel
@@ -18,7 +18,7 @@ class Build:
 
 
    def textareaOnInputCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 
@@ -31,7 +31,7 @@ class Build:
 
 
    def createOnClickCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 
@@ -75,7 +75,7 @@ class Build:
       
 
    def clearOnDisabledCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 
@@ -93,7 +93,7 @@ class Build:
 
 
    def clearOnClickCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 

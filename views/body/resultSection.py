@@ -7,7 +7,7 @@ class Result:
 
 
    def __init__(self):
-      '''  '''
+      """  """
 
       self.id = "resultId"
       self.value = "Result"
@@ -15,7 +15,7 @@ class Result:
 
 
    @property
-   def Build(self):
-      '''  '''
+   def build(self):
+      """  """
 
       return html.Div(id = "result")

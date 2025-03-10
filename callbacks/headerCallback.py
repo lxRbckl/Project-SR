@@ -5,7 +5,7 @@ class Header:
 
 
    def __init__(self):
-      '''  '''
+      """  """
 
       self.titleOnLoadCallback()
       self.versionOnLoadCallback()
@@ -13,7 +13,7 @@ class Header:
 
 
    def titleOnLoadCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 
@@ -25,7 +25,7 @@ class Header:
 
 
    def versionOnLoadCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 
@@ -37,7 +37,7 @@ class Header:
 
 
    def versionOnClickCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 

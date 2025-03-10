@@ -7,13 +7,13 @@ class Steps:
 
 
    def __init__(self):
-      '''  '''
+      """  """
 
       pass
 
 
    @property
-   def Build(self):
-      '''  '''
+   def build(self):
+      """  """
 
       pass

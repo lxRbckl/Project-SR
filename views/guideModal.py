@@ -7,7 +7,7 @@ class Guide:
 
 
    def __init__(self):
-      '''  '''
+      """  """
 
       self.value = None
       self.filepath = "./assets/data/guide.md"
@@ -17,8 +17,8 @@ class Guide:
 
 
    @property
-   def Build(self):
-      '''  '''
+   def build(self):
+      """  """
 
       return dmc.Modal(
 

@@ -9,7 +9,7 @@ class Build:
 
 
    def __init__(self):
-      '''  '''
+      """  """
 
       self.id = "buildId"
       self.value = "Build"
@@ -17,8 +17,8 @@ class Build:
 
 
    @property
-   def Build(self):
-      '''  '''
+   def build(self):
+      """  """
 
       return [
 

@@ -14,21 +14,45 @@ class Body:
 
 
    def __init__(self):
-      '''  '''
+      """  """
 
       self.accordionOnLoadCallback()
 
 
    def accordionOnLoadCallback(self):
-      '''  '''
+      """  """
 
       @app.callback(
 
          output = Output("bodyAccordionId", "value"),
-         inputs = [Input("bodyAccordionId", "children")]
+         inputs = [
+
+            Input("bodyAccordionId", "children")
+
+         ]
 
       )
-      def func(arg): 
+      def func(accordionValue):
 
          sleep(accordionLoadTime)
          return defaultAccordionItem
+
+
+
+      # @app.callback(
+      #
+      #    output = Output("result", "children"),
+      #    inputs = [Input("bodyAccordionId", "value")],
+      # )
+      # def func(args):
+      #    '''  '''
+      #
+      #    print(args)
+      #
+      #    return None
+      #
+      # @app.callback(
+      #
+      #    output = Output()
+      #
+      # )

@@ -7,7 +7,7 @@ class Run:
 
 
    def __init__(self):
-      '''  '''
+      """  """
 
       self.id = "runId"
       self.value = "Run"
@@ -16,8 +16,8 @@ class Run:
 
 
    @property
-   def Build(self):
-      '''  '''
+   def build(self):
+      """  """
 
       return [
 

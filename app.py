@@ -25,7 +25,6 @@ stepsModel = stepsModel()
 
 # >
 
-
 # register views <
 layout = layoutView(
 
@@ -48,7 +47,6 @@ layout = layoutView(
 
 # >
 
-
 # register callbacks <
 bodyCallback()
 stepsCallback()
@@ -62,5 +60,5 @@ resultCallback(stepsModel = stepsModel)
 # >
 
 
-app.layout = layout.Build
+app.layout = layout.build
 app.run_server(debug = True)
