@@ -8,7 +8,7 @@ layoutColWidth = 9
 accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project SR"
-defaultAccordionItem = "Build"
+defaultAccordionItem = "Run"
 
 
 # Remove once Dash 3.x.x comes out #
@@ -17,7 +17,7 @@ dash._dash_renderer._set_react_version('18.2.0')
 
 
 app = dash.Dash(
-   
+
    name = projectName,
    title = projectName,
    assets_folder = "./assets",

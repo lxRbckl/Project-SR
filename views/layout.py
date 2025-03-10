@@ -23,23 +23,28 @@ class Layout:
 
       return dmc.MantineProvider(
 
-         children = dmc.Center(
+         children = [
 
-            className = "layoutCenter",
-            children = dbc.Col(
+            dmc.NotificationProvider(),
+            dmc.Center(
 
-               width = layoutColWidth,
-               children = [
+               className = "layoutCenter",
+               children = dbc.Col(
 
-                  self.guide.build,
-                  self.header.build,
-                  self.body.build,
-                  self.footer.build
+                  width = layoutColWidth,
+                  children = [
 
-               ]
+                     self.guide.build,
+                     self.header.build,
+                     self.body.build,
+                     self.footer.build
+
+                  ]
+
+               )
 
             )
-            
-         )
+
+         ]
 
       )

@@ -9,8 +9,8 @@
 }
 
 .runControlsRow {
-   margin-bottom: -10px;
    padding: 5px 0 0 0;
+   margin: 0 -10px -10px -10px;
 }
 
 .runContinueButton {
