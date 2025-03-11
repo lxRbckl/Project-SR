@@ -103,6 +103,22 @@ class Run:
 
                ]
 
+            ),
+            dbc.Col(
+
+               width = 12,
+               className = "colExtended",
+               children = [
+
+                  dmc.Progress(
+
+                     value = 0,
+                     className = "runProgress"
+
+                  )
+
+               ]
+
             )
 
          ]

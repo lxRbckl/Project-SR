@@ -19,3 +19,7 @@
 .runStopButton {
    margin: 0;
 }
+
+.runProgress {
+   margin: 5px 0 0 0;
+}
