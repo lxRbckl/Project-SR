@@ -110,12 +110,16 @@ class Run:
                className = "colExtended",
                children = [
 
+                  # progress <
                   dmc.Progress(
 
                      value = 0,
+                     id="runProgressId",
                      className = "runProgress"
 
                   )
+
+                  # >
 
                ]
 

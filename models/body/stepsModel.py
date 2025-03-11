@@ -1,4 +1,7 @@
+# import <
 
+
+# >
 
 
 class Steps:
@@ -8,3 +11,19 @@ class Steps:
       """  """
 
       self.steps = []
+
+
+   def addStep(self, command, text, parameters):
+      """  """
+
+      self.steps.append(
+
+         {
+
+            "command" : command,
+            "text" : text,
+            "parameters" : parameters
+
+         }
+
+      )

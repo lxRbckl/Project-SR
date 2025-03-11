@@ -8,22 +8,21 @@ layoutColWidth = 9
 accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project SR"
-defaultAccordionItem = "Run"
+defaultAccordionItem = "Build"
 notificationPosition = "bottom-right"
 
-# build <
 buildOptions = [
    "test",
    "test1",
    "test2"
 ]
-
-# >
-
-# run <
-
-
-# >
+runCommands = [
+   "date",
+   "example", "ex"
+]
+runParameters = [
+   "retry on failure", "rof"
+]
 
 
 # Remove once Dash 3.x.x comes out #

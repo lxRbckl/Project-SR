@@ -1,5 +1,5 @@
-from config import (app, emptyValue)
 from dash.dependencies import (Input, Output, State)
+from config import (app, emptyValue, runCommands, runParameters)
 
 
 class Build:
@@ -61,7 +61,38 @@ class Build:
       )
       def func(createClick, accordionValue, stepsChildren, textareaValue):
 
+         # try:
+
+         # print('textareaValue', textareaValue) # remove
+         # print('tvr', textareaValue.split('\n')) # remove
+         # for step in textareaValue:
+         #
+         #    print('step', step) # remove
+         #    command, text, *parameters = step.split(",")
+         #
+         #    print(command, text, parameters) # remove
+         #
+         #    # if (command not in runCommands): raise commandError
+         #    # for (parameter in parameters.split(""))
+         #    #
+         #    # self.stepsModel.addStep(
+         #    #
+         #    #    text=text,
+         #    #    command = command,
+         #    #    parameters = parameters
+         #    #
+         #    # )
+
+         textareaError = "There was an error."
          try:
+
+            for step in textareaValue.split('\n'):
+
+               command, text, *parameters = step.split(',')
+
+               if (command not in runCommands):
+                  raise
+               else: pass
 
             return [
 
@@ -71,21 +102,9 @@ class Build:
 
             ]
 
-         except KeyError: return [accordionValue, stepsChildren, "There was an error."]
+         except incorrectCommand as e: textareaError = f"{e}"
+         finally: return [accordionValue, stepsChildren, textareaError]
 
-
-   def optionsOnLoadCallback(self):
-      """  """
-
-      @app.callback(
-
-         prevent_initial_call = False,
-         inputs = Input("", ""),
-         output = Output("", "")
-
-      )
-      def func(): return self.buildModel
-      
 
    def clearOnDisabledCallback(self):
       """  """
