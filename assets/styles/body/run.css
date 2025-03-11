@@ -1,6 +1,6 @@
 .runStepsStack {
-   margin: 0;
    padding: 0;
+   margin: 0 0 5px 0;
    min-height: 250px;
    max-height: 450px;
    background-color: white;
@@ -9,13 +9,13 @@
 }
 
 .runStartButton {
-   margin: 0 0 0 0;
+   margin: 0;
 }
 
 .runContinueButton {
-   margin: 0 0 0 0;
+   margin: 0 0 0 5px;
 }
 
 .runStopButton {
-   margin: 0 0 0 0;
+   margin: 0;
 }
