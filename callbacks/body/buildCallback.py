@@ -72,6 +72,19 @@ class Build:
             ]
 
          except KeyError: return [accordionValue, stepsChildren, "There was an error."]
+
+
+   def optionsOnLoadCallback(self):
+      """  """
+
+      @app.callback(
+
+         prevent_initial_call = False,
+         inputs = Input("", ""),
+         output = Output("", "")
+
+      )
+      def func(): return self.buildModel
       
 
    def clearOnDisabledCallback(self):

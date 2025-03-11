@@ -8,8 +8,22 @@ layoutColWidth = 9
 accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project SR"
-defaultAccordionItem = "Build"
+defaultAccordionItem = "Run"
 notificationPosition = "bottom-right"
+
+# build <
+buildOptions = [
+   "test",
+   "test1",
+   "test2"
+]
+
+# >
+
+# run <
+
+
+# >
 
 
 # Remove once Dash 3.x.x comes out #
@@ -24,8 +38,7 @@ app = dash.Dash(
    assets_folder = "./assets",
    suppress_callback_exceptions = True,
    external_stylesheets = [
-   
-      # styles.ALL,
+
       themes.GRID,
       themes.BOOTSTRAP,
       styles.NOTIFICATIONS

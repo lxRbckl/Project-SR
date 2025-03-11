@@ -15,4 +15,9 @@ class Footer:
    def build(self):
       """  """
 
-      return None
+      return dbc.Row(
+
+         justify = None,
+         children = None
+
+      )

@@ -1,18 +1,21 @@
 .runStepsStack {
-   padding: 2px;
+   margin: 0;
+   padding: 0;
    min-height: 250px;
    max-height: 450px;
-   margin: 0 -10px 0 -10px;
    background-color: white;
    border: var(--borderGray);
    border-radius: var(--borderRadius);
 }
 
-.runControlsRow {
-   padding: 5px 0 0 0;
-   margin: 0 -10px -10px -10px;
+.runStartButton {
+   margin: 0 0 0 0;
 }
 
 .runContinueButton {
-   margin-left: 5px;
+   margin: 0 0 0 0;
+}
+
+.runStopButton {
+   margin: 0 0 0 0;
 }

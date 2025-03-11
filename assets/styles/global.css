@@ -10,12 +10,16 @@
 
 }
 
-
 .rowExtended {
    margin: 0;
    padding: 0;
 }
 
 .colExtended {
+   padding: 0;
+}
+
+.rowItemExtended {
+   margin: 0 -10px -10px -10px;
    padding: 0;
 }

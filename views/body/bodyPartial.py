@@ -20,6 +20,7 @@ class Body:
 
          value = None,
          id = "bodyAccordionId",
+         className = "bodyAccordion",
          children = [
 
             dmc.AccordionItem(

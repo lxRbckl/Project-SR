@@ -1,14 +1,22 @@
-.buildInputRow {
-   padding: 0;
-   margin: 0 -10px 0 -10px;
-}
-
 .buildInputTextarea {
-   margin: 0 0 5px 0;
    padding: 0;
+   margin: 0 0 5px 0;
 }
 
-.buildControlsRow {
+.buildCreateButton {
+   margin: 0 5px 0 0;
+}
+
+.buildMultiSelect {
    padding: 0;
-   margin: 0 -10px -10px -10px;
+   margin: 0;
+}
+
+.mantine-MultiSelect-pill {
+   font-size: 11px;
+   border-radius: 0.375rem;
+}
+
+.buildClearButton {
+   margin: 0;
 }

@@ -1,8 +1,8 @@
-from config import emptyValue
-
 from dash import html
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
+
+from config import (emptyValue, buildOptions)
 
 
 class Build:
@@ -20,67 +20,69 @@ class Build:
    def build(self):
       """  """
 
-      return [
+      return dbc.Row(
 
-         # (input, controls) <
-         dbc.Row(
+         justify = "between",
+         className = "rowExtended rowItemExtended",
+         children = [
 
-            className = "buildInputRow",
-            children = dmc.Textarea(
+            dbc.Col(
 
-               minRows = 5,
-               maxRows = 20,
-               error = None,
-               autosize = True,
-               value = emptyValue,
-               autoComplete = "on",
-               id = "buildInputTextareaId",
-               className = "buildInputTextarea"
+               width = 12,
+               className = "colExtended",
+               children = [
 
-            )
+                  # input <
+                  dmc.Textarea(
 
-         ),
-         dbc.Row(
+                     minRows = 5,
+                     maxRows = 20,
+                     error = None,
+                     autosize = True,
+                     disabled = False,
+                     value = emptyValue,
+                     autoComplete = "on",
+                     id = "buildInputTextareaId",
+                     className = "buildInputTextarea"
 
-            justify = "between",
-            className = "buildControlsRow",
-            children = [
+                  )
 
-               dbc.Col(
+                  # >
 
-                  width = "auto",
-                  className = "colExtended",
+               ]
+
+            ),
+            dbc.Col(
+
+               width = "auto",
+               className = "colExtended",
+               children = dmc.Group(
+
+                  gap = 0,
                   children = [
 
-                     # (create) <
+                     # (create, options) <
                      dmc.Button(
 
                         size = "xs",
                         disabled = None,
                         children = "Create",
                         id = "buildCreateButtonId",
-                        loaderProps = {"type" : "dots"}
+                        loaderProps = {"type" : "dots"},
+                        className = "buildCreateButton"
 
-                     )
+                     ),
+                     dmc.MultiSelect(
 
-                     # >
-
-                  ]
-
-               ),
-               dbc.Col(
-
-                  width = "auto",
-                  className = "colExtended",
-                  children = [
-
-                     # (clear) <
-                     dmc.Button(
-
+                        value = [],
                         size = "xs",
                         disabled = None,
-                        children = "Clear",
-                        id = "buildClearButtonId"
+                        clearable = True,
+                        searchable = True,
+                        data = buildOptions,
+                        placeholder = "Options",
+                        id = "buildMultiSelectId",
+                        className = "buildMultiSelect"
 
                      )
 
@@ -90,10 +92,32 @@ class Build:
 
                )
 
-            ]
+            ),
+            dbc.Col(
 
-         )
+               width = "auto",
+               className = "colExtended",
+               children = [
 
-         # >
+                  # clear <
+                  dmc.Button(
 
-      ]
+                     size = "xs",
+                     disabled = None,
+                     children = "Clear",
+                     id = "buildClearButtonId",
+                     className="buildClearButton"
+
+                  )
+
+                  # >
+
+               ]
+
+            )
+
+            # >
+
+         ]
+
+      )

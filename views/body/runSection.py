@@ -19,26 +19,39 @@ class Run:
    def build(self):
       """  """
 
-      return [
+      return dbc.Row(
 
-         # (steps, controls) <
-         dbc.Stack(
+         justify = "between",
+         className = "rowExtended rowItemExtended",
+         children = [
 
-            children = None,
-            id = "runStepsStackId",
-            className = "runStepsStack"
+            dbc.Col(
 
-         ),
-         dbc.Row(
+               width = 12,
+               className = "colExtended",
+               children = [
 
-            justify = "between",
-            className = "runControlsRow",
-            children = [
+                  # steps <
+                  dbc.Stack(
 
-               dbc.Col(
+                     children = None,
+                     id = "runStepsStackId",
+                     className = "runStepsStack"
 
-                  width = "auto",
-                  className = "colExtended",
+                  )
+
+                  # >
+
+               ]
+
+            ),
+            dbc.Col(
+
+               width = "auto",
+               className = "colExtended",
+               children = dmc.Group(
+
+                  gap = 0,
                   children = [
 
                      # (start, continue) <
@@ -48,6 +61,7 @@ class Run:
                         disabled = True,
                         children = "Start",
                         id = "runStartButtonId",
+                        className = "runStartButton",
                         loaderProps = {"type" : "dots"}
 
                      ),
@@ -65,33 +79,32 @@ class Run:
 
                   ]
 
-               ),
-               dbc.Col(
-
-                  width = "auto",
-                  className = "colExtended",
-                  children = [
-
-                     # (stop) <
-                     dmc.Button(
-
-                        size = "xs",
-                        disabled = True,
-                        children = "Stop",
-                        id = "runStopButtonId"
-
-                     )
-
-                     # >
-
-                  ]
-
                )
 
-            ]
-            
-         )
+            ),
+            dbc.Col(
 
-         # >
+               width = "auto",
+               className = "colExtended",
+               children = [
 
-      ]
+                  # stop <
+                  dmc.Button(
+
+                     size = "xs",
+                     disabled = True,
+                     children = "Stop",
+                     id = "runStopButtonId",
+                     className = "runStopButton"
+
+                  )
+
+                  # >
+
+               ]
+
+            )
+
+         ]
+
+      )
