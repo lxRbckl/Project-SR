@@ -1,3 +1,6 @@
+from time import sleep
+from clipboard import copy
+
 from config import (app, emptyValue)
 from dash.dependencies import (Input, Output, State)
 
@@ -5,15 +8,17 @@ from dash.dependencies import (Input, Output, State)
 class Build:
 
 
-   def __init__(self, stepsModel, stepsComponent):
+   def __init__(self, notifier, stepsModel, stepsComponent):
       """  """
 
+      self.copyOnClickCallback()
       self.clearOnClickCallback()
       self.createOnClickCallback()
-      self.textareaOnInputCallback()
       self.clearOnDisabledCallback()
+      self.textareaOnInputCallback()
 
       self.redirectTo = "Run"
+      self.notifier = notifier
       self.stepsModel = stepsModel
       self.stepsComponent = stepsComponent
 
@@ -100,19 +105,25 @@ class Build:
       def func(createDisabled): return [createDisabled, None, createDisabled]
 
 
-   # def copyOnClickCallback(self):
-   #    """  """
-   #
-   #    @app.callback(
-   #
-   #       prevent_initial_call = True,
-   #       inputs = Input("", ""),
-   #       output = Output("", "", allow_duplicate = True)
-   #
-   #    )
-   #    def func(*args):
-   #       print(args)
-   #       return None
+   def copyOnClickCallback(self):
+      """  """
+
+      @app.callback(
+
+         prevent_initial_call = True,
+         state=State("buildInputTextareaId", "value"),
+         inputs = Input("buildCopyButtonId", "n_clicks"),
+         output = Output("buildInputTextareaId", "value", allow_duplicate = True)
+
+      )
+      def func(copyClick, copyValue):
+         print(copyClick, copyValue) # remove
+
+         sleep(0.5)
+         copy(copyValue)
+
+
+         return copyValue
 
 
    def clearOnClickCallback(self):

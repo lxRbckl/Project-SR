@@ -6,14 +6,13 @@ import dash_bootstrap_components as dbc
 class Run:
 
 
-   def __init__(self, notifier):
+   def __init__(self):
       """  """
 
       self.id = "runId"
       self.value = "Run"
       self.isPaused = False
       self.isDisabled = False
-      self.notifier = notifier
 
    @property
    def build(self):

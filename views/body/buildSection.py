@@ -9,13 +9,12 @@ from config import (emptyValue, buildOptions)
 class Build:
 
 
-   def __init__(self, notifier):
+   def __init__(self):
       """  """
 
       self.id = "buildId"
       self.value = "Build"
       self.isDisabled = False
-      self.notifier = notifier
 
 
    @property

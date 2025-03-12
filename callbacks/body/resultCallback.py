@@ -5,7 +5,8 @@ from dash.dependencies import (Input, Output, State)
 class Result:
 
 
-   def __init__(self, stepsModel):
+   def __init__(self, notifier, stepsModel):
       """  """
 
+      self.notifier = notifier
       self.stepsModel = stepsModel

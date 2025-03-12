@@ -6,13 +6,12 @@ import dash_bootstrap_components as dbc
 class Result:
 
 
-   def __init__(self, notifier):
+   def __init__(self):
       """  """
 
       self.id = "resultId"
       self.value = "Result"
       self.isDisabled = True
-      self.notifier = notifier
 
 
    @property
