@@ -96,12 +96,13 @@ class Build:
 
                 Output("buildCopyButtonId", "disabled", allow_duplicate = True),
                 Output("buildInputTextareaId", "error", allow_duplicate = True),
-                Output("buildClearButtonId", "disabled", allow_duplicate = True)
+                Output("buildClearButtonId", "disabled", allow_duplicate = True),
+                Output("buildOptionsMultiSelectId", "disabled", allow_duplicate = True)
 
             ]
 
         )
-        def func(createDisabled): return [createDisabled, None, createDisabled]
+        def func(createDisabled): return [createDisabled, None, createDisabled, createDisabled]
 
     def clipboardOnClickCallback(self):
         """  """
@@ -171,7 +172,12 @@ class Build:
 
             prevent_initial_call = True,
             inputs = Input("buildClearButtonId", "n_clicks"),
-            output = Output("buildInputTextareaId", "value", allow_duplicate = True)
+            output = [
+
+                Output("buildInputTextareaId", "value", allow_duplicate = True),
+                Output("buildOptionsMultiSelectId", "value", allow_duplicate = True)
+
+            ]
 
         )
-        def func(clearClick): return emptyValue
+        def func(clearClick): return [emptyValue, None]

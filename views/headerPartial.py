@@ -31,7 +31,7 @@ class Header:
                className = "colExtended",
                children = [
 
-                  # (title) <
+                  # title <
                   html.H1(
 
                      id = "headerTitleH1Id",
@@ -52,7 +52,7 @@ class Header:
                className = "colExtended",
                children = [
 
-                  # (version) <
+                  # version <
                   dmc.Button(
 
                      size = "compact-xs",
