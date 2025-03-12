@@ -28,7 +28,7 @@ stepsModel = stepsModel()
 # >
 
 # register views <
-
+stepsComponent = stepsComponent()
 notifier = notificationComponent()
 layout = layoutView(
 
@@ -53,8 +53,6 @@ layout = layoutView(
 # >
 
 # register callbacks <
-
-
 headerCallback()
 bodyCallback()
 stepsCallback()
@@ -67,7 +65,7 @@ buildCallback(
 )
 runCallback(
 
-   notifier=notifier,
+   notifier = notifier,
    stepsModel = stepsModel,
    stepsComponent = stepsComponent
 

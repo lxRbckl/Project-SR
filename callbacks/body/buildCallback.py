@@ -7,6 +7,7 @@ from config import (app, emptyValue, iconCopy, iconPaste)
 
 class Build:
 
+
     def __init__(self, notifier, stepsModel, stepsComponent):
         """  """
 
@@ -21,6 +22,7 @@ class Build:
         self.stepsModel = stepsModel
         self.stepsComponent = stepsComponent
 
+
     def textareaOnInputCallback(self):
         """  """
 
@@ -32,6 +34,7 @@ class Build:
 
         )
         def func(textareaValue): return (textareaValue == emptyValue)
+
 
     def createOnClickCallback(self):
         """  """
@@ -74,15 +77,15 @@ class Build:
                     response = self.stepsModel.addStep(textareaValues[i])
                     i += 1
 
-                    print(type(stepsChildren))  # remove
-                    print(type(self.stepsComponent.build))  # remove
+                    # if (error) <
+                    # else (then success) <
+                    if (response): return [accordionValue, stepsChildren, response]
+                    else: return [self.redirectTo, self.stepsComponent.gg, None]
 
-                    if (response):
-                        return [accordionValue, stepsChildren, response]
-                    else:
-                        return [self.redirectTo, None, None]
+                    # >
 
             except ValueError: return [accordionValue, stepsChildren, "Invalid notation."]
+
 
     def clearOnDisabledCallback(self):
         """  """
@@ -102,6 +105,7 @@ class Build:
 
         )
         def func(createDisabled): return [createDisabled, None, createDisabled, createDisabled]
+
 
     def clipboardOnClickCallback(self):
         """  """
