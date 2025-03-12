@@ -8,22 +8,17 @@ layoutColWidth = 9
 accordionLoadTime = 0
 currentVersion = "1.0.0"
 projectName = "Project SR"
-defaultAccordionItem = "Build"
+defaultAccordionItem = "Run"
 notificationPosition = "bottom-right"
 
 buildOptions = [
-   "Skip All Alerts",
-   "Skip All Wait to Continues"
+   "option"
 ]
 runCommands = [
-   "command",
-   "date",
-   "example", "ex"
+   "command"
 ]
 runParameters = [
-   "parameter", "parameters",
-   "retry on failure", "rof",
-   "alert"
+   "parameter"
 ]
 
 

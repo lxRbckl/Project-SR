@@ -7,7 +7,7 @@ from dash.dependencies import (Input, Output, State)
 class Run:
 
 
-   def __init__(self, stepsModel):
+   def __init__(self, stepsModel, stepsComponent):
       """  """
 
       self.stopOnClickCallback()
@@ -17,6 +17,7 @@ class Run:
       self.isRunning = True
       self.redirectTo = "Result"
       self.stepsModel = stepsModel
+      self.stepsComponent = stepsComponent
 
 
    def stackOnInputCallback(self):
@@ -55,7 +56,7 @@ class Run:
          self.isRunning = True
          while (self.isRunning == True):
 
-            sleep(1)
+            sleep(3)
          
          return None
       

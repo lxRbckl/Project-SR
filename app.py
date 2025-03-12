@@ -10,6 +10,7 @@ from views.headerPartial import Header as headerPartial
 from views.footerPartial import Footer as footerPartial
 from views.body.buildSection import Build as buildSection
 from views.body.resultSection import Result as resultSection
+from views.body.stepsComponent import  Steps as stepsComponent
 
 from callbacks.body.runCallback import Run as runCallback
 from callbacks.body.bodyCallback import Body as bodyCallback
@@ -53,8 +54,8 @@ stepsCallback()
 footerCallback()
 headerCallback()
 
-runCallback(stepsModel = stepsModel)
-buildCallback(stepsModel = stepsModel)
+buildCallback(stepsModel = stepsModel, stepsComponent = stepsComponent)
+runCallback(stepsModel = stepsModel, stepsComponent = stepsComponent)
 resultCallback(stepsModel = stepsModel)
 
 # >

@@ -12,6 +12,10 @@
    margin: 0;
 }
 
+.runRetryButton {
+   margin: 0 0 0 5px;
+}
+
 .runContinueButton {
    margin: 0 0 0 5px;
 }

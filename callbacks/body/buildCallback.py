@@ -5,16 +5,17 @@ from dash.dependencies import (Input, Output, State)
 class Build:
 
 
-   def __init__(self, stepsModel):
+   def __init__(self, stepsModel, stepsComponent):
       """  """
-
-      self.redirectTo = "Run"
-      self.stepsModel = stepsModel
 
       self.clearOnClickCallback()
       self.createOnClickCallback()
       self.textareaOnInputCallback()
       self.clearOnDisabledCallback()
+
+      self.redirectTo = "Run"
+      self.stepsModel = stepsModel
+      self.stepsComponent = stepsComponent
 
 
    def textareaOnInputCallback(self):
@@ -71,7 +72,8 @@ class Build:
                response = self.stepsModel.addStep(textareaValues[i])
                i += 1
 
-            return [self.redirectTo, "insert steps", response]
+               if (response): return [accordionValue, stepsChildren, response]
+               else: return [self.redirectTo, [self.stepsComponent.build], None]
 
          except ValueError: return [accordionValue, stepsChildren, "Invalid notation."]
 

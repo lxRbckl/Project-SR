@@ -54,15 +54,24 @@ class Run:
                   gap = 0,
                   children = [
 
-                     # (start, continue) <
+                     # (start, retry, continue) <
                      dmc.Button(
 
                         size = "xs",
-                        disabled = True,
+                        disabled = False,
                         children = "Start",
                         id = "runStartButtonId",
                         className = "runStartButton",
                         loaderProps = {"type" : "dots"}
+
+                     ),
+                     dmc.Button(
+
+                        size = "xs",
+                        disabled = False,
+                        children = "Retry",
+                        id = "runRetryButtonId",
+                        className = "runRetryButton"
 
                      ),
                      dmc.Button(
