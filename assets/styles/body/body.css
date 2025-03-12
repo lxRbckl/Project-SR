@@ -4,8 +4,8 @@
 
 .bodyAccordionItem {
    border: none;
-   border-bottom: none;
    padding: 0 0 5px 0;
+   border-bottom: none;
    border-top: var(--borderGray);
 }
 

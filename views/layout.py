@@ -8,13 +8,14 @@ from config import (layoutColWidth, notificationPosition)
 class Layout:
 
    
-   def __init__(self, guide, header, body, footer):
+   def __init__(self, notifier, guide, header, body, footer):
       """  """
 
       self.body = body
       self.guide = guide
       self.footer = footer
       self.header = header
+      self.notifier = notifier
 
 
    @property
@@ -25,12 +26,6 @@ class Layout:
 
          children = [
 
-            dmc.NotificationProvider(
-
-               autoClose = False,
-               position = notificationPosition
-
-            ),
             dmc.Center(
 
                className = "layoutCenter",
@@ -39,6 +34,7 @@ class Layout:
                   width = layoutColWidth,
                   children = [
 
+                     self.notifier.build,
                      self.guide.build,
                      self.header.build,
                      self.body.build,

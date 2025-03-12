@@ -1,4 +1,5 @@
 from dash import html
+from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
@@ -8,12 +9,13 @@ from config import (emptyValue, buildOptions)
 class Build:
 
 
-   def __init__(self):
+   def __init__(self, notifier):
       """  """
 
       self.id = "buildId"
       self.value = "Build"
       self.isDisabled = False
+      self.notifier = notifier
 
 
    @property
@@ -84,7 +86,7 @@ class Build:
                         id = "buildMultiSelectId",
                         className = "buildMultiSelect"
 
-                     )
+                     ),
 
                      # >
 
@@ -99,7 +101,21 @@ class Build:
                className = "colExtended",
                children = [
 
-                  # clear <
+                  # (copy, clear) <
+                  dmc.Button(
+
+                     size = "xs",
+                     disabled = None,
+                     id = "buildCopyButtonId",
+                     className = "buildCopyButton",
+                     children = DashIconify(
+
+                        width = 20,
+                        icon = "solar:copy-line-duotone"
+
+                     )
+
+                  ),
                   dmc.Button(
 
                      size = "xs",

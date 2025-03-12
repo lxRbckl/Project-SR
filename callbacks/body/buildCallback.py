@@ -72,8 +72,11 @@ class Build:
                response = self.stepsModel.addStep(textareaValues[i])
                i += 1
 
+               print(type(stepsChildren)) # remove
+               print(type(self.stepsComponent.build)) # remove
+
                if (response): return [accordionValue, stepsChildren, response]
-               else: return [self.redirectTo, [self.stepsComponent.build], None]
+               else: return [self.redirectTo, self.stepsComponent.build, None]
 
          except ValueError: return [accordionValue, stepsChildren, "Invalid notation."]
 
@@ -87,13 +90,29 @@ class Build:
          inputs = Input("buildCreateButtonId", "disabled"),
          output = [
 
+            Output("buildCopyButtonId", "disabled", allow_duplicate=True),
             Output("buildInputTextareaId", "error", allow_duplicate = True),
             Output("buildClearButtonId", "disabled", allow_duplicate = True)
 
          ]
 
       )
-      def func(createDisabled): return [None, createDisabled]
+      def func(createDisabled): return [createDisabled, None, createDisabled]
+
+
+   # def copyOnClickCallback(self):
+   #    """  """
+   #
+   #    @app.callback(
+   #
+   #       prevent_initial_call = True,
+   #       inputs = Input("", ""),
+   #       output = Output("", "", allow_duplicate = True)
+   #
+   #    )
+   #    def func(*args):
+   #       print(args)
+   #       return None
 
 
    def clearOnClickCallback(self):
