@@ -111,19 +111,17 @@ class Build:
       @app.callback(
 
          prevent_initial_call = True,
-         state=State("buildInputTextareaId", "value"),
+         state = State("buildInputTextareaId", "value"),
          inputs = Input("buildCopyButtonId", "n_clicks"),
-         output = Output("buildInputTextareaId", "value", allow_duplicate = True)
+         running = (Output("buildCopyButtonId", "loading"), True, False),
+         output = Output("notificationDiv", "children", allow_duplicate = True)
 
       )
       def func(copyClick, copyValue):
-         print(copyClick, copyValue) # remove
 
          sleep(0.5)
          copy(copyValue)
-
-
-         return copyValue
+         return self.notifier.notify(duration = 5000, message = "Input was copied.")
 
 
    def clearOnClickCallback(self):

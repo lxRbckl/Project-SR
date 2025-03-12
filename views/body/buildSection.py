@@ -107,6 +107,7 @@ class Build:
                      disabled = None,
                      id = "buildCopyButtonId",
                      className = "buildCopyButton",
+                     loaderProps = {"type": "dots"},
                      children = DashIconify(
 
                         width = 20,

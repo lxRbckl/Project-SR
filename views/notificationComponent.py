@@ -19,12 +19,23 @@ class Notification:
     def build(self):
         """  """
 
-        return dmc.NotificationProvider(
+        return html.Div(children = [
 
-            autoClose = False,
-            position = notificationPosition
+            dmc.NotificationProvider(
 
-        )
+                autoClose = False,
+                position = notificationPosition
+
+            ),
+            html.Div(
+
+                children = None,
+                id = "notificationDiv"
+
+            )
+
+        ])
+
 
     @staticmethod
     def notify(
