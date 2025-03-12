@@ -1,5 +1,6 @@
 # import <
-
+from re import split
+from config import (runCommands, runParameters)
 
 # >
 
@@ -13,9 +14,21 @@ class Steps:
       self.steps = []
 
 
-   def addStep(self, command, text, parameters):
+   def addStep(self, step):
       """  """
 
+      # parse #
+      command, text, *parameters = split(r",\s*", step.lower())
+
+      # verify <
+      if (command not in runCommands): return f"Command \"{command}\" not recognized."
+      for param in parameters:
+
+         if (param not in runParameters): return f"Parameter \"{param}\" not recognized."
+
+      # >
+
+      # add <
       self.steps.append(
 
          {
@@ -27,3 +40,7 @@ class Steps:
          }
 
       )
+
+      # >
+
+      return None

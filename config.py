@@ -12,16 +12,18 @@ defaultAccordionItem = "Build"
 notificationPosition = "bottom-right"
 
 buildOptions = [
-   "test",
-   "test1",
-   "test2"
+   "Skip All Alerts",
+   "Skip All Wait to Continues"
 ]
 runCommands = [
+   "command",
    "date",
    "example", "ex"
 ]
 runParameters = [
-   "retry on failure", "rof"
+   "parameter", "parameters",
+   "retry on failure", "rof",
+   "alert"
 ]
 
 
