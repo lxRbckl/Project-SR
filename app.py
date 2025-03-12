@@ -40,7 +40,7 @@ layout = layoutView(
 
          buildSection(notifier = notifier),
          runSection(notifier = notifier),
-         resultSection()
+         resultSection(notifier = notifier)
 
       ]
 
