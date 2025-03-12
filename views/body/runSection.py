@@ -58,7 +58,7 @@ class Run:
                      dmc.Button(
 
                         size = "xs",
-                        disabled = False,
+                        disabled = True,
                         children = "Start",
                         id = "runStartButtonId",
                         className = "runStartButton",
@@ -68,7 +68,7 @@ class Run:
                      dmc.Button(
 
                         size = "xs",
-                        disabled = False,
+                        disabled = True,
                         children = "Retry",
                         id = "runRetryButtonId",
                         className = "runRetryButton"
