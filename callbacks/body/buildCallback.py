@@ -80,10 +80,9 @@ class Build:
                     if (response):
                         return [accordionValue, stepsChildren, response]
                     else:
-                        return [self.redirectTo, self.stepsComponent.build, None]
+                        return [self.redirectTo, None, None]
 
-            except ValueError:
-                return [accordionValue, stepsChildren, "Invalid notation."]
+            except ValueError: return [accordionValue, stepsChildren, "Invalid notation."]
 
     def clearOnDisabledCallback(self):
         """  """
@@ -160,7 +159,7 @@ class Build:
                 self.notifier.notify(icon = icon, duration = 5000, message = message),
                 text,
                 None,
-                emptyValue
+                None
 
             ]
 
