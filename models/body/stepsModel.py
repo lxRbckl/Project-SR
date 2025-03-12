@@ -22,6 +22,7 @@ class Steps:
 
       # verify (command, (text/asset?), parameters) <
       if (command not in runCommands): return f"Command \"{command}\" not recognized."
+      #
       for param in parameters:
 
          if (param not in runParameters): return f"Parameter \"{param}\" not recognized."
