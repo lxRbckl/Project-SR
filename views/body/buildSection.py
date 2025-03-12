@@ -3,137 +3,150 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (emptyValue, buildOptions)
+from config import (emptyValue, buildOptions, iconCopy, iconPaste)
 
 
 class Build:
 
+    def __init__(self):
+        """  """
 
-   def __init__(self):
-      """  """
+        self.id = "buildId"
+        self.value = "Build"
+        self.isDisabled = False
 
-      self.id = "buildId"
-      self.value = "Build"
-      self.isDisabled = False
+    @property
+    def build(self):
+        """  """
 
+        return dbc.Row(
 
-   @property
-   def build(self):
-      """  """
+            justify = "between",
+            className = "rowExtended rowItemExtended",
+            children = [
 
-      return dbc.Row(
+                dbc.Col(
 
-         justify = "between",
-         className = "rowExtended rowItemExtended",
-         children = [
+                    width = 12,
+                    className = "colExtended",
+                    children = [
 
-            dbc.Col(
+                        # input <
+                        dmc.Textarea(
 
-               width = 12,
-               className = "colExtended",
-               children = [
+                            minRows = 5,
+                            maxRows = 20,
+                            error = None,
+                            autosize = True,
+                            disabled = False,
+                            value = emptyValue,
+                            autoComplete = "on",
+                            id = "buildInputTextareaId",
+                            className = "buildInputTextarea"
 
-                  # input <
-                  dmc.Textarea(
+                        )
 
-                     minRows = 5,
-                     maxRows = 20,
-                     error = None,
-                     autosize = True,
-                     disabled = False,
-                     value = emptyValue,
-                     autoComplete = "on",
-                     id = "buildInputTextareaId",
-                     className = "buildInputTextarea"
+                        # >
 
-                  )
+                    ]
 
-                  # >
+                ),
+                dbc.Col(
 
-               ]
+                    width = "auto",
+                    className = "colExtended",
+                    children = dmc.Group(
 
-            ),
-            dbc.Col(
+                        gap = 0,
+                        children = [
 
-               width = "auto",
-               className = "colExtended",
-               children = dmc.Group(
+                            # (create, options) <
+                            dmc.Button(
 
-                  gap = 0,
-                  children = [
+                                size = "xs",
+                                disabled = None,
+                                children = "Create",
+                                id = "buildCreateButtonId",
+                                loaderProps = {"type": "dots"},
+                                className = "buildCreateButton"
 
-                     # (create, options) <
-                     dmc.Button(
+                            ),
+                            dmc.MultiSelect(
 
-                        size = "xs",
-                        disabled = None,
-                        children = "Create",
-                        id = "buildCreateButtonId",
-                        loaderProps = {"type" : "dots"},
-                        className = "buildCreateButton"
+                                value = [],
+                                size = "xs",
+                                disabled = None,
+                                clearable = True,
+                                searchable = True,
+                                data = buildOptions,
+                                placeholder = "Options",
+                                id = "buildMultiSelectId",
+                                className = "buildMultiSelect"
 
-                     ),
-                     dmc.MultiSelect(
+                            ),
 
-                        value = [],
-                        size = "xs",
-                        disabled = None,
-                        clearable = True,
-                        searchable = True,
-                        data = buildOptions,
-                        placeholder = "Options",
-                        id = "buildMultiSelectId",
-                        className = "buildMultiSelect"
+                            # >
 
-                     ),
+                        ]
 
-                     # >
+                    )
 
-                  ]
+                ),
+                dbc.Col(
 
-               )
+                    width = "auto",
+                    className = "colExtended",
+                    children = [
 
-            ),
-            dbc.Col(
+                        # (copy, clear, paste) <
+                        dmc.Button(
 
-               width = "auto",
-               className = "colExtended",
-               children = [
+                            size = "xs",
+                            disabled = None,
+                            id = "buildCopyButtonId",
+                            className = "buildCopyButton",
+                            loaderProps = {"type": "dots"},
+                            children = DashIconify(
 
-                  # (copy, clear) <
-                  dmc.Button(
+                                width = 20,
+                                icon = iconCopy
 
-                     size = "xs",
-                     disabled = None,
-                     id = "buildCopyButtonId",
-                     className = "buildCopyButton",
-                     loaderProps = {"type": "dots"},
-                     children = DashIconify(
+                            )
 
-                        width = 20,
-                        icon = "solar:copy-line-duotone"
+                        ),
+                        dmc.Button(
 
-                     )
+                            size = "xs",
+                            disabled = None,
+                            children = "Clear",
+                            id = "buildClearButtonId",
+                            className = "buildClearButton"
 
-                  ),
-                  dmc.Button(
+                        ),
+                        dmc.Button(
 
-                     size = "xs",
-                     disabled = None,
-                     children = "Clear",
-                     id = "buildClearButtonId",
-                     className="buildClearButton"
+                            size = "xs",
+                            disabled = False,
+                            id = "buildPasteButtonId",
+                            className = "buildPasteButton",
+                            loaderProps = {"type": "dots"},
+                            children = DashIconify(
 
-                  )
+                                width = 20,
+                                icon = iconPaste
 
-                  # >
+                            )
 
-               ]
+                        )
 
-            )
+                        # >
 
-            # >
+                    ]
 
-         ]
+                )
 
-      )
+                # >
+
+            ]
+
+        )

@@ -3,6 +3,11 @@ from dash_mantine_components import styles
 from dash_bootstrap_components import themes
 
 
+iconCopy = "lucide:clipboard-copy"
+iconPaste = "lucide:clipboard-paste"
+iconNotification = "lucide:notification"
+
+
 emptyValue = ""
 layoutColWidth = 9
 accordionLoadTime = 0

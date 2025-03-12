@@ -22,6 +22,11 @@
    padding: 0 5px 0 5px;
 }
 
-.buildClearButton {
+.buildPasteButton {
    margin: 0;
+   padding: 0 5px 0 5px;
+}
+
+.buildClearButton {
+   margin: 0 5px 0 0;
 }

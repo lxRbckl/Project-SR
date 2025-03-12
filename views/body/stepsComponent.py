@@ -5,17 +5,15 @@ import dash_bootstrap_components as dbc
 
 class Steps:
 
+    def __init__(self):
+        """  """
 
-   def __init__(self):
-      """  """
+        pass
 
-      pass
+    @property
+    def build(self):
+        """  """
 
-
-   @property
-   def build(self):
-      """  """
-
-      return [html.Div(
-         children = html.H1("step")
-      )]
+        return list([html.Div(
+            children = html.H1("step")
+        )])

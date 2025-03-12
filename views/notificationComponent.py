@@ -1,19 +1,17 @@
 from dash import (html, dcc)
+from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
-from dash_iconify import DashIconify
 
-from config import (notificationPosition)
+from config import (notificationPosition, iconNotification)
 
 
 class Notification:
-
 
     def __init__(self):
         """  """
 
         pass
-
 
     @property
     def build(self):
@@ -36,14 +34,13 @@ class Notification:
 
         ])
 
-
     @staticmethod
     def notify(
         message,
         uid = "",
         show = "show",
         duration = False,
-        icon = "mingcute:notification-fill"
+        icon = iconNotification
     ):
         """  """
 
