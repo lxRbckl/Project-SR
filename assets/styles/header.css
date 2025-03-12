@@ -5,5 +5,10 @@
 }
 
 .headerVersionButton {
+   font-size: small;
    margin: 0 0 10px 0;
+}
+
+.headerVersionDashIconify {
+   margin: 0 -6px 0 0;
 }

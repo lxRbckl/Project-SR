@@ -3,11 +3,6 @@ from dash_mantine_components import styles
 from dash_bootstrap_components import themes
 
 
-iconCopy = "lucide:clipboard-copy"
-iconPaste = "lucide:clipboard-paste"
-iconNotification = "lucide:notification"
-
-
 emptyValue = ""
 layoutColWidth = 9
 accordionLoadTime = 0
@@ -15,6 +10,11 @@ currentVersion = "1.0.0"
 projectName = "Project SR"
 defaultAccordionItem = "Build"
 notificationPosition = "bottom-right"
+
+iconCopy = "lucide:clipboard-copy"
+iconPaste = "lucide:clipboard-paste"
+iconVersion = "mingcute:version-fill"
+iconNotification = "lucide:notification"
 
 buildOptions = [
    "option"

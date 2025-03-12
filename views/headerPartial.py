@@ -1,8 +1,9 @@
 from dash import html
+from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (projectName, currentVersion)
+from config import (projectName, currentVersion, iconVersion)
 
 
 class Header:
@@ -58,7 +59,14 @@ class Header:
                      size = "compact-xs",
                      children = currentVersion,
                      id = "headerVersionButtonId",
-                     className = "headerVersionButton"
+                     className = "headerVersionButton",
+                     leftSection = DashIconify(
+
+                        width = 20,
+                        icon = iconVersion,
+                        className = "headerVersionDashIconify"
+
+                     )
 
                   )
 
