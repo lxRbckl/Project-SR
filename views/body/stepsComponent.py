@@ -14,6 +14,4 @@ class Steps:
     def build(self):
         """  """
 
-        return list([html.Div(
-            children = html.H1("step")
-        )])
+        return html.Div()

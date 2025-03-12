@@ -105,7 +105,9 @@ class Build:
                             id = "buildCopyButtonId",
                             className = "buildCopyButton",
                             loaderProps = {"type": "dots"},
-                            children = DashIconify(
+
+                            children = "Copy",
+                            leftSection = DashIconify(
 
                                 width = 20,
                                 icon = iconCopy
@@ -129,7 +131,9 @@ class Build:
                             id = "buildPasteButtonId",
                             className = "buildPasteButton",
                             loaderProps = {"type": "dots"},
-                            children = DashIconify(
+
+                            children = "Paste",
+                            rightSection = DashIconify(
 
                                 width = 20,
                                 icon = iconPaste
