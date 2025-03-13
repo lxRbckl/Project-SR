@@ -14,6 +14,7 @@ class Run:
       self.isPaused = False
       self.isDisabled = False
 
+
    @property
    def build(self):
       """  """
@@ -53,7 +54,20 @@ class Run:
                   gap = 0,
                   children = [
 
-                     # (start, retry, continue) <
+                     # (window, start, retry, continue) <
+                     dmc.Select(
+
+                        size = "xs",
+                        data = None,
+                        value = None,
+                        disabled = None,
+                        clearable = True,
+                        searchable = True,
+                        placeholder = "Window",
+                        id = "runWindowSelectId",
+                        className = "runWindowSelect"
+
+                     ),
                      dmc.Button(
 
                         size = "xs",

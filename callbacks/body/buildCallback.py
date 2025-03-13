@@ -8,7 +8,7 @@ from config import (app, emptyValue, iconCopy, iconPaste)
 class Build:
 
 
-    def __init__(self, notifier, stepsModel, stepsComponent):
+    def __init__(self, notifier, controller, stepsModel, stepsComponent):
         """  """
 
         self.clearOnClickCallback()
@@ -19,6 +19,7 @@ class Build:
 
         self.redirectTo = "Run"
         self.notifier = notifier
+        self.controller = controller
         self.stepsModel = stepsModel
         self.stepsComponent = stepsComponent
 
@@ -46,6 +47,7 @@ class Build:
             output = [
 
                 Output("bodyAccordionId", "value", allow_duplicate = True),
+                Output("runWindowSelectId", "data", allow_duplicate = True),
                 Output("runStepsStackId", "children", allow_duplicate = True),
                 Output("buildInputTextareaId", "error", allow_duplicate = True)
 
@@ -53,6 +55,7 @@ class Build:
             state = [
 
                 State("bodyAccordionId", "value"),
+                State("runWindowSelectId", "data"),
                 State("runStepsStackId", "children"),
                 State("buildInputTextareaId", "value")
 
@@ -65,7 +68,7 @@ class Build:
             ]
 
         )
-        def func(createClick, accordionValue, stepsChildren, textareaValue):
+        def func(createClick, accordionValue, windowData, stepsChildren, textareaValue):
 
             try:
 
@@ -80,11 +83,18 @@ class Build:
                     # if (error) <
                     # else (then success) <
                     if (response): return [accordionValue, stepsChildren, response]
-                    else: return [self.redirectTo, self.stepsComponent.gg, None]
+                    else: return [
+
+                        self.redirectTo,
+                        self.controller.getWindows(),
+                        self.stepsComponent.gg,
+                        None
+
+                    ]
 
                     # >
 
-            except ValueError: return [accordionValue, stepsChildren, "Invalid notation."]
+            except ValueError: return [accordionValue, windowData, stepsChildren, "Invalid notation."]
 
 
     def clearOnDisabledCallback(self):

@@ -8,8 +8,12 @@
    border-radius: var(--borderRadius);
 }
 
-.runStartButton {
+.runWindowSelect {
    margin: 0;
+}
+
+.runStartButton {
+   margin: 0 0 0 5px;
 }
 
 .runRetryButton {

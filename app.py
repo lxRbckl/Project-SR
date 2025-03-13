@@ -61,6 +61,7 @@ stepsCallback()
 buildCallback(
 
    notifier = notifier,
+   controller = controller,
    stepsModel = stepsModel,
    stepsComponent = stepsComponent
 

@@ -11,7 +11,7 @@ class Run:
       """  """
 
       self.stopOnClickCallback()
-      self.stackOnInputCallback()
+      self.stepsOnInputCallback()
       self.startOnClickCallback()
 
       self.isRunning = True
@@ -21,17 +21,26 @@ class Run:
       self.stepsComponent = stepsComponent
 
 
-   def stackOnInputCallback(self):
+   def stepsOnInputCallback(self):
       """  """
    
       @app.callback(
 
          prevent_initial_call = False,
-         inputs = Input("runStepsStackId", "children"),
-         output = Output("runStartButtonId", "disabled")
+         output = [
 
+            Output("runStartButtonId", "disabled"),
+            Output("runWindowSelectId", "disabled")
+
+         ],
+         inputs = [
+
+            Input("runWindowSelectId", "value"),
+            Input("runStepsStackId", "children")
+
+         ]
       )
-      def func(stackValue): return (stackValue == None)
+      def func(windowValue, stepsChildren): return [(windowValue == None), (stepsChildren == None)]
 
 
    def startOnClickCallback(self):
