@@ -38,7 +38,7 @@ class Controller:
 
                     "count" : 1,
                     "label" : w.title,
-                    "value" : f"{w.left} {w.top} {w.width} {w.height}"
+                    "value" : f"{w.left} {w.top} {w.width} {w.height} {len(windows)}"
 
                 }
 
