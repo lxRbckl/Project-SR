@@ -40,15 +40,13 @@ class Run:
       )
       def func(stepsChildren):
 
-         print('stepsOnInputCallback()', stepsChildren) # remove
-
          windows = self.controller.getWindows()
          options = [{"label" : w["label"], "value" : w["value"]} for w in windows]
          notifications = [
 
             self.notifier.notify(
 
-               duration = 1000, # remove
+               # duration = 1000, # remove
 
                color = "yellow",
                icon = iconWarning,
@@ -58,11 +56,7 @@ class Run:
 
          for w in windows if (w["count"] > 1)]
 
-         print('window', windows) # remove
-         print('notifications', notifications, "\n") # remove
-
          return [options, notifications]
-
 
 
    def startOnClickCallback(self):

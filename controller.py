@@ -15,17 +15,16 @@ class Controller:
         Date()
         """
 
-        pass
+        self.excludedWindows = ["", ".", "Settings"]
 
 
-    @staticmethod
-    def getWindows():
+    def getWindows(self):
         """  """
 
         windows = {}
         for w in getAllWindows():
 
-            if (len(w.title) > 0):
+            if (w.title not in self.excludedWindows):
 
                 # if (existing) <
                 # else (then new) <

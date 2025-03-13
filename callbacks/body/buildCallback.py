@@ -70,8 +70,6 @@ class Build:
         )
         def func(createClick, accordionValue, stepsChildren, textareaValue):
 
-            print("createOnClickCallback()", createClick) # remove
-
             rInputError = None
             rNotificationChildren = None
             rStepsChildren = stepsChildren
