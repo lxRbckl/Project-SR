@@ -1,6 +1,4 @@
 from config import app
-
-from time import sleep
 from dash.dependencies import (Input, Output, State)
 
 
