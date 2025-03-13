@@ -1,4 +1,5 @@
-from config import app, notificationPosition
+from config import app
+from controller import Controller
 
 from models.body.stepsModel import Steps as stepsModel
 
@@ -83,3 +84,68 @@ footerCallback()
 
 app.layout = layout.build
 app.run_server(debug = True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# from controller import Controller
+#
+#
+#
+# print(Controller.getWindows())
+#
+#
+#
+#
+
+
+
+
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

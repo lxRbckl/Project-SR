@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (projectName, currentVersion, iconVersion)
+from config import (projectName, iconVersion)
 
 
 class Header:

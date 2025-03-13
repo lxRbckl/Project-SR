@@ -1,17 +1,15 @@
-# import <
 from re import split
 from config import (runCommands, runParameters)
 
 
-# >
-
-
 class Steps:
+
 
     def __init__(self):
         """  """
 
         self.steps = []
+
 
     def addStep(self, step):
         """  """

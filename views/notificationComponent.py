@@ -1,9 +1,9 @@
+from config import iconNotification
+
 from dash import (html, dcc)
 from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
-
-from config import (notificationPosition, iconNotification)
 
 
 class Notification:
@@ -11,7 +11,8 @@ class Notification:
     def __init__(self):
         """  """
 
-        pass
+        self.notificationPosition = "bottom-right"
+
 
     @property
     def build(self):
@@ -22,7 +23,7 @@ class Notification:
             dmc.NotificationProvider(
 
                 autoClose = False,
-                position = notificationPosition
+                position = self.notificationPosition
 
             ),
             html.Div(
@@ -34,10 +35,10 @@ class Notification:
 
         ])
 
+
     @staticmethod
     def notify(
         message,
-        uid = "",
         show = "show",
         duration = False,
         icon = iconNotification
@@ -46,7 +47,6 @@ class Notification:
 
         return dmc.Notification(
 
-            id = uid,
             action = show,
             message = message,
             autoClose = duration,

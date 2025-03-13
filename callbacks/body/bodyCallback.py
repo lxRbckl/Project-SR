@@ -1,10 +1,4 @@
-from config import (
-   
-   app, 
-   accordionLoadTime,
-   defaultAccordionItem
-
-)
+from config import app
 
 from time import sleep
 from dash.dependencies import (Input, Output, State)
@@ -17,6 +11,7 @@ class Body:
       """  """
 
       self.accordionOnLoadCallback()
+      self.defaultAccordionValue = "Run"
 
 
    def accordionOnLoadCallback(self):
@@ -28,7 +23,4 @@ class Body:
          inputs = Input("bodyAccordionId", "children")
 
       )
-      def func(accordionValue):
-
-         sleep(accordionLoadTime)
-         return defaultAccordionItem
+      def func(accordionValue): return self.defaultAccordionValue

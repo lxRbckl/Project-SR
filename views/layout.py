@@ -2,8 +2,6 @@ from dash import html
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (layoutColWidth, notificationPosition)
-
 
 class Layout:
 
@@ -15,6 +13,7 @@ class Layout:
       self.guide = guide
       self.footer = footer
       self.header = header
+      self.layoutColWidth = 9
       self.notifier = notifier
 
 
@@ -31,7 +30,7 @@ class Layout:
                className = "layoutCenter",
                children = dbc.Col(
 
-                  width = layoutColWidth,
+                  width = self.layoutColWidth,
                   children = [
 
                      self.notifier.build,
