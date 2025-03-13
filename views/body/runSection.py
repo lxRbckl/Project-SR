@@ -63,7 +63,7 @@ class Run:
                         size = "xs",
                         data = None,
                         value = None,
-                        disabled = None,
+                        disabled = True,
                         clearable = True,
                         searchable = True,
                         placeholder = "Window",

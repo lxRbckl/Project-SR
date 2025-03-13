@@ -104,7 +104,7 @@ class Build:
                 # >
 
             except ValueError: rInputError = "Invalid notation."
-            finally: return [rAccordionValue, rNotificationChildren, rStepsChildren, rInputError]
+            finally: return [rAccordionValue, rStepsChildren, rNotificationChildren, rInputError]
 
 
 

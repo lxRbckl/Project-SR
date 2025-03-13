@@ -32,8 +32,8 @@ class Run:
          output = [
 
             Output("runWindowSelectId", "data", allow_duplicate = True),
-            Output("notificationDiv", "children", allow_duplicate = True)# ,
-            # Output("runWindowSelectId", "disabled", allow_duplicate = True)
+            Output("notificationDiv", "children", allow_duplicate = True),
+            Output("runWindowSelectId", "disabled", allow_duplicate = True)
 
          ]
 
@@ -46,7 +46,7 @@ class Run:
 
             self.notifier.notify(
 
-               # duration = 1000, # remove
+               duration = 1000, # remove
 
                color = "yellow",
                icon = iconWarning,
@@ -56,7 +56,7 @@ class Run:
 
          for w in windows if (w["count"] > 1)]
 
-         return [options, notifications]
+         return [options, notifications, (stepsChildren is None)]
 
 
    def startOnClickCallback(self):
