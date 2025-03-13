@@ -6,9 +6,7 @@
 
 .headerVersionButton {
    font-size: small;
+   padding-left: 1px;
+   padding-right: 1px;
    margin: 0 0 10px 0;
-}
-
-.headerVersionDashIconify {
-   margin: 0 -6px 0 0;
 }

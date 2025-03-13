@@ -56,15 +56,13 @@ class Header:
                   # version <
                   dmc.Button(
 
-                     size = "compact-xs",
-                     children = currentVersion,
+                     size = "xs",
                      id = "headerVersionButtonId",
                      className = "headerVersionButton",
-                     leftSection = DashIconify(
+                     children = DashIconify(
 
-                        width = 20,
-                        icon = iconVersion,
-                        className = "headerVersionDashIconify"
+                        width = 25,
+                        icon = iconVersion
 
                      )
 

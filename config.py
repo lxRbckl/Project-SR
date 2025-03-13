@@ -12,8 +12,8 @@ defaultAccordionItem = "Build"
 notificationPosition = "bottom-right"
 
 iconCopy = "lucide:clipboard-copy"
+iconVersion = "stash:version-solid"
 iconPaste = "lucide:clipboard-paste"
-iconVersion = "mingcute:version-fill"
 iconNotification = "lucide:notification"
 
 buildOptions = [
