@@ -30,20 +30,30 @@ class Header:
 
                width = "auto",
                className = "colExtended",
-               children = [
+               children = dmc.Group(
 
-                  # title <
-                  html.H1(
+                  gap = 0,
+                  children = [
 
-                     id = "headerTitleH1Id",
-                     children = projectName,
-                     className = "headerTitleH1"
+                     # (icon, title) <
+                     dmc.Image(
 
-                  )
+                        src = "/assets/favicon.ico",
+                        className = "headerIconImage"
 
-                  # >
+                     ),
+                     html.H1(
 
-               ]
+                        children = projectName,
+                        className = "headerTitleH1"
+
+                     )
+
+                     # >
+
+                  ]
+
+               )
 
             ),
             dbc.Col(

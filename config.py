@@ -5,12 +5,15 @@ from dash_bootstrap_components import themes
 
 emptyValue = ""
 currentVersion = "1.0.0"
-projectName = "Project SR"
+projectName = "Project SR  command, text, parameter"
 
+iconWarning = "bxs:error"
 iconCopy = "lucide:clipboard-copy"
 iconVersion = "stash:version-solid"
+iconError = "material-symbols:error"
 iconPaste = "lucide:clipboard-paste"
 iconNotification = "lucide:notification"
+iconWindow = "iconamoon:screen-full-fill"
 
 buildOptions = [
    "option"

@@ -28,7 +28,12 @@ class Guide:
          centered = True,
          id = "guideModalId",
          closeOnClickOutside = False,
-         title = f"Guide - Version {currentVersion}",
-         children = dcc.Markdown(children = self.filedata, className = "guideMarkdown")
+         children = dcc.Markdown(children = self.filedata, className = "guideMarkdown"),
+         title = dmc.Highlight(
+
+            highlight = [currentVersion],
+            children = f"Guide - Version {currentVersion}"
+
+         )
 
       )

@@ -61,8 +61,8 @@ stepsCallback()
 buildCallback(
 
    notifier = notifier,
-   controller = controller,
    stepsModel = stepsModel,
+   controller = controller,
    stepsComponent = stepsComponent
 
 )
@@ -70,6 +70,7 @@ runCallback(
 
    notifier = notifier,
    stepsModel = stepsModel,
+   controller = controller,
    stepsComponent = stepsComponent
 
 )

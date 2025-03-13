@@ -9,7 +9,7 @@ class Body:
       """  """
 
       self.accordionOnLoadCallback()
-      self.defaultAccordionValue = "Run"
+      self.defaultAccordionValue = "Build"
 
 
    def accordionOnLoadCallback(self):

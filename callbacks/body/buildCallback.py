@@ -2,7 +2,7 @@ from time import sleep
 from clipboard import (copy, paste)
 
 from dash.dependencies import (Input, Output, State)
-from config import (app, emptyValue, iconCopy, iconPaste)
+from config import (app, emptyValue, iconCopy, iconPaste, iconWarning)
 
 
 class Build:
@@ -44,18 +44,9 @@ class Build:
 
             prevent_initial_call = True,
             inputs = Input("buildCreateButtonId", "n_clicks"),
-            output = [
-
-                Output("bodyAccordionId", "value", allow_duplicate = True),
-                Output("runWindowSelectId", "data", allow_duplicate = True),
-                Output("runStepsStackId", "children", allow_duplicate = True),
-                Output("buildInputTextareaId", "error", allow_duplicate = True)
-
-            ],
             state = [
 
                 State("bodyAccordionId", "value"),
-                State("runWindowSelectId", "data"),
                 State("runStepsStackId", "children"),
                 State("buildInputTextareaId", "value")
 
@@ -63,38 +54,60 @@ class Build:
             running = [
 
                 (Output("buildCreateButtonId", "loading"), True, False),
-                (Output("buildClearButtonId", "disabled"), True, False)
+                (Output("buildClearButtonId", "disabled"), True, False),
+                (Output("runWindowSelectId", "disabled"), True, False)
+
+            ],
+            output = [
+
+                Output("bodyAccordionId", "value", allow_duplicate = True),
+                Output("runStepsStackId", "children", allow_duplicate = True),
+                Output("notificationDiv", "children", allow_duplicate = True),
+                Output("buildInputTextareaId", "error", allow_duplicate = True)
 
             ]
 
         )
-        def func(createClick, accordionValue, windowData, stepsChildren, textareaValue):
+        def func(createClick, accordionValue, stepsChildren, textareaValue):
 
+            print("createOnClickCallback()", createClick) # remove
+
+            rInputError = None
+            rNotificationChildren = None
+            rStepsChildren = stepsChildren
+            rAccordionValue = accordionValue
             try:
 
-                i = 0
-                response = None
-                textareaValues = [s for s in textareaValue.split("\n") if (len(s) > 0)]
-                while ((response == None) and (len(textareaValues) != i)):
+                # iterate (steps) <
+                # else (then success) <
+                for step in [s for s in textareaValue.split("\n") if (len(s) > 0)]:
 
-                    response = self.stepsModel.addStep(textareaValues[i])
-                    i += 1
+                    response = self.stepsModel.addStep(step)
 
-                    # if (error) <
-                    # else (then success) <
-                    if (response): return [accordionValue, stepsChildren, response]
-                    else: return [
+                    if (response):
 
-                        self.redirectTo,
-                        self.controller.getWindows(),
-                        self.stepsComponent.gg,
-                        None
+                        rInputError = response
+                        break
 
-                    ]
+                else:
 
-                    # >
+                    rAccordionValue = self.redirectTo
+                    rStepsChildren = self.stepsComponent.build
+                    rNotificationChildren = self.notifier.notify(
 
-            except ValueError: return [accordionValue, windowData, stepsChildren, "Invalid notation."]
+                        duration = 1000, # remove
+
+                        color = "yellow",
+                        icon = iconWarning,
+                        message = "future warning message"
+
+                    )
+
+                # >
+
+            except ValueError: rInputError = "Invalid notation."
+            finally: return [rAccordionValue, rNotificationChildren, rStepsChildren, rInputError]
+
 
 
     def clearOnDisabledCallback(self):

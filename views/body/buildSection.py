@@ -109,7 +109,7 @@ class Build:
                             children = "Copy",
                             leftSection = DashIconify(
 
-                                width = 20,
+                                width = 18,
                                 icon = iconCopy
 
                             )
@@ -135,7 +135,7 @@ class Build:
                             children = "Paste",
                             rightSection = DashIconify(
 
-                                width = 20,
+                                width = 18,
                                 icon = iconPaste
 
                             )

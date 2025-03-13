@@ -11,7 +11,7 @@ class Steps:
         pass
 
     @property
-    def gg(self):
+    def build(self):
         """  """
 
         return html.Div(html.H1("ok"))

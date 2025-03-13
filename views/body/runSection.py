@@ -1,4 +1,7 @@
+from config import iconWindow
+
 from dash import html
+from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
@@ -65,7 +68,8 @@ class Run:
                         searchable = True,
                         placeholder = "Window",
                         id = "runWindowSelectId",
-                        className = "runWindowSelect"
+                        className = "runWindowSelect",
+                        leftSection = DashIconify(icon =  iconWindow)
 
                      ),
                      dmc.Button(
@@ -136,7 +140,7 @@ class Run:
                   dmc.Progress(
 
                      value = 0,
-                     id="runProgressId",
+                     id = "runProgressId",
                      className = "runProgress"
 
                   )

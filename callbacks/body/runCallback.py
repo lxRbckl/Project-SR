@@ -1,4 +1,4 @@
-from config import app
+from config import (app, iconWarning)
 
 from time import sleep
 from dash.dependencies import (Input, Output, State)
@@ -7,7 +7,7 @@ from dash.dependencies import (Input, Output, State)
 class Run:
 
 
-   def __init__(self, notifier, stepsModel, stepsComponent):
+   def __init__(self, notifier, controller, stepsModel, stepsComponent):
       """  """
 
       self.stopOnClickCallback()
@@ -18,29 +18,51 @@ class Run:
       self.notifier = notifier
       self.redirectTo = "Result"
       self.stepsModel = stepsModel
+      self.controller = controller
       self.stepsComponent = stepsComponent
 
 
    def stepsOnInputCallback(self):
       """  """
-   
+
       @app.callback(
 
-         prevent_initial_call = False,
+         prevent_initial_call = True,
+         inputs = Input("runStepsStackId", "children"),
          output = [
 
-            Output("runStartButtonId", "disabled"),
-            Output("runWindowSelectId", "disabled")
-
-         ],
-         inputs = [
-
-            Input("runWindowSelectId", "value"),
-            Input("runStepsStackId", "children")
+            Output("runWindowSelectId", "data", allow_duplicate = True),
+            Output("notificationDiv", "children", allow_duplicate = True)# ,
+            # Output("runWindowSelectId", "disabled", allow_duplicate = True)
 
          ]
+
       )
-      def func(windowValue, stepsChildren): return [(windowValue == None), (stepsChildren == None)]
+      def func(stepsChildren):
+
+         print('stepsOnInputCallback()', stepsChildren) # remove
+
+         windows = self.controller.getWindows()
+         options = [{"label" : w["label"], "value" : w["value"]} for w in windows]
+         notifications = [
+
+            self.notifier.notify(
+
+               duration = 1000, # remove
+
+               color = "yellow",
+               icon = iconWarning,
+               message = "There are {} windows of {}.".format(w["count"], w["label"])
+
+            )
+
+         for w in windows if (w["count"] > 1)]
+
+         print('window', windows) # remove
+         print('notifications', notifications, "\n") # remove
+
+         return [options, notifications]
+
 
 
    def startOnClickCallback(self):

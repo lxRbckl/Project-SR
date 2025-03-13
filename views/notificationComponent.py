@@ -40,6 +40,8 @@ class Notification:
         self,
         message,
         show = "show",
+        color = "blue",
+        iconWidth = 20,
         duration = False,
         icon = iconNotification
     ):
@@ -47,9 +49,15 @@ class Notification:
 
         return dmc.Notification(
 
+            color = color,
             action = show,
             message = message,
             autoClose = duration,
-            icon = DashIconify(icon = icon)
+            icon = DashIconify(
+
+                icon = icon,
+                width = iconWidth
+
+            )
 
         )

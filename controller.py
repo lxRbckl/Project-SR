@@ -12,6 +12,7 @@ class Controller:
         Click()
         TakeScreenshot()
         DONE getWindows()
+        Date()
         """
 
         pass
@@ -21,20 +22,29 @@ class Controller:
     def getWindows():
         """  """
 
-        return [
+        windows = {}
+        for w in getAllWindows():
 
-            {
+            if (len(w.title) > 0):
 
-                "label" : w.title,
-                "value" : f"{w.left} {w.top} {w.width} {w.height}"
+                # if (existing) <
+                # else (then new) <
+                if (w.title in windows):
 
-            }
+                    windows[w.title]["count"] += 1
+                    continue
 
-        for w in getAllWindows() if (len(w.title) > 0)]
+                else: windows[w.title] = {
 
+                    "count" : 1,
+                    "label" : w.title,
+                    "value" : f"{w.left} {w.top} {w.width} {w.height}"
 
+                }
 
+                # >
 
+        return list(windows.values())
 
 
 
