@@ -1,4 +1,6 @@
 from re import split
+from time import sleep
+
 from config import (runCommands, runParameters)
 
 
@@ -12,8 +14,10 @@ class Steps:
         Direction
         Override
         AlertMe
+        Wait
         """
 
+        self.wait = 10
         self.steps = []
         self.AlertMe = False
         self.Override = False
