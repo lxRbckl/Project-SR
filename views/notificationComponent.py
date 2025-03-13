@@ -36,8 +36,8 @@ class Notification:
         ])
 
 
-    @staticmethod
     def notify(
+        self,
         message,
         show = "show",
         duration = False,

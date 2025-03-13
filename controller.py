@@ -5,7 +5,19 @@ class Controller:
 
 
     def __init__(self):
-        """  """
+        """
+        find
+        type/enter
+        move/navigate
+        retryonfailure
+        waitforinput
+        alertme
+        direction?
+        orverride
+        click
+        takescreenshot
+        getwindows
+        """
 
         pass
 

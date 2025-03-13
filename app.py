@@ -23,17 +23,18 @@ from views.body.stepsComponent import  Steps as stepsComponent
 from views.notificationComponent import Notification as notificationComponent
 
 
-# register models <
+# register shared objects <
 stepsModel = stepsModel()
-
-# >
-
-# register views <
+controller = Controller()
 stepsComponent = stepsComponent()
 notifier = notificationComponent()
+
+#
+
+# register views <
 layout = layoutView(
 
-   notifier = notificationComponent(),
+   notifier = notifier,
    guide = guideComponent(),
    header = headerPartial(),
    body = bodyPartial(
@@ -84,48 +85,6 @@ footerCallback()
 
 app.layout = layout.build
 app.run_server(debug = True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
