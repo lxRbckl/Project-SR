@@ -6,17 +6,12 @@ class Controller:
 
     def __init__(self):
         """
-        find
-        type/enter
-        move/navigate
-        retryonfailure
-        waitforinput
-        alertme
-        direction?
-        orverride
-        click
-        takescreenshot
-        getwindows
+        Find()
+        TypeIn/Enter()
+        Move/Navigate()
+        Click()
+        TakeScreenshot()
+        DONE getWindows()
         """
 
         pass
@@ -26,11 +21,16 @@ class Controller:
     def getWindows():
         """  """
 
-        return {
+        return [
 
-            w.title : f"{w.left} {w.top} {w.width} {w.height}"
+            {
 
-        for w in getAllWindows() if (len(w.title) > 0)}
+                "label" : w.title,
+                "value" : f"{w.left} {w.top} {w.width} {w.height}"
+
+            }
+
+        for w in getAllWindows() if (len(w.title) > 0)]
 
 
 

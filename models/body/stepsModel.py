@@ -6,9 +6,20 @@ class Steps:
 
 
     def __init__(self):
-        """  """
+        """
+        RetryOnFailure
+        WaitForInput
+        Direction
+        Override
+        AlertMe
+        """
 
         self.steps = []
+        self.AlertMe = False
+        self.Override = False
+        self.Direction = False
+        self.WaitForInput = False
+        self.retryOnFailure = False
 
 
     def addStep(self, step):
