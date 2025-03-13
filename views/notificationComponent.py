@@ -49,10 +49,11 @@ class Notification:
 
         return dmc.Notification(
 
-            color = color,
             action = show,
+            color = color,
             message = message,
             autoClose = duration,
+            className = "notification",
             icon = DashIconify(
 
                 icon = icon,
