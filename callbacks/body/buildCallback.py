@@ -2,7 +2,7 @@ from time import sleep
 from clipboard import (copy, paste)
 
 from dash.dependencies import (Input, Output, State)
-from config import (app, emptyValue, iconCopy, iconPaste, iconWarning)
+from config import (app, emptyValue, iconCopy, iconPaste, iconWarning, projectName)
 
 
 class Build:
@@ -61,6 +61,7 @@ class Build:
             output = [
 
                 Output("bodyAccordionId", "value", allow_duplicate = True),
+                Output("runWindowSelectId", "value", allow_duplicate = True),
                 Output("runStepsStackId", "children", allow_duplicate = True),
                 Output("notificationDiv", "children", allow_duplicate = True),
                 Output("buildInputTextareaId", "error", allow_duplicate = True)
@@ -93,18 +94,18 @@ class Build:
                     rStepsChildren = self.stepsComponent.build
                     rNotificationChildren = self.notifier.notify(
 
-                        duration = 1000, # remove
+                        # duration = 1000, # remove when done
 
                         color = "yellow",
                         icon = iconWarning,
-                        message = "future warning message"
+                        message = f"Ensure that you have the correct window you want {projectName} to interact with!"
 
                     )
 
                 # >
 
             except ValueError: rInputError = "Invalid notation."
-            finally: return [rAccordionValue, rStepsChildren, rNotificationChildren, rInputError]
+            finally: return [rAccordionValue, None, rStepsChildren, rNotificationChildren, rInputError]
 
 
 

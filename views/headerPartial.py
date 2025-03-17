@@ -33,15 +33,16 @@ class Header:
                children = dmc.Group(
 
                   gap = 0,
+                  className = "headerGroup",
                   children = [
 
                      # (icon, title) <
-                     dmc.Image(
-
-                        src = "/assets/favicon.ico",
-                        className = "headerIconImage"
-
-                     ),
+                     # dmc.Image(
+                     #
+                     #    src = "/assets/favicon.ico",
+                     #    className = "headerIconImage"
+                     #
+                     # ),
                      html.H1(
 
                         children = projectName,

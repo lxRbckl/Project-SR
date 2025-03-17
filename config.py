@@ -3,6 +3,7 @@ from dash_mantine_components import styles
 from dash_bootstrap_components import themes
 
 
+port = 8050
 emptyValue = ""
 currentVersion = "1.0.0"
 projectName = "Project SR  command, text, parameter"

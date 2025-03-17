@@ -13,6 +13,7 @@ class Run:
       self.stopOnClickCallback()
       self.stepsOnInputCallback()
       self.startOnClickCallback()
+      self.windowOnValueCallback()
 
       self.isRunning = True
       self.notifier = notifier
@@ -57,6 +58,19 @@ class Run:
          for w in windows if (w["count"] > 1)]
 
          return [options, notifications, (stepsChildren is None)]
+
+
+   def windowOnValueCallback(self):
+      """  """
+
+      @app.callback(
+
+         prevent_initial_call = True,
+         inputs = Input("runWindowSelectId", "value"),
+         output = Output("runStartButtonId", "disabled", allow_duplicate = True)
+
+      )
+      def func(windowValue): return (windowValue is None)
 
 
    def startOnClickCallback(self):

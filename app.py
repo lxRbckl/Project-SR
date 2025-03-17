@@ -1,4 +1,4 @@
-from config import app
+from config import (app, port)
 from controller import Controller
 
 from models.body.stepsModel import Steps as stepsModel
@@ -86,7 +86,7 @@ footerCallback()
 
 
 app.layout = layout.build
-app.run_server(debug = True)
+app.run_server(debug = True, port = port)
 
 
 

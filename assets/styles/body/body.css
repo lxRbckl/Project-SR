@@ -1,4 +1,6 @@
 .bodyAccordion {
+   /*padding: 0 0 0 0;*/
+   margin: 10px 0 0 0;
    border-bottom: var(--borderGray);
 }
 
