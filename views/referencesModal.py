@@ -22,7 +22,7 @@ class References:
         return dmc.Modal(
 
             size = "75%",
-            opened = True,
+            opened = None,
             centered = True,
             title = "References",
             id = "referencesModalId",
@@ -42,6 +42,7 @@ class References:
 
         return dbc.Col(
 
+            id = f"reference{name}Id",
             width = self.referenceWidth,
             className = "referencesCol",
             children = dmc.Card(
@@ -64,6 +65,7 @@ class References:
                                     size = "sm",
                                     children = DashIconify(icon = iconTrash),
                                     id = {"type" : "delete-btn", "index" : name}
+
                                 )
 
                             ]

@@ -1,43 +1,69 @@
 from config import (app, projectDirectory)
 
 from os import (listdir, remove)
-from dash.dependencies import (Input, Output, State)
+from dash import (Input, Output, State, ctx, ALL)
 
 
 class References:
 
 
-    def __init__(self, referencesModal):
+    def __init__(self, notifier, referencesModal):
         """  """
 
+        self.referencesOnClickCallback()
+        self.ReferencesOnDeleteCallback()
+
+        self.notifier = notifier
         self.referencesModal = referencesModal
 
-        self.references = []
-        self.referencesOnLoadCallback()
         self.referencesFilepath = "/assets/references"
 
 
-    def referencesOnLoadCallback(self):
+    def _buildReferences(self):
+        """  """
+
+        returnReferences = []
+        for r in listdir(projectDirectory + self.referencesFilepath):
+
+            name = r
+            ref = f"{self.referencesFilepath}/{name}"
+
+            returnReferences.append(self.referencesModal.addReference(name = name, reference = ref))
+
+        return returnReferences
+
+
+    def referencesOnClickCallback(self):
         """  """
 
         @app.callback(
 
-            prevent_initial_call = False,
-            output = Output("referencesRowId", "children"),
-            inputs = Input("referencesModalId", "children")
+            prevent_initial_call = True,
+            inputs = Input("headerReferencesButtonId", "n_clicks"),
+            output = [
+
+                Output("referencesModalId", "opened", allow_duplicate = True),
+                Output("referencesRowId", "children", allow_duplicate = True)
+
+            ]
 
         )
-        def func(referencesChildren):
+        def func(referencesClick): return [True, self._buildReferences()]
 
-            self.references = []
-            returnReferences = []
-            for r in listdir(projectDirectory + self.referencesFilepath):
 
-                name = r
-                ref = f"{self.referencesFilepath}/{name}"
+    def ReferencesOnDeleteCallback(self):
+        """  """
 
-                self.references.append(r)
-                returnReferences.append(self.referencesModal.addReference(name = name, reference = ref))
+        @app.callback(
 
-            return returnReferences
+            prevent_initial_call = True,
+            inputs = Input({"type" : "delete-btn", "index" : ALL}, "n_clicks"),
+            output = Output("referencesRowId", "children", allow_duplicate = True)
 
+        )
+        def func(delete):
+
+            print('ctx', ctx) # remove
+            print('>', ctx.triggered, ctx.triggered_id) # remove
+
+            return self._buildReferences()
