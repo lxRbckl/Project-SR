@@ -4,14 +4,10 @@
    color: var(--colorBlack);
 }
 
-.headerGuideButton {
-   padding-left: 1px;
+.headerGroup {
    margin: 0 0 10px 0;
-   padding-right: 1px;
 }
 
-.headerReferencesButton {
-   padding-left: 1px;
-   padding-right: 1px;
-   margin: 0 5px 10px 0;
+.headerGuideActionIcon {
+   margin: 0 0 0 5px;
 }

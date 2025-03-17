@@ -27,12 +27,7 @@ class References:
             title = "References",
             id = "referencesModalId",
             closeOnClickOutside = False,
-            children = dbc.Row(
-
-                children = None,
-                id = "referencesRowId"
-
-            )
+            children = dbc.Row(children = None, id = "referencesRowId")
 
         )
 

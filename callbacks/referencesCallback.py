@@ -39,16 +39,16 @@ class References:
         @app.callback(
 
             prevent_initial_call = True,
-            inputs = Input("headerReferencesButtonId", "n_clicks"),
+            inputs = Input("headerReferencesActionIconId", "n_clicks"),
             output = [
 
-                Output("referencesModalId", "opened", allow_duplicate = True),
-                Output("referencesRowId", "children", allow_duplicate = True)
+                Output("referencesRowId", "children", allow_duplicate = True),
+                Output("referencesModalId", "opened", allow_duplicate = True)
 
             ]
 
         )
-        def func(referencesClick): return [True, self._buildReferences()]
+        def func(referencesClick): return [self._buildReferences(), True]
 
 
     def ReferencesOnDeleteCallback(self):
@@ -63,7 +63,6 @@ class References:
         )
         def func(delete):
 
-            print('ctx', ctx) # remove
-            print('>', ctx.triggered, ctx.triggered_id) # remove
+            print(ctx.triggered_id) # remove
 
             return self._buildReferences()

@@ -50,33 +50,21 @@ class Header:
                children = dmc.Group(
 
                   gap = 0,
+                  className = "headerGroup",
                   children = [
 
                      # (references, guide) <
-                     dmc.Button(
+                     dmc.ActionIcon(
 
-                        size = "xs",
-                        id = "headerReferencesButtonId",
-                        className = "headerReferencesButton",
-                        children = DashIconify(
-
-                           width = 25,
-                           icon = iconImage
-
-                        )
+                        id = "headerReferencesActionIconId",
+                        children = DashIconify(icon = iconImage, width = 20)
 
                      ),
-                     dmc.Button(
+                     dmc.ActionIcon(
 
-                        size = "xs",
-                        id = "headerGuideButtonId",
-                        className = "headerGuideButton",
-                        children = DashIconify(
-
-                           width = 25,
-                           icon = iconGuide
-
-                        )
+                        id = "headerGuideActionIconId",
+                        className = "headerGuideActionIcon",
+                        children = DashIconify(icon = iconGuide, width = 20)
 
                      )
 

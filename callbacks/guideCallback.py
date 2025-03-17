@@ -17,7 +17,7 @@ class Guide:
         @app.callback(
 
             prevent_initial_call = True,
-            inputs = Input("headerGuideButtonId", "n_clicks"),
+            inputs = Input("headerGuideActionIconId", "n_clicks"),
             output = Output("guideModalId", "opened", allow_duplicate = True)
 
         )
