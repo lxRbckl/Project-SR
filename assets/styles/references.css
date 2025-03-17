@@ -1,8 +1,18 @@
 .referencesCol {
-    margin: 0 0 10px 0;
+    margin: 0;
+    padding: 5px;
+}
+
+.referencesCard {
 }
 
 .referencesCardHeader {
-    padding: 2px;
+    padding: 5px;
     background-color: var(--colorWhite);
+}
+
+.referencesImagesRow {
+    margin: 5px 0 0 0;
+    border: var(--borderDottedGray);
+    border-radius: var(--borderRadius);
 }

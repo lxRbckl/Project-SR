@@ -7,6 +7,7 @@
    --borderRadius: 5px;
    --borderGray: 1px solid var(--colorGray);
    --borderWhite: 1px solid var(--colorWhite);
+   --borderDottedGray: 1px dotted var(--colorGray);
 
 }
 

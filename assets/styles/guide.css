@@ -3,7 +3,7 @@
    min-height: 500px;
    max-height: 850px;
    overflow-y: scroll;
-   border: var(--borderGray);
    background-color: white;
+   border: var(--borderGray);
    border-radius: var(--borderRadius);
 }

@@ -1,9 +1,10 @@
-from config import iconTrash
-
 from dash import (html, dcc)
 from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
+from dash_mantine_components import ActionIcon
+
+from config import (iconTrash, iconMedia, iconUpload)
 
 
 class References:
@@ -27,7 +28,66 @@ class References:
             title = "References",
             id = "referencesModalId",
             closeOnClickOutside = False,
-            children = dbc.Row(children = None, id = "referencesRowId")
+            children = [
+
+                # upload <
+                # images <
+                dbc.Row(
+
+                    justify = "start",
+                    children = dbc.Col(
+
+                        width = "auto",
+                        className = "",
+                        children = dcc.Upload(
+
+                            children = dmc.Button(
+
+                                size = "md",
+                                children = "Upload",
+                                leftSection = DashIconify(
+
+                                    width = 30,
+                                    icon = iconUpload
+
+                                )
+
+                            )
+
+                        )
+
+                    )
+
+                ),
+                dbc.Row(
+
+                    children = None,
+                    id = "referencesRowId",
+                    className = "referencesImagesRow"
+
+                )
+
+                # >
+
+            ]
+
+        )
+
+
+    def _buildReferenceCard(self, children, withBorder = True):
+        """  """
+
+        return dbc.Col(
+
+            width = self.referenceWidth,
+            className = "referencesCol",
+            children = dmc.Card(
+
+                children = children,
+                withBorder = withBorder,
+                className = "referencesCard"
+
+            )
 
         )
 
@@ -37,12 +97,12 @@ class References:
 
         return dbc.Col(
 
-            id = f"reference{name}Id",
             width = self.referenceWidth,
             className = "referencesCol",
             children = dmc.Card(
 
                 withBorder = True,
+                className = "referencesCard",
                 children = [
 
                     dmc.CardSection(

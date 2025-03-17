@@ -13,13 +13,14 @@ projectName = "Project SR  command, text, parameter"
 
 iconGuide = "tabler:book"
 iconWarning = "bxs:error"
+iconMedia = "pajamas:media"
 iconTrash = "octicon:trashcan-16"
 iconCopy = "lucide:clipboard-copy"
 iconError = "material-symbols:error"
 iconPaste = "lucide:clipboard-paste"
+iconUpload = "material-symbols:upload"
 iconNotification = "lucide:notification"
 iconWindow = "iconamoon:screen-full-fill"
-iconImage = "material-symbols:image-outline"
 
 buildOptions = [
 

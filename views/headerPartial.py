@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (projectName, iconImage, iconGuide)
+from config import (projectName, iconUpload, iconGuide, iconMedia)
 
 
 class Header:
@@ -57,7 +57,7 @@ class Header:
                      dmc.ActionIcon(
 
                         id = "headerReferencesActionIconId",
-                        children = DashIconify(icon = iconImage, width = 20)
+                        children = DashIconify(icon = iconMedia, width = 20)
 
                      ),
                      dmc.ActionIcon(
