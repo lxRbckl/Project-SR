@@ -1,22 +1,17 @@
-.headerGroup {
-   padding: 0;
-   margin: 0 0 -8px 0;
-}
-
 .headerTitleH1 {
-   margin: 0;
    padding: 0;
+   margin: 0 0 2px -3px;
    color: var(--colorBlack);
 }
 
 .headerGuideButton {
-   margin: 0;
    padding-left: 1px;
+   margin: 0 0 10px 0;
    padding-right: 1px;
 }
 
 .headerReferencesButton {
-   margin: 0 5px 0 0;
    padding-left: 1px;
    padding-right: 1px;
+   margin: 0 5px 10px 0;
 }
