@@ -1,0 +1,8 @@
+.referencesCol {
+    margin: 0 0 10px 0;
+}
+
+.referencesCardHeader {
+    padding: 2px;
+    background-color: var(--colorWhite);
+}

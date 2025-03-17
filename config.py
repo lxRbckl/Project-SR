@@ -1,3 +1,4 @@
+from os import getcwd
 from dash import (Dash, _dash_renderer)
 from dash_mantine_components import styles
 from dash_bootstrap_components import themes
@@ -7,10 +8,12 @@ port = 8050
 debug = True
 emptyValue = ""
 currentVersion = "1.0.0"
+projectDirectory = getcwd()
 projectName = "Project SR  command, text, parameter"
 
 iconGuide = "tabler:book"
 iconWarning = "bxs:error"
+iconTrash = "octicon:trashcan-16"
 iconCopy = "lucide:clipboard-copy"
 iconError = "material-symbols:error"
 iconPaste = "lucide:clipboard-paste"
@@ -19,13 +22,19 @@ iconWindow = "iconamoon:screen-full-fill"
 iconImage = "material-symbols:image-outline"
 
 buildOptions = [
+
    "option"
+
 ]
 runCommands = [
+
    "command"
+
 ]
 runParameters = [
+
    "parameter"
+
 ]
 
 

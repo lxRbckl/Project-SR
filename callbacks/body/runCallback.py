@@ -15,12 +15,14 @@ class Run:
       self.startOnClickCallback()
       self.windowOnValueCallback()
 
-      self.isRunning = True
       self.notifier = notifier
-      self.redirectTo = "Result"
       self.stepsModel = stepsModel
       self.controller = controller
       self.stepsComponent = stepsComponent
+
+      self.isRunning = True
+      self.redirectTo = "Result"
+      self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
 
    def stepsOnInputCallback(self):
@@ -47,11 +49,11 @@ class Run:
 
             self.notifier.notify(
 
-               duration = 1000, # remove
+               duration = 1000, # remove when finished
 
                color = "yellow",
                icon = iconWarning,
-               message = "There are {} windows of {}.".format(w["count"], w["label"])
+               message = self.stepsOnWarningMessage(c = w["count"], l = w["label"])
 
             )
 
@@ -72,7 +74,7 @@ class Run:
       )
       def func(windowValue):
 
-         self.controller.setWindow(windowValue)
+         self.controller.setWindow(windowValue) # check
          return (windowValue == None)
 
 

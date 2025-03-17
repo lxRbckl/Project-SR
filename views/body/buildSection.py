@@ -80,9 +80,9 @@ class Build:
                                 searchable = True,
                                 data = buildOptions,
                                 placeholder = "Options",
-                                className = "buildMultiSelect",
-                                id = "buildOptionsMultiSelectId"
-                            ),
+                                id = "buildOptionsMultiSelectId",
+                                className = "buildOptionsMultiSelect"
+                            )
 
                             # >
 

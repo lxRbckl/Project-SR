@@ -10,6 +10,7 @@ from callbacks.footerCallback import Footer as footerCallback
 from callbacks.body.stepsCallback import Steps as stepsCallback
 from callbacks.body.buildCallback import Build as buildCallback
 from callbacks.body.resultCallback import Result as resultCallback
+from callbacks.referencesCallback import References as referencesCallback
 
 from views.layout import Layout as layoutView
 from views.body.runSection import Run as runSection
@@ -29,6 +30,7 @@ stepsModel = stepsModel()
 controller = Controller()
 stepsComponent = stepsComponent()
 notifier = notificationComponent()
+referencesModal = referencesModal()
 
 #
 
@@ -37,7 +39,7 @@ layout = layoutView(
 
    notifier = notifier,
    guide = guideModal(),
-   references = referencesModal(),
+   references = referencesModal,
 
    header = headerPartial(),
    body = bodyPartial(
@@ -58,6 +60,11 @@ layout = layoutView(
 # >
 
 # register callbacks <
+referencesCallback(
+
+   referencesModal = referencesModal
+
+)
 headerCallback()
 bodyCallback()
 stepsCallback()

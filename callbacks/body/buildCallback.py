@@ -2,7 +2,7 @@ from time import sleep
 from clipboard import (copy, paste)
 
 from dash.dependencies import (Input, Output, State)
-from config import (app, emptyValue, iconCopy, iconPaste, iconWarning, projectName)
+from config import (app, emptyValue, iconCopy, iconPaste, iconWarning)
 
 
 class Build:
@@ -17,11 +17,18 @@ class Build:
         self.textareaOnInputCallback()
         self.clipboardOnClickCallback()
 
-        self.redirectTo = "Run"
         self.notifier = notifier
         self.controller = controller
         self.stepsModel = stepsModel
         self.stepsComponent = stepsComponent
+
+        self.redirectTo = "Run"
+        self.clipboardPause = 0.3
+        self.clipboardNotifyDuration = 5000
+        self.createInputErrorMessage = "Invalid notation."
+        self.clipboardCopiedMessage = "Text was copied from input."
+        self.clipboardPastedMessage = "Text was pasted from input."
+        self.createOnClickMessage = "Make sure the correct window is selected!"
 
 
     def textareaOnInputCallback(self):
@@ -98,13 +105,13 @@ class Build:
 
                         color = "yellow",
                         icon = iconWarning,
-                        message = f"Make sure the correct window is selected for {projectName} to function properly."
+                        message = self.createOnClickMessage
 
                     )
 
                 # >
 
-            except ValueError: rInputError = "Invalid notation."
+            except ValueError: rInputError = self.createInputErrorMessage
             finally: return [rAccordionValue, None, rStepsChildren, rNotificationChildren, rInputError]
 
 
@@ -161,7 +168,7 @@ class Build:
         )
         def func(copyClick, pasteClick, inputValue):
 
-            sleep(0.3)
+            sleep(self.clipboardPause)
 
             # if (copy) <
             # else (then paste) <
@@ -170,19 +177,19 @@ class Build:
                 icon = iconCopy
                 copy(inputValue)
                 text = inputValue
-                message = "Text was copied from input."
+                message = self.clipboardCopiedMessage
 
             else:
 
                 text = paste()
                 icon = iconPaste
-                message = "Text was pasted from input."
+                message = self.clipboardPastedMessage
 
             # >
 
             return [
 
-                self.notifier.notify(icon = icon, duration = 5000, message = message),
+                self.notifier.notify(icon = icon, duration = self.clipboardNotifyDuration, message = message),
                 text,
                 None,
                 None

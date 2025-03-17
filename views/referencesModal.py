@@ -1,6 +1,7 @@
-from config import currentVersion
+from config import iconTrash
 
 from dash import (html, dcc)
+from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
@@ -11,7 +12,7 @@ class References:
     def __init__(self):
         """  """
 
-        pass
+        self.referenceWidth = 4
 
 
     @property
@@ -20,12 +21,66 @@ class References:
 
         return dmc.Modal(
 
-            size = "65%",
-            opened = None,
-            children = None,
+            size = "75%",
+            opened = True,
             centered = True,
-            title = f"References",
+            title = "References",
             id = "referencesModalId",
-            closeOnClickOutside = False
+            closeOnClickOutside = False,
+            children = dbc.Row(
+
+                children = None,
+                id = "referencesRowId"
+
+            )
 
         )
+
+
+    def addReference(self, name, reference):
+        """  """
+
+        return dbc.Col(
+
+            width = self.referenceWidth,
+            className = "referencesCol",
+            children = dmc.Card(
+
+                withBorder = True,
+                children = [
+
+                    dmc.CardSection(
+
+                        withBorder = True,
+                        className = "referencesCardHeader",
+                        children = dmc.Group(
+
+                            justify = "space-between",
+                            children = [
+
+                                html.Small(children = name),
+                                dmc.ActionIcon(
+
+                                    size = "sm",
+                                    children = DashIconify(icon = iconTrash),
+                                    id = {"type" : "delete-btn", "index" : name}
+                                )
+
+                            ]
+
+                        )
+
+                    ),
+                    dmc.CardSection(children = dmc.Image(src = reference))
+
+                ]
+
+            )
+
+        )
+
+
+    def addDragNDrop(self):
+        """  """
+
+        return None
