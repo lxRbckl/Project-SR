@@ -70,7 +70,10 @@ class Run:
          output = Output("runStartButtonId", "disabled", allow_duplicate = True)
 
       )
-      def func(windowValue): return (windowValue is None)
+      def func(windowValue):
+
+         self.controller.setWindow(windowValue)
+         return (windowValue == None)
 
 
    def startOnClickCallback(self):

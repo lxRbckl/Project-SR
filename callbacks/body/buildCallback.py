@@ -94,11 +94,11 @@ class Build:
                     rStepsChildren = self.stepsComponent.build
                     rNotificationChildren = self.notifier.notify(
 
-                        # duration = 1000, # remove when done
+                        duration = 1000, # remove
 
                         color = "yellow",
                         icon = iconWarning,
-                        message = f"Ensure that you have the correct window you want {projectName} to interact with!"
+                        message = f"Make sure the correct window is selected for {projectName} to function properly."
 
                     )
 

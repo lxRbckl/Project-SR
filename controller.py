@@ -6,44 +6,62 @@ class Controller:
 
     def __init__(self):
         """
-        Find()
-        TypeIn/Enter()
-        Move/Navigate()
-        Click()
-        TakeScreenshot()
-        DONE getWindows()
-        Date()
+        - Find()
+        - Keyboard()
+        - Mouse()
+        - Click()
+        - TakeScreenshot()
+        DONE - getWindows()
+        - Date()
+        DONE - setWindow()
         """
 
+        self.windows = {}
+        self.xmin = 0
+        self.xmax = 0
+        self.ymin = 0
+        self.ymax = 0
         self.excludedWindows = ["", ".", "Settings"]
+
+
+    def setWindow(self, window):
+        """  """
+
+        if (window):
+
+            x, y, w, h = window.split(' ')[:-1]
+            self.xmin = int(x)
+            self.ymin = int(y)
+            self.xmax = self.xmin + int(w)
+            self.ymax = self.ymin + int(h)
 
 
     def getWindows(self):
         """  """
 
-        windows = {}
-        for w in getAllWindows():
+        self.windows = {}
+        for c, w in enumerate(getAllWindows()):
 
             if (w.title not in self.excludedWindows):
 
                 # if (existing) <
                 # else (then new) <
-                if (w.title in windows):
+                if (w.title in self.windows):
 
-                    windows[w.title]["count"] += 1
+                    self.windows[w.title]["count"] += 1
                     continue
 
-                else: windows[w.title] = {
+                else: self.windows[w.title] = {
 
                     "count" : 1,
                     "label" : w.title,
-                    "value" : f"{w.left} {w.top} {w.width} {w.height} {len(windows)}"
+                    "value" : f"{w.left} {w.top} {w.width} {w.height} {c}"
 
                 }
 
                 # >
 
-        return list(windows.values())
+        return list(self.windows.values())
 
 
 

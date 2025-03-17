@@ -36,13 +36,7 @@ class Header:
                   className = "headerGroup",
                   children = [
 
-                     # (icon, title) <
-                     # dmc.Image(
-                     #
-                     #    src = "/assets/favicon.ico",
-                     #    className = "headerIconImage"
-                     #
-                     # ),
+                     # title <
                      html.H1(
 
                         children = projectName,

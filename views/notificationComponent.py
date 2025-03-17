@@ -11,7 +11,7 @@ class Notification:
     def __init__(self):
         """  """
 
-        self.notificationPosition = "bottom-right"
+        self.notificationPosition = "top-right"
 
 
     @property
