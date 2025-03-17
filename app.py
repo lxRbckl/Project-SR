@@ -1,5 +1,5 @@
-from config import (app, port)
 from controller import Controller
+from config import (app, port, debug)
 
 from models.body.stepsModel import Steps as stepsModel
 
@@ -86,20 +86,4 @@ footerCallback()
 
 
 app.layout = layout.build
-app.run_server(debug = True, port = port)
-
-
-
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-# from controller import Controller
-#
-#
-#
-# print(Controller.getWindows())
-#
-
-
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+app.run_server(debug = debug, port = port)

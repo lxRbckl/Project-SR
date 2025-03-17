@@ -21,6 +21,8 @@ class Controller:
         self.xmax = 0
         self.ymin = 0
         self.ymax = 0
+        self.width = 0
+        self.height = 0
         self.excludedWindows = ["", ".", "Settings"]
 
 
@@ -30,10 +32,12 @@ class Controller:
         if (window):
 
             x, y, w, h = window.split(' ')[:-1]
-            self.xmin = int(x)
-            self.ymin = int(y)
-            self.xmax = self.xmin + int(w)
-            self.ymax = self.ymin + int(h)
+            self.xmin = int(x) # check
+            self.ymin = int(y) # check
+            self.width = int(w)
+            self.height = int(h)
+            self.xmax = self.xmin + int(w) # check
+            self.ymax = self.ymin + int(h) # check
 
 
     def getWindows(self):

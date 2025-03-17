@@ -4,6 +4,7 @@ from dash_bootstrap_components import themes
 
 
 port = 8050
+debug = True
 emptyValue = ""
 currentVersion = "1.0.0"
 projectName = "Project SR  command, text, parameter"
