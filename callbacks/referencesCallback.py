@@ -1,5 +1,6 @@
 from config import (app, projectDirectory)
 
+from json import loads
 from os import (listdir, remove)
 from dash import (Input, Output, State, ctx, ALL)
 
@@ -17,6 +18,7 @@ class References:
         self.referencesModal = referencesModal
 
         self.referencesFilepath = "/assets/references"
+        self.parseContext = lambda ctx: loads(ctx.triggered[0]["prop_id"].replace(".n_clicks", ""))
 
 
     def _buildReferences(self):
@@ -51,6 +53,18 @@ class References:
         def func(referencesClick): return [True, self._buildReferences()]
 
 
+    # def referencesOnCopyCallback(self):
+    #     """  """
+    #
+    #     @app.callback(
+    #
+    #         prevent_initial_call = True,
+    #         inputs = Input({}, "n_clicks"),
+    #         output = Output("", "", allow_duplicate = True)
+    #
+    #     )
+
+
     def referencesOnDeleteCallback(self):
         """  """
 
@@ -63,18 +77,8 @@ class References:
         )
         def func(deleteClick):
 
-            # > unclicked [{'prop_id': '{"index":"example112.png","type":"delete-btn"}.n_clicks', 'value': None}, {
-            #     'prop_id': '{"index":"example2.png","type":"delete-btn"}.n_clicks', 'value': None}, {
-            #     'prop_id': '{"index":"example212.png","type":"delete-btn"}.n_clicks', 'value': None}, {
-            #     'prop_id': '{"index":"example22.png","type":"delete-btn"}.n_clicks', 'value': None}]
-            #
-            # > clicked [{'prop_id': '{"index":"example112.png","type":"delete-btn"}.n_clicks', 'value': 1}]
-
-            # print('>', len(ctx.triggered), ctx.triggered) # remove
-            # print() # remove
-
             if (len(ctx.triggered) == 1):
 
-                print('ON PURPOSE') # remove
+                print(self.parseContext(ctx)) # remove
 
             return self._buildReferences()

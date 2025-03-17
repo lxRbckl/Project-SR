@@ -4,7 +4,7 @@ import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 from dash_mantine_components import ActionIcon
 
-from config import (iconTrash, iconMedia, iconUpload)
+from config import (iconTrash, iconMedia, iconUpload, iconCopy)
 
 
 class References:
@@ -114,7 +114,25 @@ class References:
                             justify = "space-between",
                             children = [
 
-                                html.Small(children = name),
+                                # (copy, title), delete <
+                                dmc.Group(
+
+                                    gap = 5,
+                                    children = [
+
+
+                                        dmc.ActionIcon(
+
+                                            size = "sm",
+                                            children = DashIconify(icon = iconCopy),
+                                            id = {"type" : "copy-btn", "index" : name}
+
+                                        ),
+                                        html.Small(children = name)
+
+                                    ]
+
+                                ),
                                 dmc.ActionIcon(
 
                                     size = "sm",
@@ -122,6 +140,8 @@ class References:
                                     id = {"type" : "delete-btn", "index" : name}
 
                                 )
+
+                                # >
 
                             ]
 
