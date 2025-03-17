@@ -9,9 +9,14 @@
    color: var(--colorBlack);
 }
 
-.headerVersionButton {
+.headerGuideButton {
    margin: 0;
-   font-size: small;
+   padding-left: 1px;
+   padding-right: 1px;
+}
+
+.headerReferencesButton {
+   margin: 0 5px 0 0;
    padding-left: 1px;
    padding-right: 1px;
 }

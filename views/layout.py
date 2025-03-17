@@ -6,15 +6,27 @@ import dash_bootstrap_components as dbc
 class Layout:
 
    
-   def __init__(self, notifier, guide, header, body, footer):
+   def __init__(
+
+       self,
+       body,
+       guide,
+       header,
+       footer,
+       notifier,
+       references
+
+   ):
       """  """
+
+      self.layoutColWidth = 9
 
       self.body = body
       self.guide = guide
       self.footer = footer
       self.header = header
-      self.layoutColWidth = 9
       self.notifier = notifier
+      self.references = references
 
 
    @property
@@ -35,6 +47,8 @@ class Layout:
 
                      self.notifier.build,
                      self.guide.build,
+                     self.references.build,
+
                      self.header.build,
                      self.body.build,
                      self.footer.build

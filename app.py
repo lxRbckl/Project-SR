@@ -16,10 +16,11 @@ from views.body.runSection import Run as runSection
 from views.body.bodyPartial import Body as bodyPartial
 from views.headerPartial import Header as headerPartial
 from views.footerPartial import Footer as footerPartial
-from views.guideComponent import Guide as guideComponent
+from views.guideModal import Guide as guideModal
 from views.body.buildSection import Build as buildSection
 from views.body.resultSection import Result as resultSection
 from views.body.stepsComponent import  Steps as stepsComponent
+from views.referencesModal import References as referencesModal
 from views.notificationComponent import Notification as notificationComponent
 
 
@@ -35,7 +36,9 @@ notifier = notificationComponent()
 layout = layoutView(
 
    notifier = notifier,
-   guide = guideComponent(),
+   guide = guideModal(),
+   references = referencesModal(),
+
    header = headerPartial(),
    body = bodyPartial(
 

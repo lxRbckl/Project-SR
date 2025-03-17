@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (projectName, iconVersion)
+from config import (projectName, iconImage, iconGuide)
 
 
 class Header:
@@ -30,17 +30,53 @@ class Header:
 
                width = "auto",
                className = "colExtended",
+               children = [
+
+                  html.H1(
+
+                     children = projectName,
+                     className = "headerTitleH1"
+
+                  )
+
+               ]
+
+            ),
+            dbc.Col(
+
+               align = "end",
+               width = "auto",
+               className = "colExtended",
                children = dmc.Group(
 
                   gap = 0,
-                  className = "headerGroup",
                   children = [
 
-                     # title <
-                     html.H1(
+                     # (references, guide) <
+                     dmc.Button(
 
-                        children = projectName,
-                        className = "headerTitleH1"
+                        size = "xs",
+                        id = "headerReferencesButtonId",
+                        className = "headerReferencesButton",
+                        children = DashIconify(
+
+                           width = 25,
+                           icon = iconImage
+
+                        )
+
+                     ),
+                     dmc.Button(
+
+                        size = "xs",
+                        id = "headerGuideButtonId",
+                        className = "headerGuideButton",
+                        children = DashIconify(
+
+                           width = 25,
+                           icon = iconGuide
+
+                        )
 
                      )
 
@@ -49,33 +85,6 @@ class Header:
                   ]
 
                )
-
-            ),
-            dbc.Col(
-
-               align = "end",
-               width = "auto",
-               className = "colExtended",
-               children = [
-
-                  # version <
-                  dmc.Button(
-
-                     size = "xs",
-                     id = "headerVersionButtonId",
-                     className = "headerVersionButton",
-                     children = DashIconify(
-
-                        width = 25,
-                        icon = iconVersion
-
-                     )
-
-                  )
-
-                  # >
-
-               ]
 
             )
 

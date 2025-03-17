@@ -7,22 +7,20 @@ class Controller:
     def __init__(self):
         """
         - Find()
-        - Keyboard()
+        - Date()
         - Mouse()
         - Click()
+        - Keyboard()
         - TakeScreenshot()
         DONE - getWindows()
-        - Date()
         DONE - setWindow()
         """
 
-        self.windows = {}
-        self.xmin = 0
-        self.xmax = 0
-        self.ymin = 0
-        self.ymax = 0
+        self.x = 0
+        self.y = 0
         self.width = 0
         self.height = 0
+        self.windows = {}
         self.excludedWindows = ["", ".", "Settings"]
 
 
@@ -32,12 +30,10 @@ class Controller:
         if (window):
 
             x, y, w, h = window.split(' ')[:-1]
-            self.xmin = int(x) # check
-            self.ymin = int(y) # check
+            self.x = int(x)
+            self.y = int(y)
             self.width = int(w)
             self.height = int(h)
-            self.xmax = self.xmin + int(w) # check
-            self.ymax = self.ymin + int(h) # check
 
 
     def getWindows(self):
@@ -68,7 +64,10 @@ class Controller:
         return list(self.windows.values())
 
 
+    def TakeScreenshot(self):
+        """  """
 
+        pass
 
 
 

@@ -9,13 +9,14 @@ emptyValue = ""
 currentVersion = "1.0.0"
 projectName = "Project SR  command, text, parameter"
 
+iconGuide = "tabler:book"
 iconWarning = "bxs:error"
 iconCopy = "lucide:clipboard-copy"
-iconVersion = "stash:version-solid"
 iconError = "material-symbols:error"
 iconPaste = "lucide:clipboard-paste"
 iconNotification = "lucide:notification"
 iconWindow = "iconamoon:screen-full-fill"
+iconImage = "material-symbols:image-outline"
 
 buildOptions = [
    "option"
