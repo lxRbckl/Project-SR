@@ -62,9 +62,19 @@ class References:
 
         )
         def func(deleteClick):
-            print(ctx.triggered_id) # remove
-            print() # remove
 
-            if (ctx.triggered): print(ctx.triggered, "TRIGGERED") # remove
+            # > unclicked [{'prop_id': '{"index":"example112.png","type":"delete-btn"}.n_clicks', 'value': None}, {
+            #     'prop_id': '{"index":"example2.png","type":"delete-btn"}.n_clicks', 'value': None}, {
+            #     'prop_id': '{"index":"example212.png","type":"delete-btn"}.n_clicks', 'value': None}, {
+            #     'prop_id': '{"index":"example22.png","type":"delete-btn"}.n_clicks', 'value': None}]
+            #
+            # > clicked [{'prop_id': '{"index":"example112.png","type":"delete-btn"}.n_clicks', 'value': 1}]
+
+            # print('>', len(ctx.triggered), ctx.triggered) # remove
+            # print() # remove
+
+            if (len(ctx.triggered) == 1):
+
+                print('ON PURPOSE') # remove
 
             return self._buildReferences()
