@@ -90,6 +90,7 @@ class Run:
 
             (Output("runStartButtonId", "loading"), True, False),
             (Output("runStopButtonId", "disabled"), False, True),
+            (Output("runWindowSelectId", "disabled"), True, False),
             (Output("buildCreateButtonId", "disabled"), True, False),
             (Output("buildInputTextareaId", "disabled"), True, False)
 

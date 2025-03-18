@@ -1,5 +1,5 @@
 from pygetwindow import getAllWindows
-
+from pyautogui import (screenshot)
 
 class Controller:
 
@@ -11,15 +11,16 @@ class Controller:
         - mouse()
         - click()
         - keyboard()
-        - takeScreenshot()
-        DONE - getWindows()
         DONE - setWindow()
+        DONE - getWindows()
+        DONE - takeScreenshot()
         """
 
         self.x = 0
         self.y = 0
         self.width = 0
         self.height = 0
+        self.screenshotFilename = "screenshot.png"
         self.excludedWindows = ["", ".", "Settings"]
 
 
@@ -27,6 +28,7 @@ class Controller:
         """  """
 
         x, y, w, h = window.split(' ')[:-1]
+        print('>', x, y, w, h) # remove
 
         self.x = int(x)
         self.y = int(y)
@@ -65,7 +67,12 @@ class Controller:
     def takeScreenshot(self):
         """  """
 
-        pass
+        screenshot(
+
+            imageFilename = self.screenshotFilename,
+            region = (self.x, self.y, self.width, self.height)
+
+        )
 
 
 

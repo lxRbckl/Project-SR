@@ -26,77 +26,162 @@ from views.referencesModal import References as referencesModal
 from views.notificationComponent import Notification as notificationComponent
 
 
-# register shared objects <
-stepsModel = stepsModel()
-controller = Controller()
-stepsComponent = stepsComponent()
-notifier = notificationComponent()
-referencesModal = referencesModal()
-
+# # register shared objects <
+# stepsModel = stepsModel()
+# controller = Controller()
+# stepsComponent = stepsComponent()
+# notifier = notificationComponent()
+# referencesModal = referencesModal()
 #
+# #
+#
+# # register views <
+# layout = layoutView(
+#
+#    notifier = notifier,
+#    guide = guideModal(),
+#    references = referencesModal,
+#
+#    header = headerPartial(),
+#    body = bodyPartial(
+#
+#       items = [
+#
+#          buildSection(),
+#          runSection(),
+#          resultSection()
+#
+#       ]
+#
+#    ),
+#    footer = footerPartial()
+#
+# )
+#
+# # >
+#
+# # register callbacks <
+# bodyCallback()
+# guideCallback()
+# stepsCallback()
+# headerCallback()
+# referencesCallback(
+#
+#    notifier = notifier,
+#    referencesModal = referencesModal
+#
+# )
+# buildCallback(
+#
+#    notifier = notifier,
+#    stepsModel = stepsModel,
+#    controller = controller,
+#    stepsComponent = stepsComponent
+#
+# )
+# runCallback(
+#
+#    notifier = notifier,
+#    stepsModel = stepsModel,
+#    controller = controller,
+#    stepsComponent = stepsComponent
+#
+# )
+# resultCallback(
+#
+#    notifier = notifier,
+#    stepsModel = stepsModel
+#
+# )
+# footerCallback()
+#
+# # >
+#
+#
+# app.layout = layout.build
+# app.run_server(debug = debug, port = port)
 
-# register views <
-layout = layoutView(
-
-   notifier = notifier,
-   guide = guideModal(),
-   references = referencesModal,
-
-   header = headerPartial(),
-   body = bodyPartial(
-
-      items = [
-
-         buildSection(),
-         runSection(),
-         resultSection()
-
-      ]
-
-   ),
-   footer = footerPartial()
-
-)
-
-# >
-
-# register callbacks <
-bodyCallback()
-guideCallback()
-stepsCallback()
-headerCallback()
-referencesCallback(
-
-   notifier = notifier,
-   referencesModal = referencesModal
-
-)
-buildCallback(
-
-   notifier = notifier,
-   stepsModel = stepsModel,
-   controller = controller,
-   stepsComponent = stepsComponent
-
-)
-runCallback(
-
-   notifier = notifier,
-   stepsModel = stepsModel,
-   controller = controller,
-   stepsComponent = stepsComponent
-
-)
-resultCallback(
-
-   notifier = notifier,
-   stepsModel = stepsModel
-
-)
-footerCallback()
-
-# >
+# # # # # # # # # # # # # #
 
 
-app.layout = layout.build
-app.run_server(debug = debug, port = port)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+controller = Controller()
+
+print(controller.getWindows()) # remove
+controller.setWindow(window = "-7 0 1161 1399 22")
+controller.takeScreenshot()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
