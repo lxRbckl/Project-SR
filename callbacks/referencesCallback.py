@@ -32,7 +32,7 @@ class References:
         for r in listdir(projectDirectory + self.referencesFilepath):
 
             name = r
-            ref = f"{projectDirectory + self.referencesFilepath}/{name}"
+            ref = f"{self.referencesFilepath}/{name}"
 
             returnReferences.append(self.referencesModal.addReference(name = name, reference = ref))
 
@@ -104,7 +104,7 @@ class References:
             if (len(ctx.triggered) == 1):
 
                 file = self.parseContext(ctx)["index"]
-                remove(f"{self.referencesFilepath}/{file}")
+                remove(f"{projectDirectory + self.referencesFilepath}/{file}")
 
                 return [
 
