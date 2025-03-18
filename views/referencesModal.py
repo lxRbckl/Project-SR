@@ -4,7 +4,7 @@ import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 from dash_mantine_components import ActionIcon
 
-from config import (iconTrash, iconUpload, iconCopy)
+from config import (iconTrash, iconUpload, iconCopy, loaderStyle)
 
 
 class References:
@@ -30,12 +30,48 @@ class References:
             closeOnClickOutside = False,
             children = [
 
+                # loader <
+                dmc.LoadingOverlay(
+
+                    visible = False,
+                    loaderProps = loaderStyle,
+                    id = "referencesLoadingOverlayId",
+                    overlayProps = {"radius": "sm", "blur": 2}
+
+                ),
+
+                # >
+
                 # upload <
                 # images <
                 dbc.Row(
 
                     justify = "start",
-                    children = self.addDragNDrop()
+                    children = dbc.Col(
+
+                        width = 12,
+                        children = dcc.Upload(
+
+                            contents = None,
+                            multiple = True,
+                            id = "referencesUploadId",
+                            children = dmc.Button(
+
+                                size = "md",
+                                fullWidth = True,
+                                loaderProps = loaderStyle,
+
+                                children = "Upload file(s)",
+
+                                id = "referencesUploadButtonId",
+
+                                leftSection = DashIconify(width = 25, icon = iconUpload)
+
+                            )
+
+                        )
+
+                    )
 
                 ),
                 dbc.Row(
@@ -111,33 +147,6 @@ class References:
                     dmc.CardSection(children = dmc.Image(src = reference))
 
                 ]
-
-            )
-
-        )
-
-
-    def addDragNDrop(self):
-        """  """
-
-        return dbc.Col(
-
-            width = 12,
-            children = dcc.Upload(
-
-                contents = None,
-                multiple = True,
-                id = "referencesUploadId",
-                children = dmc.Button(
-
-                    size = "md",
-                    fullWidth = True,
-                    children = "Upload",
-                    loaderProps = {"type": "dots"},
-                    id = "referencesUploadButtonId",
-                    leftSection = DashIconify(width = 25, icon = iconUpload)
-
-                )
 
             )
 

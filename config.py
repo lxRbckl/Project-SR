@@ -16,6 +16,14 @@ iconUpload = "material-symbols:upload"
 iconNotification = "lucide:notification"
 iconWindow = "iconamoon:screen-full-fill"
 
+port = 8050
+debug = True
+emptyValue = ""
+currentVersion = "1.0.0"
+projectDirectory = getcwd()
+loaderStyle = {"type" : "dots"}
+projectName = "Project SR  command, text, parameter"
+
 buildOptions = [
 
    "option"
@@ -31,13 +39,6 @@ runParameters = [
    "parameter"
 
 ]
-
-port = 8050
-debug = True
-emptyValue = ""
-currentVersion = "1.0.0"
-projectDirectory = getcwd()
-projectName = "Project SR  command, text, parameter"
 
 
 # Remove once Dash 3.x.x comes out #

@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (emptyValue, buildOptions, iconCopy, iconPaste)
+from config import (emptyValue, buildOptions, iconCopy, iconPaste, loaderStyle)
 
 
 class Build:
@@ -66,8 +66,8 @@ class Build:
                                 size = "xs",
                                 disabled = None,
                                 children = "Create",
+                                loaderProps = loaderStyle,
                                 id = "buildCreateButtonId",
-                                loaderProps = {"type": "dots"},
                                 className = "buildCreateButton"
 
                             ),
@@ -102,11 +102,10 @@ class Build:
 
                             size = "xs",
                             disabled = None,
-                            id = "buildCopyButtonId",
-                            className = "buildCopyButton",
-                            loaderProps = {"type": "dots"},
-
                             children = "Copy",
+                            id = "buildCopyButtonId",
+                            loaderProps = loaderStyle,
+                            className = "buildCopyButton",
                             leftSection = DashIconify(
 
                                 width = 18,
@@ -128,11 +127,10 @@ class Build:
 
                             size = "xs",
                             disabled = False,
-                            id = "buildPasteButtonId",
-                            className = "buildPasteButton",
-                            loaderProps = {"type": "dots"},
-
                             children = "Paste",
+                            id = "buildPasteButtonId",
+                            loaderProps = loaderStyle,
+                            className = "buildPasteButton",
                             rightSection = DashIconify(
 
                                 width = 18,

@@ -1,4 +1,5 @@
 import base64
+from time import sleep
 from json import loads
 from clipboard import copy
 from os import (listdir, remove)
@@ -21,9 +22,12 @@ class References:
         self.notifier = notifier
         self.referencesModal = referencesModal
 
+        self.onUploadSleep = 1
+        self.onDeleteSleep = 1
         self.referencesFilepath = "/assets/references"
         self.referencesCopyMessage = "Reference was copied to clipboard."
         self.referencesDeleteMessage = "Reference was deleted from folder."
+        self.referencesCompleteFilepath = projectDirectory + self.referencesFilepath
         self.referencesUploadMessage = lambda u: f"Reference {u} was uploaded successfully."
         self.parseContext = lambda ctx: loads(ctx.triggered[0]["prop_id"].replace(".n_clicks", ""))
 
@@ -48,13 +52,13 @@ class References:
         @app.callback(
 
             prevent_initial_call = True,
+            inputs = Input("headerReferencesActionIconId", "n_clicks"),
             output = [
 
                 Output("referencesModalId", "opened"),
                 Output("referencesRowId", "children", allow_duplicate = True)
 
-            ],
-            inputs = Input("headerReferencesActionIconId", "n_clicks")
+            ]
 
         )
         def func(referencesClick): return [True, self._buildReferences()]
@@ -94,6 +98,11 @@ class References:
             prevent_initial_call = True,
             state = State("referencesRowId", "children"),
             inputs = Input({"type" : "delete-btn", "index" : ALL}, "n_clicks"),
+            running = [
+
+                (Output("referencesLoadingOverlayId", "visible"), True, False)
+
+            ],
             output = [
 
                 Output("referencesRowId", "children", allow_duplicate = True),
@@ -107,8 +116,9 @@ class References:
             if (len(ctx.triggered) == 1):
 
                 file = self.parseContext(ctx)["index"]
-                remove(f"{projectDirectory + self.referencesFilepath}/{file}")
+                remove(f"{self.referencesCompleteFilepath}/{file}")
 
+                sleep(self.onDeleteSleep)
                 return [
 
                     self._buildReferences(),
@@ -122,7 +132,6 @@ class References:
 
                 ]
 
-
             return [referencesChildren, None]
 
 
@@ -134,6 +143,11 @@ class References:
             prevent_initial_call = True,
             state = State("referencesUploadId", "filename"),
             inputs = Input("referencesUploadId", "contents"),
+            running = [
+
+                (Output("referencesLoadingOverlayId", "visible"), True, False)
+
+            ],
             output = [
 
                 Output("referencesRowId", "children", allow_duplicate = True),
@@ -148,7 +162,7 @@ class References:
             for file, content in zip(uploadFilenames, uploadContents):
 
                 data = content.encode("utf-8").split(b";base64,")[1]
-                with open(f"{projectDirectory + self.referencesFilepath}/{file}", "wb") as f:
+                with open(f"{self.referencesCompleteFilepath}/{file}", "wb") as f:
 
                     f.write(base64.b64decode(data))
 
@@ -160,5 +174,6 @@ class References:
 
                 ))
 
+            sleep(self.onUploadSleep)
             return [self._buildReferences(), returnNotifications]
 
