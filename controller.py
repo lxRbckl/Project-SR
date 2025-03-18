@@ -1,4 +1,4 @@
-
+from config import referencesFilepath # or complete file path
 
 from time import sleep
 from pygetwindow import getAllWindows
@@ -12,8 +12,8 @@ class Controller:
         DONE - setWindow()
         DONE - getWindows()
         DONE - takeScreenshot()
-        - _findImage(image)
         - _findText(text)
+        - _findImage(image)
 
         DONE - wait(?duration)
         - find(asset<text/image>)
@@ -26,9 +26,11 @@ class Controller:
 
         self.defaultWaitDuration = 3
         self.defaultClickMultiple = 1
-        self.defaultClickDistance = 10
+        self.defaultMouseDistance = 10
         self.defaultScrollDistance = 10
 
+        self.mouseX = 0
+        self.mouseY = 0
         self.windowX = 0
         self.windowY = 0
         self.windowWidth = 0
@@ -126,18 +128,22 @@ class Controller:
     def mouse(self, direction, distance = None):
         """  """
 
-        directions = ["up", "right", "down", "left"]
+        try:
 
-        x, y = {
+            distance = int(distance) if distance else self.defaultMouseDistance
+            x, y = {
 
-            "up" : (1, 2)
+                "up" : (self.mouseX, (distance + self.mouseY)),
+                "left" : ((self.mouseX - distance), self.mouseY),
+                "down" : (self.mouseX, (self.mouseY - distance)),
+                "right" : ((self.mouseX + distance), self.mouseY)
 
-        }[direction]
+            }[direction]
 
-        # moveTo(x = x, y = y)
-        pass
+            # drift?
+            moveTo(x = x, y = y)
 
-
+        except KeyError: return False
 
 
 # from time import sleep
