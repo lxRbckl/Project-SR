@@ -57,7 +57,7 @@ class Controller:
     def find(self, asset, confidence = None):
         """  """
 
-        pass
+        confidence = float(confidence) if confidence else self.defaultFindConfidence
 
 
     def setWindow(self, window):
