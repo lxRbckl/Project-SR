@@ -9,6 +9,7 @@ from pyautogui import (
     moveTo,
     scroll,
     locate,
+    center,
     screenshot,
     ImageNotFoundException
 
@@ -111,16 +112,21 @@ class Controller:
     def findImage(self, image, confidence):
         """  """
 
-        results = locate(
+        try:
 
-            confidence = confidence,
-            grayscale = self.useGrayscale,
-            haystackImage = self.screenshot,
-            needleImage = f"{referencesCompleteFilepath}/{image}"
+            x, y = center(locate(
 
-        )
+                confidence = confidence,
+                grayscale = self.useGrayscale,
+                haystackImage = self.screenshot,
+                needleImage = f"{referencesCompleteFilepath}/{image}"
 
-        return results.left, results.top, results.width, results.height
+            ))
+
+            print(x, y) # remove
+            return None
+
+        except ImageNotFoundException: return False
 
 
     def find(self, asset, confidence = None):

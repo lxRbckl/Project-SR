@@ -1,7 +1,7 @@
-import base64
 from time import sleep
 from json import loads
 from clipboard import copy
+from base64 import b64decode
 from os import (remove, listdir)
 from dash import (Input, Output, State, ctx, ALL)
 
@@ -172,7 +172,7 @@ class References:
                 data = content.encode("utf-8").split(b";base64,")[1]
                 with open(f"{referencesCompleteFilepath}/{file}", "wb") as f:
 
-                    f.write(base64.b64decode(data))
+                    f.write(b64decode(data))
 
                 returnNotifications.append(self.notifier.notify(
 
