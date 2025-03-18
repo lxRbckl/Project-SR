@@ -1,9 +1,10 @@
+import base64
 from json import loads
 from clipboard import copy
 from os import (listdir, remove)
 from dash import (Input, Output, State, ctx, ALL)
 
-from config import (app, projectDirectory, iconCopy, iconTrash)
+from config import (app, projectDirectory, iconCopy, iconTrash, iconSuccess)
 
 
 class References:
@@ -23,6 +24,7 @@ class References:
         self.referencesFilepath = "/assets/references"
         self.referencesCopyMessage = "Reference was copied to clipboard."
         self.referencesDeleteMessage = "Reference was deleted from folder."
+        self.referencesUploadMessage = lambda u: f"Reference {u} was uploaded successfully."
         self.parseContext = lambda ctx: loads(ctx.triggered[0]["prop_id"].replace(".n_clicks", ""))
 
 
@@ -132,9 +134,31 @@ class References:
             prevent_initial_call = True,
             state = State("referencesUploadId", "filename"),
             inputs = Input("referencesUploadId", "contents"),
-            output = Output("notificationDiv", "children", allow_duplicate = True)
+            output = [
+
+                Output("referencesRowId", "children", allow_duplicate = True),
+                Output("notificationDiv", "children", allow_duplicate = True)
+
+            ]
 
         )
-        def func(uploadContent):
+        def func(uploadContents, uploadFilenames):
 
-            print(uploadContent)
+            returnNotifications = []
+            for file, content in zip(uploadFilenames, uploadContents):
+
+                data = content.encode("utf-8").split(b";base64,")[1]
+                with open(f"{projectDirectory + self.referencesFilepath}/{file}", "wb") as f:
+
+                    f.write(base64.b64decode(data))
+
+                returnNotifications.append(self.notifier.notify(
+
+                    duration = 4000,
+                    icon = iconSuccess,
+                    message = self.referencesUploadMessage(file)
+
+                ))
+
+            return [self._buildReferences(), returnNotifications]
+

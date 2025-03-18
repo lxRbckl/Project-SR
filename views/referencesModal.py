@@ -126,12 +126,15 @@ class References:
             children = dcc.Upload(
 
                 contents = None,
+                multiple = True,
                 id = "referencesUploadId",
                 children = dmc.Button(
 
                     size = "md",
                     fullWidth = True,
                     children = "Upload",
+                    loaderProps = {"type": "dots"},
+                    id = "referencesUploadButtonId",
                     leftSection = DashIconify(width = 25, icon = iconUpload)
 
                 )
