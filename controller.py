@@ -9,18 +9,19 @@ class Controller:
 
     def __init__(self):
         """
-        - _findImage(image)
-        - _findText(text)
-        DONE - wait(?duration)
-        - find(asset<text/image>)
-        - date(m, d, y)
-        DONE - scroll(?direction)
-        - mouse(asset<text/image>)
-        DONE - click(?multiple)
-        DONE - keyboard(message)
         DONE - setWindow()
         DONE - getWindows()
         DONE - takeScreenshot()
+        - _findImage(image)
+        - _findText(text)
+
+        DONE - wait(?duration)
+        - find(asset<text/image>)
+        - date(m, d, y)
+        DONE - scroll(direction, ?distance)
+        - mouse(asset<text/image>)
+        DONE - click(?multiple)
+        DONE - keyboard(message)
         """
 
         self.defaultWaitDuration = 3
@@ -28,10 +29,10 @@ class Controller:
         self.defaultClickDistance = 10
         self.defaultScrollDistance = 10
 
-        self.x = 0
-        self.y = 0
-        self.width = 0
-        self.height = 0
+        self.windowX = 0
+        self.windowY = 0
+        self.windowWidth = 0
+        self.windowHeight = 0
         self.screenshot = None
         self.screenshotFilename = "screenshot.png"
         self.excludedWindows = ["", ".", "Settings"]
@@ -42,10 +43,10 @@ class Controller:
 
         x, y, w, h = window.split(' ')[:-1]
 
-        self.x = int(x)
-        self.y = int(y)
-        self.width = int(w)
-        self.height = int(h)
+        self.windowX = int(x)
+        self.windowY = int(y)
+        self.windowWidth = int(w)
+        self.windowHeight = int(h)
 
 
     def getWindows(self):
@@ -82,7 +83,7 @@ class Controller:
         self.screenshot = screenshot(
 
             imageFilename = self.screenshotFilename,
-            region = (self.x, self.y, self.width, self.height)
+            region = (self.windowX, self.windowY, self.windowWidth, self.windowHeight)
 
         )
 
@@ -122,8 +123,16 @@ class Controller:
         click(clicks = int(multiple) if multiple else self.defaultClickMultiple)
 
 
-    def mouse(self):
+    def mouse(self, direction, distance = None):
         """  """
+
+        directions = ["up", "right", "down", "left"]
+
+        x, y = {
+
+            "up" : (1, 2)
+
+        }[direction]
 
         # moveTo(x = x, y = y)
         pass
