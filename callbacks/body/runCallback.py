@@ -74,7 +74,7 @@ class Run:
       )
       def func(windowValue):
 
-         self.controller.setWindow(windowValue) # check
+         if (windowValue): self.controller.setWindow(windowValue)
          return (windowValue == None)
 
 

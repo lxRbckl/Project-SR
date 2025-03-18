@@ -26,14 +26,11 @@ class Controller:
     def setWindow(self, window):
         """  """
 
-        print('setWindow', window) # remove
-        if (window):
-
-            x, y, w, h = window.split(' ')[:-1]
-            self.x = int(x)
-            self.y = int(y)
-            self.width = int(w)
-            self.height = int(h)
+        x, y, w, h = window.split(' ')[:-1]
+        self.x = int(x)
+        self.y = int(y)
+        self.width = int(w)
+        self.height = int(h)
 
 
     def getWindows(self):
