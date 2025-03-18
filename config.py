@@ -4,13 +4,6 @@ from dash_mantine_components import styles
 from dash_bootstrap_components import themes
 
 
-port = 8050
-debug = True
-emptyValue = ""
-currentVersion = "1.0.0"
-projectDirectory = getcwd()
-projectName = "Project SR  command, text, parameter"
-
 iconGuide = "tabler:book"
 iconWarning = "bxs:error"
 iconMedia = "pajamas:media"
@@ -37,6 +30,13 @@ runParameters = [
    "parameter"
 
 ]
+
+port = 8050
+debug = True
+emptyValue = ""
+currentVersion = "1.0.0"
+projectDirectory = getcwd()
+projectName = "Project SR  command, text, parameter"
 
 
 # Remove once Dash 3.x.x comes out #

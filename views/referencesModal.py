@@ -132,7 +132,7 @@ class References:
                     size = "md",
                     fullWidth = True,
                     children = "Upload",
-                    leftSection = DashIconify(width = 30, icon = iconUpload)
+                    leftSection = DashIconify(width = 25, icon = iconUpload)
 
                 )
 

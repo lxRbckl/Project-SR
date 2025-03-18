@@ -15,6 +15,7 @@ class References:
         self.referencesOnCopyCallback()
         self.referencesOnClickCallback()
         self.referencesOnDeleteCallback()
+        self.referencesOnUploadCallback()
 
         self.notifier = notifier
         self.referencesModal = referencesModal
@@ -129,6 +130,7 @@ class References:
         @app.callback(
 
             prevent_initial_call = True,
+            state = State("referencesUploadId", "filename"),
             inputs = Input("referencesUploadId", "contents"),
             output = Output("notificationDiv", "children", allow_duplicate = True)
 
