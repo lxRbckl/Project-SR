@@ -22,8 +22,8 @@ class References:
         self.notifier = notifier
         self.referencesModal = referencesModal
 
-        self.onUploadSleep = 1
-        self.onDeleteSleep = 1
+        self.onUploadSleep = 0.5
+        self.onDeleteSleep = 0.5
         self.referencesFilepath = "/assets/references"
         self.referencesCopyMessage = "Reference was copied to clipboard."
         self.referencesDeleteMessage = "Reference was deleted from folder."
