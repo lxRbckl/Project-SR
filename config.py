@@ -1,4 +1,4 @@
-from os import (getcwd, listdir)
+from os import getcwd
 from dash import (Dash, _dash_renderer)
 from dash_mantine_components import styles
 from dash_bootstrap_components import themes
@@ -25,11 +25,8 @@ currentVersion = "1.0.0"
 projectName = "Project SR"
 projectDirectory = getcwd()
 loaderStyle = {"type" : "dots"}
-
 guideFilepath = "./assets/guide.md"
-
 referencesFilepath = "/assets/references"
-getReferences = lambda : listdir(referencesCompleteFilepath)
 referencesCompleteFilepath = projectDirectory + referencesFilepath
 
 

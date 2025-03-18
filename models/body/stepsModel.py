@@ -1,7 +1,5 @@
 from re import split
-from time import sleep
-
-from config import (runCommands, runParameters, getReferences)
+from config import (runCommands, runParameters)
 
 
 class Steps:
@@ -9,26 +7,19 @@ class Steps:
 
     def __init__(self):
         """
-        RetryOnFailure
-        WaitForInput
-        Direction
-        Override
-        AlertMe
-        Wait
+        TODO - RetryOnFailure
+        TODO - WaitForInput
+        TODO - Override
+        TODO - Alert
         """
 
-        self.wait = 10
         self.steps = []
-        self.alertMe = False
+        self.alert = False
         self.override = False
-        self.direction = False
         self.waitForInput = False
         self.retryOnFailure = False
         self.resultsFailureMessage = "Invalid notation."
-        self.checkAssetExists = lambda a: (a in getReferences())
-        self.assetFailureMessage = lambda c: f"Asset {c} not recognized."
         self.commandFailureMessage = lambda c: f"Command {c} not recognized."
-        self.parameterFailureMessage = lambda c: f"Parameter {c} not recognized."
 
 
     def addStep(self, step):

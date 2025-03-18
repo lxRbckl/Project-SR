@@ -2,7 +2,7 @@ from config import referencesFilepath # or complete file path
 
 from time import sleep
 from pygetwindow import getAllWindows
-from pyautogui import (click, moveTo, scroll, screenshot, write, locate)
+from pyautogui import (click, moveTo, scroll, screenshot, write, locate, ImageNotFoundException)
 
 class Controller:
 
@@ -51,15 +51,20 @@ class Controller:
     def findImage(self, image, confidence):
         """  """
 
-        x = locate(
+        try:
 
-            needleImage = image,
-            confidence = confidence,
-            grayscale = self.useGrayscale,
-            haystackImage = self.screenshot
+            x = locate(
 
-        )
-        print('findImage()', x) # remove
+                needleImage = image,
+                confidence = confidence,
+                grayscale = self.useGrayscale,
+                haystackImage = self.screenshot
+
+            )
+
+            return x
+
+        except ImageNotFoundException: return False
 
 
     def find(self, asset, confidence = None):

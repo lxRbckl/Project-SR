@@ -2,7 +2,7 @@ import base64
 from time import sleep
 from json import loads
 from clipboard import copy
-from os import remove
+from os import (remove, listdir)
 from dash import (Input, Output, State, ctx, ALL)
 
 from config import (
@@ -11,7 +11,6 @@ from config import (
     iconCopy,
     iconTrash,
     iconSuccess,
-    getReferences,
     referencesFilepath,
     referencesCompleteFilepath
 
@@ -36,6 +35,7 @@ class References:
         self.onDeleteSleep = 0.5
         self.copyMessageSuccess = "Reference was copied to clipboard."
         self.deleteMessageSuccess = "Reference was deleted from folder."
+        self.getReferences = lambda : listdir(referencesCompleteFilepath)
         self.uploadMessageSuccess = lambda u: f"Reference {u} was uploaded successfully."
         self.parseContext = lambda c: loads(c.triggered[0]["prop_id"].replace(".n_clicks", ""))
 
