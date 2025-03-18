@@ -2,7 +2,7 @@ from config import referencesFilepath # or complete file path
 
 from time import sleep
 from pygetwindow import getAllWindows
-from pyautogui import (click, moveTo, scroll, screenshot, write)
+from pyautogui import (click, moveTo, scroll, screenshot, write, locate)
 
 class Controller:
 
@@ -31,7 +31,7 @@ class Controller:
         self.windowWidth = 0
         self.windowHeight = 0
         self.screenshot = None
-        self.usingGrayscale = True
+        self.useGrayscale = True
         self.excludedWindows = ["", ".", "Settings"]
 
         self.defaultWaitDuration = 3
@@ -48,10 +48,18 @@ class Controller:
         pass
 
 
-    def findImage(self, image):
+    def findImage(self, image, confidence):
         """  """
 
-        pass
+        x = locate(
+
+            needleImage = image,
+            confidence = confidence,
+            grayscale = self.useGrayscale,
+            haystackImage = self.screenshot
+
+        )
+        print('findImage()', x) # remove
 
 
     def find(self, asset, confidence = None):
