@@ -12,14 +12,14 @@ class Controller:
         DONE - setWindow()
         DONE - getWindows()
         DONE - takeScreenshot()
-        - _findText(text)
-        - _findImage(image)
 
         DONE - wait(?duration)
+        - _findText(text)
+        - _findImage(image)
         - find(asset<text/image>)
         - date(m, d, y)
         DONE - scroll(direction, ?distance)
-        - mouse(asset<text/image>)
+        DONE - mouse(asset<text/image>)
         DONE - click(?multiple)
         DONE - keyboard(message)
         """
@@ -38,6 +38,21 @@ class Controller:
         self.screenshot = None
         self.screenshotFilename = "screenshot.png"
         self.excludedWindows = ["", ".", "Settings"]
+
+
+    def _findText(self, text):
+        """  """
+
+        pass
+
+
+    def _findImage(self, image):
+        """  """
+
+        pass
+
+
+
 
 
     def setWindow(self, window):
@@ -144,7 +159,6 @@ class Controller:
             moveTo(x = x, y = y)
 
         except KeyError: return False
-
 
 # from time import sleep
 # import pyautogui
