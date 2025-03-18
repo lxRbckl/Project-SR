@@ -2,7 +2,17 @@ from config import referencesFilepath # or complete file path
 
 from time import sleep
 from pygetwindow import getAllWindows
-from pyautogui import (click, moveTo, scroll, screenshot, write, locate, ImageNotFoundException)
+from pyautogui import (
+
+    click,
+    write,
+    moveTo,
+    scroll,
+    locate,
+    screenshot,
+    ImageNotFoundException
+
+)
 
 class Controller:
 
@@ -12,11 +22,10 @@ class Controller:
         DONE - setWindow()
         DONE - getWindows()
         DONE - takeScreenshot()
-
         DONE - wait(?duration)
         TODO - date(m, d, y)
         TODO - _findText(text)
-        TODO - _findImage(image)
+        TODO - _findImage(image, ?confidence)
         TODO - find(asset<text/image>, ?confidence)
         DONE - scroll(direction, ?distance)
         DONE - mouse(asset<text/image>)

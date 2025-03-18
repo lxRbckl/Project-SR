@@ -44,7 +44,7 @@ class References:
         """  """
 
         returnReferences = []
-        for r in getReferences():
+        for r in self.getReferences():
 
             name = r
             ref = f"{referencesFilepath}/{name}"
