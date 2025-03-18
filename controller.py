@@ -17,22 +17,21 @@ class Controller:
         DONE - scroll(?direction)
         - mouse(text/image)
         DONE - click(?multiple)
-        - keyboard(message)
+        DONE - keyboard(message)
         DONE - setWindow()
         DONE - getWindows()
         DONE - takeScreenshot()
         """
-
-        self.directionTop = 10
-        self.directionLeft = 10
-        self.directionRight = 10
-        self.directionBottom = 10
 
         self.x = 0
         self.y = 0
         self.width = 0
         self.height = 0
         self.screenshot = None
+        self.directionTop = 10
+        self.directionLeft = 10
+        self.directionRight = 10
+        self.directionBottom = 10
         self.screenshotFilename = "screenshot.png"
         self.excludedWindows = ["", ".", "Settings"]
 
