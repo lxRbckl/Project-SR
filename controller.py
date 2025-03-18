@@ -1,5 +1,8 @@
+import pyautogui
+
 from config import referencesCompleteFilepath
 
+import pytesseract
 from time import sleep
 from pygetwindow import getAllWindows
 from pyautogui import (
@@ -51,6 +54,9 @@ class Controller:
         self.defaultScrollDistance = 10
         self.defaultFindConfidence = 0.9
         self.defaultScreenshotName = "screenshot.png"
+
+        pytesseract.pytesseract.tesseract_cmd = r"C:\Users\aarbuckle\Desktop\Tesseract/tesseract.exe"  # Update the path as necessary
+
 
 
     def setWindow(self, window):
@@ -106,7 +112,9 @@ class Controller:
     def findText(self, text):
         """  """
 
-        pass
+        text = pytesseract.image_to_string(self.screenshot)
+
+        return text
 
 
     def findImage(self, image, confidence):
