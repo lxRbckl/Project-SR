@@ -6,12 +6,12 @@ class Controller:
 
     def __init__(self):
         """
-        - Find()
-        - Date()
-        - Mouse()
-        - Click()
-        - Keyboard()
-        - TakeScreenshot()
+        - find()
+        - date()
+        - mouse()
+        - click()
+        - keyboard()
+        - takeScreenshot()
         DONE - getWindows()
         DONE - setWindow()
         """
@@ -27,6 +27,7 @@ class Controller:
         """  """
 
         x, y, w, h = window.split(' ')[:-1]
+
         self.x = int(x)
         self.y = int(y)
         self.width = int(w)
@@ -61,7 +62,7 @@ class Controller:
         return list(windows.values())
 
 
-    def TakeScreenshot(self):
+    def takeScreenshot(self):
         """  """
 
         pass
