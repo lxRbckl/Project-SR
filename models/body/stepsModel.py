@@ -32,7 +32,7 @@ class Steps:
         # parse #
         command, text, *parameters = split(r",\s*", step.lower().strip())
 
-        # verify (command, (text/asset?), parameters) <
+        # verify (command, asset?, parameters) <
         if (command not in runCommands): return f"Command \"{command}\" not recognized."
         #
         for param in parameters:

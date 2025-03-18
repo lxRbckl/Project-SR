@@ -2,10 +2,20 @@ import base64
 from time import sleep
 from json import loads
 from clipboard import copy
-from os import (listdir, remove)
+from os import remove
 from dash import (Input, Output, State, ctx, ALL)
 
-from config import (app, projectDirectory, iconCopy, iconTrash, iconSuccess)
+from config import (
+
+    app,
+    iconCopy,
+    iconTrash,
+    iconSuccess,
+    getReferences,
+    referencesFilepath,
+    referencesCompleteFilepath
+
+)
 
 
 class References:
@@ -14,32 +24,30 @@ class References:
     def __init__(self, notifier, referencesModal):
         """  """
 
-        self.referencesOnCopyCallback()
+        self.copyOnClickCallback()
+        self.deleteOnClickCallback()
+        self.uploadOnContentCallback()
         self.referencesOnClickCallback()
-        self.referencesOnDeleteCallback()
-        self.referencesOnUploadCallback()
 
         self.notifier = notifier
         self.referencesModal = referencesModal
 
         self.onUploadSleep = 0.5
         self.onDeleteSleep = 0.5
-        self.referencesFilepath = "/assets/references"
-        self.referencesCopyMessage = "Reference was copied to clipboard."
-        self.referencesDeleteMessage = "Reference was deleted from folder."
-        self.referencesCompleteFilepath = projectDirectory + self.referencesFilepath
-        self.referencesUploadMessage = lambda u: f"Reference {u} was uploaded successfully."
-        self.parseContext = lambda ctx: loads(ctx.triggered[0]["prop_id"].replace(".n_clicks", ""))
+        self.copyMessageSuccess = "Reference was copied to clipboard."
+        self.deleteMessageSuccess = "Reference was deleted from folder."
+        self.uploadMessageSuccess = lambda u: f"Reference {u} was uploaded successfully."
+        self.parseContext = lambda c: loads(c.triggered[0]["prop_id"].replace(".n_clicks", ""))
 
 
     def _buildReferences(self):
         """  """
 
         returnReferences = []
-        for r in listdir(projectDirectory + self.referencesFilepath):
+        for r in getReferences():
 
             name = r
-            ref = f"{self.referencesFilepath}/{name}"
+            ref = f"{referencesFilepath}/{name}"
 
             returnReferences.append(self.referencesModal.addReference(name = name, reference = ref))
 
@@ -64,7 +72,7 @@ class References:
         def func(referencesClick): return [True, self._buildReferences()]
 
 
-    def referencesOnCopyCallback(self):
+    def copyOnClickCallback(self):
         """  """
 
         @app.callback(
@@ -85,12 +93,12 @@ class References:
 
                     icon = iconCopy,
                     duration = 4000,
-                    message = self.referencesCopyMessage
+                    message = self.copyMessageSuccess
 
                 )
 
 
-    def referencesOnDeleteCallback(self):
+    def deleteOnClickCallback(self):
         """  """
 
         @app.callback(
@@ -116,7 +124,7 @@ class References:
             if (len(ctx.triggered) == 1):
 
                 file = self.parseContext(ctx)["index"]
-                remove(f"{self.referencesCompleteFilepath}/{file}")
+                remove(f"{referencesCompleteFilepath}/{file}")
 
                 sleep(self.onDeleteSleep)
                 return [
@@ -126,7 +134,7 @@ class References:
 
                         duration = 4000,
                         icon = iconTrash,
-                        message = self.referencesDeleteMessage
+                        message = self.deleteMessageSuccess
 
                     )
 
@@ -135,7 +143,7 @@ class References:
             return [referencesChildren, None]
 
 
-    def referencesOnUploadCallback(self):
+    def uploadOnContentCallback(self):
         """  """
 
         @app.callback(
@@ -162,7 +170,7 @@ class References:
             for file, content in zip(uploadFilenames, uploadContents):
 
                 data = content.encode("utf-8").split(b";base64,")[1]
-                with open(f"{self.referencesCompleteFilepath}/{file}", "wb") as f:
+                with open(f"{referencesCompleteFilepath}/{file}", "wb") as f:
 
                     f.write(base64.b64decode(data))
 
@@ -170,7 +178,7 @@ class References:
 
                     duration = 4000,
                     icon = iconSuccess,
-                    message = self.referencesUploadMessage(file)
+                    message = self.uploadMessageSuccess(file)
 
                 ))
 

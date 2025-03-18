@@ -20,7 +20,6 @@ class Controller:
         self.y = 0
         self.width = 0
         self.height = 0
-        self.windows = {} # isolate from scope?
         self.excludedWindows = ["", ".", "Settings"]
 
 
@@ -39,19 +38,19 @@ class Controller:
     def getWindows(self):
         """  """
 
-        self.windows = {}
+        windows = {}
         for c, w in enumerate(getAllWindows()):
 
             if (w.title not in self.excludedWindows):
 
                 # if (existing) <
                 # else (then new) <
-                if (w.title in self.windows):
+                if (w.title in windows):
 
-                    self.windows[w.title]["count"] += 1
+                    windows[w.title]["count"] += 1
                     continue
 
-                else: self.windows[w.title] = {
+                else: windows[w.title] = {
 
                     "count" : 1,
                     "label" : w.title,
@@ -61,7 +60,7 @@ class Controller:
 
                 # >
 
-        return list(self.windows.values())
+        return list(windows.values())
 
 
     def TakeScreenshot(self):

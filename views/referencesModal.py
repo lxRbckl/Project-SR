@@ -2,7 +2,6 @@ from dash import (html, dcc)
 from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
-from dash_mantine_components import ActionIcon
 
 from config import (iconTrash, iconUpload, iconCopy, loaderStyle)
 
@@ -13,7 +12,7 @@ class References:
     def __init__(self):
         """  """
 
-        self.referenceWidth = 4
+        self.referenceColWidth = 4
 
 
     @property
@@ -60,11 +59,8 @@ class References:
                                 size = "md",
                                 fullWidth = True,
                                 loaderProps = loaderStyle,
-
                                 children = "Upload file(s)",
-
                                 id = "referencesUploadButtonId",
-
                                 leftSection = DashIconify(width = 25, icon = iconUpload)
 
                             )
@@ -94,8 +90,8 @@ class References:
 
         return dbc.Col(
 
-            width = self.referenceWidth,
             className = "referencesCol",
+            width = self.referenceColWidth,
             children = dmc.Card(
 
                 withBorder = True,

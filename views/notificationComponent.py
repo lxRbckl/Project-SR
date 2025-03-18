@@ -11,7 +11,7 @@ class Notification:
     def __init__(self):
         """  """
 
-        self.notificationPosition = "top-right"
+        self.position = "top-right"
 
 
     @property
@@ -23,7 +23,7 @@ class Notification:
             dmc.NotificationProvider(
 
                 autoClose = False,
-                position = self.notificationPosition
+                position = self.position
 
             ),
             html.Div(

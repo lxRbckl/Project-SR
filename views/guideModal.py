@@ -1,8 +1,8 @@
-from config import currentVersion
-
 from dash import (html, dcc)
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
+
+from config import (guideFilepath, currentVersion)
 
 
 class Guide:
@@ -12,9 +12,7 @@ class Guide:
       """  """
 
       self.filedata = None
-      self.filepath = "./assets/data/guide.md"
-
-      with open(self.filepath, 'r') as fin: self.filedata = fin.read()
+      with open(guideFilepath, 'r') as fin: self.filedata = fin.read()
 
 
    @property
