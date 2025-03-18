@@ -1,9 +1,6 @@
-.documentationMarkdown {
-   padding: 5px;
-   min-height: 500px;
-   max-height: 850px;
-   overflow-y: scroll;
-   background-color: white;
-   border: var(--borderGray);
+.guideMarkdown {
+   margin: 0;
+   padding: 0 5px 0 5px;
+   border: var(--borderDottedGray);
    border-radius: var(--borderRadius);
 }
