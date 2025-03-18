@@ -1,8 +1,9 @@
-from config import (app, projectDirectory)
-
 from json import loads
+from clipboard import copy
 from os import (listdir, remove)
 from dash import (Input, Output, State, ctx, ALL)
+
+from config import (app, projectDirectory, iconCopy, iconTrash)
 
 
 class References:
@@ -11,6 +12,7 @@ class References:
     def __init__(self, notifier, referencesModal):
         """  """
 
+        self.referencesOnCopyCallback()
         self.referencesOnClickCallback()
         self.referencesOnDeleteCallback()
 
@@ -18,6 +20,8 @@ class References:
         self.referencesModal = referencesModal
 
         self.referencesFilepath = "/assets/references"
+        self.referencesCopyMessage = "Reference was copied to clipboard."
+        self.referencesDeleteMessage = "Reference was deleted from folder."
         self.parseContext = lambda ctx: loads(ctx.triggered[0]["prop_id"].replace(".n_clicks", ""))
 
 
@@ -53,16 +57,30 @@ class References:
         def func(referencesClick): return [True, self._buildReferences()]
 
 
-    # def referencesOnCopyCallback(self):
-    #     """  """
-    #
-    #     @app.callback(
-    #
-    #         prevent_initial_call = True,
-    #         inputs = Input({}, "n_clicks"),
-    #         output = Output("", "", allow_duplicate = True)
-    #
-    #     )
+    def referencesOnCopyCallback(self):
+        """  """
+
+        @app.callback(
+
+            prevent_initial_call = True,
+            inputs = Input({"type" : "copy-btn", "index" : ALL}, "n_clicks"),
+            output = Output("notificationDiv", "children", allow_duplicate = True)
+
+        )
+        def func(copyClick):
+
+            if (len(ctx.triggered) == 1):
+
+                reference = self.parseContext(ctx)["index"]
+                copy(reference)
+
+                return self.notifier.notify(
+
+                    icon = iconCopy,
+                    duration = 4000,
+                    message = self.referencesCopyMessage
+
+                )
 
 
     def referencesOnDeleteCallback(self):
@@ -71,14 +89,35 @@ class References:
         @app.callback(
 
             prevent_initial_call = True,
+            state = State("referencesRowId", "children"),
             inputs = Input({"type" : "delete-btn", "index" : ALL}, "n_clicks"),
-            output = Output("referencesRowId", "children", allow_duplicate = True)
+            output = [
+
+                Output("referencesRowId", "children", allow_duplicate = True),
+                Output("notificationDiv", "children", allow_duplicate = True)
+
+            ]
 
         )
-        def func(deleteClick):
+        def func(deleteClick, referencesChildren):
 
             if (len(ctx.triggered) == 1):
 
-                print(self.parseContext(ctx)) # remove
+                file = self.parseContext(ctx)["index"]
+                remove(f"{self.referencesFilepath}/{file}")
 
-            return self._buildReferences()
+                return [
+
+                    self._buildReferences(),
+                    self.notifier.notify(
+
+                        duration = 4000,
+                        icon = iconTrash,
+                        message = self.referencesDeleteMessage
+
+                    )
+
+                ]
+
+
+            return [None, referencesChildren]

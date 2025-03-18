@@ -120,7 +120,6 @@ class References:
                                     gap = 5,
                                     children = [
 
-
                                         dmc.ActionIcon(
 
                                             size = "sm",
