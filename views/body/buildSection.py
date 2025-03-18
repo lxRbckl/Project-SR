@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (emptyValue, buildOptions, iconCopy, iconPaste, loaderStyle)
+from config import (emptyValue, buildOptions, iconCopy, iconPaste, loaderStyle, iconOptions)
 
 
 class Build:
@@ -81,7 +81,8 @@ class Build:
                                 data = buildOptions,
                                 placeholder = "Options",
                                 id = "buildOptionsMultiSelectId",
-                                className = "buildOptionsMultiSelect"
+                                className = "buildOptionsMultiSelect",
+                                leftSection = DashIconify(icon = iconOptions)
                             )
 
                             # >
