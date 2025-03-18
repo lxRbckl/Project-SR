@@ -1,20 +1,28 @@
+from time import sleep
 from pygetwindow import getAllWindows
-from pyautogui import (screenshot)
+from pyautogui import (click, moveTo, scroll, screenshot)
 
 class Controller:
 
 
     def __init__(self):
         """
-        - find()
+        DONE - wait(duration)
+        - find(text/image)
         - date()
-        - mouse()
-        - click()
+        DONE - scroll(direction)
+        - mouse(text/image)
+        DONE - click(multiple)
         - keyboard()
         DONE - setWindow()
         DONE - getWindows()
         DONE - takeScreenshot()
         """
+
+        self.directionTop = 10
+        self.directionLeft = 10
+        self.directionRight = 10
+        self.directionBottom = 10
 
         self.x = 0
         self.y = 0
@@ -24,11 +32,35 @@ class Controller:
         self.excludedWindows = ["", ".", "Settings"]
 
 
+    def wait(self, duration):
+        """  """
+
+        sleep(int(duration))
+
+
+    def scroll(self, direction):
+        """  """
+
+        scroll(clicks = int(direction))
+
+
+    def click(self, multiple):
+        """  """
+
+        click(clicks = int(multiple))
+
+
+    def mouse(self):
+        """  """
+
+        # moveTo(x = x, y = y)
+        pass
+
+
     def setWindow(self, window):
         """  """
 
         x, y, w, h = window.split(' ')[:-1]
-        print('>', x, y, w, h) # remove
 
         self.x = int(x)
         self.y = int(y)

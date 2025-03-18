@@ -145,8 +145,10 @@ from views.notificationComponent import Notification as notificationComponent
 controller = Controller()
 
 print(controller.getWindows()) # remove
-controller.setWindow(window = "-7 0 1161 1399 22")
+# x and y are of top left of window #
+controller.setWindow(window = "40 317 1075 612 23")
 controller.takeScreenshot()
+controller.mouse(x = 40, y = 317) # this is the top left
 
 
 
