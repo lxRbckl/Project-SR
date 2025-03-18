@@ -17,17 +17,12 @@ class Controller:
         TODO - date(m, d, y)
         TODO - _findText(text)
         TODO - _findImage(image)
-        TODO - find(asset<text/image>)
+        TODO - find(asset<text/image>, ?confidence)
         DONE - scroll(direction, ?distance)
         DONE - mouse(asset<text/image>)
         DONE - click(?multiple)
         DONE - keyboard(message)
         """
-
-        self.defaultWaitDuration = 3
-        self.defaultClickMultiple = 1
-        self.defaultMouseDistance = 10
-        self.defaultScrollDistance = 10
 
         self.mouseX = 0
         self.mouseY = 0
@@ -36,8 +31,15 @@ class Controller:
         self.windowWidth = 0
         self.windowHeight = 0
         self.screenshot = None
-        self.screenshotFilename = "screenshot.png"
+        self.usingGrayscale = True
         self.excludedWindows = ["", ".", "Settings"]
+
+        self.defaultWaitDuration = 3
+        self.defaultClickMultiple = 1
+        self.defaultMouseDistance = 10
+        self.defaultScrollDistance = 10
+        self.defaultFindConfidence = 0.9
+        self.defaultScreenshotName = "screenshot.png"
 
 
     def findText(self, text):
@@ -52,7 +54,7 @@ class Controller:
         pass
 
 
-    def find(self, asset):
+    def find(self, asset, confidence = None):
         """  """
 
         pass
@@ -102,7 +104,7 @@ class Controller:
 
         self.screenshot = screenshot(
 
-            imageFilename = self.screenshotFilename,
+            imageFilename = self.defaultScreenshotName,
             region = (self.windowX, self.windowY, self.windowWidth, self.windowHeight)
 
         )
