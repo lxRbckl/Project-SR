@@ -26,6 +26,7 @@ class Controller:
     def setWindow(self, window):
         """  """
 
+        print('setWindow', window) # remove
         if (window):
 
             x, y, w, h = window.split(' ')[:-1]

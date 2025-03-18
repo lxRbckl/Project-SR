@@ -1,7 +1,7 @@
 from re import split
 from time import sleep
 
-from config import (runCommands, runParameters)
+from config import (runCommands, runParameters, getReferences)
 
 
 class Steps:
@@ -19,41 +19,34 @@ class Steps:
 
         self.wait = 10
         self.steps = []
-        self.AlertMe = False
-        self.Override = False
-        self.Direction = False
-        self.WaitForInput = False
+        self.alertMe = False
+        self.override = False
+        self.direction = False
+        self.waitForInput = False
         self.retryOnFailure = False
+        self.resultsFailureMessage = "Invalid notation."
+        self.checkAssetExists = lambda a: (a in getReferences())
+        self.assetFailureMessage = lambda c: f"Asset {c} not recognized."
+        self.commandFailureMessage = lambda c: f"Command {c} not recognized."
+        self.parameterFailureMessage = lambda c: f"Parameter {c} not recognized."
 
 
     def addStep(self, step):
         """  """
 
-        # parse #
-        command, text, *parameters = split(r",\s*", step.lower().strip())
+        results = [s for s in split(r",\s*", step.lower().strip()) if s]
 
-        # verify (command, asset?, parameters) <
-        if (command not in runCommands): return f"Command \"{command}\" not recognized."
-        #
-        for param in parameters:
+        if (len(results) > 0):
 
-            if (param not in runParameters): return f"Parameter \"{param}\" not recognized."
+            if (results[0] in runCommands):
 
-        # >
+                self.steps.append({
 
-        # add <
-        self.steps.append(
+                    "command" : results[0],
+                    "parameters" : results[1:]
 
-            {
+                })
 
-                "command": command,
-                "text": text,
-                "parameters": parameters
+            else: return self.commandFailureMessage(results[0])
 
-            }
-
-        )
-
-        # >
-
-        return None
+        else: return self.resultsFailureMessage
