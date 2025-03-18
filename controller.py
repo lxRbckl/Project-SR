@@ -1,4 +1,4 @@
-from config import referencesFilepath # or complete file path
+from config import referencesFilepath
 
 from time import sleep
 from pygetwindow import getAllWindows
@@ -13,6 +13,7 @@ from pyautogui import (
     ImageNotFoundException
 
 )
+
 
 class Controller:
 
@@ -49,37 +50,6 @@ class Controller:
         self.defaultScrollDistance = 10
         self.defaultFindConfidence = 0.9
         self.defaultScreenshotName = "screenshot.png"
-
-
-    def findText(self, text):
-        """  """
-
-        pass
-
-
-    def findImage(self, image, confidence):
-        """  """
-
-        try:
-
-            x = locate(
-
-                needleImage = image,
-                confidence = confidence,
-                grayscale = self.useGrayscale,
-                haystackImage = self.screenshot
-
-            )
-
-            return x
-
-        except ImageNotFoundException: return False
-
-
-    def find(self, asset, confidence = None):
-        """  """
-
-        confidence = float(confidence) if confidence else self.defaultFindConfidence
 
 
     def setWindow(self, window):
@@ -130,6 +100,33 @@ class Controller:
             region = (self.windowX, self.windowY, self.windowWidth, self.windowHeight)
 
         )
+
+
+    def findText(self, text):
+        """  """
+
+        pass
+
+
+    def findImage(self, image, confidence):
+        """  """
+
+        x = locate(
+
+            confidence = confidence,
+            grayscale = self.useGrayscale,
+            haystackImage = self.screenshot,
+            needleImage = image
+
+        )
+
+        return x
+
+
+    def find(self, asset, confidence = None):
+        """  """
+
+        confidence = float(confidence) if confidence else self.defaultFindConfidence
 
 
     def keyboard(self, message):
