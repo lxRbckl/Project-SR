@@ -12,10 +12,10 @@ class Controller:
         - _findImage(image)
         - _findText(text)
         DONE - wait(?duration)
-        - find(text/image)
+        - find(asset<text/image>)
         - date(m, d, y)
         DONE - scroll(?direction)
-        - mouse(text/image)
+        - mouse(asset<text/image>)
         DONE - click(?multiple)
         DONE - keyboard(message)
         DONE - setWindow()
@@ -23,48 +23,18 @@ class Controller:
         DONE - takeScreenshot()
         """
 
+        self.defaultWaitDuration = 3
+        self.defaultClickMultiple = 1
+        self.defaultClickDistance = 10
+        self.defaultScrollDistance = 10
+
         self.x = 0
         self.y = 0
         self.width = 0
         self.height = 0
         self.screenshot = None
-        self.directionTop = 10
-        self.directionLeft = 10
-        self.directionRight = 10
-        self.directionBottom = 10
         self.screenshotFilename = "screenshot.png"
         self.excludedWindows = ["", ".", "Settings"]
-
-
-    def keyboard(self, message):
-        """  """
-
-        write(message = message)
-
-
-    def wait(self, duration):
-        """  """
-
-        sleep(seconds = int(duration))
-
-
-    def scroll(self, direction):
-        """  """
-
-        scroll(clicks = int(direction))
-
-
-    def click(self, multiple):
-        """  """
-
-        click(clicks = int(multiple))
-
-
-    def mouse(self):
-        """  """
-
-        # moveTo(x = x, y = y)
-        pass
 
 
     def setWindow(self, window):
@@ -115,6 +85,48 @@ class Controller:
             region = (self.x, self.y, self.width, self.height)
 
         )
+
+
+    def keyboard(self, message):
+        """  """
+
+        write(message = message)
+
+
+    def wait(self, duration = None):
+        """  """
+
+        sleep(seconds = int(duration) if duration else self.defaultWaitDuration)
+
+
+    def scroll(self, direction, distance = None):
+        """  """
+
+        try:
+
+            clicks = {
+
+                "up" : int(distance) if distance else self.defaultScrollDistance,
+                "down" : -int(distance) if distance else -self.defaultScrollDistance
+
+            }[direction]
+
+            scroll(clicks = clicks)
+
+        except KeyError: return False
+
+
+    def click(self, multiple = None):
+        """  """
+
+        click(clicks = int(multiple) if multiple else self.defaultClickMultiple)
+
+
+    def mouse(self):
+        """  """
+
+        # moveTo(x = x, y = y)
+        pass
 
 
 
