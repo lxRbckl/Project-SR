@@ -32,7 +32,7 @@ class References:
         for r in listdir(projectDirectory + self.referencesFilepath):
 
             name = r
-            ref = f"{self.referencesFilepath}/{name}"
+            ref = f"{projectDirectory + self.referencesFilepath}/{name}"
 
             returnReferences.append(self.referencesModal.addReference(name = name, reference = ref))
 
@@ -120,4 +120,4 @@ class References:
                 ]
 
 
-            return [None, referencesChildren]
+            return [referencesChildren, None]

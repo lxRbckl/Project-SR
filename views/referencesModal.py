@@ -4,7 +4,7 @@ import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 from dash_mantine_components import ActionIcon
 
-from config import (iconTrash, iconMedia, iconUpload, iconCopy)
+from config import (iconTrash, iconUpload, iconCopy)
 
 
 class References:
@@ -35,28 +35,7 @@ class References:
                 dbc.Row(
 
                     justify = "start",
-                    children = dbc.Col(
-
-                        width = "auto",
-                        className = "",
-                        children = dcc.Upload(
-
-                            children = dmc.Button(
-
-                                size = "md",
-                                children = "Upload",
-                                leftSection = DashIconify(
-
-                                    width = 30,
-                                    icon = iconUpload
-
-                                )
-
-                            )
-
-                        )
-
-                    )
+                    children = self.addDragNDrop()
 
                 ),
                 dbc.Row(
@@ -70,24 +49,6 @@ class References:
                 # >
 
             ]
-
-        )
-
-
-    def _buildReferenceCard(self, children, withBorder = True):
-        """  """
-
-        return dbc.Col(
-
-            width = self.referenceWidth,
-            className = "referencesCol",
-            children = dmc.Card(
-
-                children = children,
-                withBorder = withBorder,
-                className = "referencesCard"
-
-            )
 
         )
 
@@ -159,4 +120,20 @@ class References:
     def addDragNDrop(self):
         """  """
 
-        return None
+        return dbc.Col(
+
+            width = "auto",
+            children = dcc.Upload(
+
+                id = "referencesUploadId",
+                children = dmc.Button(
+
+                    size = "md",
+                    children = "Upload",
+                    leftSection = DashIconify(width = 30, icon = iconUpload)
+
+                )
+
+            )
+
+        )
