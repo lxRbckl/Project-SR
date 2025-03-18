@@ -1,4 +1,4 @@
-from config import referencesFilepath
+from config import referencesCompleteFilepath
 
 from time import sleep
 from pygetwindow import getAllWindows
@@ -111,16 +111,16 @@ class Controller:
     def findImage(self, image, confidence):
         """  """
 
-        x = locate(
+        results = locate(
 
             confidence = confidence,
             grayscale = self.useGrayscale,
             haystackImage = self.screenshot,
-            needleImage = image
+            needleImage = f"{referencesCompleteFilepath}/{image}"
 
         )
 
-        return x
+        return results.left, results.top, results.width, results.height
 
 
     def find(self, asset, confidence = None):
