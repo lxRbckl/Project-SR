@@ -122,13 +122,15 @@ class References:
 
         return dbc.Col(
 
-            width = "auto",
+            width = 12,
             children = dcc.Upload(
 
+                contents = None,
                 id = "referencesUploadId",
                 children = dmc.Button(
 
                     size = "md",
+                    fullWidth = True,
                     children = "Upload",
                     leftSection = DashIconify(width = 30, icon = iconUpload)
 

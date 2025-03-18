@@ -121,3 +121,18 @@ class References:
 
 
             return [referencesChildren, None]
+
+
+    def referencesOnUploadCallback(self):
+        """  """
+
+        @app.callback(
+
+            prevent_initial_call = True,
+            inputs = Input("referencesUploadId", "contents"),
+            output = Output("notificationDiv", "children", allow_duplicate = True)
+
+        )
+        def func(uploadContent):
+
+            print(uploadContent)
