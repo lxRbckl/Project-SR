@@ -76,6 +76,8 @@ class Controller:
 
         x, y, w, h = window.split(' ')[:-1]
 
+        self.mouseX = int(x)
+        self.mouseY = int(y)
         self.windowX = int(x)
         self.windowY = int(y)
         self.windowWidth = int(w)
@@ -202,11 +204,15 @@ class Controller:
         try:
 
             # if (failure) <
-            # if (success) <
+            # else (then success) <
             if (isinstance(results, str)): return results
-            if (isinstance(results, list)): return results[index]
+            else:
 
-            # >
+                x, y = center(results[index])
+                self.mouseX += x
+                self.mouseY += y
+
+                print(self.mouseX, self.mouseY) # remove
 
         except IndexError: return self.errorFindIndex
 

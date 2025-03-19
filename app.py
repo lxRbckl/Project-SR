@@ -151,7 +151,7 @@ controller.setWindow(window = "47 335 1075 612 37")
 controller.takeScreenshot()
 
 print(controller.find(asset = "Cancel", confidence = 1))
-
+moveTo(x = 644, y = 879) # remove
 # print(controller.wait("i"))
 
 
