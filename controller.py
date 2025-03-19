@@ -126,8 +126,6 @@ class Controller:
     def _findText(self, text, confidence):
         """  """
 
-        # try:
-
         data = pytesseract.image_to_data(
 
             lang = "eng",
@@ -156,8 +154,6 @@ class Controller:
         else: return self.errorTextNotFound
 
         # >
-
-        # except ValueError: return self.errorTextNotFound
 
 
     def _findImage(self, image, confidence):
@@ -212,7 +208,7 @@ class Controller:
                 self.mouseX += x
                 self.mouseY += y
 
-                print(self.mouseX, self.mouseY) # remove
+                moveTo(x = self.mouseX, y = self.mouseY)
 
         except IndexError: return self.errorFindIndex
 

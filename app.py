@@ -21,168 +21,59 @@ from views.headerPartial import Header as headerPartial
 from views.footerPartial import Footer as footerPartial
 from views.body.buildSection import Build as buildSection
 from views.body.resultSection import Result as resultSection
-from views.body.stepsComponent import  Steps as stepsComponent
+from views.body.stepsComponent import Steps as stepsComponent
 from views.referencesModal import References as referencesModal
 from views.notificationComponent import Notification as notificationComponent
 
-
-# # register shared objects <
-# stepsModel = stepsModel()
-# controller = Controller()
-# stepsComponent = stepsComponent()
-# notifier = notificationComponent()
-# referencesModal = referencesModal()
-#
-# #
-#
-# # register views <
-# layout = layoutView(
-#
-#    notifier = notifier,
-#    guide = guideModal(),
-#    references = referencesModal,
-#
-#    header = headerPartial(),
-#    body = bodyPartial(
-#
-#       items = [
-#
-#          buildSection(),
-#          runSection(),
-#          resultSection()
-#
-#       ]
-#
-#    ),
-#    footer = footerPartial()
-#
-# )
-#
-# # >
-#
-# # register callbacks <
-# bodyCallback()
-# guideCallback()
-# stepsCallback()
-# headerCallback()
-# referencesCallback(
-#
-#    notifier = notifier,
-#    referencesModal = referencesModal
-#
-# )
-# buildCallback(
-#
-#    notifier = notifier,
-#    stepsModel = stepsModel,
-#    controller = controller,
-#    stepsComponent = stepsComponent
-#
-# )
-# runCallback(
-#
-#    notifier = notifier,
-#    stepsModel = stepsModel,
-#    controller = controller,
-#    stepsComponent = stepsComponent
-#
-# )
-# resultCallback(
-#
-#    notifier = notifier,
-#    stepsModel = stepsModel
-#
-# )
-# footerCallback()
-#
-# # >
-#
-#
-# app.layout = layout.build
-# app.run_server(debug = debug, port = port)
-
-# # # # # # # # # # # # # #
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-from pyautogui import moveTo
-
-
-
+# register shared objects
+stepsModel = stepsModel()
 controller = Controller()
+stepsComponent = stepsComponent()
+notifier = notificationComponent()
+referencesModal = referencesModal()
 
-# x and y are of top left of window #
-# print(controller.getWindows()) # remove
-controller.setWindow(window = "47 335 1075 612 37")
+# register views
+layout = layoutView(
+   notifier = notifier,
+   guide = guideModal(),
+   references = referencesModal,
+   header = headerPartial(),
+   body = bodyPartial(
+      items = [
+         buildSection(),
+         runSection(),
+         resultSection()
+      ]
+   ),
+   footer = footerPartial()
+)
 
-controller.takeScreenshot()
+# register callbacks
+bodyCallback()
+guideCallback()
+stepsCallback()
+headerCallback()
+referencesCallback(
+   notifier = notifier,
+   referencesModal = referencesModal
+)
+buildCallback(
+   notifier = notifier,
+   stepsModel = stepsModel,
+   controller = controller,
+   stepsComponent = stepsComponent
+)
+runCallback(
+   notifier = notifier,
+   stepsModel = stepsModel,
+   controller = controller,
+   stepsComponent = stepsComponent
+)
+resultCallback(
+   notifier = notifier,
+   stepsModel = stepsModel
+)
+footerCallback()
 
-print(controller.find(asset = "Cancel", confidence = 1))
-moveTo(x = 644, y = 879) # remove
-# print(controller.wait("i"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.layout = layout.build
+app.run_server(debug = debug, port = port)
