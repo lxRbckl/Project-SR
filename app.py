@@ -150,7 +150,7 @@ controller.setWindow(window = "47 335 1075 612 37")
 
 controller.takeScreenshot()
 
-print(controller.find(asset = "TESTING", confidence = 1))
+print(controller.find(asset = "Cancel", confidence = 1))
 
 # print(controller.wait("i"))
 

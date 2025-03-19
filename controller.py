@@ -201,8 +201,12 @@ class Controller:
 
         try:
 
-            print('results', results) # remove
-            print(results[index])
+            # if (failure) <
+            # if (success) <
+            if (isinstance(results, str)): return results
+            if (isinstance(results, list)): return results[index]
+
+            # >
 
         except IndexError: return self.errorFindIndex
 
