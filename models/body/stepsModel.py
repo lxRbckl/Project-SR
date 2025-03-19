@@ -19,9 +19,17 @@ class Steps:
         self.errorInvalidFlag = lambda f: f"Flag {f} not recognized."
         self.errorInvalidCommand = lambda c: f"Command {c} not recognized."
 
-        self.commands = [
-            "command"
+        self.flags = [
 
+            "flag", # remove
+            "alert",
+            "pause",
+            "retry"
+
+        ]
+        self.commands = [
+
+            "command", # remove
             "find",
             "wait",
             "click",
@@ -30,21 +38,22 @@ class Steps:
             "keyboard"
 
         ]
-        self.flags = {
-
-            "alert" : ["alert"],
-            "input" : ["wfi", "input", "wait for input"],
-            "retry" : ["rof", "retry", "retry on failure"]
-
-        }
 
 
-    def addStep(self, step):
+    def addStep(self, rawStep):
         """  """
 
         flags = None
         command = None
-        results = [s for s in split(r",\s*", step.lower().strip()) if s]
+        step = {
+
+            "command" : None,
+            "alert" : False,
+            "pause" : False,
+            "retry" : False
+
+        }
+        results = [s for s in split(r",\s*", rawStep.lower().strip()) if s]
 
         # if (empty) <
         # elif (just command) <
@@ -55,19 +64,28 @@ class Steps:
 
         # >
 
-        print('command', command, ':', 'flags', flags) # remove
+        # check command <
+        for c in self.commands:
 
-        # if (len(results) > 0):
-        #
-        #     if (results[0] in self.commands):
-        #
-        #         self.steps.append({
-        #
-        #             "command" : results[0],
-        #             "flags" : results[1:]
-        #
-        #         })
-        #
-        #     else: return self.messageCommandFailure(results[0])
-        #
-        # else: return self.messageResultsFailure
+            if (c in command):
+
+                step["command"] = command
+                break
+
+        else: return self.errorInvalidCommand(command)
+
+        # >
+
+        # check flag(s) <
+        for f in flags:
+
+            # if (valid flag) <
+            # else (then invalid flag) <
+            if (f in self.flags): step[f] = True
+            else: self.errorInvalidFlag(f)
+
+            # >
+
+        # >
+
+        print(step) # remove
