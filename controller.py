@@ -1,6 +1,6 @@
 import pyautogui
 
-from config import referencesCompleteFilepath
+from config import (tesseractCMD, referencesCompleteFilepath)
 
 import pytesseract
 from time import sleep
@@ -11,8 +11,8 @@ from pyautogui import (
     write,
     moveTo,
     scroll,
-    locate,
     center,
+    locateAll,
     screenshot,
     ImageNotFoundException
 
@@ -29,9 +29,9 @@ class Controller:
         DONE - takeScreenshot()
         DONE - wait(?duration)
         TODO - date(m, d, y)
-        TODO - _findText(text)
-        TODO - _findImage(image, ?confidence)
-        TODO - find(asset<text/image>, ?confidence)
+        TODO - _findText(text, ?index)
+        TODO - _findImage(image, ?index)
+        TODO - find(asset<text/image>, ?index)
         DONE - scroll(direction, ?distance)
         DONE - mouse(asset<text/image>)
         DONE - click(?multiple)
@@ -48,14 +48,15 @@ class Controller:
         self.useGrayscale = True
         self.excludedWindows = ["", ".", "Settings"]
 
+        self.defaultFindIndex = 0
         self.defaultWaitDuration = 3
         self.defaultClickMultiple = 1
         self.defaultMouseDistance = 10
         self.defaultScrollDistance = 10
-        self.defaultFindConfidence = 0.9
+        self.defaultFindConfidence = 0.85
         self.defaultScreenshotName = "screenshot.png"
 
-        pytesseract.pytesseract.tesseract_cmd = r"C:\Users\aarbuckle\Desktop\Tesseract/tesseract.exe"  # Update the path as necessary
+        pytesseract.pytesseract.tesseract_cmd = tesseractCMD
 
 
 
@@ -109,20 +110,46 @@ class Controller:
         )
 
 
-    def findText(self, text):
-        """  """
-
-        text = pytesseract.image_to_string(self.screenshot)
-
-        return text
-
-
-    def findImage(self, image, confidence):
+    def findText(self, text, index, confidence):
         """  """
 
         try:
 
-            x, y = center(locate(
+            data = pytesseract.image_to_data(
+
+                lang = "eng",
+                output_type = "dict",
+                image = self.screenshot
+
+            )
+
+            results = []
+            for e, (conf, message) in enumerate(zip(data["conf"], data["text"])):
+
+                if ((conf >= confidence) and (text in message)):
+
+                    results.append(center((
+
+                        data["left"][e],
+                        data["top"][e],
+                        data["width"][e],
+                        data["height"][e]
+
+                    )))
+
+                return results[index]
+
+            else: return False
+
+        except ValueError: return False
+
+
+    def findImage(self, image, index, confidence):
+        """  """
+
+        try:
+
+            results = list(locateAll(
 
                 confidence = confidence,
                 grayscale = self.useGrayscale,
@@ -131,16 +158,16 @@ class Controller:
 
             ))
 
-            print(x, y) # remove
-            return None
+            return center(results[index])
 
         except ImageNotFoundException: return False
 
 
-    def find(self, asset, confidence = None):
+    def find(self, asset, index = None, confidence = None):
         """  """
 
-        confidence = float(confidence) if confidence else self.defaultFindConfidence
+        index = int(index) if index else self.defaultFindIndex
+        confidence = int(confidence) if confidence else self.defaultFindConfidence
 
 
     def keyboard(self, message):
@@ -197,57 +224,3 @@ class Controller:
             moveTo(x = x, y = y)
 
         except KeyError: return False
-
-
-
-
-# from time import sleep
-# import pyautogui
-# import pytesseract
-# from PIL import Image
-#
-#
-# # Set path for tesseract if it's not in your PATH
-# pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
-#
-# def locate_and_click_text(target_text):
-#    # Take a screenshot of the screen
-#    screenshot = pyautogui.screenshot()
-#
-#    # Convert screenshot to grayscale
-#    screenshot = screenshot.convert('L')
-#
-#    screenshot.show()
-#
-#    # Use pytesseract to detect text in the screenshot
-#    text = pytesseract.image_to_data(
-#       # lang='eng',
-#       image = screenshot,
-#       output_type=pytesseract.Output.DICT
-#    )
-#
-#    print(text['text']) # remove
-#    print(text['text'].count(target_text))
-#
-#
-#    # indexFromName = text['text'].index(target_text)
-#
-#    # x = text['left'][indexFromName]
-#    # y = text['top'][indexFromName]
-#
-#    # print('RESULT:', x, y) # remove
-#
-#
-#    # pyautogui.move(x, y)
-#
-#
-#    # while True:
-#    #    print(pyautogui.position())
-#    #    sleep(2)
-#
-#
-#
-#
-#
-# # Example usage
-# locate_and_click_text('EXAMPLE')

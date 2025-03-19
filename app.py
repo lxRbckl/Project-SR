@@ -145,13 +145,15 @@ from pyautogui import moveTo
 controller = Controller()
 
 # x and y are of top left of window #
-controller.setWindow(window = "40 317 1075 612 23")
+# print(controller.getWindows()) # remove
+controller.setWindow(window = "47 335 1075 612 31")
 controller.takeScreenshot()
 # print(controller.findImage(image = "example212.png", confidence = 0.9))
 # moveTo(x = 40 + x, y = 317 + y)
 
-print(controller.findText(text = "TESTING"))
-
+# print(controller.findText(text = "TESTING", confidence = 0.9))
+controller.findImage(image = "testing.png", index = 1)
+moveTo(x = 556 + 47, y = 26 + 335) # remove
 
 
 
