@@ -26,7 +26,7 @@ class Build:
         self.clipboardPause = 0.3
         self.clipboardNotifyDuration = 5000
 
-        self.messageCreateInputError = "Invalid notation."
+        self.errorCreateOnClick = "Invalid notation."
         self.messageClipboardCopied = "Text was copied from input."
         self.messageClipboardPasted = "Text was pasted from input."
         self.messageCreateOnClick = "Make sure the correct window is selected!"
@@ -106,13 +106,13 @@ class Build:
 
                         color = "yellow",
                         icon = iconWarning,
-                        message = self.messageCreateInputError
+                        message = self.messageCreateOnClick
 
                     )
 
                 # >
 
-            except ValueError: rInputError = self.messageCreateInputError
+            except ValueError: rInputError = self.errorCreateOnClick
             finally: return [rAccordionValue, None, rStepsChildren, rNotificationChildren, rInputError]
 
 

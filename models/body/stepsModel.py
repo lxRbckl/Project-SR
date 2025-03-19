@@ -23,7 +23,7 @@ class Steps:
 
         self.commands = [
 
-
+            "command"
 
         ]
         self.parameters = [

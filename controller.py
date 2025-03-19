@@ -33,7 +33,7 @@ class Controller:
         DONE - mouse(asset<text/image>)
         DONE - click(?multiple)
         DONE - keyboard(message)
-        TODO - date(m, d, y)
+        TODO - date(month, day, year)
         """
 
         self.mouseX = 0
