@@ -17,9 +17,11 @@ class Build:
         self.options = [
 
             "Override Alerts",
-            "Override Wait for Inputs"
+            "Override Inputs",
+            "Ignore Alerts"
 
         ]
+
 
     @property
     def build(self):

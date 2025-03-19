@@ -7,19 +7,19 @@ class Steps:
 
     def __init__(self):
         """
-        TODO - RetryOnFailure
-        TODO - WaitForInput
-        TODO - Override
-        TODO - Alert
+
         """
+
+        self.ignoreAlerts = False
+        self.overrideAlerts = False
+        self.overrideInputs = False
 
         self.steps = []
         self.alert = False
-        self.override = False
         self.waitForInput = False
         self.retryOnFailure = False
-        self.resultsFailureMessage = "Invalid notation."
-        self.commandFailureMessage = lambda c: f"Command {c} not recognized."
+        self.messageResultsFailure = "Invalid notation."
+        self.messageCommandFailure = lambda c: f"Command {c} not recognized."
 
         self.commands = [
 
@@ -49,6 +49,6 @@ class Steps:
 
                 })
 
-            else: return self.commandFailureMessage(results[0])
+            else: return self.messageCommandFailure(results[0])
 
-        else: return self.resultsFailureMessage
+        else: return self.messageResultsFailure

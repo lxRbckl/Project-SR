@@ -25,10 +25,11 @@ class Build:
         self.redirectTo = "Run"
         self.clipboardPause = 0.3
         self.clipboardNotifyDuration = 5000
-        self.createInputErrorMessage = "Invalid notation."
-        self.clipboardCopiedMessage = "Text was copied from input."
-        self.clipboardPastedMessage = "Text was pasted from input."
-        self.createOnClickMessage = "Make sure the correct window is selected!"
+
+        self.messageCreateInputError = "Invalid notation."
+        self.messageClipboardCopied = "Text was copied from input."
+        self.messageClipboardPasted = "Text was pasted from input."
+        self.messageCreateOnClick = "Make sure the correct window is selected!"
 
 
     def textareaOnInputCallback(self):
@@ -105,13 +106,13 @@ class Build:
 
                         color = "yellow",
                         icon = iconWarning,
-                        message = self.createOnClickMessage
+                        message = self.messageCreateInputError
 
                     )
 
                 # >
 
-            except ValueError: rInputError = self.createInputErrorMessage
+            except ValueError: rInputError = self.messageCreateInputError
             finally: return [rAccordionValue, None, rStepsChildren, rNotificationChildren, rInputError]
 
 
@@ -177,13 +178,13 @@ class Build:
                 icon = iconCopy
                 copy(inputValue)
                 text = inputValue
-                message = self.clipboardCopiedMessage
+                message = self.messageClipboardCopied
 
             else:
 
                 text = paste()
                 icon = iconPaste
-                message = self.clipboardPastedMessage
+                message = self.messageClipboardPasted
 
             # >
 
