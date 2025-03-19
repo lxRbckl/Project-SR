@@ -59,10 +59,16 @@ class Controller:
 
         pytesseract.pytesseract.tesseract_cmd = tesseractCMD
 
-        self.messageImageDNE = "Image does not exist in folder."
-        self.messageTextNotFound = "Could not find text in window."
-        self.messageImageNotFound = "Could not find image in window."
-        self.messageTextIndexIssue = "Could not find image. Consider adjusting index."
+        self.errorWaitDuration = "Unable to wait. Is duration set correctly?"
+        self.errorFindIndex = "Unable to convert index. Is index set correctly?"
+        self.errorClickMultiple = "Could not click. Consider adjusting multiple."
+        self.errorImageDNE = "Image does not exist in folder. Has reference been added?"
+        self.errorMouseDistance = "Unable to convert distance. Is distance set correctly?"
+        self.errorFindConfidence = "Unable to convert confidence. Is confidence set correctly?"
+        self.errorTextNotFound = "Could not find text in window. Consider adjusting confidence."
+        self.errorImageNotFound = "Could not find image in window. Consider adjusting confidence."
+        self.errorMouseDirection = "Mouse direction does not exist. Consider adjusting direction."
+        self.errorScrollDirection = "Scroll direction does not exist. Consider adjusting direction."
 
 
     def setWindow(self, window):
@@ -115,43 +121,44 @@ class Controller:
         )
 
 
-    def _findText(self, text, index, confidence):
+    def _findText(self, text, confidence):
         """  """
 
-        try:
+        # try:
 
-            data = pytesseract.image_to_data(
+        data = pytesseract.image_to_data(
 
-                lang = "eng",
-                output_type = "dict",
-                image = self.screenshot
+            lang = "eng",
+            output_type = "dict",
+            image = self.screenshot
 
-            )
+        )
+
+        results = []
+        for e, (conf, content) in enumerate(zip(data["conf"], data["text"])):
+
+            if ((conf >= confidence) and (text in content)):
+
+                results.append((
+
+                    data["left"][e],
+                    data["top"][e],
+                    data["width"][e],
+                    data["height"][e]
+
+                ))
+
+        # if (found) <
+        # else (then missing) <
+        if (len(results) > 0): return results
+        else: return self.errorTextNotFound
+
+        # >
+
+        # except ValueError: return self.errorTextNotFound
 
 
-
-            results = []
-            for e, (conf, content) in enumerate(zip(data["conf"], data["text"])):
-
-                if ((conf >= confidence) and (text in content)):
-
-                    results.append((
-
-                        data["left"][e],
-                        data["top"][e],
-                        data["width"][e],
-                        data["height"][e]
-
-                    ))
-
-            print(results)
-            return results[index]
-
-        except ValueError: return self.messageTextNotFound
-        except IndexError: return self.messageTextIndexIssue
-
-
-    def _findImage(self, image, index, confidence):
+    def _findImage(self, image, confidence):
         """  """
 
         try:
@@ -165,17 +172,19 @@ class Controller:
 
             ))
 
-            return results[index]
+            return results
 
-        except IOError: return self.messageImageNotFound
-        except ImageNotFoundException: return self.messageImageNotFound
+        except IOError: return self.errorImageDNE
+        except ImageNotFoundException: return self.errorImageNotFound
 
 
     def find(self, asset, index = None, confidence = None):
         """  """
 
-        index = int(index) if index else self.defaultFindIndex
-        confidence = int(confidence) if confidence else self.defaultFindConfidence
+        try: index = int(index) if index else self.defaultFindIndex
+        except ValueError: return self.errorFindIndex
+        try: confidence = int(confidence) if confidence else self.defaultFindConfidence
+        except ValueError: return self.errorFindConfidence
 
         # if (image) <
         # else (then text) <
@@ -183,14 +192,19 @@ class Controller:
 
             if (f in asset):
 
-                result = self._findImage(image = asset, index = index, confidence = confidence)
+                results = self._findImage(image = asset, confidence = confidence)
                 break
 
-        else: result = self._findText(text = asset, index = index, confidence = confidence)
+        else: results = self._findText(text = asset, confidence = confidence)
 
         # >
 
-        print('result', result) # remove
+        try:
+
+            print('results', results) # remove
+            print(results[index])
+
+        except IndexError: return self.errorFindIndex
 
 
     def keyboard(self, message):
@@ -202,7 +216,8 @@ class Controller:
     def wait(self, duration = None):
         """  """
 
-        sleep(seconds = int(duration) if duration else self.defaultWaitDuration)
+        try: sleep(seconds = int(duration) if duration else self.defaultWaitDuration)
+        except ValueError: return self.errorWaitDuration
 
 
     def scroll(self, direction, distance = None):
@@ -219,13 +234,14 @@ class Controller:
 
             scroll(clicks = clicks)
 
-        except KeyError: return False
+        except KeyError: return self.errorScrollDirection
 
 
     def click(self, multiple = None):
         """  """
 
-        click(clicks = int(multiple) if multiple else self.defaultClickMultiple)
+        try: click(clicks = int(multiple) if multiple else self.defaultClickMultiple)
+        except ValueError: return self.errorClickMultiple
 
 
     def mouse(self, direction, distance = None):
@@ -233,7 +249,8 @@ class Controller:
 
         try:
 
-            distance = int(distance) if distance else self.defaultMouseDistance
+            try: distance = int(distance) if distance else self.defaultMouseDistance
+            except ValueError: return self.errorMouseDistance
             x, y = {
 
                 "up" : (self.mouseX, (distance + self.mouseY)),
@@ -246,7 +263,7 @@ class Controller:
             # drift?
             moveTo(x = x, y = y)
 
-        except KeyError: return False
+        except KeyError: return self.errorMouseDirection
 
 
     def date(self, month, day, year):
