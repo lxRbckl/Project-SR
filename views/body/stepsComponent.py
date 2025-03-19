@@ -12,40 +12,55 @@ class Steps:
         pass
 
 
-    def _buildStepFlags(self, flags):
-        """  """
-
-        print('flags', flags) # remove
-        return dbc.Col(
-
-            width = "auto",
-            children = [
-
-                dmc.Badge(children = fk)
-
-            for fk, fv in flags.items() if (fv == True)]
-
-        )
-
-
     def _buildStepStatus(self, status):
         """  """
 
-        return None
+        return dbc.Col(
+
+            width = "auto",
+            children = html.Small(status)
+
+        )
 
 
     def _buildStepCommand(self, command):
         """  """
 
-        return None
-
-
-    def _buildStep(self, step):
-        """  """
-
         return dbc.Col(
 
-            width = 12,
+            width = "auto",
+            children = html.Small(command)
+
+        )
+
+
+    def _buildStepFlags(self, flags):
+        """  """
+
+        print('flags', flags) # remove
+        return None
+
+        # return dbc.Col(
+        #
+        #     width = "auto",
+        #     children = [
+        #
+        #         dmc.Badge(children = fk,
+        #                   style = {"margin" : 0, "background-color" : "red"})
+        #
+        #     for fk, fv in flags.items() if (fv == True)]
+        #
+        # )
+
+
+    def _buildStep(self, index, step):
+        """  """
+
+        return dbc.Row(
+
+            justify = "start",
+            # width = 12,
+            id = f"step-{index}",
             className = "colExtended stepsCol",
             children = [
 
@@ -61,4 +76,4 @@ class Steps:
     def buildSteps(self, steps):
         """  """
 
-        return [self._buildStep(s) for s in steps]
+        return [self._buildStep(index = c, step = s) for c, s in enumerate(steps)]

@@ -16,9 +16,8 @@ class Build:
         self.isDisabled = False
         self.options = [
 
-            "Override Alerts",
-            "Override Inputs",
-            "Ignore Alerts"
+            "Ignore Alerts",
+            "Override Inputs"
 
         ]
 
