@@ -29,8 +29,8 @@ class Controller:
         DONE - takeScreenshot()
         DONE - wait(?duration)
         TODO - date(m, d, y)
-        TODO - _findText(text, ?index)
-        TODO - _findImage(image, ?index)
+        DONE - _findText(text, ?index)
+        DONE - _findImage(image, ?index)
         TODO - find(asset<text/image>, ?index)
         DONE - scroll(direction, ?distance)
         DONE - mouse(asset<text/image>)
@@ -55,6 +55,7 @@ class Controller:
         self.defaultScrollDistance = 10
         self.defaultFindConfidence = 0.85
         self.defaultScreenshotName = "screenshot.png"
+        self.defaultImageFormats = [".png", ".jpg", ".jpeg"]
 
         pytesseract.pytesseract.tesseract_cmd = tesseractCMD
 
@@ -128,14 +129,14 @@ class Controller:
 
                 if ((conf >= confidence) and (text in message)):
 
-                    results.append(center((
+                    results.append((
 
                         data["left"][e],
                         data["top"][e],
                         data["width"][e],
                         data["height"][e]
 
-                    )))
+                    ))
 
                 return results[index]
 
@@ -158,7 +159,7 @@ class Controller:
 
             ))
 
-            return center(results[index])
+            return results[index]
 
         except ImageNotFoundException: return False
 
