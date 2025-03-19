@@ -1,7 +1,3 @@
-import pyautogui
-
-from config import (tesseractCMD, referencesCompleteFilepath)
-
 import pytesseract
 from time import sleep
 from pygetwindow import getAllWindows
@@ -18,6 +14,8 @@ from pyautogui import (
 
 )
 
+from config import (tesseractCMD, referencesCompleteFilepath)
+
 
 class Controller:
 
@@ -28,14 +26,14 @@ class Controller:
         DONE - getWindows()
         DONE - takeScreenshot()
         DONE - wait(?duration)
-        TODO - date(m, d, y)
         DONE - _findText(text, ?index)
         DONE - _findImage(image, ?index)
-        TODO - find(asset<text/image>, ?index)
+        DONE - find(asset<text/image>, ?index)
         DONE - scroll(direction, ?distance)
         DONE - mouse(asset<text/image>)
         DONE - click(?multiple)
         DONE - keyboard(message)
+        TODO - date(m, d, y)
         """
 
         self.mouseX = 0

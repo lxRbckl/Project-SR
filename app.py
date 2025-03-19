@@ -34,18 +34,25 @@ referencesModal = referencesModal()
 
 # register views
 layout = layoutView(
-   notifier = notifier,
-   guide = guideModal(),
-   references = referencesModal,
-   header = headerPartial(),
-   body = bodyPartial(
-      items = [
-         buildSection(),
-         runSection(),
-         resultSection()
-      ]
-   ),
-   footer = footerPartial()
+
+    notifier = notifier,
+    guide = guideModal(),
+    references = referencesModal,
+
+    header = headerPartial(),
+    body = bodyPartial(
+
+        items = [
+
+            buildSection(),
+            runSection(),
+            resultSection()
+
+        ]
+
+    ),
+    footer = footerPartial()
+
 )
 
 # register callbacks
