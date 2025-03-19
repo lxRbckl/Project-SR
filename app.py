@@ -72,16 +72,21 @@ buildCallback(
    stepsModel = stepsModel,
    controller = controller,
    stepsComponent = stepsComponent
+
 )
 runCallback(
+
    notifier = notifier,
    stepsModel = stepsModel,
    controller = controller,
    stepsComponent = stepsComponent
+
 )
 resultCallback(
+
    notifier = notifier,
    stepsModel = stepsModel
+
 )
 footerCallback()
 

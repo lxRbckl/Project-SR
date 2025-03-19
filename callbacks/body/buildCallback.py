@@ -85,7 +85,9 @@ class Build:
             rAccordionValue = accordionValue
             try:
 
-                # iterate (entries) <
+                self.stepsModel.clearSteps()
+
+                # if (failure) <
                 # else (then success) <
                 for entry in [e for e in textareaValue.strip().split("\n") if (len(e) > 0)]:
 
@@ -99,7 +101,7 @@ class Build:
                 else:
 
                     rAccordionValue = self.redirectTo
-                    rStepsChildren = self.stepsComponent.build
+                    rStepsChildren = self.stepsComponent.buildSteps(self.stepsModel.steps)
                     rNotificationChildren = self.notifier.notify(
 
                         duration = 1000, # remove
@@ -113,7 +115,6 @@ class Build:
                 # >
 
             except IndexError: rInputError = self.errorCreateOnClick
-            # except ValueError: rInputError = self.errorCreateOnClick # remove?
             finally: return [rAccordionValue, None, rStepsChildren, rNotificationChildren, rInputError]
 
 

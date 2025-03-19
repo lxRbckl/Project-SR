@@ -36,6 +36,12 @@ class Steps:
         ]
 
 
+    def clearSteps(self):
+        """  """
+
+        self.steps = []
+
+
     def addStep(self, entry):
         """  """
 
