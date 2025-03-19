@@ -59,6 +59,10 @@ class Controller:
 
         pytesseract.pytesseract.tesseract_cmd = tesseractCMD
 
+        self.messageImageDNE = "Image does not exist in folder."
+        self.messageTextNotFound = "Could not find text in window."
+        self.messageImageNotFound = "Could not find image in window."
+        self.messageTextIndexIssue = "Could not find image. Consider adjusting index."
 
 
     def setWindow(self, window):
@@ -111,7 +115,7 @@ class Controller:
         )
 
 
-    def findText(self, text, index, confidence):
+    def _findText(self, text, index, confidence):
         """  """
 
         try:
@@ -124,10 +128,12 @@ class Controller:
 
             )
 
-            results = []
-            for e, (conf, message) in enumerate(zip(data["conf"], data["text"])):
 
-                if ((conf >= confidence) and (text in message)):
+
+            results = []
+            for e, (conf, content) in enumerate(zip(data["conf"], data["text"])):
+
+                if ((conf >= confidence) and (text in content)):
 
                     results.append((
 
@@ -138,14 +144,14 @@ class Controller:
 
                     ))
 
-                return results[index]
+            print(results)
+            return results[index]
 
-            else: return False
+        except ValueError: return self.messageTextNotFound
+        except IndexError: return self.messageTextIndexIssue
 
-        except ValueError: return False
 
-
-    def findImage(self, image, index, confidence):
+    def _findImage(self, image, index, confidence):
         """  """
 
         try:
@@ -161,7 +167,8 @@ class Controller:
 
             return results[index]
 
-        except ImageNotFoundException: return False
+        except IOError: return self.messageImageNotFound
+        except ImageNotFoundException: return self.messageImageNotFound
 
 
     def find(self, asset, index = None, confidence = None):
@@ -176,12 +183,14 @@ class Controller:
 
             if (f in asset):
 
-                print('this is picture')
+                result = self._findImage(image = asset, index = index, confidence = confidence)
                 break
 
-        else: print('this is text')
+        else: result = self._findText(text = asset, index = index, confidence = confidence)
 
         # >
+
+        print('result', result) # remove
 
 
     def keyboard(self, message):

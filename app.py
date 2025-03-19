@@ -146,10 +146,11 @@ controller = Controller()
 
 # x and y are of top left of window #
 # print(controller.getWindows()) # remove
-controller.setWindow(window = "47 335 1075 612 31")
+controller.setWindow(window = "47 335 1075 612 37")
+
 controller.takeScreenshot()
 
-controller.find(asset = "demo.pn")
+controller.find(asset = "TESTING")
 
 
 
