@@ -29,7 +29,7 @@ class Build:
         self.errorCreateOnClick = "Invalid notation."
         self.messageClipboardCopied = "Text was copied from input."
         self.messageClipboardPasted = "Text was pasted from input."
-        self.messageCreateOnClick = "Make sure the correct window is selected!"
+        self.messageCreateOnClick = "Make sure not to alter a production-level application window!"
 
 
     def textareaOnInputCallback(self):
@@ -112,9 +112,9 @@ class Build:
 
                 # >
 
-            except ValueError: rInputError = self.errorCreateOnClick
+            except IndexError: rInputError = self.errorCreateOnClick
+            # except ValueError: rInputError = self.errorCreateOnClick # remove?
             finally: return [rAccordionValue, None, rStepsChildren, rNotificationChildren, rInputError]
-
 
 
     def clearOnDisabledCallback(self):

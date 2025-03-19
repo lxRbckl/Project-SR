@@ -10,45 +10,64 @@ class Steps:
 
         """
 
+        self.steps = []
+
         self.ignoreAlerts = False
         self.overrideAlerts = False
         self.overrideInputs = False
 
-        self.steps = []
-        self.alert = False
-        self.waitForInput = False
-        self.retryOnFailure = False
-        self.messageResultsFailure = "Invalid notation."
-        self.messageCommandFailure = lambda c: f"Command {c} not recognized."
+        self.errorInvalidFlag = lambda f: f"Flag {f} not recognized."
+        self.errorInvalidCommand = lambda c: f"Command {c} not recognized."
 
         self.commands = [
-
             "command"
 
-        ]
-        self.parameters = [
+            "find",
+            "wait",
+            "click",
+            "mouse",
+            "scroll",
+            "keyboard"
 
-            "parameter"
-
         ]
+        self.flags = {
+
+            "alert" : ["alert"],
+            "input" : ["wfi", "input", "wait for input"],
+            "retry" : ["rof", "retry", "retry on failure"]
+
+        }
 
 
     def addStep(self, step):
         """  """
 
+        flags = None
+        command = None
         results = [s for s in split(r",\s*", step.lower().strip()) if s]
 
-        if (len(results) > 0):
+        # if (empty) <
+        # elif (just command) <
+        # else (then command and flag(s)) <
+        if (len(results) == 0): raise IndexError
+        elif (len(results) == 1): command = results[0]
+        else: command, flags = results[0], results[1:]
 
-            if (results[0] in self.commands):
+        # >
 
-                self.steps.append({
+        print('command', command, ':', 'flags', flags) # remove
 
-                    "command" : results[0],
-                    "parameters" : results[1:]
-
-                })
-
-            else: return self.messageCommandFailure(results[0])
-
-        else: return self.messageResultsFailure
+        # if (len(results) > 0):
+        #
+        #     if (results[0] in self.commands):
+        #
+        #         self.steps.append({
+        #
+        #             "command" : results[0],
+        #             "flags" : results[1:]
+        #
+        #         })
+        #
+        #     else: return self.messageCommandFailure(results[0])
+        #
+        # else: return self.messageResultsFailure

@@ -25,15 +25,16 @@ class Controller:
         DONE - setWindow()
         DONE - getWindows()
         DONE - takeScreenshot()
+
         DONE - wait(?duration)
-        DONE - _findText(text, ?index)
-        DONE - _findImage(image, ?index)
-        DONE - find(asset<text/image>, ?index)
-        DONE - scroll(direction, ?distance)
-        DONE - mouse(asset<text/image>)
         DONE - click(?multiple)
         DONE - keyboard(message)
         TODO - date(month, day, year)
+        DONE - _findText(text, ?index)
+        DONE - mouse(asset<text/image>)
+        DONE - _findImage(image, ?index)
+        DONE - scroll(direction, ?distance)
+        DONE - find(asset<text/image>, ?index)
         """
 
         self.mouseX = 0
