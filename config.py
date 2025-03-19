@@ -51,10 +51,3 @@ app = Dash(
    ]
    
 )
-
-
-'''
-
-find param param, alert, pause
-
-'''

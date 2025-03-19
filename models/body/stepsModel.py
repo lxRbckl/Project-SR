@@ -6,9 +6,7 @@ class Steps:
 
 
     def __init__(self):
-        """
-
-        """
+        """  """
 
         self.steps = []
 
@@ -16,8 +14,8 @@ class Steps:
         self.overrideAlerts = False
         self.overrideInputs = False
 
-        self.errorInvalidFlag = lambda f: f"Flag {f} not recognized."
-        self.errorInvalidCommand = lambda c: f"Command {c} not recognized."
+        self.errorInvalidFlag = lambda f: f"Flag \"{f}\" not recognized."
+        self.errorInvalidCommand = lambda c: f"Command \"{c}\" not recognized."
 
         self.flags = {
 

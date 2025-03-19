@@ -47,10 +47,12 @@ class Build:
                             error = None,
                             autosize = True,
                             disabled = False,
-                            value = emptyValue,
+                            # value = emptyValue, # uncomment
                             autoComplete = "on",
                             id = "buildInputTextareaId",
-                            className = "buildInputTextarea"
+                            className = "buildInputTextarea",
+
+                            value = "find param param, alert, pause\nclick 2, retry\nwait 3, alert" # remove
 
                         )
 
