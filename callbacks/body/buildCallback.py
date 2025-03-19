@@ -85,11 +85,11 @@ class Build:
             rAccordionValue = accordionValue
             try:
 
-                # iterate (steps) <
+                # iterate (entries) <
                 # else (then success) <
-                for step in [s for s in textareaValue.split("\n") if (len(s) > 0)]:
+                for entry in [e for e in textareaValue.split("\n") if (len(e) > 0)]:
 
-                    response = self.stepsModel.addStep(step)
+                    response = self.stepsModel.addStep(entry)
 
                     if (response):
 

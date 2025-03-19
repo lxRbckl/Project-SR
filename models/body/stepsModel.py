@@ -40,7 +40,7 @@ class Steps:
         ]
 
 
-    def addStep(self, rawStep):
+    def addStep(self, entry):
         """  """
 
         flags = None
@@ -53,7 +53,7 @@ class Steps:
             "retry" : False
 
         }
-        results = [s for s in split(r",\s*", rawStep.lower().strip()) if s]
+        results = [s for s in split(r",\s*", entry.lower().strip()) if s]
 
         # if (empty) <
         # elif (just command) <
@@ -89,3 +89,4 @@ class Steps:
         # >
 
         print(step) # remove
+        self.steps
