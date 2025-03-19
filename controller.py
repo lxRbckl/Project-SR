@@ -170,6 +170,19 @@ class Controller:
         index = int(index) if index else self.defaultFindIndex
         confidence = int(confidence) if confidence else self.defaultFindConfidence
 
+        # if (image) <
+        # else (then text) <
+        for f in self.defaultImageFormats:
+
+            if (f in asset):
+
+                print('this is picture')
+                break
+
+        else: print('this is text')
+
+        # >
+
 
     def keyboard(self, message):
         """  """
@@ -225,3 +238,9 @@ class Controller:
             moveTo(x = x, y = y)
 
         except KeyError: return False
+
+
+    def date(self, month, day, year):
+        """  """
+
+        pass
