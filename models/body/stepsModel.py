@@ -82,11 +82,11 @@ class Steps:
             # if (valid flag) <
             # else (then invalid flag) <
             if (f in self.flags): step[f] = True
-            else: self.errorInvalidFlag(f)
+            else: return self.errorInvalidFlag(f)
 
             # >
 
         # >
 
-        print(step) # remove
-        self.steps
+        self.steps.append(step)
+        print('steps', self.steps) # remove

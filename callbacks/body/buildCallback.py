@@ -87,7 +87,7 @@ class Build:
 
                 # iterate (entries) <
                 # else (then success) <
-                for entry in [e for e in textareaValue.split("\n") if (len(e) > 0)]:
+                for entry in [e for e in textareaValue.strip().split("\n") if (len(e) > 0)]:
 
                     response = self.stepsModel.addStep(entry)
 
