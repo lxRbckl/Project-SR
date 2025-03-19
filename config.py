@@ -7,15 +7,18 @@ from dash_bootstrap_components import themes
 iconGuide = "tabler:book"
 iconWarning = "bxs:error"
 iconMedia = "pajamas:media"
+iconPending = "line-md:circle"
 iconTrash = "octicon:trashcan-16"
 iconOptions = "iconamoon:options"
 iconSuccess = "ep:success-filled"
 iconCopy = "lucide:clipboard-copy"
+iconRunning = "svg-spinners:clock"
 iconError = "material-symbols:error"
 iconPaste = "lucide:clipboard-paste"
 iconUpload = "material-symbols:upload"
 iconNotification = "lucide:notification"
 iconWindow = "iconamoon:screen-full-fill"
+iconCompleted = "fluent-mdl2:completed-solid"
 
 
 port = 8050

@@ -12,13 +12,38 @@ class Steps:
         pass
 
 
+    def _buildStepFlags(self, flags):
+        """  """
+
+        return None
+
+
+    def _buildStepStatus(self, status):
+        """  """
+
+        return None
+
+
+    def _buildStepCommand(self, command):
+        """  """
+
+        return None
+
+
     def _buildStep(self, step):
         """  """
 
         return dbc.Col(
 
             width = 12,
-            children = html.H1("test")
+            className = "colExtended stepsCol",
+            children = [
+
+                self._buildStepStatus(status = step["status"]),
+                self._buildStepCommand(command = step["command"]),
+                self._buildStepFlags(flags = step["flags"])
+
+            ]
 
         )
 

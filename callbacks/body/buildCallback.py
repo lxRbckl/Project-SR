@@ -55,7 +55,7 @@ class Build:
             state = [
 
                 State("bodyAccordionId", "value"),
-                State("runStepsStackId", "children"),
+                State("runStepsRowId", "children"),
                 State("buildInputTextareaId", "value")
 
             ],
@@ -63,14 +63,16 @@ class Build:
 
                 (Output("buildCreateButtonId", "loading"), True, False),
                 (Output("buildClearButtonId", "disabled"), True, False),
-                (Output("runWindowSelectId", "disabled"), True, False)
+                (Output("runWindowSelectId", "disabled"), True, False),
+                (Output("buildCopyButtonId", "disabled"), True, False),
+                (Output("buildPasteButtonId", "disabled"), True, False)
 
             ],
             output = [
 
                 Output("bodyAccordionId", "value", allow_duplicate = True),
+                Output("runStepsRowId", "children", allow_duplicate = True),
                 Output("runWindowSelectId", "value", allow_duplicate = True),
-                Output("runStepsStackId", "children", allow_duplicate = True),
                 Output("notificationDiv", "children", allow_duplicate = True),
                 Output("buildInputTextareaId", "error", allow_duplicate = True)
 
@@ -115,7 +117,7 @@ class Build:
                 # >
 
             except IndexError: rInputError = self.errorCreateOnClick
-            finally: return [rAccordionValue, None, rStepsChildren, rNotificationChildren, rInputError]
+            finally: return [rAccordionValue, rStepsChildren, None, rNotificationChildren, rInputError]
 
 
     def clearOnDisabledCallback(self):

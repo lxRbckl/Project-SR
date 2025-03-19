@@ -31,7 +31,7 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = Input("runStepsStackId", "children"),
+         inputs = Input("runStepsRowId", "children"),
          output = [
 
             Output("runWindowSelectId", "data", allow_duplicate = True),

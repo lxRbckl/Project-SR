@@ -48,11 +48,10 @@ class Build:
                             autosize = True,
                             disabled = False,
                             # value = emptyValue, # uncomment
+                            value = "find param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\nfind param param, alert, pause\nclick 2, retry\nwait 3, alert\n",  # remove
                             autoComplete = "on",
                             id = "buildInputTextareaId",
-                            className = "buildInputTextarea",
-
-                            value = "find param param, alert, pause\nclick 2, retry\nwait 3, alert" # remove
+                            className = "buildInputTextarea"
 
                         )
 

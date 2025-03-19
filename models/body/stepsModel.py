@@ -1,5 +1,4 @@
 from re import split
-# from config import (runCommands, runParameters)
 
 
 class Steps:
@@ -62,6 +61,8 @@ class Steps:
         # check command <
         if (command.split(' ')[0] in self.commands):
 
+            # add properties #
+            step["status"] = "pending"
             step["flags"] = self.flags
             step["command"] = command
 

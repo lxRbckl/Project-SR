@@ -35,11 +35,11 @@ class Run:
                children = [
 
                   # steps <
-                  dbc.Stack(
+                  dbc.Row(
 
                      children = None,
-                     id = "runStepsStackId",
-                     className = "runStepsStack"
+                     id = "runStepsRowId",
+                     className = "runStepsRow"
 
                   )
 
