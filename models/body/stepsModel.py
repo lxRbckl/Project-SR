@@ -19,17 +19,15 @@ class Steps:
         self.errorInvalidFlag = lambda f: f"Flag {f} not recognized."
         self.errorInvalidCommand = lambda c: f"Command {c} not recognized."
 
-        self.flags = [
+        self.flags = {
 
-            "flag", # remove
-            "alert",
-            "pause",
-            "retry"
+            "alert" : False,
+            "pause" : False,
+            "retry" : False
 
-        ]
+        }
         self.commands = [
 
-            "command", # remove
             "find",
             "wait",
             "click",
@@ -43,17 +41,10 @@ class Steps:
     def addStep(self, entry):
         """  """
 
+        step = {}
         flags = None
         command = None
-        step = {
-
-            "command" : None,
-            "alert" : False,
-            "pause" : False,
-            "retry" : False
-
-        }
-        results = [s for s in split(r",\s*", entry.lower().strip()) if s]
+        results = [s for s in split(r",\s*", entry.strip().lower()) if s]
 
         # if (empty) <
         # elif (just command) <
@@ -65,14 +56,12 @@ class Steps:
         # >
 
         # check command <
-        for c in self.commands:
+        if (command.split(' ')[0] in self.commands):
 
-            if (c in command):
+            step["flags"] = self.flags
+            step["command"] = command
 
-                step["command"] = command
-                break
-
-        else: return self.errorInvalidCommand(command)
+        else: return self.errorInvalidCommand(command.split(' ')[0])
 
         # >
 
@@ -81,7 +70,7 @@ class Steps:
 
             # if (valid flag) <
             # else (then invalid flag) <
-            if (f in self.flags): step[f] = True
+            if (f in self.flags): step["flags"][f] = True
             else: return self.errorInvalidFlag(f)
 
             # >
@@ -89,4 +78,3 @@ class Steps:
         # >
 
         self.steps.append(step)
-        print('steps', self.steps) # remove

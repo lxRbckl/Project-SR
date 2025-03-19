@@ -55,7 +55,6 @@ app = Dash(
 
 '''
 
-command parameter, flag
-command param param, flag, flag
+find param param, alert, pause
 
 '''
