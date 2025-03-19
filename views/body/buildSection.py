@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (emptyValue, buildOptions, iconCopy, iconPaste, loaderStyle, iconOptions)
+from config import (emptyValue, iconCopy, iconPaste, loaderStyle, iconOptions)
 
 
 class Build:
@@ -14,6 +14,12 @@ class Build:
         self.id = "buildId"
         self.value = "Build"
         self.isDisabled = False
+        self.options = [
+
+            "option",
+            "option2"
+
+        ]
 
     @property
     def build(self):
@@ -78,7 +84,7 @@ class Build:
                                 disabled = None,
                                 clearable = True,
                                 searchable = True,
-                                data = buildOptions,
+                                data = self.options,
                                 placeholder = "Options",
                                 id = "buildOptionsMultiSelectId",
                                 className = "buildOptionsMultiSelect",

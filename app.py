@@ -61,10 +61,13 @@ guideCallback()
 stepsCallback()
 headerCallback()
 referencesCallback(
+
    notifier = notifier,
    referencesModal = referencesModal
+
 )
 buildCallback(
+
    notifier = notifier,
    stepsModel = stepsModel,
    controller = controller,

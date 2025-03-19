@@ -1,5 +1,5 @@
 from re import split
-from config import (runCommands, runParameters)
+# from config import (runCommands, runParameters)
 
 
 class Steps:
@@ -21,6 +21,17 @@ class Steps:
         self.resultsFailureMessage = "Invalid notation."
         self.commandFailureMessage = lambda c: f"Command {c} not recognized."
 
+        self.commands = [
+
+
+
+        ]
+        self.parameters = [
+
+            "parameter"
+
+        ]
+
 
     def addStep(self, step):
         """  """
@@ -29,7 +40,7 @@ class Steps:
 
         if (len(results) > 0):
 
-            if (results[0] in runCommands):
+            if (results[0] in self.commands):
 
                 self.steps.append({
 
