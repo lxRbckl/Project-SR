@@ -62,8 +62,8 @@ class Steps:
         if (command.split(' ')[0] in self.commands):
 
             # add properties #
-            step["status"] = "pending"
-            step["flags"] = self.flags
+            step["flags"] = {}
+            step["status"] = None
             step["command"] = command
 
         else: return self.errorInvalidCommand(command.split(' ')[0])

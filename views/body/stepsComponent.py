@@ -15,7 +15,17 @@ class Steps:
     def _buildStepFlags(self, flags):
         """  """
 
-        return None
+        print('flags', flags) # remove
+        return dbc.Col(
+
+            width = "auto",
+            children = [
+
+                dmc.Badge(children = fk)
+
+            for fk, fv in flags.items() if (fv == True)]
+
+        )
 
 
     def _buildStepStatus(self, status):
