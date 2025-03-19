@@ -28,7 +28,7 @@ loaderStyle = {"type" : "dots"}
 guideFilepath = "./assets/guide.md"
 referencesFilepath = "/assets/references"
 referencesCompleteFilepath = projectDirectory + referencesFilepath
-tesseractCMD = r"C:\Users\aarbuckle\Desktop\Tesseract\tesseract.exe"
+tesseractCMD = r"C:\Users\aarbuckle\Desktop\Tesseract\tesseract.exe" # <- adjust
 
 
 # Remove once Dash 3.x.x comes out #
