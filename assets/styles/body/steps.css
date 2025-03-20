@@ -6,6 +6,7 @@
 }
 
 .stepsStatusCol {
+   border-right: var(--borderGray);
 }
 
 .stepsStatusButton {
@@ -15,15 +16,17 @@
 }
 
 .stepsCommandCol {
+   border-right: var(--borderGray);
 }
 
 .stepsCommandButton {
-   margin: 0 5px 0 0;
+   margin: 0;
    color: var(--colorBlack);
    border: var(--borderGray);
 }
 
 .stepsFlagsCol {
+   border-right: var(--borderGray);
 }
 
 .stepsFlagsButton {
