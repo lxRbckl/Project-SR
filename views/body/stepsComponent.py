@@ -15,6 +15,27 @@ class Steps:
         pass
 
 
+    def _buildStepsResult(self, index):
+        """  """
+
+        return dbc.Col(
+
+            width = "auto",
+            className = "stepsResultCol",
+            children = dmc.Button(
+
+                color = None,
+                children = None,
+                disabled = True,
+                size = "compact-sm",
+                className = "stepsResultButton",
+                id = {"type" : "result-btn", "index" : f"result-{index}"}
+
+            )
+
+        )
+
+
     def _buildStepStatus(self, index, status):
         """  """
 
@@ -35,27 +56,6 @@ class Steps:
 
                 ),
                 id = {"type" : "status-btn", "index" : f"status-{index}"}
-
-            )
-
-        )
-
-
-    def _buildStepsResult(self, index):
-        """  """
-
-        return dbc.Col(
-
-            width = "auto",
-            className = "stepsResultCol",
-            children = dmc.Button(
-
-                color = None,
-                children = None,
-                disabled = True,
-                size = "compact-sm",
-                className = "stepsResultButton",
-                id = {"type" : "result-btn", "index" : f"result-{index}"}
 
             )
 

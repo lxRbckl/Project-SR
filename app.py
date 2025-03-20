@@ -96,13 +96,3 @@ footerCallback()
 
 app.layout = layout.build
 app.run_server(debug = debug, port = port)
-
-
-# c = Controller()
-#
-# print(c.getWindows())
-# c.setWindow(title = "MCP")
-# c.takeScreenshot()
-# print(c.find(asset = "Cancel"))
-# c.click()
-# c.click()

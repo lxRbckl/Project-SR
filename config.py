@@ -29,10 +29,9 @@ projectName = "Project SR"
 projectDirectory = getcwd()
 loaderStyle = {"type" : "dots"}
 guideFilepath = "./assets/guide.md"
-referencesFilepath = "/assets/references"
+referencesFilepath = "/assets/references" # <-
 referencesCompleteFilepath = projectDirectory + referencesFilepath
-tesseractCMD = r"C:\Users\aarbuckle\Desktop\Tesseract\tesseract.exe" # <- adjust
-
+tesseractCMD = r"C:\Users\aarbuckle\Desktop\Tesseract\tesseract.exe" # <-
 
 # Remove once Dash 3.x.x comes out #
 # React conflict, because Dash 2.x.x uses React 16 #

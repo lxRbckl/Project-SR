@@ -1,7 +1,7 @@
 from config import (app, iconWarning)
 
 from time import sleep
-from dash.dependencies import (Input, Output, State)
+from dash.dependencies import (Input, Output, State, ctx, ALL)
 
 
 class Run:
@@ -10,16 +10,18 @@ class Run:
    def __init__(self, notifier, controller, stepsModel, stepsComponent):
       """  """
 
-      self.startOnClickCallback()
       self.stopOnClickCallback()
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
+      self.onStatusChangeCallback()
+      self.onResultChangeCallback()
 
       self.notifier = notifier
       self.stepsModel = stepsModel
       self.controller = controller
       self.stepsComponent = stepsComponent
 
+      self.isRunning = True
       self.redirectTo = "Run" # insert result when result is completed
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
@@ -77,56 +79,105 @@ class Run:
          return (windowValue == None)
 
 
-   def startOnClickCallback(self):
-      """  """
-
-      @app.callback(
-
-         prevent_initial_call = True,
-         inputs = [
-
-            Input("runStartButtonId", "n_clicks"),
-            Input("runRetryButtonId", "n_clicks"),
-            Input("runContinueButtonId", "n_clicks"),
-            # insert dynamic callback to get status input/changes
-
-         ],
-         output = [
-
-            Output("result", "children", allow_duplicate = True)
-            # dynamic output to result, update result
-
-         ],
-         state = [
-
-            State("buildOptionsMultiSelectId", "value")
-
-         ],
-         running = [
-
-            (Output("runStartButtonId", "loading"), True, False),
-            (Output("runStopButtonId", "disabled"), False, True),
-            (Output("runWindowSelectId", "disabled"), True, False),
-            (Output("buildCreateButtonId", "disabled"), True, False),
-            (Output("buildInputTextareaId", "disabled"), True, False)
-
-         ]
-
-      )
-      def func(startClick, retryClick, continueClick, buildOptions):
-
-         self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
-         self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
-
-         return None
-      
-   
    def stopOnClickCallback(self):
       """  """
 
       @app.callback(
 
          prevent_initial_call = True,
+         inputs = Input("runStopButtonId", "n_clicks"),
+         output = Output("bodyAccordionId", "value", allow_duplicate = True)
+
+      )
+      def func(stopClick):
+
+         self.isRunning = False
+         return self.redirectTo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   def onStatusChangeCallback(self):
+      """  """
+
+      @app.callback(
+
+         prevent_initial_call = True,
+         state = [
+
+            State("buildOptionsMultiSelectId", "values")
+
+         ],
+         inputs = [
+
+            Input("runStartButtonId", "n_clicks"),
+            Input("runRetryButtonId", "n_clicks"),
+            Input({"type" : "status-btn", "index" : ALL}, "children")
+
+         ],
+         output = [
+
+            Output({"type" : "result-btn", "index" : ALL}, "children"),
+            Output("runRetryButtonId", "disabled", allow_duplicate = True),
+            Output("runContinueButtonId", "disabled", allow_duplicate = True)
+
+         ]
+
+      )
+      def func(*args):
+
+
+         # document.getElementById("step-5").scrollIntoView({behavior: "smooth"})
+
+         # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
+         # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
+
+         return None
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   def onResultChangeCallback(self):
+      """  """
+
+      @app.callback(
+
+         prevent_initial_call = True,
          state = [
 
 
@@ -134,18 +185,37 @@ class Run:
          ],
          inputs = [
 
-            Input("runStopButtonId", "n_clicks"),
-            # insert dynamic input to get result input/changes
+            Input("runContinueButtonId", "n_clicks"),
+            Input({"type" : "result-btn", "index" : ALL}, "children")
 
          ],
          output = [
 
-            Output("result", "children", allow_duplicate = True)
-            # dynamic output to status, update status
+            Output({"type": "status-btn", "index": ALL}, "children"),
+            Output("runContinueButtonId", "disabled", allow_duplicate = True)
 
          ]
 
       )
-      def func(stopClick): 
+      def func(*args):
 
-         return None
+         # increment current step
+
+         print('onResultChangeCallback()', args) # Remove
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
