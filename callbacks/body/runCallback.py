@@ -10,9 +10,9 @@ class Run:
    def __init__(self, notifier, controller, stepsModel, stepsComponent):
       """  """
 
-      self.stopOnClickCallback()
-      self.stepsOnInputCallback()
       self.startOnClickCallback()
+      self.onResultCallback()
+      self.stepsOnInputCallback()
       self.windowOnValueCallback()
 
       self.notifier = notifier
@@ -85,12 +85,16 @@ class Run:
          prevent_initial_call = True,
          inputs = [
 
-            Input("runStartButtonId", "n_clicks")
+            Input("runStartButtonId", "n_clicks"),
+            Input("runRetryButtonId", "n_clicks"),
+            Input("runContinueButtonId", "n_clicks"),
+            # insert dynamic callback to get status input/changes
 
          ],
          output = [
 
             Output("result", "children", allow_duplicate = True)
+            # dynamic output to result, update result
 
          ],
          state = [
@@ -109,7 +113,7 @@ class Run:
          ]
 
       )
-      def func(startClick, buildOptions):
+      def func(startClick, retryClick, continueClick, buildOptions):
 
          self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
@@ -123,8 +127,23 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = Input("runStopButtonId", "n_clicks"),
-         output = Output("result", "children", allow_duplicate = True)
+         state = [
+
+
+
+         ],
+         inputs = [
+
+            Input("runStopButtonId", "n_clicks"),
+            # insert dynamic input to get result input/changes
+
+         ],
+         output = [
+
+            Output("result", "children", allow_duplicate = True)
+            # dynamic output to status, update status
+
+         ]
 
       )
       def func(stopClick): 
