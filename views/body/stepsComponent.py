@@ -28,8 +28,34 @@ class Steps:
                 children = status,
                 size = "compact-sm",
                 className = "stepsStatusButton",
-                leftSection = DashIconify(icon = iconPending),
+                leftSection = DashIconify(
+
+                    icon = iconPending,
+                    id = {"type" : "status-icon", "index" : f"status-icon-{index}"}
+
+                ),
                 id = {"type" : "status-btn", "index" : f"status-{index}"}
+
+            )
+
+        )
+
+
+    def _buildStepsResult(self, index):
+        """  """
+
+        return dbc.Col(
+
+            width = "auto",
+            className = "stepsResultCol",
+            children = dmc.Button(
+
+                color = None,
+                children = None,
+                disabled = True,
+                size = "compact-sm",
+                className = "stepsResultButton",
+                id = {"type" : "result-btn", "index" : f"result-{index}"}
 
             )
 
@@ -104,6 +130,7 @@ class Steps:
             className = "rowExtended stepsRow",
             children = [
 
+                self._buildStepsResult(index = index),
                 self._buildStepStatus(index = index, status = step["status"]),
                 self._buildStepCommand(index = index, command = step["command"]),
                 self._buildStepFlags(index = index, flags = step["flags"])

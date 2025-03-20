@@ -11,7 +11,6 @@ class Steps:
         self.currentStep = 0
 
         self.ignoreAlerts = False
-        self.overrideAlerts = False
         self.overrideInputs = False
 
         self.errorInvalidFlag = lambda f: f"Flag \"{f}\" not recognized."

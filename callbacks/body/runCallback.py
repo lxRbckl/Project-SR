@@ -20,7 +20,6 @@ class Run:
       self.controller = controller
       self.stepsComponent = stepsComponent
 
-      self.isRunning = True
       self.redirectTo = "Result"
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
@@ -112,16 +111,10 @@ class Run:
       )
       def func(startClick, buildOptions):
 
-         print('startOnClickCallback()', startClick, buildOptions) # remove
+         self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
+         self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
          return None
-
-         # self.isRunning = True
-         # while (self.isRunning == True):
-         #
-         #    sleep(3)
-         #
-         # return None
       
    
    def stopOnClickCallback(self):
@@ -136,5 +129,4 @@ class Run:
       )
       def func(stopClick): 
 
-         self.isRunning = False
          return None

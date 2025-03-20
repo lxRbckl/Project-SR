@@ -13,7 +13,17 @@
    margin: 2px;
    color: var(--colorBlack);
    border: var(--borderGray);
-   background-color: var(--colorGray)
+   background-color: var(--colorGray);
+}
+
+.stepsResultCol {
+   border-right: var(--borderGray);
+}
+
+.stepsResultButton {
+   margin: 2px;
+   color: var(--colorBlack);
+   border: var(--borderGray);
 }
 
 .stepsCommandCol {
