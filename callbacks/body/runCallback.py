@@ -1,7 +1,7 @@
 from config import (app, iconWarning)
 
 from time import sleep
-from dash.dependencies import (Input, Output, State, ctx, ALL)
+from dash import (Input, Output, State, ctx, ALL)
 
 
 class Run:
@@ -13,8 +13,8 @@ class Run:
       self.stopOnClickCallback()
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
-      self.onStatusChangeCallback()
-      self.onResultChangeCallback()
+      # self.onStatusChangeCallback()
+      # self.onResultChangeCallback()
 
       self.notifier = notifier
       self.stepsModel = stepsModel
@@ -50,9 +50,8 @@ class Run:
 
             self.notifier.notify(
 
-               duration = 1000, # remove when finished
-
                color = "yellow",
+               duration = 10000,
                icon = iconWarning,
                message = self.stepsOnWarningMessage(c = w["count"], l = w["label"])
 
@@ -136,11 +135,13 @@ class Run:
       )
       def func(*args):
 
-
+         # run controller command and record result to steps->result
          # document.getElementById("step-5").scrollIntoView({behavior: "smooth"})
 
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
+
+         print('onStatusChangeCallback()', args) # remove
 
          return None
       
@@ -186,8 +187,8 @@ class Run:
          ],
          output = [
 
-            Output("runProgressId", "value", allow_duplicate = True),
             Output({"type": "status-btn", "index": ALL}, "children"),
+            Output("runProgressId", "value", allow_duplicate = True),
             Output("bodyAccordionId", "value", allow_duplicate = True),
             Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True)
@@ -199,7 +200,7 @@ class Run:
 
          # increment current step
 
-         print('onResultChangeCallback()', args) # Remove
+         print('onResultChangeCallback()', args) # remove
 
 
 

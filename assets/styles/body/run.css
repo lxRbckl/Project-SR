@@ -22,11 +22,11 @@
 }
 
 .runContinueButton {
-   margin: 0 0 0 5px;
+   margin: 0;
 }
 
 .runStopButton {
-   margin: 0;
+   margin: 0 0 0 5px;
 }
 
 .runProgress {

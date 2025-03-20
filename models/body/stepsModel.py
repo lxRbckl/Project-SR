@@ -63,6 +63,7 @@ class Steps:
 
             # add properties #
             step["flags"] = {}
+            step["result"] = None
             step["command"] = command
             step["status"] = "Pending"
 

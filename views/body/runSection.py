@@ -57,7 +57,7 @@ class Run:
                   gap = 0,
                   children = [
 
-                     # (window, start, retry, continue) <
+                     # (window, start, retry) <
                      dmc.Select(
 
                         size = "xs",
@@ -90,15 +90,6 @@ class Run:
                         id = "runRetryButtonId",
                         className = "runRetryButton"
 
-                     ),
-                     dmc.Button(
-
-                        size = "xs",
-                        disabled = True,
-                        children = "Continue",
-                        id = "runContinueButtonId",
-                        className = "runContinueButton"
-
                      )
 
                      # >
@@ -114,7 +105,16 @@ class Run:
                className = "colExtended",
                children = [
 
-                  # stop <
+                  # (continue, stop) <
+                  dmc.Button(
+
+                     size = "xs",
+                     disabled = True,
+                     children = "Continue",
+                     id = "runContinueButtonId",
+                     className = "runContinueButton"
+
+                  ),
                   dmc.Button(
 
                      size = "xs",
