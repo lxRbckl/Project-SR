@@ -10,6 +10,7 @@
 }
 
 .stepsStatusButton {
+   margin: 2px;
    color: var(--colorBlack);
    border: var(--borderGray);
    background-color: var(--colorGray)
@@ -20,7 +21,7 @@
 }
 
 .stepsCommandButton {
-   margin: 0;
+   margin: 2px;
    color: var(--colorBlack);
    border: var(--borderGray);
 }
@@ -30,6 +31,7 @@
 }
 
 .stepsFlagsButton {
+   margin: 2px;
    color: var(--colorBlack);
    border: var(--borderGray);
 }
