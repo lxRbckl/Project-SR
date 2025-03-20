@@ -11,7 +11,7 @@ class Run:
       """  """
 
       self.startOnClickCallback()
-      self.onResultCallback()
+      self.stopOnClickCallback()
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
 
@@ -20,7 +20,7 @@ class Run:
       self.controller = controller
       self.stepsComponent = stepsComponent
 
-      self.redirectTo = "Result"
+      self.redirectTo = "Run" # insert result when result is completed
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
 
@@ -43,7 +43,7 @@ class Run:
       def func(stepsChildren):
 
          windows = self.controller.getWindows()
-         options = [{"label" : w["label"], "value" : w["value"]} for w in windows]
+         options = [{"label" : w["label"], "value" : w["title"]} for w in windows]
          notifications = [
 
             self.notifier.notify(
@@ -73,7 +73,7 @@ class Run:
       )
       def func(windowValue):
 
-         if (windowValue): self.controller.setWindow(windowValue)
+         if (windowValue): self.controller.setWindow(windowValue.split("-")[0])
          return (windowValue == None)
 
 

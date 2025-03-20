@@ -79,12 +79,11 @@ class Steps:
                         children = c,
                         disabled = True,
                         size = "compact-sm",
-                        className = "stepsCommandButton",
-                        id = {"type" : "command-btn", "index" : f"{command}-{index}"}
+                        className = "stepsCommandButton"
 
                     )
 
-                for c in command.split(" ")]
+                for i, c in enumerate(command.split(" "))]
 
             )
 
@@ -108,8 +107,7 @@ class Steps:
                         disabled = True,
                         size = "compact-sm",
                         children = kf.title(),
-                        className = "stepsFlagsButton",
-                        id = {"type" : "flag-btn", "index" : f"{kf.title()}-{index}"}
+                        className = "stepsFlagsButton"
 
                     )
 

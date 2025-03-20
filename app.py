@@ -25,12 +25,14 @@ from views.body.stepsComponent import Steps as stepsComponent
 from views.referencesModal import References as referencesModal
 from views.notificationComponent import Notification as notificationComponent
 
+
 # register shared objects
 stepsModel = stepsModel()
 controller = Controller()
 stepsComponent = stepsComponent()
 notifier = notificationComponent()
 referencesModal = referencesModal()
+
 
 # register views
 layout = layoutView(
@@ -54,6 +56,7 @@ layout = layoutView(
     footer = footerPartial()
 
 )
+
 
 # register callbacks
 bodyCallback()
@@ -90,5 +93,16 @@ resultCallback(
 )
 footerCallback()
 
+
 app.layout = layout.build
 app.run_server(debug = debug, port = port)
+
+
+# c = Controller()
+#
+# print(c.getWindows())
+# c.setWindow(title = "MCP")
+# c.takeScreenshot()
+# print(c.find(asset = "Cancel"))
+# c.click()
+# c.click()

@@ -37,14 +37,10 @@ class Controller:
         DONE - find(asset<text/image>, ?index)
         """
 
-        self.mouseX = 0
-        self.mouseY = 0
-        self.windowX = 0
-        self.windowY = 0
-        self.windowWidth = 0
-        self.windowHeight = 0
+        self.allWindows = []
         self.screenshot = None
         self.useGrayscale = True
+        self.selectedWindow = None
         self.excludedWindows = ["", ".", "Settings"]
 
         self.defaultFindIndex = 0
@@ -52,63 +48,75 @@ class Controller:
         self.defaultClickMultiple = 1
         self.defaultMouseDistance = 10
         self.defaultScrollDistance = 10
-        self.defaultFindConfidence = 0.85
         self.defaultScreenshotName = "screenshot.png"
         self.defaultImageFormats = [".png", ".jpg", ".jpeg"]
 
         pytesseract.pytesseract.tesseract_cmd = tesseractCMD
 
+        self.errorWindowDNE = "Unable to find window. Is window open?"
         self.errorWaitDuration = "Unable to wait. Is duration set correctly?"
         self.errorFindIndex = "Unable to convert index. Is index set correctly?"
         self.errorClickMultiple = "Could not click. Consider adjusting multiple."
+        self.errorTextNotFound = "Could not find text in window. Is it case sensitive?"
         self.errorImageDNE = "Image does not exist in folder. Has reference been added?"
         self.errorMouseDistance = "Unable to convert distance. Is distance set correctly?"
         self.errorFindConfidence = "Unable to convert confidence. Is confidence set correctly?"
-        self.errorTextNotFound = "Could not find text in window. Consider adjusting confidence."
-        self.errorImageNotFound = "Could not find image in window. Consider adjusting confidence."
+        self.errorImageNotFound = "Could not find image in window. Consider refining screenshot."
         self.errorMouseDirection = "Mouse direction does not exist. Consider adjusting direction."
         self.errorScrollDirection = "Scroll direction does not exist. Consider adjusting direction."
 
 
-    def setWindow(self, window):
+    def setWindow(self, title):
         """  """
 
-        x, y, w, h = window.split(' ')[:-1]
+        # if (window exists) <
+        # else (then window DNE) <
+        for w in self.allWindows:
 
-        self.mouseX = int(x)
-        self.mouseY = int(y)
-        self.windowX = int(x)
-        self.windowY = int(y)
-        self.windowWidth = int(w)
-        self.windowHeight = int(h)
+            if (title == w.title):
+
+                self.selectedWindow = w
+                break
+
+        else: return self.errorWindowDNE
+
+        # >
 
 
     def getWindows(self):
         """  """
 
-        windows = {}
-        for c, w in enumerate(getAllWindows()):
+        returnWindows = {}
+        self.allWindows = getAllWindows()
+        for w in [w for w in self.allWindows if (w.title not in self.excludedWindows)]:
 
-            if (w.title not in self.excludedWindows):
+            # if (existing) <
+            # else (then new) <
+            if (w.title in returnWindows.keys()):
 
-                # if (existing) <
-                # else (then new) <
-                if (w.title in windows):
+                windowCount = (returnWindows[w.title]["count"] + 1)
 
-                    windows[w.title]["count"] += 1
-                    continue
+                returnWindows[w.title]["title"] = f"{w.title}-{windowCount}"
+                returnWindows[w.title]["count"] = windowCount
+                continue
 
-                else: windows[w.title] = {
+            else: returnWindows[w.title] = {
 
-                    "count" : 1,
-                    "label" : w.title,
-                    "value" : f"{w.left} {w.top} {w.width} {w.height} {c}"
+                "count" : 1,
+                "label" : w.title,
+                "title" : f"{w.title}-1"
 
-                }
+            }
 
-                # >
+            # >
 
-        return list(windows.values())
+        return list(returnWindows.values())
+
+
+    def activateWindow(self):
+        """  """
+
+        pass
 
 
     def takeScreenshot(self):
@@ -117,33 +125,43 @@ class Controller:
         self.screenshot = screenshot(
 
             imageFilename = self.defaultScreenshotName,
-            region = (self.windowX, self.windowY, self.windowWidth, self.windowHeight)
+            region = (
+
+                self.selectedWindow.left,
+                self.selectedWindow.top,
+                self.selectedWindow.width,
+                self.selectedWindow.height
+
+            )
 
         )
 
 
-    def _findText(self, text, confidence):
+    def _findText(self, text):
         """  """
 
         data = pytesseract.image_to_data(
 
             lang = "eng",
+            config = r'--psm 11',
             output_type = "dict",
-            image = self.screenshot
+            image = self.screenshot,
 
         )
 
         results = []
-        for e, (conf, content) in enumerate(zip(data["conf"], data["text"])):
+        for i, (conf, content) in enumerate(zip(data["conf"], data["text"])):
 
-            if ((conf >= confidence) and (text in content)):
+            # print(conf, content) # remove
+
+            if (text in content):
 
                 results.append((
 
-                    data["left"][e],
-                    data["top"][e],
-                    data["width"][e],
-                    data["height"][e]
+                    data["left"][i],
+                    data["top"][i],
+                    data["width"][i],
+                    data["height"][i]
 
                 ))
 
@@ -155,14 +173,13 @@ class Controller:
         # >
 
 
-    def _findImage(self, image, confidence):
+    def _findImage(self, image):
         """  """
 
         try:
 
             results = list(locateAll(
 
-                confidence = confidence,
                 grayscale = self.useGrayscale,
                 haystackImage = self.screenshot,
                 needleImage = f"{referencesCompleteFilepath}/{image}"
@@ -175,13 +192,11 @@ class Controller:
         except ImageNotFoundException: return self.errorImageNotFound
 
 
-    def find(self, asset, index = None, confidence = None):
+    def find(self, asset, index = None):
         """  """
 
         try: index = int(index) if index else self.defaultFindIndex
         except ValueError: return self.errorFindIndex
-        try: confidence = int(confidence) if confidence else self.defaultFindConfidence
-        except ValueError: return self.errorFindConfidence
 
         # if (image) <
         # else (then text) <
@@ -189,12 +204,14 @@ class Controller:
 
             if (f in asset):
 
-                results = self._findImage(image = asset, confidence = confidence)
+                results = self._findImage(image = asset)
                 break
 
-        else: results = self._findText(text = asset, confidence = confidence)
+        else: results = self._findText(text = asset)
 
         # >
+
+        print('results', results) # remove
 
         try:
 
@@ -204,10 +221,10 @@ class Controller:
             else:
 
                 x, y = center(results[index])
-                self.mouseX += x
-                self.mouseY += y
+                x += self.selectedWindow.left
+                y += self.selectedWindow.top
 
-                moveTo(x = self.mouseX, y = self.mouseY)
+                moveTo(x = x, y = y)
 
         except IndexError: return self.errorFindIndex
 
@@ -258,10 +275,10 @@ class Controller:
             except ValueError: return self.errorMouseDistance
             x, y = {
 
-                "up" : (self.mouseX, (distance + self.mouseY)),
-                "left" : ((self.mouseX - distance), self.mouseY),
-                "down" : (self.mouseX, (self.mouseY - distance)),
-                "right" : ((self.mouseX + distance), self.mouseY)
+                "up" : (self.selectedWindow.left, (distance + self.selectedWindow.top)),
+                "left" : ((self.selectedWindow.left - distance), self.selectedWindow.top),
+                "down" : (self.selectedWindow.left, (self.selectedWindow.top - distance)),
+                "right" : ((self.selectedWindow.left + distance), self.selectedWindow.top)
 
             }[direction]
 
