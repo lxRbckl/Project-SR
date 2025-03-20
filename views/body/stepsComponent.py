@@ -28,8 +28,8 @@ class Steps:
                 children = status,
                 size = "compact-sm",
                 className = "stepsStatusButton",
-                id = {"type" : "status-btn", "index" : f"status-{index}"},
-                leftSection = DashIconify(icon = iconPending)
+                leftSection = DashIconify(icon = iconPending),
+                id = {"type" : "status-btn", "index" : f"status-{index}"}
 
             )
 

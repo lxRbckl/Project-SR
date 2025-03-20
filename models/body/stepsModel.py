@@ -8,6 +8,7 @@ class Steps:
         """  """
 
         self.steps = []
+        self.currentStep = 0
 
         self.ignoreAlerts = False
         self.overrideAlerts = False
