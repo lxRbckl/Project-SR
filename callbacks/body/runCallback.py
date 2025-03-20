@@ -84,8 +84,21 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = Input("runStartButtonId", "n_clicks"),
-         output = Output("result", "children", allow_duplicate = True),
+         inputs = [
+
+            Input("runStartButtonId", "n_clicks")
+
+         ],
+         output = [
+
+            Output("result", "children", allow_duplicate = True)
+
+         ],
+         state = [
+
+            State("buildOptionsMultiSelectId", "value")
+
+         ],
          running = [
 
             (Output("runStartButtonId", "loading"), True, False),
@@ -97,14 +110,18 @@ class Run:
          ]
 
       )
-      def func(startClick):
+      def func(startClick, buildOptions):
 
-         self.isRunning = True
-         while (self.isRunning == True):
+         print('startOnClickCallback()', startClick, buildOptions) # remove
 
-            sleep(3)
-         
          return None
+
+         # self.isRunning = True
+         # while (self.isRunning == True):
+         #
+         #    sleep(3)
+         #
+         # return None
       
    
    def stopOnClickCallback(self):
