@@ -22,7 +22,7 @@ class Run:
       self.stepsComponent = stepsComponent
 
       self.isRunning = True
-      self.redirectTo = "Run" # insert result when result is completed
+      self.redirectTo = "Result"
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
 
@@ -178,11 +178,6 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         state = [
-
-
-
-         ],
          inputs = [
 
             Input("runContinueButtonId", "n_clicks"),
@@ -191,7 +186,10 @@ class Run:
          ],
          output = [
 
+            Output("runProgressId", "value", allow_duplicate = True),
             Output({"type": "status-btn", "index": ALL}, "children"),
+            Output("bodyAccordionId", "value", allow_duplicate = True),
+            Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True)
 
          ]
