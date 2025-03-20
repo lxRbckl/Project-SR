@@ -12,45 +12,59 @@ class Steps:
         pass
 
 
-    def _buildStepStatus(self, status):
+    def _buildStepStatus(self, index, status):
+        """  """
+
+        print('status', status)
+        return dbc.Col(
+
+            width = "auto",
+            children = dmc.Button(
+
+                size = "compact-sm"
+
+            )
+
+        )
+
+
+    def _buildStepCommand(self, index, command):
+        """  """
+
+        print('command', command)
+        return dbc.Col(
+
+            width = "auto",
+            children = None
+
+        )
+
+
+    def _buildStepFlags(self, index, flags):
         """  """
 
         return dbc.Col(
 
             width = "auto",
-            children = html.Small(status)
+            children = dmc.Group(
+
+                gap = 4,
+                children = [
+
+                    dmc.Button(
+
+                        disabled = True,
+                        size = "compact-sm",
+                        children = kf.title(),
+                        className = "stepsFlagsButton",
+                        id = f"stepsFlagsButton-{index}"
+                    )
+
+                for kf, kv in flags.items()]
+
+            )
 
         )
-
-
-    def _buildStepCommand(self, command):
-        """  """
-
-        return dbc.Col(
-
-            width = "auto",
-            children = html.Small(command)
-
-        )
-
-
-    def _buildStepFlags(self, flags):
-        """  """
-
-        print('flags', flags) # remove
-        return None
-
-        # return dbc.Col(
-        #
-        #     width = "auto",
-        #     children = [
-        #
-        #         dmc.Badge(children = fk,
-        #                   style = {"margin" : 0, "background-color" : "red"})
-        #
-        #     for fk, fv in flags.items() if (fv == True)]
-        #
-        # )
 
 
     def _buildStep(self, index, step):
@@ -59,14 +73,13 @@ class Steps:
         return dbc.Row(
 
             justify = "start",
-            # width = 12,
             id = f"step-{index}",
-            className = "colExtended stepsCol",
+            className = "rowExtended stepsRow",
             children = [
 
-                self._buildStepStatus(status = step["status"]),
-                self._buildStepCommand(command = step["command"]),
-                self._buildStepFlags(flags = step["flags"])
+                self._buildStepStatus(index = index, status = step["status"]),
+                self._buildStepCommand(index = index, command = step["command"]),
+                self._buildStepFlags(index = index, flags = step["flags"])
 
             ]
 
