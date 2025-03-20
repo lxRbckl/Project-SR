@@ -1,7 +1,7 @@
 from config import (app, iconWarning)
 
 from time import sleep
-from dash import (Input, Output, State, ctx, ALL)
+from dash import (Input, Output, State, ctx, ALL, clientside_callback, no_update, ClientsideFunction)
 
 
 class Run:
@@ -13,6 +13,8 @@ class Run:
       self.stopOnClickCallback()
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
+
+      self.onStepChangeCallback()
       # self.onStatusChangeCallback()
       # self.onResultChangeCallback()
 
@@ -94,10 +96,24 @@ class Run:
          return self.redirectTo
 
 
+   def onStepChangeCallback(self):
+      """  """
 
+      app.clientside_callback(
 
+         """
+         function scrollToStep(step) {
+             const element = document.getElementById(`step-${step}`);
+             if (element) {
+                 element.scrollIntoView({behavior: "smooth"});
+             }
+             // No else block, do nothing if element is not found
+         }
+         """,
+         Output("dummyDiv", "children"),
+         Input("runProgressId", "color")
 
-
+      )
 
 
 
@@ -126,7 +142,7 @@ class Run:
          ],
          output = [
 
-            Output({"type" : "result-btn", "index" : ALL}, "children"),
+            Output("runProgressId", "value", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True)
 

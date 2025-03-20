@@ -140,6 +140,7 @@ class Run:
                   dmc.Progress(
 
                      value = 0,
+                     color = None,
                      id = "runProgressId",
                      className = "runProgress"
 
