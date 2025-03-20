@@ -1,4 +1,7 @@
+from config import iconPending
+
 from dash import html
+from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
@@ -15,18 +18,18 @@ class Steps:
     def _buildStepStatus(self, index, status):
         """  """
 
-        print('status', status)
-
         return dbc.Col(
 
             width = "auto",
+            className = "stepsStatusCol",
             children = dmc.Button(
 
-                children = None,
-                disabled = False,
+                disabled = True,
+                children = status,
                 size = "compact-sm",
                 className = "stepsStatusButton",
-                id = f"stepsStatusButton-{index}"
+                id = {"type" : "status-btn", "index" : f"status-{index}"},
+                leftSection = DashIconify(icon = iconPending)
 
             )
 
@@ -40,19 +43,24 @@ class Steps:
 
             width = "auto",
             className = "stepsCommandCol",
-            children = [
+            children = dmc.Group(
 
-                dmc.Button(
+                gap = 0,
+                children = [
 
-                    disabled = True,
-                    children = c,
-                    size = "compact-sm",
-                    className = "stepsCommandButton",
-                    id = f"stepsCommandButton-{index}"
+                    dmc.Button(
 
-                )
+                        children = c,
+                        disabled = True,
+                        size = "compact-sm",
+                        className = "stepsCommandButton",
+                        id = {"type" : "command-btn", "index" : f"{command}-{index}"}
 
-            for c in command.split(" ")]
+                    )
+
+                for c in command.split(" ")]
+
+            )
 
         )
 
@@ -66,7 +74,7 @@ class Steps:
             className = "stepsFlagsCol",
             children = dmc.Group(
 
-                gap = 4,
+                gap = 0,
                 children = [
 
                     dmc.Button(
@@ -75,7 +83,8 @@ class Steps:
                         size = "compact-sm",
                         children = kf.title(),
                         className = "stepsFlagsButton",
-                        id = f"stepsFlagsButton-{index}"
+                        id = {"type" : "flag-btn", "index" : f"{kf.title()}-{index}"}
+
                     )
 
                 for kf, kv in flags.items()]

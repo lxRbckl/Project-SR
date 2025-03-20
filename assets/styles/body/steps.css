@@ -1,5 +1,4 @@
 .stepsRow {
-   /*min-height: 100px;*/
    padding: 5px;
    margin: 5px 0 0 0;
    border: var(--borderGray);
@@ -7,16 +6,15 @@
 }
 
 .stepsStatusCol {
-   border-right: var(--borderGray);
 }
 
 .stepsStatusButton {
    color: var(--colorBlack);
    border: var(--borderGray);
+   background-color: var(--colorGray)
 }
 
 .stepsCommandCol {
-   border-right: var(--borderGray);
 }
 
 .stepsCommandButton {
@@ -26,7 +24,6 @@
 }
 
 .stepsFlagsCol {
-
 }
 
 .stepsFlagsButton {
