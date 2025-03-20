@@ -8,6 +8,7 @@ class Steps:
         """  """
 
         self.steps = []
+        self.totalSteps = 0
         self.currentStep = 0
 
         self.ignoreAlerts = False
@@ -39,6 +40,8 @@ class Steps:
         """  """
 
         self.steps = []
+        self.totalSteps = 0
+        self.currentStep = 0
 
 
     def addStep(self, entry):
@@ -83,4 +86,5 @@ class Steps:
 
         # >
 
+        self.totalSteps += 1
         self.steps.append(step)

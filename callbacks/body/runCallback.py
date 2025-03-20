@@ -143,8 +143,10 @@ class Run:
 
          print('onStatusChangeCallback()', args) # remove
 
-         return None
-      
+         while (self.isRunning):
+
+            pass
+
 
 
 
@@ -202,7 +204,9 @@ class Run:
 
          print('onResultChangeCallback()', args) # remove
 
+         while (self.isRunning):
 
+            pass
 
 
 
