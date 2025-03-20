@@ -6,8 +6,30 @@
    border-radius: var(--borderRadius);
 }
 
+.stepsStatusCol {
+   border-right: var(--borderGray);
+}
+
+.stepsStatusButton {
+   color: var(--colorBlack);
+   border: var(--borderGray);
+}
+
+.stepsCommandCol {
+   border-right: var(--borderGray);
+}
+
+.stepsCommandButton {
+   margin: 0 5px 0 0;
+   color: var(--colorBlack);
+   border: var(--borderGray);
+}
+
+.stepsFlagsCol {
+
+}
 
 .stepsFlagsButton {
    color: var(--colorBlack);
-   border: var(--borderGray)
+   border: var(--borderGray);
 }

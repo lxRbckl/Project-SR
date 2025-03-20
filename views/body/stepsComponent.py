@@ -16,12 +16,17 @@ class Steps:
         """  """
 
         print('status', status)
+
         return dbc.Col(
 
             width = "auto",
             children = dmc.Button(
 
-                size = "compact-sm"
+                children = None,
+                disabled = False,
+                size = "compact-sm",
+                className = "stepsStatusButton",
+                id = f"stepsStatusButton-{index}"
 
             )
 
@@ -31,11 +36,23 @@ class Steps:
     def _buildStepCommand(self, index, command):
         """  """
 
-        print('command', command)
         return dbc.Col(
 
             width = "auto",
-            children = None
+            className = "stepsCommandCol",
+            children = [
+
+                dmc.Button(
+
+                    disabled = True,
+                    children = c,
+                    size = "compact-sm",
+                    className = "stepsCommandButton",
+                    id = f"stepsCommandButton-{index}"
+
+                )
+
+            for c in command.split(" ")]
 
         )
 
@@ -46,6 +63,7 @@ class Steps:
         return dbc.Col(
 
             width = "auto",
+            className = "stepsFlagsCol",
             children = dmc.Group(
 
                 gap = 4,
