@@ -14,9 +14,9 @@ class Run:
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
 
-      self.onStepChangeCallback()
-      # self.onStatusChangeCallback()
-      # self.onResultChangeCallback()
+      # self.onStepChangeCallback()
+      self.onStatusChangeCallback()
+      self.onResultChangeCallback()
 
       self.notifier = notifier
       self.stepsModel = stepsModel
@@ -76,7 +76,7 @@ class Run:
       )
       def func(windowValue):
 
-         if (windowValue): self.controller.setWindow(windowValue.split("-")[0])
+         if (windowValue): self.controller.setWindow(windowValue)
          return (windowValue == None)
 
 
@@ -103,15 +103,17 @@ class Run:
 
          """
          function scrollToStep(step) {
+
              const element = document.getElementById(`step-${step}`);
+
              if (element) {
                  element.scrollIntoView({behavior: "smooth"});
              }
-             // No else block, do nothing if element is not found
+
          }
          """,
          Output("dummyDiv", "children"),
-         Input("runProgressId", "color")
+         Input("runStartButtonId", "value")
 
       )
 
@@ -142,9 +144,11 @@ class Run:
          ],
          output = [
 
+            Output("runProgressId", "color", allow_duplicate = True),
             Output("runProgressId", "value", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
-            Output("runContinueButtonId", "disabled", allow_duplicate = True)
+            Output("runContinueButtonId", "disabled", allow_duplicate = True),
+            Output({"type": "result-btn", "index": ALL}, "children", allow_duplicate = True)
 
          ]
 
@@ -205,19 +209,18 @@ class Run:
          ],
          output = [
 
-            Output({"type": "status-btn", "index": ALL}, "children"),
             Output("runProgressId", "value", allow_duplicate = True),
             Output("bodyAccordionId", "value", allow_duplicate = True),
+            Output("runStartButtonId", "value", allow_duplicate = True),
             Output("runStopButtonId", "disabled", allow_duplicate = True),
-            Output("runContinueButtonId", "disabled", allow_duplicate = True)
-
+            Output("runContinueButtonId", "disabled", allow_duplicate = True),
+            Output({"type": "status-btn", "index": ALL}, "children", allow_duplicate = True)
          ]
 
       )
       def func(*args):
 
          # increment current step
-
          print('onResultChangeCallback()', args) # remove
 
          while (self.isRunning):
