@@ -57,7 +57,7 @@ class Run:
                   gap = 0,
                   children = [
 
-                     # (window, count, start, retry) <
+                     # (window, start, retry) <
                      dmc.Select(
 
                         size = "xs",
@@ -70,15 +70,6 @@ class Run:
                         id = "runWindowSelectId",
                         className = "runWindowSelect",
                         leftSection = DashIconify(icon =  iconWindow)
-
-                     ),
-                     dmc.Button(
-
-                        size = "xs",
-                        children = None,
-                        disabled = True,
-                        id = "runCountButtonId",
-                        className = "runCountButton"
 
                      ),
                      dmc.Button(
