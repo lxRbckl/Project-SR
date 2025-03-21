@@ -70,17 +70,19 @@ class Build:
             ],
             output = [
 
+                Output("runProgressId", "max", allow_duplicate = True),
                 Output("bodyAccordionId", "value", allow_duplicate = True),
                 Output("runStepsRowId", "children", allow_duplicate = True),
                 Output("runWindowSelectId", "value", allow_duplicate = True),
                 Output("notificationDiv", "children", allow_duplicate = True),
-                Output("buildInputTextareaId", "error", allow_duplicate = True)
+                Output("buildInputTextareaId", "error", allow_duplicate = True),
 
             ]
 
         )
         def func(createClick, accordionValue, stepsChildren, textareaValue):
 
+            rProgressMax = 0
             rInputError = None
             rNotificationChildren = None
             rStepsChildren = stepsChildren
@@ -103,6 +105,7 @@ class Build:
                 else:
 
                     rAccordionValue = self.redirectTo
+                    rProgressMax = self.stepsModel.totalSteps
                     rStepsChildren = self.stepsComponent.buildSteps(self.stepsModel.steps)
                     rNotificationChildren = self.notifier.notify(
 
@@ -114,10 +117,12 @@ class Build:
 
                     )
 
+                    print('max', rProgressMax) # remove
+
                 # >
 
             except IndexError: rInputError = self.errorCreateOnClick
-            finally: return [rAccordionValue, rStepsChildren, None, rNotificationChildren, rInputError]
+            finally: return [rProgressMax, rAccordionValue, rStepsChildren, None, rNotificationChildren, rInputError]
 
 
     def clearOnDisabledCallback(self):

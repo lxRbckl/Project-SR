@@ -10,13 +10,12 @@ class Run:
    def __init__(self, notifier, controller, stepsModel, stepsComponent):
       """  """
 
-      self.stopOnClickCallback()
+      # self.stopOnClickCallback()
+      self.onStepChangeCallback()
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
-
-      # self.onStepChangeCallback()
-      self.onStatusChangeCallback()
-      self.onResultChangeCallback()
+      # self.onStatusChangeCallback()
+      # self.onResultChangeCallback()
 
       self.notifier = notifier
       self.stepsModel = stepsModel
@@ -112,8 +111,8 @@ class Run:
 
          }
          """,
-         Output("dummyDiv", "children"),
-         Input("runStartButtonId", "value")
+         Output("runProgressId", "value"),
+         Input("runCountButtonId", "children")
 
       )
 
@@ -144,8 +143,6 @@ class Run:
          ],
          output = [
 
-            Output("runProgressId", "color", allow_duplicate = True),
-            Output("runProgressId", "value", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type": "result-btn", "index": ALL}, "children", allow_duplicate = True)
@@ -165,7 +162,7 @@ class Run:
 
          while (self.isRunning):
 
-            pass
+            return [None, None, None]
 
 
 
@@ -211,10 +208,11 @@ class Run:
 
             Output("runProgressId", "value", allow_duplicate = True),
             Output("bodyAccordionId", "value", allow_duplicate = True),
-            Output("runStartButtonId", "value", allow_duplicate = True),
             Output("runStopButtonId", "disabled", allow_duplicate = True),
+            Output("runCountButtonId", "children", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type": "status-btn", "index": ALL}, "children", allow_duplicate = True)
+
          ]
 
       )
@@ -225,7 +223,7 @@ class Run:
 
          while (self.isRunning):
 
-            pass
+            return [None, None, None, None, None, None]
 
 
 

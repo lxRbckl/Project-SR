@@ -146,12 +146,13 @@ class Run:
                children = [
 
                   # progress <
-                  dmc.Progress(
+                  dbc.Progress(
 
+                     min = 0,
                      value = 0,
-                     color = None,
+                     max = None,
                      id = "runProgressId",
-                     className = "runProgress"
+                     class_name = "runProgress"
 
                   )
 

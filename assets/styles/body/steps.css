@@ -1,47 +1,55 @@
 .stepsRow {
-   padding: 5px;
    margin: 5px 0 0 0;
+   padding: 0;
    border: var(--borderGray);
    border-radius: var(--borderRadius);
 }
 
+.stepsResultCol {
+   margin: 0;
+   padding: 0;
+   border-right: var(--borderGray);
+}
+
+.stepsResultButton {
+   margin: 5px;
+   color: var(--colorBlack);
+   border: var(--borderGray);
+}
+
 .stepsStatusCol {
+   margin: 0;
+   padding: 0;
    border-right: var(--borderGray);
 }
 
 .stepsStatusButton {
-   margin: 2px;
+   margin: 5px;
    color: var(--colorBlack);
    border: var(--borderGray);
    background-color: var(--colorGray);
 }
 
-.stepsResultCol {
-   border-right: var(--borderGray);
-}
-
-.stepsResultButton {
-   margin: 2px;
-   color: var(--colorBlack);
-   border: var(--borderGray);
-}
-
 .stepsCommandCol {
+   margin: 0;
+   padding: 0;
    border-right: var(--borderGray);
 }
 
 .stepsCommandButton {
-   margin: 2px;
+   margin: 5px;
    color: var(--colorBlack);
    border: var(--borderGray);
 }
 
 .stepsFlagsCol {
+   margin: 0;
+   padding: 0;
    border-right: var(--borderGray);
 }
 
 .stepsFlagsButton {
-   margin: 2px;
+   margin: 5px;
    color: var(--colorBlack);
    border: var(--borderGray);
 }

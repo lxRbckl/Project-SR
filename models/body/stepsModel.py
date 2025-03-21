@@ -20,8 +20,7 @@ class Steps:
         self.flags = {
 
             "alert" : False,
-            "pause" : False,
-            "retry" : False
+            "pause" : False
 
         }
         self.commands = [

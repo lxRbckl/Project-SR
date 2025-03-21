@@ -37,7 +37,6 @@ class Layout:
 
          children = [
 
-            html.Div(id = "dummyDiv"),
             dmc.Center(
 
                className = "layoutCenter",
