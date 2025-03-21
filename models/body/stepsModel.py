@@ -96,9 +96,7 @@ class Steps:
 
         self._clearSteps()
 
-        # if (no steps) <
-        # else (then parsable) <
-        if (len(steps.strip().split(",")) == 1): return self.errorOnSteps
+        if (len(steps.strip().split(",")[0]) == 0): return self.errorOnSteps
         else:
 
             # iterate (cleaned steps) <
