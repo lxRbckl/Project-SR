@@ -47,7 +47,7 @@ class Build:
                             autosize = True,
                             disabled = False,
                             # value = emptyValue, # uncomment
-                            value = "find text 3, alert, pause\nclick 2, pause\nkeyboard this is a message, alert\nfind text 3, alert, pause\nclick 2, pause\nkeyboard this is a message, alert\nfind text 3, alert, pause\nclick 2, pause\nkeyboard this is a message, alert\nfind text 3, alert, pause\nclick 2, pause\nkeyboard this is a message, alert\n", # remove
+                            value = "find\nfind, text\nfind, text 3\nfind, text 3, pause\nfind, text 3, pause, this is a message",
                             autoComplete = "on",
                             id = "buildInputTextareaId",
                             className = "buildInputTextarea"

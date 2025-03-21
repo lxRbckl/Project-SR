@@ -26,7 +26,6 @@ class Build:
         self.clipboardPause = 0.3
         self.clipboardNotifyDuration = 5000
 
-        self.errorCreateOnClick = "Invalid notation."
         self.messageClipboardCopied = "Text was copied from input."
         self.messageClipboardPasted = "Text was pasted from input."
         self.messageCreateOnClick = "Make sure not to alter a production-level application window!"
@@ -83,46 +82,26 @@ class Build:
         def func(createClick, accordionValue, stepsChildren, textareaValue):
 
             rProgressMax = 0
-            rInputError = None
             rNotificationChildren = None
             rStepsChildren = stepsChildren
             rAccordionValue = accordionValue
-            try:
+            rInputError = self.stepsModel.addSteps(textareaValue)
 
-                self.stepsModel.clearSteps()
+            if (not rInputError):
 
-                # if (failure) <
-                # else (then success) <
-                for entry in [e for e in textareaValue.strip().split("\n") if (len(e) > 0)]:
+                rAccordionValue = self.redirectTo
+                rProgressMax = self.stepsModel.totalSteps
+                rStepsChildren = self.stepsComponent.buildSteps(self.stepsModel.steps)
+                rNotificationChildren = self.notifier.notify(
 
-                    response = self.stepsModel.addStep(entry)
+                    duration = 1000, # remove
+                    color = "yellow",
+                    icon = iconWarning,
+                    message = self.messageCreateOnClick
 
-                    if (response):
+                )
 
-                        rInputError = response
-                        break
-
-                else:
-
-                    rAccordionValue = self.redirectTo
-                    rProgressMax = self.stepsModel.totalSteps
-                    rStepsChildren = self.stepsComponent.buildSteps(self.stepsModel.steps)
-                    rNotificationChildren = self.notifier.notify(
-
-                        duration = 1000, # remove
-
-                        color = "yellow",
-                        icon = iconWarning,
-                        message = self.messageCreateOnClick
-
-                    )
-
-                    print('max', rProgressMax) # remove
-
-                # >
-
-            except IndexError: rInputError = self.errorCreateOnClick
-            finally: return [rProgressMax, rAccordionValue, rStepsChildren, None, rNotificationChildren, rInputError]
+            return [rProgressMax, rAccordionValue, rStepsChildren, None, rNotificationChildren, rInputError]
 
 
     def clearOnDisabledCallback(self):

@@ -14,15 +14,16 @@ class Steps:
         self.ignoreAlerts = False
         self.overrideInputs = False
 
+        self.errorOnSteps = "Invalid input."
         self.errorInvalidFlag = lambda f: f"Flag \"{f}\" not recognized."
         self.errorInvalidCommand = lambda c: f"Command \"{c}\" not recognized."
 
-        self.flags = {
+        self.flags = [
 
-            "alert" : False,
-            "pause" : False
+            "alert",
+            "pause"
 
-        }
+        ]
         self.commands = [
 
             "find",
@@ -35,7 +36,7 @@ class Steps:
         ]
 
 
-    def clearSteps(self):
+    def _clearSteps(self):
         """  """
 
         self.steps = []
@@ -43,47 +44,69 @@ class Steps:
         self.currentStep = 0
 
 
-    def addStep(self, entry):
+    def _addStep(self, entry):
         """  """
 
-        step = {}
-        flags = None
-        command = None
+        step = {
+
+            "flags": {},
+            "result" : None,
+            "command": None,
+            "message": None,
+            "parameters": None,
+            "status" : "Pending"
+
+        }
         results = [s for s in split(r",\s*", entry.strip().lower()) if s]
+        try:
 
-        # if (empty) <
-        # elif (just command) <
-        # else (then command and flag(s)) <
-        if (len(results) == 0): raise IndexError
-        elif (len(results) == 1): command = results[0]
-        else: command, flags = results[0], results[1:]
+            command, parameters, flags, message = {
 
-        # >
+                1 : lambda : (results[0], None, None, None),
+                2 : lambda : (results[0], results[1], None, None),
+                3 : lambda : (results[0], results[1], results[2], None),
+                4 : lambda : (results[0], results[1], results[2], results[3])
 
+            }[len(results)]()
+
+        except IndexError: raise IndexError
+
+        # check flags <
         # check command <
-        if (command.split(' ')[0] in self.commands):
+        if (flags):
 
-            # add properties #
-            step["flags"] = {}
-            step["result"] = None
-            step["command"] = command
-            step["status"] = "Pending"
+            for f in flags.split(" "):
 
-        else: return self.errorInvalidCommand(command.split(' ')[0])
+                if (f in self.flags): step["flags"][f] = True
+                else: return self.errorInvalidFlag(f)
+
+        if (command not in self.commands): return self.errorInvalidCommand(command)
 
         # >
 
-        # check flag(s) <
-        for f in flags:
+        step["parameters"] = parameters
+        step["message"] = message
+        step["command"] = command
+        self.steps.append(step)
+        self.totalSteps += 1
 
-            # if (valid flag) <
-            # else (then invalid flag) <
-            if (f in self.flags): step["flags"][f] = True
-            else: return self.errorInvalidFlag(f)
+
+    def addSteps(self, steps):
+        """  """
+
+        self._clearSteps()
+
+        # if (no steps) <
+        # else (then parsable) <
+        if (len(steps.strip().split(",")) == 1): return self.errorOnSteps
+        else:
+
+            # iterate (cleaned steps) <
+            for step in steps.strip().split("\n"):
+
+                if (len(step.strip()) == 0): continue
+                if (response := self._addStep(step)): return response
 
             # >
 
         # >
-
-        self.totalSteps += 1
-        self.steps.append(step)

@@ -7,6 +7,7 @@ from dash_bootstrap_components import themes
 iconGuide = "tabler:book"
 iconWarning = "bxs:error"
 iconMedia = "pajamas:media"
+iconSettings = "uil:setting"
 iconPending = "line-md:circle"
 iconTrash = "octicon:trashcan-16"
 iconOptions = "iconamoon:options"
