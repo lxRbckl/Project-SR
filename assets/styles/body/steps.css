@@ -26,6 +26,7 @@
 
 .stepsStatusButton {
    margin: 5px;
+   padding: 2px;
    color: var(--colorBlack);
    border: var(--borderGray);
    background-color: var(--colorGray);
@@ -58,4 +59,15 @@
    margin: 5px;
    color: var(--colorBlack);
    border: var(--borderGray);
+}
+
+.stepsMessageCol {
+   margin: 0;
+   padding: 0;
+   border-top: var(--borderGray);
+}
+
+.stepsMessageTextarea {
+   margin: 5px;
+   color: var(--colorBlack);
 }

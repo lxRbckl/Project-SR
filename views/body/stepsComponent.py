@@ -35,7 +35,7 @@ class Steps:
         )
 
 
-    def _buildStepStatus(self, index, status):
+    def _buildStepStatus(self, index):
         """  """
 
         return dbc.Col(
@@ -45,15 +45,9 @@ class Steps:
             children = dmc.Button(
 
                 disabled = True,
-                children = status,
                 size = "compact-sm",
                 className = "stepsStatusButton",
-                leftSection = DashIconify(
-
-                    icon = iconPending,
-                    id = {"type" : "status-icon", "index" : f"status-icon-{index}"}
-
-                ),
+                children = DashIconify(width = 18, icon = iconPending),
                 id = {"type" : "status-btn", "index" : f"status-{index}"}
 
             )
@@ -61,7 +55,7 @@ class Steps:
         )
 
 
-    def _buildStepCommand(self, index, command, parameters):
+    def _buildStepCommand(self, command, parameters):
         """  """
 
         return dbc.Col(
@@ -77,7 +71,7 @@ class Steps:
 
                     # command <
                     # ?parameters <
-                    dmc.Text(fw = 500, size = "xs", children = command.title()),
+                    dmc.Text(fw = 700, size = "xs", children = command.title()),
                     *[
 
                         dmc.Text(
@@ -99,7 +93,7 @@ class Steps:
         )
 
 
-    def _buildStepFlags(self, index, flags):
+    def _buildStepFlags(self, flags):
         """  """
 
         if (flags):
@@ -118,12 +112,35 @@ class Steps:
 
                             disabled = True,
                             size = "compact-sm",
-                            children = kf.title(),
-                            className = "stepsFlagsButton"
+                            className = "stepsFlagsButton",
+                            children = dmc.Text(size = "xs", fw = 500, children = kf.title())
 
                         )
 
                     for kf, kv in flags.items()]
+
+                )
+
+            )
+
+        else: return None
+
+
+    def _buildStepMessage(self, message):
+        """  """
+
+        if (message):
+
+            return dbc.Col(
+
+                width = 12,
+                className = "stepsMessageCol",
+                children = dmc.Textarea(
+
+                    value = message,
+                    disabled = True,
+                    size = "compact-sm",
+                    className = "stepsMessageTextarea"
 
                 )
 
@@ -137,31 +154,20 @@ class Steps:
 
         return dbc.Row(
 
-            # justify = "start",
             id = f"step-{index}",
             className = "stepsRow",
             children = [
 
                 self._buildStepsResult(index = index),
-                self._buildStepStatus(
-
-                    index = index,
-                    status = step["status"]
-
-                ),
+                self._buildStepStatus(index = index),
                 self._buildStepCommand(
 
-                    index = index,
                     command = step["command"],
                     parameters = step["parameters"]
 
                 ),
-                self._buildStepFlags(
-
-                    index = index,
-                    flags = step["flags"]
-
-                )
+                self._buildStepFlags(flags = step["flags"]),
+                self._buildStepMessage(message = step["message"])
 
             ]
 
