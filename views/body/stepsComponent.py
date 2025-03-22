@@ -24,7 +24,6 @@ class Steps:
             className = "stepsResultCol",
             children = dmc.Button(
 
-                color = None,
                 children = None,
                 disabled = True,
                 size = "compact-sm",
@@ -62,28 +61,38 @@ class Steps:
         )
 
 
-    def _buildStepCommand(self, index, command):
+    def _buildStepCommand(self, index, command, parameters):
         """  """
 
         return dbc.Col(
 
             width = "auto",
             className = "stepsCommandCol",
-            children = dmc.Group(
+            children = dmc.Button(
 
-                gap = 0,
+                disabled = True,
+                size = "compact-sm",
+                className = "stepsCommandButton",
                 children = [
 
-                    dmc.Button(
+                    # command <
+                    # ?parameters <
+                    dmc.Text(fw = 500, size = "xs", children = command.title()),
+                    *[
 
-                        children = c,
-                        disabled = True,
-                        size = "compact-sm",
-                        className = "stepsCommandButton"
+                        dmc.Text(
 
-                    )
+                            size = "xs",
+                            children = p,
+                            className = "stepsParameterText"
 
-                for i, c in enumerate(command.split(" "))]
+                        )
+
+                    for p in parameters]
+
+                    # >
+
+                ]
 
             )
 
@@ -93,29 +102,34 @@ class Steps:
     def _buildStepFlags(self, index, flags):
         """  """
 
-        return dbc.Col(
+        if (flags):
 
-            width = "auto",
-            className = "stepsFlagsCol",
-            children = dmc.Group(
+            return dbc.Col(
 
-                gap = 0,
-                children = [
+                width = "auto",
+                className = "stepsFlagsCol",
+                children = dmc.Group(
 
-                    dmc.Button(
+                    gap = 0,
 
-                        disabled = True,
-                        size = "compact-sm",
-                        children = kf.title(),
-                        className = "stepsFlagsButton"
+                    children = [
 
-                    )
+                        dmc.Button(
 
-                for kf, kv in flags.items()]
+                            disabled = True,
+                            size = "compact-sm",
+                            children = kf.title(),
+                            className = "stepsFlagsButton"
+
+                        )
+
+                    for kf, kv in flags.items()]
+
+                )
 
             )
 
-        )
+        else: return None
 
 
     def _buildStep(self, index, step):
@@ -123,15 +137,31 @@ class Steps:
 
         return dbc.Row(
 
-            justify = "start",
+            # justify = "start",
             id = f"step-{index}",
-            className = "rowExtended stepsRow",
+            className = "stepsRow",
             children = [
 
                 self._buildStepsResult(index = index),
-                self._buildStepStatus(index = index, status = step["status"]),
-                self._buildStepCommand(index = index, command = step["command"]),
-                self._buildStepFlags(index = index, flags = step["flags"])
+                self._buildStepStatus(
+
+                    index = index,
+                    status = step["status"]
+
+                ),
+                self._buildStepCommand(
+
+                    index = index,
+                    command = step["command"],
+                    parameters = step["parameters"]
+
+                ),
+                self._buildStepFlags(
+
+                    index = index,
+                    flags = step["flags"]
+
+                )
 
             ]
 

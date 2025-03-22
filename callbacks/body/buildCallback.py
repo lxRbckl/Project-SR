@@ -24,6 +24,7 @@ class Build:
 
         self.redirectTo = "Run"
         self.clipboardPause = 0.3
+        self.createPauseDuration = 0.75
         self.clipboardNotifyDuration = 5000
 
         self.messageClipboardCopied = "Text was copied from input."
@@ -101,6 +102,7 @@ class Build:
 
                 )
 
+            sleep(self.createPauseDuration)
             return [rProgressMax, rAccordionValue, rStepsChildren, None, rNotificationChildren, rInputError]
 
 

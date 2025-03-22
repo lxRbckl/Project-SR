@@ -47,16 +47,7 @@ class Steps:
     def _addStep(self, entry):
         """  """
 
-        step = {
-
-            "flags": {},
-            "result" : None,
-            "command": None,
-            "message": None,
-            "parameters": None,
-            "status" : "Pending"
-
-        }
+        step = {"flags" : {}, "result" : None, "status" : "Pending"}
         results = [s for s in split(r",\s*", entry.strip().lower()) if s]
         try:
 
@@ -84,7 +75,7 @@ class Steps:
 
         # >
 
-        step["parameters"] = parameters
+        step["parameters"] = parameters.split(" ") if parameters else []
         step["message"] = message
         step["command"] = command
         self.steps.append(step)
