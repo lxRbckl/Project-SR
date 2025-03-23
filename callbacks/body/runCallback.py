@@ -166,7 +166,7 @@ class Run:
          rContinueDisabled = True
          rResutlChildren = resultChildren
 
-         return [False, False, resultChildren]
+         return [rRetryDisabled, rContinueDisabled, rResutlChildren]
 
 
    def onResultChangeCallback(self):
@@ -203,7 +203,7 @@ class Run:
       )
       def func(continueClick, resultChildren, progressValue, accordionValue, stepChildren, statusChildren):
 
-         # increment current step
+         # increment current step on success
 
          print('onResultChangeCallback()')
          print(continueClick, resultChildren, stepChildren, statusChildren)
@@ -216,4 +216,4 @@ class Run:
          rStatusChildren = statusChildren
          rAccordionValue = accordionValue
 
-         return [None, None, None, None, None, None, None]
+         return [rProgressValue, rAccordionValue, rStopDisabled, rContinueDisabled, rStepChildren, rStatusChildren]
