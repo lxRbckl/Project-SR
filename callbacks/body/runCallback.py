@@ -131,6 +131,7 @@ class Run:
          prevent_initial_call = True,
          state = [
 
+            State("runStartButtonId", "disabled"),
             State("buildOptionsMultiSelectId", "values"),
             State({"type" : "result-btn", "index" : ALL}, "children")
 
@@ -151,15 +152,19 @@ class Run:
          ]
 
       )
-      def func(startClick, retryClick, statusChildren, optionsValues, resultChildren):
+      def func(startClick, retryClick, statusChildren, startDisabled, optionsValues, resultChildren):
 
          # run controller command and record result to steps->result
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
          print('onStatusChangeCallback()')
-         print(resultChildren)
+         print(startClick, retryClick, statusChildren, optionsValues, resultChildren)
          print()
+
+         rRetryDisabled = True
+         rContinueDisabled = True
+         rResutlChildren = resultChildren
 
          return [False, False, resultChildren]
 
@@ -172,6 +177,8 @@ class Run:
          prevent_initial_call = True,
          state = [
 
+            State("runProgressId", "value"),
+            State("bodyAccordionId", "value"),
             State({"type" : "step-row", "index" : ALL}, "children"),
             State({"type" : "status-btn", "index" : ALL}, "children"),
 
@@ -187,7 +194,6 @@ class Run:
             Output("runProgressId", "value", allow_duplicate = True),
             Output("bodyAccordionId", "value", allow_duplicate = True),
             Output("runStopButtonId", "disabled", allow_duplicate = True),
-            Output("runCountButtonId", "children", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
             Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
@@ -195,11 +201,19 @@ class Run:
          ]
 
       )
-      def func(continueClick, resultChildren, stepChildren, statusChildren):
+      def func(continueClick, resultChildren, progressValue, accordionValue, stepChildren, statusChildren):
 
          # increment current step
 
          print('onResultChangeCallback()')
+         print(continueClick, resultChildren, stepChildren, statusChildren)
          print()
 
-         return [None, None, None, None, None, None]
+         rStopDisabled = True
+         rContinueDisabled = True
+         rStepChildren = stepChildren
+         rProgressValue = progressValue
+         rStatusChildren = statusChildren
+         rAccordionValue = accordionValue
+
+         return [None, None, None, None, None, None, None]
