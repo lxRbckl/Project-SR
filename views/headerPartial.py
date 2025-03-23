@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (projectName, iconGuide, iconMedia, iconSettings)
+from config import (projectName, iconGuide, iconMedia, iconSettings, projectVersion)
 
 
 class Header:
@@ -30,16 +30,28 @@ class Header:
 
                width = "auto",
                className = "colExtended",
-               children = [
+               children = dmc.Group(
 
-                  html.H1(
+                  gap = 2,
+                  children = [
 
-                     children = projectName,
-                     className = "headerTitleH1"
+                     html.H1(
 
-                  )
+                        children = projectName,
+                        className = "headerTitleH1"
 
-               ]
+                     ),
+                     dmc.Text(
+
+                        size = "xs",
+                        children = projectVersion,
+                        className = "headerVersionText"
+
+                     )
+
+                  ]
+
+               )
 
             ),
             dbc.Col(

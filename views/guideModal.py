@@ -2,7 +2,7 @@ from dash import (html, dcc)
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (guideFilepath, currentVersion)
+from config import (guideFilepath, projectVersion)
 
 
 class Guide:
@@ -26,7 +26,7 @@ class Guide:
          centered = True,
          id = "guideModalId",
          closeOnClickOutside = False,
-         title = f"Guide - Version {currentVersion}",
+         title = f"Guide - Version {projectVersion}",
          children = dcc.Markdown(children = self.filedata, className = "guideMarkdown")
 
       )

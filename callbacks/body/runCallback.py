@@ -1,7 +1,7 @@
 from config import (app, iconWarning)
 
 from time import sleep
-from dash import (Input, Output, State, ctx, ALL, clientside_callback, no_update, ClientsideFunction)
+from dash import (Input, Output, State, ctx, ALL)
 
 
 class Run:
