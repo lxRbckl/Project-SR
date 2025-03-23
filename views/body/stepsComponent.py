@@ -15,18 +15,23 @@ class Steps:
         pass
 
 
-    def setResult(self, result):
+    def setResult(self, result = None):
         """  """
 
-        print('result', result) # remove
         try:
 
-            pass
+            return {
+
+                None : 'none',
+                True : 'true',
+                False : 'false'
+
+            }[result]
 
         except KeyError: return None
 
 
-    def setStatus(self, status):
+    def setStatus(self, status = "Pending"):
         """  """
 
         try:
@@ -47,6 +52,26 @@ class Steps:
         except KeyError: return None
 
 
+    def _buildStepResult(self, index):
+        """  """
+
+        return dbc.Col(
+
+            width = "auto",
+            className = "stepsResultCol",
+            children = dmc.Button(
+
+                disabled = True,
+                size = "compact-sm",
+                children = self.setResult(),
+                id = {"type" : "result-btn", "index" : f"result-{index}"}
+
+
+            )
+
+        )
+
+
     def _buildStepStatus(self, index):
         """  """
 
@@ -58,8 +83,8 @@ class Steps:
 
                 disabled = True,
                 size = "compact-sm",
+                children = self.setStatus(),
                 className = "stepsStatusButton",
-                children = self.setStatus("Pending"),
                 id = {"type" : "status-btn", "index" : f"status-{index}"}
 
             )
@@ -166,19 +191,20 @@ class Steps:
 
         return dbc.Row(
 
-            id = f"step-{index}",
             className = "stepsRow",
+            id = {"type": "step-row", "index": f"step-{index}"},
             children = [
 
-                self._buildStepStatus(index = index),
+                self._buildStepResult(step),
+                self._buildStepStatus(index),
                 self._buildStepCommand(
 
                     command = step["command"],
                     parameters = step["parameters"]
 
                 ),
-                self._buildStepFlags(flags = step["flags"]),
-                self._buildStepMessage(message = step["message"])
+                self._buildStepFlags(step["flags"]),
+                self._buildStepMessage(step["message"])
 
             ]
 

@@ -158,8 +158,7 @@ class Run:
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
          print('onStatusChangeCallback()')
-         print(len(resultChildren), resultChildren) # remove
-         # resultChildren[0] = "ok"
+         print(resultChildren)
          print()
 
          return [False, False, resultChildren]
@@ -173,7 +172,8 @@ class Run:
          prevent_initial_call = True,
          state = [
 
-            State({"type" : "status-btn", "index" : ALL}, "children")
+            State({"type" : "step-row", "index" : ALL}, "children"),
+            State({"type" : "status-btn", "index" : ALL}, "children"),
 
          ],
          inputs = [
@@ -189,12 +189,13 @@ class Run:
             Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runCountButtonId", "children", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
+            Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
             Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
 
          ]
 
       )
-      def func(continueClick, ):
+      def func(continueClick, resultChildren, stepChildren, statusChildren):
 
          # increment current step
 
