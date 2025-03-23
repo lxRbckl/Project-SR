@@ -34,6 +34,7 @@ referencesFilepath = "/assets/references" # <-
 referencesCompleteFilepath = projectDirectory + referencesFilepath
 tesseractCMD = r"C:\Users\aarbuckle\Desktop\Tesseract\tesseract.exe" # <-
 
+
 # Remove once Dash 3.x.x comes out #
 # React conflict, because Dash 2.x.x uses React 16 #
 _dash_renderer._set_react_version('18.2.0')
@@ -54,6 +55,3 @@ app = Dash(
    ]
    
 )
-
-
-#                            ,

@@ -10,6 +10,7 @@ class Steps:
         self.steps = []
         self.totalSteps = 0
         self.currentStep = 0
+        self.isRunning = True
 
         self.ignoreAlerts = False
         self.overrideInputs = False

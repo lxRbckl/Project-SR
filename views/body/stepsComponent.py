@@ -1,9 +1,9 @@
-from config import iconPending
-
 from dash import html
 from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
+
+from config import (iconPending, iconRunning, iconCompleted)
 
 
 class Steps:
@@ -13,6 +13,43 @@ class Steps:
         """  """
 
         pass
+
+
+    def setStatus(self, status):
+        """  """
+
+        try:
+
+            return dmc.Group(
+
+                gap = 4,
+                children = [
+
+                    DashIconify(
+
+                        width = 18,
+                        icon = {
+
+                            "pending" : iconPending,
+                            "running" : iconRunning,
+                            "completed" : iconCompleted
+
+                        }[status.lower()]
+
+                    ),
+                    dmc.Text(
+
+                        fw = 500,
+                        size = "xs",
+                        children = status,
+
+                    )
+
+                ]
+
+            )
+
+        except KeyError: return None
 
 
     def _buildStepsResult(self, index):
@@ -47,7 +84,7 @@ class Steps:
                 disabled = True,
                 size = "compact-sm",
                 className = "stepsStatusButton",
-                children = DashIconify(width = 18, icon = iconPending),
+                children = self.setStatus("Pending"),
                 id = {"type" : "status-btn", "index" : f"status-{index}"}
 
             )

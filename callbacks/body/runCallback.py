@@ -10,11 +10,11 @@ class Run:
    def __init__(self, notifier, controller, stepsModel, stepsComponent):
       """  """
 
-      # self.stopOnClickCallback()
-      self.onStepChangeCallback()
+      self.stopOnClickCallback()
+      # self.onStepChangeCallback()
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
-      # self.onStatusChangeCallback()
+      self.onStatusChangeCallback()
       # self.onResultChangeCallback()
 
       self.notifier = notifier
@@ -22,7 +22,6 @@ class Run:
       self.controller = controller
       self.stepsComponent = stepsComponent
 
-      self.isRunning = True
       self.redirectTo = "Result"
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
@@ -91,7 +90,7 @@ class Run:
       )
       def func(stopClick):
 
-         self.isRunning = False
+         self.stepsModel.isRunning = False
          return self.redirectTo
 
 
@@ -117,12 +116,6 @@ class Run:
       )
 
 
-
-
-
-
-
-
    def onStatusChangeCallback(self):
       """  """
 
@@ -131,7 +124,8 @@ class Run:
          prevent_initial_call = True,
          state = [
 
-            State("buildOptionsMultiSelectId", "values")
+            State("buildOptionsMultiSelectId", "values"),
+            State({"type" : "result-btn", "index" : ALL}, "children")
 
          ],
          inputs = [
@@ -145,51 +139,18 @@ class Run:
 
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
-            Output({"type": "result-btn", "index": ALL}, "children", allow_duplicate = True)
+            Output({"type" : "result-btn", "index" : ALL}, "children", allow_duplicate = True)
 
          ]
 
       )
-      def func(*args):
+      def func(startClick, retryClick, statusChildren, optionsValues, resultChildren):
 
          # run controller command and record result to steps->result
-         # document.getElementById("step-5").scrollIntoView({behavior: "smooth"})
-
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
-         print('onStatusChangeCallback()', args) # remove
-
-         while (self.isRunning):
-
-            return [None, None, None]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+         return [None, None, None]
 
 
    def onResultChangeCallback(self):
@@ -198,6 +159,11 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
+         state = [
+
+            State({"type" : "status-btn", "index" : ALL}, "children")
+
+         ],
          inputs = [
 
             Input("runContinueButtonId", "n_clicks"),
@@ -211,31 +177,13 @@ class Run:
             Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runCountButtonId", "children", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
-            Output({"type": "status-btn", "index": ALL}, "children", allow_duplicate = True)
+            Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
 
          ]
 
       )
-      def func(*args):
+      def func(continueClick, ):
 
          # increment current step
-         print('onResultChangeCallback()', args) # remove
 
-         while (self.isRunning):
-
-            return [None, None, None, None, None, None]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+         return [None, None, None, None, None, None]
