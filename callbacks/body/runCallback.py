@@ -1,5 +1,6 @@
 from config import (app, iconWarning)
 
+from dash import html
 from time import sleep
 from dash import (Input, Output, State, ctx, ALL)
 
@@ -24,6 +25,12 @@ class Run:
 
       self.redirectTo = "Result"
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
+
+      self.run = {
+
+
+
+      }
 
 
    def stepsOnInputCallback(self):
@@ -150,7 +157,12 @@ class Run:
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
-         return [None, None, None]
+         print('onStatusChangeCallback()')
+         print(len(resultChildren), resultChildren) # remove
+         # resultChildren[0] = "ok"
+         print()
+
+         return [False, False, resultChildren]
 
 
    def onResultChangeCallback(self):
@@ -185,5 +197,8 @@ class Run:
       def func(continueClick, ):
 
          # increment current step
+
+         print('onResultChangeCallback()')
+         print()
 
          return [None, None, None, None, None, None]

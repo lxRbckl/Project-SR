@@ -2,14 +2,9 @@
    padding: 0;
    margin: 5px 0 0 0;
    border: var(--borderGray);
+   background-color: var(--colorGreen);
    border-radius: var(--borderRadius);
-}
-
-.stepsResultCol {
-   margin: 0;
-   padding: 0;
-   width: 30px;
-   border-right: var(--borderGray);
+   transition: background-color 0.5s ease;
 }
 
 .stepsResultButton {
@@ -29,7 +24,6 @@
    padding: 2px;
    color: var(--colorBlack);
    border: var(--borderGray);
-   background-color: var(--colorGray);
 }
 
 .stepsCommandCol {
@@ -69,5 +63,6 @@
 
 .stepsMessageTextarea {
    margin: 5px;
-   color: var(--colorBlack);
+   background-color: white;
+   border-radius: var(--borderRadius);
 }

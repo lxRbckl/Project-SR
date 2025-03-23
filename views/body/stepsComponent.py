@@ -15,61 +15,36 @@ class Steps:
         pass
 
 
+    def setResult(self, result):
+        """  """
+
+        print('result', result) # remove
+        try:
+
+            pass
+
+        except KeyError: return None
+
+
     def setStatus(self, status):
         """  """
 
         try:
 
-            return dmc.Group(
+            return DashIconify(
 
-                gap = 4,
-                children = [
+                width = 18,
+                icon = {
 
-                    DashIconify(
+                    "Pending" : iconPending,
+                    "Running" : iconRunning,
+                    "Completed" : iconCompleted
 
-                        width = 18,
-                        icon = {
-
-                            "pending" : iconPending,
-                            "running" : iconRunning,
-                            "completed" : iconCompleted
-
-                        }[status.lower()]
-
-                    ),
-                    dmc.Text(
-
-                        fw = 500,
-                        size = "xs",
-                        children = status,
-
-                    )
-
-                ]
+                }[status]
 
             )
 
         except KeyError: return None
-
-
-    def _buildStepsResult(self, index):
-        """  """
-
-        return dbc.Col(
-
-            width = "auto",
-            className = "stepsResultCol",
-            children = dmc.Button(
-
-                children = None,
-                disabled = True,
-                size = "compact-sm",
-                className = "stepsResultButton",
-                id = {"type" : "result-btn", "index" : f"result-{index}"}
-
-            )
-
-        )
 
 
     def _buildStepStatus(self, index):
@@ -195,7 +170,6 @@ class Steps:
             className = "stepsRow",
             children = [
 
-                self._buildStepsResult(index = index),
                 self._buildStepStatus(index = index),
                 self._buildStepCommand(
 
