@@ -1,4 +1,4 @@
-## Installation
+## Install
 `echo @echo off > installer.bat`
 ```
 @echo off
@@ -16,6 +16,15 @@ git clone %REPO_URL% %DIR%
 %PYTHON% -m pip install -r "%DIR%\requirements.txt"
 
 pause
+```
+
+## Run
+`echo @echo off > run.bat`
+```
+set "DIR=Project-SR"
+set "PYTHON=%cd%\Python3.9.0\python.exe"
+
+%PYTHON% "%DIR%\app.py"
 ```
 
 ### Develop
