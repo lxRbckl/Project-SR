@@ -91,10 +91,15 @@ class Run:
 
          prevent_initial_call = True,
          inputs = Input("runStopButtonId", "n_clicks"),
-         output = Output("runStartButtonId", "loading")
+         output = [
+
+            Output("runStartButtonId", "loading"),
+            Output("runStartButtonId", "n_clicks")
+
+         ]
 
       )
-      def func(stopClick): return False
+      def func(stopClick): return [False, 0]
 
 
    def onStepChangeCallback(self):
@@ -161,13 +166,21 @@ class Run:
          rResutlChildren = resultChildren
          rContinueDisabled = continueDisabled
 
+         if (startClick == 1): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
 
             rStartLoading = True
             result = self.stepsModel.runStep()
-            print('result', result) # remove
 
+            # if (failure) <
+            # else (then success) <
+            if (result):
 
+               pass
+
+            else: pass
+
+            # >
 
          return [rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
 
