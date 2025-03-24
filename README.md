@@ -1,10 +1,15 @@
 ## Installation
 
 ```
+# development
 python3 -m venv venv
 mac: source .venv/bin/activate
 windows: .\venv\Scripts\activate
 pip3 install -r requirements.txt
+
+# updating Python pip
+Python3.9.0/python -m ensurepip --upgrade
+Python3.9.0/python -m pip --version
 ```
 
 ```
@@ -13,7 +18,7 @@ icons https://iconify.design/
 dmc https://www.dash-mantine-components.com/
 dbc https://dash-bootstrap-components.opensource.faculty.ai/
 pytesseract https://pypi.org/project/pytesseract/
-tesseract tesseract-ocr-w64-setup-5.5.0.20241111.exe https://github.com/UB-Mannheim/tesseract/wiki
+tesseract 5.5.0 tesseract-ocr-w64-setup-5.5.0.20241111.exe https://github.com/UB-Mannheim/tesseract/wiki
 ```
 
 ---
