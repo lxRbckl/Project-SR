@@ -99,16 +99,26 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = Input("runStopButtonId", "n_clicks"),
+         state = State("runStartButtonId", "loading"),
+         inputs = [
+
+            Input("runStopButtonId", "n_clicks"),
+            Input("runStartButtonId", "disabled")
+
+         ],
          output = [
 
             Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
-            Output("bodyAccordionId", "value", allow_duplicate = True)
+            Output("bodyAccordionId", "value", allow_duplicate = True),
+
          ]
 
       )
-      def func(stopClick): return [True, False, self.redirectTo]
+      def func(stopClick, startDisabled, startLoading):
+
+         return [True, False, self.redirectTo]
+         # return [(startLoading == False), False, self.redirectTo] # fallback
 
 
    def onStepChangeCallback(self):
@@ -142,7 +152,6 @@ class Run:
          state = [
 
             State("runStartButtonId", "loading"),
-            State("runStopButtonId", "disabled"),
             State("runRetryButtonId", "disabled"),
             State("runContinueButtonId", "disabled"),
             State("buildOptionsMultiSelectId", "values"),
@@ -167,13 +176,12 @@ class Run:
          ]
 
       )
-      def func(startClick, retryClick, statusChildren, startLoading, stopDisabled, retryDisabled, continueDisabled, optionsValues, resultChildren):
+      def func(startClick, retryClick, statusChildren, startLoading, retryDisabled, continueDisabled, optionsValues, resultChildren):
 
          # run controller command, record results back to stepsModel object
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
-         rStopDisabled = stopDisabled
          rStartLoading = startLoading
          rRetryDisabled = retryDisabled
          rResutlChildren = resultChildren
@@ -196,7 +204,11 @@ class Run:
             rStartLoading = True
             rStopDisabled = False
 
-         return [rStopDisabled, rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
+         if ()
+
+
+
+         return [rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
 
 
    def onResultChangeCallback(self):
@@ -208,7 +220,6 @@ class Run:
          state = [
 
             State("runProgressId", "value"),
-            State("bodyAccordionId", "value"),
             State("runStartButtonId", "loading"),
             State({"type" : "step-row", "index" : ALL}, "children"),
             State({"type" : "status-btn", "index" : ALL}, "children")
@@ -223,8 +234,6 @@ class Run:
          output = [
 
             Output("runProgressId", "value", allow_duplicate = True),
-            Output("bodyAccordionId", "value", allow_duplicate = True),
-            Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
@@ -233,27 +242,27 @@ class Run:
          ]
 
       )
-      def func(continueClick, resultChildren, startLoading, progressValue, accordionValue, stepChildren, statusChildren):
+      def func(continueClick, resultChildren, progressValue, startLoading, stepChildren, statusChildren):
 
          # increment current step on success
 
-         rStopDisabled = True
          rContinueDisabled = True
          rStartLoading = startLoading
          rStepChildren = stepChildren
          rProgressValue = progressValue
          rStatusChildren = statusChildren
-         rAccordionValue = accordionValue
 
          print('onResultChangeCallback()')
          print(
 
             '\ncontinueClick', continueClick,
             '\nresultChildren', resultChildren,
+            '\nprogressValue', progressValue,
+            '\nstartLoading', startLoading,
             '\nstepChildren', stepChildren,
             '\nstatusChildren', statusChildren,
             '\n---\n'
 
          )
 
-         return [rProgressValue, rAccordionValue, rStopDisabled, rStartLoading, rContinueDisabled, rStepChildren, rStatusChildren]
+         return [rProgressValue, rStartLoading, rContinueDisabled, rStepChildren, rStatusChildren]

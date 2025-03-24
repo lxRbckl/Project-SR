@@ -75,6 +75,7 @@ class Run:
                      dmc.Button(
 
                         size = "xs",
+                        loading = False,
                         disabled = True,
                         children = "Start",
                         id = "runStartButtonId",
