@@ -23,7 +23,7 @@ class Run:
       self.controller = controller
       self.stepsComponent = stepsComponent
 
-      self.redirectTo = "Result"
+      self.redirectTo = "Run"
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
       self.run = {
@@ -75,14 +75,22 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
+
          inputs = Input("runWindowSelectId", "value"),
-         output = Output("runStartButtonId", "disabled", allow_duplicate = True)
+         output = [
+
+            Output("runStartButtonId", "loading", allow_duplicate = True),
+            Output("runStartButtonId", "disabled", allow_duplicate = True)
+
+         ]
 
       )
       def func(windowValue):
 
+         print('windowOnValueCallback()', windowValue) # remove
+
          if (windowValue): self.controller.setWindow(windowValue)
-         return (windowValue == None)
+         return [False, (windowValue == None)]
 
 
    def stopOnClickCallback(self):
@@ -91,19 +99,16 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         # state = State("runStartButtonId", "loading"),
          inputs = Input("runStopButtonId", "n_clicks"),
          output = [
 
-            Output("bodyAccordionId", "value", allow_duplicate = True),
-            Output("runStartButtonId", "loading", allow_duplicate = True)
+            Output("runStopButtonId", "disabled", allow_duplicate = True),
+            Output("runStartButtonId", "loading", allow_duplicate = True),
+            Output("bodyAccordionId", "value", allow_duplicate = True)
          ]
 
       )
-      def func(stopClick, startLoading):
-
-         self.stepsModel.isRunning = False
-         return [self.redirectTo, False]
+      def func(stopClick): return [True, False, self.redirectTo]
 
 
    def onStepChangeCallback(self):
@@ -137,8 +142,11 @@ class Run:
          state = [
 
             State("runStartButtonId", "loading"),
+            State("runStopButtonId", "disabled"),
+            State("runRetryButtonId", "disabled"),
+            State("runContinueButtonId", "disabled"),
             State("buildOptionsMultiSelectId", "values"),
-            State({"type" : "result-btn", "index" : ALL}, "children")
+            State({"type" : "result-btn", "index" : ALL}, "children"),
 
          ],
          inputs = [
@@ -150,6 +158,7 @@ class Run:
          ],
          output = [
 
+            Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
@@ -158,16 +167,17 @@ class Run:
          ]
 
       )
-      def func(startClick, retryClick, statusChildren, startLoading, optionsValues, resultChildren):
+      def func(startClick, retryClick, statusChildren, startLoading, stopDisabled, retryDisabled, continueDisabled, optionsValues, resultChildren):
 
          # run controller command, record results back to stepsModel object
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
-         rRetryDisabled = True
-         rContinueDisabled = True
+         rStopDisabled = stopDisabled
          rStartLoading = startLoading
+         rRetryDisabled = retryDisabled
          rResutlChildren = resultChildren
+         rContinueDisabled = continueDisabled
 
          print('onStatusChangeCallback()')
          print(
@@ -181,9 +191,12 @@ class Run:
 
          )
 
-         # if ()
+         if (startClick > 0):
 
-         return [rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
+            rStartLoading = True
+            rStopDisabled = False
+
+         return [rStopDisabled, rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
 
 
    def onResultChangeCallback(self):
@@ -198,7 +211,7 @@ class Run:
             State("bodyAccordionId", "value"),
             State("runStartButtonId", "loading"),
             State({"type" : "step-row", "index" : ALL}, "children"),
-            State({"type" : "status-btn", "index" : ALL}, "children"),
+            State({"type" : "status-btn", "index" : ALL}, "children")
 
          ],
          inputs = [
@@ -211,8 +224,8 @@ class Run:
 
             Output("runProgressId", "value", allow_duplicate = True),
             Output("bodyAccordionId", "value", allow_duplicate = True),
-            Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runStopButtonId", "disabled", allow_duplicate = True),
+            Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
             Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
@@ -243,4 +256,4 @@ class Run:
 
          )
 
-         return [rProgressValue, rAccordionValue, rStartLoading, rStopDisabled, rContinueDisabled, rStepChildren, rStatusChildren]
+         return [rProgressValue, rAccordionValue, rStopDisabled, rStartLoading, rContinueDisabled, rStepChildren, rStatusChildren]
