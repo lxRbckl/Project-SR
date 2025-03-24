@@ -83,6 +83,7 @@ class Build:
         )
         def func(createClick, accordionValue, stepsChildren, textareaValue):
 
+            # rStopNClick = 0
             rProgressMax = 0
             rStartNClick = 0
             rWindowValue = None

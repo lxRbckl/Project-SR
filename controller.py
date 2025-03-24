@@ -65,6 +65,24 @@ class Controller:
         self.errorMouseDirection = "Mouse direction does not exist. Consider adjusting direction."
         self.errorScrollDirection = "Scroll direction does not exist. Consider adjusting direction."
 
+        self.flags = {
+
+            "alert" : False,
+            "pause" : False,
+            "skip" : False
+
+        }
+        self.commands = {
+
+            "find" : self.find,
+            "wait" : self.wait,
+            "click" : self.click,
+            "mouse" : self.mouse,
+            "scroll" : self.scroll,
+            "keyboard" : self.keyboard
+
+        }
+
 
     def setWindow(self, title):
         """  """
@@ -111,12 +129,6 @@ class Controller:
             # >
 
         return list(returnWindows.values())
-
-
-    def activateWindow(self):
-        """  """
-
-        pass
 
 
     def takeScreenshot(self):
@@ -210,8 +222,6 @@ class Controller:
         else: results = self._findText(text = asset)
 
         # >
-
-        print('results', results) # remove
 
         try:
 

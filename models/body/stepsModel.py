@@ -4,37 +4,20 @@ from re import split
 class Steps:
 
 
-    def __init__(self):
+    def __init__(self, controller):
         """  """
+
+        self.controller = controller
 
         self.steps = []
         self.totalSteps = 0
         self.currentStep = 0
-
         self.ignoreAlerts = False
         self.overrideInputs = False
 
         self.errorOnSteps = "Invalid input."
         self.errorInvalidFlag = lambda f: f"Flag \"{f}\" not recognized."
         self.errorInvalidCommand = lambda c: f"Command \"{c}\" not recognized."
-
-        self.flags = {
-
-            "alert" : False,
-            "pause" : False,
-            "skip" : False
-
-        }
-        self.commands = [
-
-            "find",
-            "wait",
-            "click",
-            "mouse",
-            "scroll",
-            "keyboard"
-
-        ]
 
 
     def _clearSteps(self):
@@ -48,7 +31,7 @@ class Steps:
     def _addStep(self, entry):
         """  """
 
-        step = {"flags" : {**self.flags}, "result" : None, "status" : "Pending"}
+        step = {"flags" : {**self.controller.flags}, "result" : None, "status" : "Pending"}
         results = [s for s in split(r",\s*", entry.strip().lower()) if s]
         try:
 
@@ -69,10 +52,10 @@ class Steps:
 
             for f in [f.lower() for f in flags.split(" ")]:
 
-                if (f in self.flags): step["flags"][f] = True
+                if (f in self.controller.flags): step["flags"][f] = True
                 else: return self.errorInvalidFlag(f)
 
-        if (command not in self.commands): return self.errorInvalidCommand(command)
+        if (command not in self.controller.commands): return self.errorInvalidCommand(command)
 
         # >
 
@@ -105,3 +88,16 @@ class Steps:
             # >
 
         # >
+
+
+    def runStep(self, step):
+        """  """
+
+        try:
+
+            self.controller.commands[step["command"]](step["parameters"])
+
+        except Exception as e:
+
+            print('exception', e) # remove
+            return False

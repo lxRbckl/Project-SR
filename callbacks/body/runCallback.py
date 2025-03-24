@@ -16,7 +16,7 @@ class Run:
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
       self.onStatusChangeCallback() # <-
-      # self.onResultChangeCallback() # <-
+      self.onResultChangeCallback() # <-
 
       self.notifier = notifier
       self.stepsModel = stepsModel
@@ -25,12 +25,6 @@ class Run:
 
       self.redirectTo = "Run"
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
-
-      self.run = {
-
-
-
-      }
 
 
    def stepsOnInputCallback(self):
@@ -90,48 +84,17 @@ class Run:
          if (windowValue): self.controller.setWindow(windowValue)
          return [False, (windowValue == None)]
 
-
    def stopOnClickCallback(self):
       """  """
 
       @app.callback(
 
          prevent_initial_call = True,
-         state = [
-
-            State("runStopButtonId", "disabled"),
-            State("runStartButtonId", "loading"),
-            State("bodyAccordionId", "value")
-
-         ],
-         inputs = [
-
-            Input("runStopButtonId", "n_clicks"),
-            Input("runStartButtonId", "disabled")
-
-         ],
-         output = [
-
-            Output("runStopButtonId", "disabled", allow_duplicate = True),
-            Output("runStartButtonId", "loading", allow_duplicate = True),
-            Output("bodyAccordionId", "value", allow_duplicate = True)
-
-         ]
+         inputs = Input("runStopButtonId", "n_clicks"),
+         output = Output("runStartButtonId", "loading")
 
       )
-      def func(stopClick, startDisabled, stopDisabled, startLoading, accordionValue):
-
-         rStopDisabled = stopDisabled
-         rStartLoading = startLoading
-         rAccordionValue = accordionValue
-
-         if (stopClick > 0):
-
-            rStopDisabled = True
-            rStartLoading = False
-            rAccordionValue = self.redirectTo
-
-         return [rStopDisabled, rStartLoading, rAccordionValue]
+      def func(stopClick): return False
 
 
    def onStepChangeCallback(self):
@@ -165,9 +128,7 @@ class Run:
          state = [
 
             State("runStartButtonId", "loading"),
-            State("runRetryButtonId", "disabled"),
             State("runContinueButtonId", "disabled"),
-            State("buildOptionsMultiSelectId", "values"),
             State({"type" : "result-btn", "index" : ALL}, "children"),
 
          ],
@@ -188,33 +149,25 @@ class Run:
          ]
 
       )
-      def func(startClick, retryClick, statusChildren, startLoading, retryDisabled, continueDisabled, optionsValues, resultChildren):
+      # def func(startClick, retryClick, startLoading, retryDisabled, continueDisabled, resultChildren):
+      def func(startClick, retryClick, statusChildren, startLoading, continueDisabled, resultChildren):
 
          # run controller command, record results back to stepsModel object
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
+         rRetryDisabled = True
          rStartLoading = startLoading
-         rRetryDisabled = retryDisabled
          rResutlChildren = resultChildren
          rContinueDisabled = continueDisabled
 
-         # print('onStatusChangeCallback()')
-         # print(
-         #
-         #    '\nstartClick', startClick,
-         #    '\nretryClick', retryClick,
-         #    '\nstatusChildren', statusChildren,
-         #    '\noptionsValue', optionsValues,
-         #    '\nresultChildren', resultChildren,
-         #    '\n---\n'
-         #
-         # )
-
          if ((startClick > 0) or rStartLoading):
 
-            print('TRIGGERED') # REMOVE
             rStartLoading = True
+            command = self.stepsModel.steps[self.stepsModel.currentStep]["command"]
+            parameters = self.stepsModel.steps[self.stepsModel.currentStep]["parameters"]
+
+            print('command', command, '\nparameters', parameters) # remove
 
          return [rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
 
@@ -229,6 +182,7 @@ class Run:
 
             State("runProgressId", "value"),
             State("runStartButtonId", "loading"),
+            State("buildOptionsMultiSelectId", "values"),
             State({"type" : "step-row", "index" : ALL}, "children"),
             State({"type" : "status-btn", "index" : ALL}, "children")
 
@@ -243,36 +197,29 @@ class Run:
 
             Output("runProgressId", "value", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
-            Output("runStopButtonId", "n_clicks", allow_duplicate = True),
+            Output("notificationDiv", "children", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
-            Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
+            Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True),
 
          ]
 
       )
-      def func(continueClick, resultChildren, progressValue, startLoading, stepChildren, statusChildren):
+      def func(continueClick, resultChildren, progressValue, startLoading, optionsValues, stepChildren, statusChildren):
 
          # increment current step on success
 
-         rStopNClicks = 0
          rContinueDisabled = True
          rStartLoading = startLoading
          rStepChildren = stepChildren
+         rNotificationChildren = None
          rProgressValue = progressValue
          rStatusChildren = statusChildren
 
-         # print('onResultChangeCallback()')
-         # print(
-         #
-         #    '\ncontinueClick', continueClick,
-         #    '\nresultChildren', resultChildren,
-         #    '\nprogressValue', progressValue,
-         #    '\nstartLoading', startLoading,
-         #    '\nstepChildren', stepChildren,
-         #    '\nstatusChildren', statusChildren,
-         #    '\n---\n'
-         #
-         # )
+         if (startLoading):
 
-         return [rProgressValue, rStartLoading, rStopNClicks, rContinueDisabled, rStepChildren, rStatusChildren]
+            print('TRIGGERED') # REMOVE
+            flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
+
+
+         return [rProgressValue, rStartLoading, rNotificationChildren, rContinueDisabled, rStepChildren, rStatusChildren]

@@ -27,11 +27,11 @@ from views.notificationComponent import Notification as notificationComponent
 
 
 # register shared objects
-stepsModel = stepsModel()
 controller = Controller()
 stepsComponent = stepsComponent()
 notifier = notificationComponent()
 referencesModal = referencesModal()
+stepsModel = stepsModel(controller)
 
 
 # register views

@@ -120,7 +120,7 @@ class Run:
 
                      size = "xs",
                      n_clicks = 0,
-                     disabled = True,
+                     disabled = False, # <- repair
                      children = "Stop",
                      id = "runStopButtonId",
                      className = "runStopButton"
