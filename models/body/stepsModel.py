@@ -19,12 +19,13 @@ class Steps:
         self.errorInvalidFlag = lambda f: f"Flag \"{f}\" not recognized."
         self.errorInvalidCommand = lambda c: f"Command \"{c}\" not recognized."
 
-        self.flags = [
+        self.flags = {
 
-            "alert",
-            "pause"
+            "alert" : False,
+            "pause" : False,
+            "skip" : False
 
-        ]
+        }
         self.commands = [
 
             "find",
@@ -48,7 +49,7 @@ class Steps:
     def _addStep(self, entry):
         """  """
 
-        step = {"flags" : {}, "result" : None, "status" : "Pending"}
+        step = {"flags" : {**self.flags}, "result" : None, "status" : "Pending"}
         results = [s for s in split(r",\s*", entry.strip().lower()) if s]
         try:
 
@@ -67,7 +68,7 @@ class Steps:
         # check command <
         if (flags):
 
-            for f in flags.split(" "):
+            for f in [f.lower() for f in flags.split(" ")]:
 
                 if (f in self.flags): step["flags"][f] = True
                 else: return self.errorInvalidFlag(f)

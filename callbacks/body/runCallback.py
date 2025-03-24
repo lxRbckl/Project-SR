@@ -12,11 +12,11 @@ class Run:
       """  """
 
       self.stopOnClickCallback()
-      # self.onStepChangeCallback()
+      # self.onStepChangeCallback() # <-
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
-      self.onStatusChangeCallback()
-      # self.onResultChangeCallback()
+      # self.onStatusChangeCallback() # <-
+      # self.onResultChangeCallback() # <-
 
       self.notifier = notifier
       self.stepsModel = stepsModel

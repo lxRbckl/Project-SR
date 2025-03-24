@@ -114,7 +114,7 @@ class Steps:
                         dmc.Text(
 
                             size = "xs",
-                            children = p,
+                            children = p.title(),
                             className = "stepsParameterText"
 
                         )
@@ -133,7 +133,7 @@ class Steps:
     def _buildStepFlags(self, flags):
         """  """
 
-        if (flags):
+        if (list(flags.values()).count(True) > 0):
 
             return dbc.Col(
 
@@ -154,7 +154,7 @@ class Steps:
 
                         )
 
-                    for kf, kv in flags.items()]
+                    for kf, kv in flags.items() if kv]
 
                 )
 
