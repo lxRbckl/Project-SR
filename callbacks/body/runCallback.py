@@ -164,14 +164,10 @@ class Run:
          if ((startClick > 0) or rStartLoading):
 
             rStartLoading = True
-            result = self.stepsModel.runStep(
-
-               command = self.stepsModel.steps[self.stepsModel.currentStep]["command"],
-               parameters = self.stepsModel.steps[self.stepsModel.currentStep]["parameters"]
-
-            )
-
+            result = self.stepsModel.runStep()
             print('result', result) # remove
+
+
 
          return [rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
 

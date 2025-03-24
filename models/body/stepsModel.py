@@ -62,10 +62,7 @@ class Steps:
 
         # if (invalid input) <
         # else (then parsable) <
-        if (len(steps.strip().split(",")[0]) == 0):
-
-            return self.errorOnSteps
-
+        if (len(steps.strip().split(",")[0]) == 0): return self.errorOnSteps
         else:
 
             # iterate (cleaned steps) <
@@ -79,11 +76,11 @@ class Steps:
         # >
 
 
-    def runStep(self, command, parameters):
+    def runStep(self):
         """  """
 
-        print('command', command) # remove
-        print('parameters', parameters) # remove
+        command = self.steps[self.currentStep]["command"]
+        parameters = self.steps[self.currentStep]["parameters"]
 
         a, b, c, d = (parameters + [None] * 4)[:4]
         return self.controller.commands[command](a, b, c, d)
