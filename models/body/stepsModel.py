@@ -33,18 +33,7 @@ class Steps:
 
         step = {"flags" : {**self.controller.flags}, "result" : None, "status" : "Pending"}
         results = [s for s in split(r",\s*", entry.strip().lower()) if s]
-        try:
-
-            command, parameters, flags, message = {
-
-                1 : lambda : (results[0], None, None, None),
-                2 : lambda : (results[0], results[1], None, None),
-                3 : lambda : (results[0], results[1], results[2], None),
-                4 : lambda : (results[0], results[1], results[2], results[3])
-
-            }[len(results)]()
-
-        except IndexError: raise IndexError
+        command, parameters, flags, message = (results + [None] * 4)[:4]
 
         # check flags <
         # check command <
@@ -93,11 +82,5 @@ class Steps:
     def runStep(self, step):
         """  """
 
-        try:
-
-            self.controller.commands[step["command"]](step["parameters"])
-
-        except Exception as e:
-
-            print('exception', e) # remove
-            return False
+        a, b, c, d = (step["parameters"] + [None] * 4)[:4]
+        return self.controller.commands[step["command"]](a, b, c, d)

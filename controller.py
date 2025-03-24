@@ -74,12 +74,14 @@ class Controller:
         }
         self.commands = {
 
+            # "date": self.date,
             "find" : self.find,
             "wait" : self.wait,
             "click" : self.click,
             "mouse" : self.mouse,
             "scroll" : self.scroll,
-            "keyboard" : self.keyboard
+            "keyboard" : self.keyboard,
+            "update": self.takeScreenshot
 
         }
 
@@ -131,7 +133,7 @@ class Controller:
         return list(returnWindows.values())
 
 
-    def takeScreenshot(self):
+    def takeScreenshot(self, *args):
         """  """
 
         self.screenshot = screenshot(
@@ -204,8 +206,11 @@ class Controller:
         except ImageNotFoundException: return self.errorImageNotFound
 
 
-    def find(self, asset, index = None):
+    def find(self, asset, index = None, *args):
         """  """
+
+        print('asset', asset) # remove
+        print('index', index) # remove
 
         try: index = int(index) if index else self.defaultFindIndex
         except ValueError: return self.errorFindIndex
@@ -239,20 +244,20 @@ class Controller:
         except IndexError: return self.errorFindIndex
 
 
-    def keyboard(self, message):
+    def keyboard(self, message, *args):
         """  """
 
         write(message = message)
 
 
-    def wait(self, duration = None):
+    def wait(self, duration = None, *args):
         """  """
 
         try: sleep(seconds = int(duration) if duration else self.defaultWaitDuration)
         except ValueError: return self.errorWaitDuration
 
 
-    def scroll(self, direction, distance = None):
+    def scroll(self, direction, distance = None, *args):
         """  """
 
         try:
@@ -269,14 +274,14 @@ class Controller:
         except KeyError: return self.errorScrollDirection
 
 
-    def click(self, multiple = None):
+    def click(self, multiple = None, *args):
         """  """
 
         try: click(clicks = int(multiple) if multiple else self.defaultClickMultiple)
         except ValueError: return self.errorClickMultiple
 
 
-    def mouse(self, direction, distance = None):
+    def mouse(self, direction, distance = None, *args):
         """  """
 
         try:
@@ -298,7 +303,7 @@ class Controller:
         except KeyError: return self.errorMouseDirection
 
 
-    def date(self, month, day, year):
+    def date(self, month, day, year, *args):
         """  """
 
         pass
