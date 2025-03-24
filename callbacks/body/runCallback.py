@@ -87,8 +87,6 @@ class Run:
       )
       def func(windowValue):
 
-         print('windowOnValueCallback()', windowValue) # remove
-
          if (windowValue): self.controller.setWindow(windowValue)
          return [False, (windowValue == None)]
 

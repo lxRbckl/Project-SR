@@ -119,6 +119,7 @@ class Run:
                   dmc.Button(
 
                      size = "xs",
+                     n_clicks = 0,
                      disabled = True,
                      children = "Stop",
                      id = "runStopButtonId",
