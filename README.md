@@ -1,4 +1,4 @@
-## Install
+## Installation
 `echo @echo off > installer.bat`
 ```
 @echo off
@@ -18,7 +18,7 @@ git clone %REPO_URL% %DIR%
 pause
 ```
 
-## Develop
+### Develop
 ```
 python3 -m venv venv
 mac: source .venv/bin/activate
@@ -26,9 +26,9 @@ windows: .\venv\Scripts\activate
 pip3 install -r requirements.txt
 ```
 
-## Maintenance
-> updating python pip
+### Maintenance
 ```
+# updating python pip
 Python3.9.0/python -m ensurepip --upgrade
 Python3.9.0/python -m pip --version
 ```
