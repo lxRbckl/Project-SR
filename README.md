@@ -17,3 +17,17 @@ tesseract tesseract-ocr-w64-setup-5.5.0.20241111.exe https://github.com/UB-Mannh
 ```
 
 ---
+
+`echo @echo off > installer.bat`
+```
+set "DIR=Project-SR"
+set "REPO_URL=https://github.com/lxRbckl/Project-SR.git"
+
+if exist "%DIR%" (
+    rmdir /s /q "%DIR%"
+)
+
+echo Cloning repository from %REPO_URL%
+git clone %REPO_URL% %DIR%
+
+```
