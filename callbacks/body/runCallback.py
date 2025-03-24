@@ -137,7 +137,6 @@ class Run:
          state = [
 
             State("runStartButtonId", "loading"),
-            State("runStartButtonId", "disabled"),
             State("buildOptionsMultiSelectId", "values"),
             State({"type" : "result-btn", "index" : ALL}, "children")
 
@@ -159,7 +158,7 @@ class Run:
          ]
 
       )
-      def func(startClick, retryClick, statusChildren, startLoading, startDisabled, optionsValues, resultChildren):
+      def func(startClick, retryClick, statusChildren, startLoading, optionsValues, resultChildren):
 
          # run controller command, record results back to stepsModel object
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
