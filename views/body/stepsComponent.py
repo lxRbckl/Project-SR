@@ -22,9 +22,9 @@ class Steps:
 
             return {
 
-                None : 'none',
-                True : 'true',
-                False : 'false'
+                None : None,
+                True : True,
+                False : False
 
             }[result]
 

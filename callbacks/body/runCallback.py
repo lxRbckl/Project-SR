@@ -15,7 +15,7 @@ class Run:
       # self.onStepChangeCallback() # <-
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
-      # self.onStatusChangeCallback() # <-
+      self.onStatusChangeCallback() # <-
       # self.onResultChangeCallback() # <-
 
       self.notifier = notifier
@@ -158,13 +158,23 @@ class Run:
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
-         print('onStatusChangeCallback()')
-         print(startClick, retryClick, statusChildren, optionsValues, resultChildren)
-         print()
-
          rRetryDisabled = True
          rContinueDisabled = True
          rResutlChildren = resultChildren
+
+         print('onStatusChangeCallback()')
+         print(
+
+            'startClick', startClick,
+            '\nretryClick', retryClick,
+            '\nstatusChildren', statusChildren,
+            '\noptionsValue', optionsValues,
+            '\nresultChildren', resultChildren,
+            '\n---\n'
+
+         )
+
+         # if ()
 
          return [rRetryDisabled, rContinueDisabled, rResutlChildren]
 
@@ -205,15 +215,22 @@ class Run:
 
          # increment current step on success
 
-         print('onResultChangeCallback()')
-         print(continueClick, resultChildren, stepChildren, statusChildren)
-         print()
-
          rStopDisabled = True
          rContinueDisabled = True
          rStepChildren = stepChildren
          rProgressValue = progressValue
          rStatusChildren = statusChildren
          rAccordionValue = accordionValue
+
+         print('onResultChangeCallback()')
+         print(
+
+            'continueClick', continueClick,
+            '\nresultChildren', resultChildren,
+            '\nstepChildren', stepChildren,
+            '\nstatusChildren', statusChildren,
+            '\n---\n'
+
+         )
 
          return [rProgressValue, rAccordionValue, rStopDisabled, rContinueDisabled, rStepChildren, rStatusChildren]

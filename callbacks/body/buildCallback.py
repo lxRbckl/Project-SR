@@ -75,7 +75,8 @@ class Build:
                 Output("runStepsRowId", "children", allow_duplicate = True),
                 Output("runWindowSelectId", "value", allow_duplicate = True),
                 Output("notificationDiv", "children", allow_duplicate = True),
-                Output("buildInputTextareaId", "error", allow_duplicate = True),
+                Output("runStartButtonId", "n_clicks", allow_duplicate = True),
+                Output("buildInputTextareaId", "error", allow_duplicate = True)
 
             ]
 
@@ -83,6 +84,8 @@ class Build:
         def func(createClick, accordionValue, stepsChildren, textareaValue):
 
             rProgressMax = 0
+            rStartNClick = 0
+            rWindowValue = None
             rNotificationChildren = None
             rStepsChildren = stepsChildren
             rAccordionValue = accordionValue
@@ -103,7 +106,7 @@ class Build:
                 )
 
             sleep(self.createPauseDuration)
-            return [rProgressMax, rAccordionValue, rStepsChildren, None, rNotificationChildren, rInputError]
+            return [rProgressMax, rAccordionValue, rStepsChildren, rWindowValue, rNotificationChildren, rStartNClick, rInputError]
 
 
     def clearOnDisabledCallback(self):
