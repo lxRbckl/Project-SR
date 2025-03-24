@@ -99,7 +99,13 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         state = State("runStartButtonId", "loading"),
+         state = [
+
+            State("runStopButtonId", "disabled"),
+            State("runStartButtonId", "loading"),
+            State("bodyAccordionId", "value")
+
+         ],
          inputs = [
 
             Input("runStopButtonId", "n_clicks"),
@@ -110,15 +116,24 @@ class Run:
 
             Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
-            Output("bodyAccordionId", "value", allow_duplicate = True),
+            Output("bodyAccordionId", "value", allow_duplicate = True)
 
          ]
 
       )
-      def func(stopClick, startDisabled, startLoading):
+      def func(stopClick, startDisabled, stopDisabled, startLoading, accordionValue):
 
-         return [True, False, self.redirectTo]
-         # return [(startLoading == False), False, self.redirectTo] # fallback
+         rStopDisabled = stopDisabled
+         rStartLoading = startLoading
+         rAccordionValue = accordionValue
+
+         if (stopClick > 0):
+
+            rStopDisabled = True
+            rStartLoading = False
+            rAccordionValue = self.redirectTo
+
+         return [rStopDisabled, rStartLoading, rAccordionValue]
 
 
    def onStepChangeCallback(self):
@@ -167,7 +182,6 @@ class Run:
          ],
          output = [
 
-            Output("runStopButtonId", "disabled", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
@@ -187,26 +201,22 @@ class Run:
          rResutlChildren = resultChildren
          rContinueDisabled = continueDisabled
 
-         print('onStatusChangeCallback()')
-         print(
+         # print('onStatusChangeCallback()')
+         # print(
+         #
+         #    '\nstartClick', startClick,
+         #    '\nretryClick', retryClick,
+         #    '\nstatusChildren', statusChildren,
+         #    '\noptionsValue', optionsValues,
+         #    '\nresultChildren', resultChildren,
+         #    '\n---\n'
+         #
+         # )
 
-            '\nstartClick', startClick,
-            '\nretryClick', retryClick,
-            '\nstatusChildren', statusChildren,
-            '\noptionsValue', optionsValues,
-            '\nresultChildren', resultChildren,
-            '\n---\n'
+         if ((startClick > 0) or rStartLoading):
 
-         )
-
-         if (startClick > 0):
-
+            print('TRIGGERED') # REMOVE
             rStartLoading = True
-            rStopDisabled = False
-
-         if ()
-
-
 
          return [rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
 
@@ -235,6 +245,7 @@ class Run:
 
             Output("runProgressId", "value", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
+            Output("runStopButtonId", "n_clicks", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
             Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
@@ -246,23 +257,24 @@ class Run:
 
          # increment current step on success
 
+         rStopNClicks = 0
          rContinueDisabled = True
          rStartLoading = startLoading
          rStepChildren = stepChildren
          rProgressValue = progressValue
          rStatusChildren = statusChildren
 
-         print('onResultChangeCallback()')
-         print(
+         # print('onResultChangeCallback()')
+         # print(
+         #
+         #    '\ncontinueClick', continueClick,
+         #    '\nresultChildren', resultChildren,
+         #    '\nprogressValue', progressValue,
+         #    '\nstartLoading', startLoading,
+         #    '\nstepChildren', stepChildren,
+         #    '\nstatusChildren', statusChildren,
+         #    '\n---\n'
+         #
+         # )
 
-            '\ncontinueClick', continueClick,
-            '\nresultChildren', resultChildren,
-            '\nprogressValue', progressValue,
-            '\nstartLoading', startLoading,
-            '\nstepChildren', stepChildren,
-            '\nstatusChildren', statusChildren,
-            '\n---\n'
-
-         )
-
-         return [rProgressValue, rStartLoading, rContinueDisabled, rStepChildren, rStatusChildren]
+         return [rProgressValue, rStartLoading, rStopNClicks, rContinueDisabled, rStepChildren, rStatusChildren]
