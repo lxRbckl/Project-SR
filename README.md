@@ -1,16 +1,21 @@
 ## Installer
 `echo @echo off > installer.bat`
 ```
+@echo off
+
 set "DIR=Project-SR"
+set "PYTHON=%cd%\Python3.9.0\python.exe"
 set "REPO_URL=https://github.com/lxRbckl/Project-SR.git"
 
 if exist "%DIR%" (
     rmdir /s /q "%DIR%"
 )
 
-echo Cloning repository from %REPO_URL%
 git clone %REPO_URL% %DIR%
 
+%PYTHON% -m pip install -r "%DIR%\requirements.txt"
+
+pause
 ```
 
 ---
