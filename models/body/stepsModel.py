@@ -79,8 +79,11 @@ class Steps:
         # >
 
 
-    def runStep(self, step):
+    def runStep(self, command, parameters):
         """  """
 
-        a, b, c, d = (step["parameters"] + [None] * 4)[:4]
-        return self.controller.commands[step["command"]](a, b, c, d)
+        print('command', command) # remove
+        print('parameters', parameters) # remove
+
+        a, b, c, d = (parameters + [None] * 4)[:4]
+        return self.controller.commands[command](a, b, c, d)

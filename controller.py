@@ -209,8 +209,7 @@ class Controller:
     def find(self, asset, index = None, *args):
         """  """
 
-        print('asset', asset) # remove
-        print('index', index) # remove
+        if (asset == None): return "No parameter for asset."
 
         try: index = int(index) if index else self.defaultFindIndex
         except ValueError: return self.errorFindIndex
@@ -247,6 +246,8 @@ class Controller:
     def keyboard(self, message, *args):
         """  """
 
+        if (message == None): return "No parameter for message."
+
         write(message = message)
 
 
@@ -259,6 +260,8 @@ class Controller:
 
     def scroll(self, direction, distance = None, *args):
         """  """
+
+        if (direction == None): return "No parameter for direction."
 
         try:
 
@@ -284,6 +287,8 @@ class Controller:
     def mouse(self, direction, distance = None, *args):
         """  """
 
+        if (direction == None): return "No parameter for direction."
+
         try:
 
             try: distance = int(distance) if distance else self.defaultMouseDistance
@@ -306,4 +311,6 @@ class Controller:
     def date(self, month, day, year, *args):
         """  """
 
-        pass
+        if (month == None): return "No parameter for month."
+        if (day == None): return "No parameter for day."
+        if (year == None): return "No parameter for year."
