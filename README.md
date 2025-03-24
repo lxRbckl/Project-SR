@@ -21,14 +21,7 @@ pause
 ---
 
 ## Resources
-```
-pyautogui https://pyautogui.readthedocs.io/en/latest/screenshot.html?highlight=locateall
-icons https://iconify.design/
-dmc https://www.dash-mantine-components.com/
-dbc https://dash-bootstrap-components.opensource.faculty.ai/
-pytesseract https://pypi.org/project/pytesseract/
-tesseract 5.5.0 tesseract-ocr-w64-setup-5.5.0.20241111.exe https://github.com/UB-Mannheim/tesseract/wiki
-```
+[`PyAutoGUI`](https://pyautogui.readthedocs.io/en/latest/screenshot.html?highlight=locateall) [`Iconify`](https://iconify.design/) [`dash-mantine-components`](https://www.dash-mantine-components.com/) [`dash-bootstrap-components`](https://dash-bootstrap-components.opensource.faculty.ai/) [`pytesseract`](https://pypi.org/project/pytesseract/) [`tesseract 5.5.0`](https://github.com/UB-Mannheim/tesseract/wiki)
 
 ```
 # development
