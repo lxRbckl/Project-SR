@@ -2,7 +2,7 @@ from dash import (html, dcc)
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (guideFilepath, projectVersion)
+from config import (guideFile, projectVersion)
 
 
 class Guide:
@@ -12,7 +12,7 @@ class Guide:
       """  """
 
       self.filedata = None
-      with open(guideFilepath, 'r') as fin: self.filedata = fin.read()
+      with open(guideFile, 'r') as fin: self.filedata = fin.read()
 
 
    @property

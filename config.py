@@ -5,6 +5,14 @@ from dash_bootstrap_components import themes
 from os.path import (dirname, basename, join)
 
 
+port = 8050
+debug = True
+emptyValue = ""
+projectVersion = "1.0.0"
+projectName = "Project SR"
+loaderStyle = {"type" : "dots"}
+
+
 iconGuide = "tabler:book"
 iconWarning = "bxs:error"
 iconMedia = "pajamas:media"
@@ -23,18 +31,13 @@ iconWindow = "iconamoon:screen-full-fill"
 iconCompleted = "fluent-mdl2:completed-solid"
 
 
-port = 8050
-debug = True
-emptyValue = ""
-projectVersion = "1.0.0"
-loaderStyle = {"type" : "dots"}
-
-projectName = basename(getcwd())
-projectDirectory = dirname(getcwd())
-referencesFilepath = join(projectDirectory, "References")
-assetFilepath = join(projectDirectory, projectName, "assets")
-tesseract = join(projectDirectory, "Tesseract", "tesseract.exe")
-guideFilepath = join(projectDirectory, projectName, "assets/guide.md")
+parentDir = dirname(getcwd())
+currentDir = basename(getcwd())
+assetDir = join(parentDir, currentDir, "assets")
+referencesChildDir = join("assets", "references")
+referencesParentDir = join(parentDir, "references")
+tesseract = join(parentDir, "Tesseract", "tesseract.exe")
+guideFile = join(parentDir, currentDir, "assets", "guide.md")
 
 
 # Remove once Dash 3.x.x comes out #
@@ -46,7 +49,7 @@ app = Dash(
 
    name = projectName,
    title = projectName,
-   assets_folder = assetFilepath,
+   assets_folder = assetDir,
    suppress_callback_exceptions = True,
    external_stylesheets = [
 

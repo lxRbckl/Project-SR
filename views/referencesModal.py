@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (iconTrash, iconUpload, iconCopy, loaderStyle)
+from config import (iconTrash, iconUpload, iconCopy, iconMedia, loaderStyle)
 
 
 class References:
@@ -41,33 +41,68 @@ class References:
 
                 # >
 
-                # upload <
-                # images <
                 dbc.Row(
 
-                    justify = "start",
-                    children = dbc.Col(
+                    justify = "between",
+                    children = [
 
-                        width = 12,
-                        children = dcc.Upload(
+                        # (upload, (load, save) <
+                        dbc.Col(
 
-                            contents = None,
-                            multiple = True,
-                            id = "referencesUploadId",
-                            children = dmc.Button(
+                            width = "auto",
+                            children = dcc.Upload(
 
-                                size = "md",
-                                fullWidth = True,
-                                loaderProps = loaderStyle,
-                                children = "Upload file(s)",
-                                id = "referencesUploadButtonId",
-                                leftSection = DashIconify(width = 25, icon = iconUpload)
+                                contents = None,
+                                multiple = True,
+                                id = "referencesUploadId",
+                                children = dmc.Button(
+
+                                    size = "xs",
+                                    children = "Upload",
+                                    loaderProps = loaderStyle,
+                                    id = "referencesUploadButtonId",
+                                    leftSection = DashIconify(width = 20, icon = iconUpload)
+
+                                )
+
+                            )
+
+                        ),
+                        dbc.Col(
+
+                            width = "auto",
+                            children = dmc.Group(
+
+                                gap = 0,
+                                children = [
+
+                                    dmc.Button(
+
+                                        size = "xs",
+                                        children = "Load",
+                                        loaderProps = loaderStyle,
+                                        id = "referencesLoadButtonId"
+
+                                    ),
+                                    dmc.Button(
+
+                                        size = "xs",
+                                        children = "Save",
+                                        loaderProps = loaderStyle,
+                                        id = "referencesSaveButtonId",
+                                        className = "referencesSaveButton"
+
+                                    )
+
+                                ]
 
                             )
 
                         )
 
-                    )
+                        # >
+
+                    ]
 
                 ),
                 dbc.Row(
@@ -85,7 +120,7 @@ class References:
         )
 
 
-    def addReference(self, name, reference):
+    def addReference(self, name, ref):
         """  """
 
         return dbc.Col(
@@ -107,7 +142,7 @@ class References:
                             justify = "space-between",
                             children = [
 
-                                # (copy, title), delete <
+                                # (copy, title, delete) <
                                 dmc.Group(
 
                                     gap = 5,
@@ -140,7 +175,7 @@ class References:
                         )
 
                     ),
-                    dmc.CardSection(children = dmc.Image(src = reference))
+                    dmc.CardSection(children = dmc.Image(src = ref))
 
                 ]
 

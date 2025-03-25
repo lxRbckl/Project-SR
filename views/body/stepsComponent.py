@@ -15,22 +15,6 @@ class Steps:
         pass
 
 
-    def setResult(self, result = None):
-        """  """
-
-        try:
-
-            return {
-
-                None : None,
-                True : True,
-                False : False
-
-            }[result]
-
-        except KeyError: return None
-
-
     def setStatus(self, status = "Pending"):
         """  """
 
@@ -61,9 +45,9 @@ class Steps:
             className = "stepsResultCol",
             children = dmc.Button(
 
+                children = None,
                 disabled = True,
                 size = "compact-sm",
-                children = self.setResult(),
                 id = {"type" : "result-btn", "index" : f"result-{index}"}
 
 
@@ -198,7 +182,7 @@ class Steps:
         return dbc.Row(
 
             className = "stepsRow",
-            id = {"type": "step-row", "index": f"step-{index}"},
+            id = {"type" : "step-row", "index" : f"step-{index}"},
             children = [
 
                 self._buildStepResult(step),

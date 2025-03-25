@@ -11,6 +11,10 @@
     background-color: var(--colorWhite);
 }
 
+.referencesSaveButton {
+    margin-left: 5px;
+}
+
 .referencesImagesRow {
     margin: 5px 0 0 0;
     border: var(--borderDottedGray);
