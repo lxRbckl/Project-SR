@@ -1,20 +1,12 @@
 from time import sleep
 from json import loads
+from os.path import join
 from clipboard import copy
 from base64 import b64decode
 from os import (remove, listdir)
 from dash import (Input, Output, State, ctx, ALL)
 
-from config import (
-
-    app,
-    iconCopy,
-    iconTrash,
-    iconSuccess,
-    referencesFilepath,
-    referencesCompleteFilepath
-
-)
+from config import (app, iconCopy, iconTrash, iconSuccess, referencesFilepath)
 
 
 class References:
@@ -33,9 +25,9 @@ class References:
 
         self.onUploadSleep = 0.5
         self.onDeleteSleep = 0.5
+        self.getReferences = lambda : listdir(referencesFilepath)
         self.copyMessageSuccess = "Reference was copied to clipboard."
         self.deleteMessageSuccess = "Reference was deleted from folder."
-        self.getReferences = lambda : listdir(referencesCompleteFilepath)
         self.uploadMessageSuccess = lambda u: f"Reference {u} was uploaded successfully."
         self.parseContext = lambda c: loads(c.triggered[0]["prop_id"].replace(".n_clicks", ""))
 
@@ -47,9 +39,9 @@ class References:
         for r in self.getReferences():
 
             name = r
-            ref = f"{referencesFilepath}/{name}"
+            reference = join(referencesFilepath, r)
 
-            returnReferences.append(self.referencesModal.addReference(name = name, reference = ref))
+            returnReferences.append(self.referencesModal.addReference(name = name, reference = reference))
 
         return returnReferences
 
@@ -124,7 +116,7 @@ class References:
             if (len(ctx.triggered) == 1):
 
                 file = self.parseContext(ctx)["index"]
-                remove(f"{referencesCompleteFilepath}/{file}")
+                remove(join(referencesFilepath, file))
 
                 sleep(self.onDeleteSleep)
                 return [
@@ -170,7 +162,7 @@ class References:
             for file, content in zip(uploadFilenames, uploadContents):
 
                 data = content.encode("utf-8").split(b";base64,")[1]
-                with open(f"{referencesCompleteFilepath}/{file}", "wb") as f:
+                with open(join(referencesFilepath, file), "wb") as f:
 
                     f.write(b64decode(data))
 

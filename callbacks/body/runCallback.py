@@ -84,6 +84,7 @@ class Run:
          if (windowValue): self.controller.setWindow(windowValue)
          return [False, (windowValue == None)]
 
+
    def stopOnClickCallback(self):
       """  """
 

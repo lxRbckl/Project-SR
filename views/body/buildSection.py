@@ -115,12 +115,7 @@ class Build:
                             id = "buildCopyButtonId",
                             loaderProps = loaderStyle,
                             className = "buildCopyButton",
-                            leftSection = DashIconify(
-
-                                width = 18,
-                                icon = iconCopy
-
-                            )
+                            leftSection = DashIconify(width = 18, icon = iconCopy)
 
                         ),
                         dmc.Button(
@@ -140,12 +135,7 @@ class Build:
                             id = "buildPasteButtonId",
                             loaderProps = loaderStyle,
                             className = "buildPasteButton",
-                            rightSection = DashIconify(
-
-                                width = 18,
-                                icon = iconPaste
-
-                            )
+                            rightSection = DashIconify(width = 18, icon = iconPaste)
 
                         )
 

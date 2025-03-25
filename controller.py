@@ -1,5 +1,6 @@
 import pytesseract
 from time import sleep
+from os.path import join
 from pygetwindow import getAllWindows
 from pyautogui import (
 
@@ -14,7 +15,7 @@ from pyautogui import (
 
 )
 
-from config import (tesseractCMD, referencesCompleteFilepath)
+from config import (tesseract, referencesFilepath)
 
 
 class Controller:
@@ -37,6 +38,8 @@ class Controller:
         DONE - find(asset<text/image>, ?index)
         """
 
+        pytesseract.pytesseract.tesseract_cmd = tesseract
+
         self.allWindows = []
         self.screenshot = None
         self.useGrayscale = True
@@ -50,8 +53,6 @@ class Controller:
         self.defaultScrollDistance = 10
         self.defaultScreenshotName = "screenshot.png"
         self.defaultImageFormats = [".png", ".jpg", ".jpeg"]
-
-        pytesseract.pytesseract.tesseract_cmd = tesseractCMD
 
         self.errorWindowDNE = "Unable to find window. Is window open?"
         self.errorWaitDuration = "Unable to wait. Is duration set correctly?"
@@ -196,7 +197,7 @@ class Controller:
 
                 grayscale = self.useGrayscale,
                 haystackImage = self.screenshot,
-                needleImage = f"{referencesCompleteFilepath}/{image}"
+                needleImage = join(referencesFilepath, image)
 
             ))
 
@@ -208,8 +209,6 @@ class Controller:
 
     def find(self, asset, index = None, *args):
         """  """
-
-        if (asset == None): return "No parameter for asset."
 
         try: index = int(index) if index else self.defaultFindIndex
         except ValueError: return self.errorFindIndex
@@ -246,8 +245,6 @@ class Controller:
     def keyboard(self, message, *args):
         """  """
 
-        if (message == None): return "No parameter for message."
-
         write(message = message)
 
 
@@ -260,8 +257,6 @@ class Controller:
 
     def scroll(self, direction, distance = None, *args):
         """  """
-
-        if (direction == None): return "No parameter for direction."
 
         try:
 
@@ -287,8 +282,6 @@ class Controller:
     def mouse(self, direction, distance = None, *args):
         """  """
 
-        if (direction == None): return "No parameter for direction."
-
         try:
 
             try: distance = int(distance) if distance else self.defaultMouseDistance
@@ -302,7 +295,6 @@ class Controller:
 
             }[direction]
 
-            # drift?
             moveTo(x = x, y = y)
 
         except KeyError: return self.errorMouseDirection
@@ -311,6 +303,4 @@ class Controller:
     def date(self, month, day, year, *args):
         """  """
 
-        if (month == None): return "No parameter for month."
-        if (day == None): return "No parameter for day."
-        if (year == None): return "No parameter for year."
+        pass

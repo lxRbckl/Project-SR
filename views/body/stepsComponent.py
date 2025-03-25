@@ -150,7 +150,13 @@ class Steps:
                             disabled = True,
                             size = "compact-sm",
                             className = "stepsFlagsButton",
-                            children = dmc.Text(size = "xs", fw = 500, children = kf.title())
+                            children = dmc.Text(
+
+                                fw = 500,
+                                size = "xs",
+                                children = kf.title()
+
+                            )
 
                         )
 

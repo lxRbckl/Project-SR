@@ -28,14 +28,13 @@ debug = True
 emptyValue = ""
 projectVersion = "1.0.0"
 loaderStyle = {"type" : "dots"}
+
 projectName = basename(getcwd())
 projectDirectory = dirname(getcwd())
 referencesFilepath = join(projectDirectory, "References")
 tesseract = join(projectDirectory, "Tesseract", "tesseract.exe")
 guideFilepath = join(projectDirectory, projectName, "assets/guide.md")
-
-print('pd', projectDirectory) # remove
-print('pn', projectName) # remove
+assetFilepath = join(projectDirectory, projectName, "assets")
 
 
 # Remove once Dash 3.x.x comes out #
@@ -47,7 +46,7 @@ app = Dash(
 
    name = projectName,
    title = projectName,
-   assets_folder = "./assets",
+   assets_folder = assetFilepath,
    suppress_callback_exceptions = True,
    external_stylesheets = [
 

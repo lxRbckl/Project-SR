@@ -8,13 +8,9 @@ class Steps:
 
 
    def __init__(self):
-      """  """
+      """
+      possibility to add dynamic callbacks to further characterize
+      the interaction of individual steps via dynamic callbacks
+      """
 
       pass
-
-
-   # possibility to add dynamic callbacks to further characterize
-   # the interaction of individual steps via dynamic callbacks.
-
-
-   # document.getElementById("step-5").scrollIntoView({behavior: "smooth"})

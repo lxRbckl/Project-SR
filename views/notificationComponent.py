@@ -8,6 +8,7 @@ import dash_bootstrap_components as dbc
 
 class Notification:
 
+
     def __init__(self):
         """  """
 
@@ -20,18 +21,8 @@ class Notification:
 
         return html.Div(children = [
 
-            dmc.NotificationProvider(
-
-                autoClose = False,
-                position = self.position
-
-            ),
-            html.Div(
-
-                children = None,
-                id = "notificationDiv"
-
-            )
+            dmc.NotificationProvider(autoClose = False, position = self.position),
+            html.Div(children = None, id = "notificationDiv")
 
         ])
 
@@ -39,9 +30,9 @@ class Notification:
     def notify(
         self,
         message,
+        width = 20,
         show = "show",
         color = "blue",
-        iconWidth = 20,
         duration = False,
         icon = iconNotification
     ):
@@ -49,16 +40,11 @@ class Notification:
 
         return dmc.Notification(
 
-            action = show,
             color = color,
+            action = show,
             message = message,
             autoClose = duration,
             className = "notification",
-            icon = DashIconify(
-
-                icon = icon,
-                width = iconWidth
-
-            )
+            icon = DashIconify(icon = icon, width = width)
 
         )
