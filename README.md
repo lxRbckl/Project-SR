@@ -41,7 +41,6 @@ python3 -m venv venv
 .\venv\Scripts\activate
 pip3 install -r requirements.txt
 ```
-> PyCharm: Settings -> Project-SR -> Python Interpreter -> Add Local Interpreter -> Select Existing -> ~/Project-SR/venv/Scripts/python.exe
 
 ### MacOS
 ```shell
@@ -49,7 +48,13 @@ python3 -m venv venv
 source .venv/bin/activate
 pip3 install -r requirements.txt
 ```
-> PyCharm: Preferences -> Project: SR -> Python Interpreter -> Add Interpreter -> Add Local Interpreter -> Select Existing Interpreter -> ~/Project-SR/venv/Scripts/python.exe
+
+### Configuration
+`PyCharm`
+```
+Settings -> Project-SR -> Python Interpreter -> Add Local Interpreter -> Select Existing -> ~/Project-SR/venv/Scripts/python.exe
+Configure Run -> Edit Configuration -> Add New -> Python -> Script => ~\Project-SR\Project-SR\app.py
+```
 
 ### Maintenance
 > These procedures are useful for bootstrapping a new project in event of complete loss.

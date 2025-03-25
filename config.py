@@ -1,9 +1,8 @@
-# from os import (getcwd, path)
 from os import getcwd
-from os.path import (dirname, basename)
 from dash import (Dash, _dash_renderer)
 from dash_mantine_components import styles
 from dash_bootstrap_components import themes
+from os.path import (dirname, basename, join)
 
 
 iconGuide = "tabler:book"
@@ -28,16 +27,15 @@ port = 8050
 debug = True
 emptyValue = ""
 projectVersion = "1.0.0"
+loaderStyle = {"type" : "dots"}
 projectName = basename(getcwd())
 projectDirectory = dirname(getcwd())
-loaderStyle = {"type" : "dots"}
-guideFilepath = "./assets/guide.md"
-referencesFilepath = "/assets/references" # <-
-referencesCompleteFilepath = projectDirectory + referencesFilepath
-tesseract = r"C:\Users\aarbuckle\Desktop\Tesseract\tesseract.exe" # <-
+referencesFilepath = join(projectDirectory, "References")
+tesseract = join(projectDirectory, "Tesseract", "tesseract.exe")
+guideFilepath = join(projectDirectory, projectName, "assets/guide.md")
 
-print('projectName:', projectName) # remove
-print("projectDirectory:", projectDirectory) # remove
+print('pd', projectDirectory) # remove
+print('pn', projectName) # remove
 
 
 # Remove once Dash 3.x.x comes out #
