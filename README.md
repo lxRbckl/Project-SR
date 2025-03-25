@@ -30,13 +30,13 @@ set "PYTHON=%cd%\Python3.9.0\python.exe"
 ---
 
 ## Development
-<div align="justify">
+<p align="justify">
 
     It is recommended to clone this repository within the root directory of the project—ideally at the same level as Tesseract and Python 3.9.0.  
     If following this structure, create a folder named Project-SR and clone the repository into it. Alternatively, if the repository is placed 
     elsewhere, ensure you obtain the full file path to the Tesseract executable, and temporarily update the `tesseract` variable in `config.py` accordingly.
 
-</div>
+</p>
 
 ### Windows
 ```shell
