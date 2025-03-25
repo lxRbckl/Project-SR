@@ -1,4 +1,4 @@
-## Install
+## Installation
 `echo @echo off > installer.bat`
 ```
 @echo off
@@ -27,18 +27,20 @@ set "PYTHON=%cd%\Python3.9.0\python.exe"
 %PYTHON% "%DIR%\app.py"
 ```
 
-### Development
+## Development
 > It is advised that you clone this repository into the entire scope of the project, which means it should be in the
 > same scope as Tesseract and Python3.9.0. If you do this, then create a folder Project-SR to clone into, otherwise
 > get the full filepath of Tesseract and *temporarily* paste the value into config.py->tesseract.
 
-`Windows`
+### Windows
 ```shell
 python3 -m venv venv
 .\venv\Scripts\activate
 pip3 install -r requirements.txt
 ```
 > PyCharm: Settings -> Project-SR -> Python Interpreter -> Add Local Interpreter -> Select Existing -> ~/Project-SR/venv/Scripts/python.exe
+
+### MacOS
 ```shell
 python3 -m venv venv
 source .venv/bin/activate
