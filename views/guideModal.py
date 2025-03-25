@@ -26,7 +26,7 @@ class Guide:
          centered = True,
          id = "guideModalId",
          closeOnClickOutside = False,
-         title = f"Guide - Version {projectVersion}",
+         title = f"Guide - {projectVersion}",
          children = dcc.Markdown(children = self.filedata, className = "guideMarkdown")
 
       )

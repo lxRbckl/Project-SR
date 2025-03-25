@@ -28,7 +28,7 @@ class References:
         self.copyMessageSuccess = "Reference was copied to clipboard."
         self.deleteMessageSuccess = "Reference was deleted from folder."
         self.uploadMessageSuccess = lambda u: f"Reference {u} was uploaded successfully."
-        self.parseContext = lambda c: loads(c.triggered[0]["prop_id"].replace(".n_clicks", ""))
+        self.parseContext = lambda c: loads(c.triggered[0]["prop_id"].replace(".n_clicks", ""))["index"]
 
 
     def _buildReferences(self):
@@ -81,7 +81,10 @@ class References:
 
             if (len(ctx.triggered) == 1):
 
-                reference = self.parseContext(ctx)["index"]
+                print('copy')
+                print(self.parseContext(ctx))
+
+                reference = self.parseContext(ctx)
                 copy(reference)
 
                 return self.notifier.notify(
@@ -116,50 +119,24 @@ class References:
         )
         def func(deleteClick, referencesChildren):
 
-            input('deleteOnClickCallback()')
-
             rNotificationChildren = []
-            for i, dc in enumerate(deleteClick):
 
-                if (dc):
+            if (len(ctx.triggered) == 1):
 
-                    file = self.parseContext(ctx)["index"]
-                    remove(join(referencesChildDir, file))
+                print('delete')
+                print(self.parseContext(ctx))
 
-                    print('removed', file) # remove
+                file = self.parseContext(ctx)
+                remove(join(referencesChildDir, file))
+                rNotificationChildren.append(self.notifier.notify(
 
-                    rNotificationChildren.append(self.notifier.notify(
+                    duration = 4000,
+                    icon = iconTrash,
+                    message = self.deleteMessageSuccess
 
-                        duration = 4000,
-                        icon = iconTrash,
-                        message = self.deleteMessageSuccess
-
-                    ))
+                ))
 
             return [self._buildReferences(), rNotificationChildren]
-
-
-
-            # if (len(ctx.triggered) == 1):
-            #
-            #     file = self.parseContext(ctx)["index"]
-            #     remove(join(referencesChildDir, file))
-            #
-            #     sleep(self.onDeleteSleep)
-            #     return [
-            #
-            #         self._buildReferences(),
-            #         self.notifier.notify(
-            #
-            #             duration = 4000,
-            #             icon = iconTrash,
-            #             message = self.deleteMessageSuccess
-            #
-            #         )
-            #
-            #     ]
-            #
-            # return [referencesChildren, None]
 
 
     def uploadOnContentCallback(self):
@@ -185,7 +162,7 @@ class References:
         )
         def func(uploadContents, uploadFilenames):
 
-            input('uploadOnContentCallback()')
+            print('uploadOnContentCallback()', uploadFilenames) # remove
 
             returnNotifications = []
             for file, content in zip(uploadFilenames, uploadContents):

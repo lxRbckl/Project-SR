@@ -6,9 +6,9 @@ from os.path import (dirname, basename, join)
 
 
 port = 8050
-debug = True
+debug = False
 emptyValue = ""
-projectVersion = "1.0.0"
+projectVersion = "V1.0.0"
 projectName = "Project SR"
 loaderStyle = {"type" : "dots"}
 
