@@ -52,7 +52,10 @@ pip3 install -r requirements.txt
 ### Configuration
 `PyCharm`
 ```
+Setting up Python Interpreter
 Settings -> Project-SR -> Python Interpreter -> Add Local Interpreter -> Select Existing -> ~/Project-SR/venv/Scripts/python.exe
+
+Setting up Run Configuration
 Configure Run -> Edit Configuration -> Add New -> Python -> Script => ~\Project-SR\Project-SR\app.py
 ```
 
