@@ -27,12 +27,13 @@ set "PYTHON=%cd%\Python3.9.0\python.exe"
 %PYTHON% "%DIR%\app.py"
 ```
 
-### Develop
+### Development
 ```
 python3 -m venv venv
 mac: source .venv/bin/activate
 windows: .\venv\Scripts\activate
 pip3 install -r requirements.txt
+pycharm: Settings -> Project-SR -> Python Interpreter -> Add Local Interpreter -> Select Existing -> /Project-SR/venv/Scripts/python.exe
 ```
 
 ### Maintenance
