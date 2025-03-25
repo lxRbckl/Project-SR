@@ -30,9 +30,7 @@ set "PYTHON=%cd%\Python3.9.0\python.exe"
 ---
 
 ## Development
-It is recommended to clone this repository within the root directory of the project—ideally at the same level as Tesseract and Python 3.9.0.  
-If following this structure, create a folder named Project-SR and clone the repository into it. Alternatively, if the repository is placed 
-elsewhere, ensure you obtain the full file path to the Tesseract executable, and temporarily update the `tesseract` variable in `config.py` accordingly.
+It is recommended to clone this repository within the root directory of the project—ideally at the same level as Tesseract and Python 3.9.0. If following this structure, create a folder named Project-SR and clone the repository into it. Alternatively, if the repository is placed elsewhere, ensure you obtain the full file path to the Tesseract executable, and temporarily update the `tesseract` variable in `config.py` accordingly.
 
 
 ### Windows
@@ -60,7 +58,7 @@ Configure Run -> Edit Configuration -> Add New -> Python -> Script => ~\Project-
 ```
 
 ### Maintenance
-> These procedures are useful for bootstrapping a new project in event of complete loss.
+> These are bootstrap procedures in the event of complete local project loss.
 ```
 # updating python pip
 Python3.9.0/python -m ensurepip --upgrade
