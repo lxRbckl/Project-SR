@@ -27,6 +27,8 @@ set "PYTHON=%cd%\Python3.9.0\python.exe"
 %PYTHON% "%DIR%\app.py"
 ```
 
+---
+
 ## Development
 > It is advised that you clone this repository into the entire scope of the project, which means it should be in the
 > same scope as Tesseract and Python3.9.0. If you do this, then create a folder Project-SR to clone into, otherwise
