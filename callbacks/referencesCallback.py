@@ -81,9 +81,6 @@ class References:
 
             if (len(ctx.triggered) == 1):
 
-                print('copy')
-                print(self.parseContext(ctx))
-
                 reference = self.parseContext(ctx)
                 copy(reference)
 
@@ -123,9 +120,6 @@ class References:
 
             if (len(ctx.triggered) == 1):
 
-                print('delete')
-                print(self.parseContext(ctx))
-
                 file = self.parseContext(ctx)
                 remove(join(referencesChildDir, file))
                 rNotificationChildren.append(self.notifier.notify(
@@ -161,8 +155,6 @@ class References:
 
         )
         def func(uploadContents, uploadFilenames):
-
-            print('uploadOnContentCallback()', uploadFilenames) # remove
 
             returnNotifications = []
             for file, content in zip(uploadFilenames, uploadContents):

@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (iconTrash, iconUpload, iconCopy, iconMedia, loaderStyle)
+from config import (iconTrash, iconUpload, iconCopy, iconMedia, loaderStyle, iconFolder)
 
 
 class References:
@@ -46,7 +46,7 @@ class References:
                     justify = "between",
                     children = [
 
-                        # (upload, (load, save) <
+                        # (upload, (icon, load, backup) <
                         dbc.Col(
 
                             width = "auto",
@@ -79,18 +79,31 @@ class References:
                                     dmc.Button(
 
                                         size = "xs",
-                                        children = "Load",
-                                        loaderProps = loaderStyle,
-                                        id = "referencesLoadButtonId"
+                                        className = "referencesFolderButton",
+                                        children = DashIconify(
+
+                                            width = 16,
+                                            icon = iconFolder
+
+                                        )
 
                                     ),
                                     dmc.Button(
 
                                         size = "xs",
-                                        children = "Save",
+                                        children = "Load",
                                         loaderProps = loaderStyle,
-                                        id = "referencesSaveButtonId",
-                                        className = "referencesSaveButton"
+                                        id = "referencesLoadButtonId",
+                                        className = "referencesLoadButton"
+
+                                    ),
+                                    dmc.Button(
+
+                                        size = "xs",
+                                        children = "Backup",
+                                        loaderProps = loaderStyle,
+                                        id = "referencesBackupButtonId",
+                                        className = "referencesBackupButton"
 
                                     )
 

@@ -6,7 +6,7 @@ from os.path import (dirname, basename, join)
 
 
 port = 8050
-debug = False
+debug = True
 emptyValue = ""
 projectVersion = "V1.0.0"
 projectName = "Project SR"
@@ -25,6 +25,7 @@ iconCopy = "lucide:clipboard-copy"
 iconRunning = "svg-spinners:clock"
 iconError = "material-symbols:error"
 iconPaste = "lucide:clipboard-paste"
+iconFolder = "material-symbols:folder"
 iconUpload = "material-symbols:upload"
 iconNotification = "lucide:notification"
 iconWindow = "iconamoon:screen-full-fill"
