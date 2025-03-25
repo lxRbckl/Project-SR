@@ -3,7 +3,7 @@ from json import loads
 from os.path import join
 from clipboard import copy
 from base64 import b64decode
-from os import (remove, listdir)
+from os import (remove, listdir, makedirs)
 from dash import (Input, Output, State, ctx, ALL)
 
 from config import (app, iconCopy, iconTrash, iconSuccess, referencesFilepath)
@@ -61,7 +61,10 @@ class References:
             ]
 
         )
-        def func(referencesClick): return [True, self._buildReferences()]
+        def func(referencesClick):
+
+            makedirs(referencesFilepath, exist_ok = True)
+            return [True, self._buildReferences()]
 
 
     def copyOnClickCallback(self):

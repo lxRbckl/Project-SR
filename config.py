@@ -32,9 +32,9 @@ loaderStyle = {"type" : "dots"}
 projectName = basename(getcwd())
 projectDirectory = dirname(getcwd())
 referencesFilepath = join(projectDirectory, "References")
+assetFilepath = join(projectDirectory, projectName, "assets")
 tesseract = join(projectDirectory, "Tesseract", "tesseract.exe")
 guideFilepath = join(projectDirectory, projectName, "assets/guide.md")
-assetFilepath = join(projectDirectory, projectName, "assets")
 
 
 # Remove once Dash 3.x.x comes out #
