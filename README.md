@@ -29,6 +29,7 @@ set "PYTHON=%cd%\Python3.9.0\python.exe"
 
 ### Development
 ```
+# note: it is advised that you clone this repository into the entire scope of this project which means it includes Tesseract and Python3.9.0
 python3 -m venv venv
 mac: source .venv/bin/activate
 windows: .\venv\Scripts\activate

@@ -1,4 +1,6 @@
+# from os import (getcwd, path)
 from os import getcwd
+from os.path import (dirname, basename)
 from dash import (Dash, _dash_renderer)
 from dash_mantine_components import styles
 from dash_bootstrap_components import themes
@@ -26,13 +28,16 @@ port = 8050
 debug = True
 emptyValue = ""
 projectVersion = "1.0.0"
-projectName = "Project SR"
-projectDirectory = getcwd()
+projectName = basename(getcwd())
+projectDirectory = dirname(getcwd())
 loaderStyle = {"type" : "dots"}
 guideFilepath = "./assets/guide.md"
 referencesFilepath = "/assets/references" # <-
 referencesCompleteFilepath = projectDirectory + referencesFilepath
 tesseractCMD = r"C:\Users\aarbuckle\Desktop\Tesseract\tesseract.exe" # <-
+
+print('projectName:', projectName) # remove
+print("projectDirectory:", projectDirectory) # remove
 
 
 # Remove once Dash 3.x.x comes out #
