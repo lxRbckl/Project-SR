@@ -34,6 +34,8 @@ iconCompleted = "fluent-mdl2:completed-solid"
 
 currentDir = "Project-SR"
 parentDir = dirname(getcwd())
+print('parentDir', parentDir) # remove
+
 assetDir = join(parentDir, currentDir, "assets")
 referencesChildDir = join("assets", "references")
 referencesParentDir = join(parentDir, "references")
