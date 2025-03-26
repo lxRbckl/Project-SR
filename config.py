@@ -43,10 +43,13 @@ guideFile = join(parentDir, currentDir, "assets", "guide.md")
 referencesChildCompleteDir = join(parentDir, currentDir, referencesChildDir)
 
 print('parentDir', parentDir)
-print('currentDir', currentDir)
+print('currentDir', currentDir, '\n')
+
+print('assetDir', assetDir)
 print('referencesChildDir', referencesChildDir)
 print('referencesParentDir', referencesParentDir)
 print('guideFile', guideFile)
+print('referencesChildCompleteDir', referencesChildCompleteDir)
 
 
 # Remove once Dash 3.x.x comes out #
