@@ -32,13 +32,8 @@ iconWindow = "iconamoon:screen-full-fill"
 iconCompleted = "fluent-mdl2:completed-solid"
 
 
-# currentDir = "Project-SR"
-currentDir = basename(dirname(abspath(__file__)))
-print('currentDir', currentDir) # remove
-
-# parentDir = dirname(getcwd(__file__))
 parentDir = dirname(dirname(abspath(__file__)))
-print('parentDir', parentDir) # remove
+currentDir = basename(dirname(abspath(__file__)))
 
 assetDir = join(parentDir, currentDir, "assets")
 referencesChildDir = join("assets", "references")
@@ -46,6 +41,12 @@ referencesParentDir = join(parentDir, "references")
 tesseract = join(parentDir, "Tesseract", "tesseract.exe")
 guideFile = join(parentDir, currentDir, "assets", "guide.md")
 referencesChildCompleteDir = join(parentDir, currentDir, referencesChildDir)
+
+print('parentDir', parentDir)
+print('currentDir', currentDir)
+print('referencesChildDir', referencesChildDir)
+print('referencesParentDir', referencesParentDir)
+print('guideFile', guideFile)
 
 
 # Remove once Dash 3.x.x comes out #
