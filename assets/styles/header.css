@@ -12,6 +12,10 @@
    margin: 0 0 10px 0;
 }
 
+.headerSettingsActionItem {
+   display: none;
+}
+
 .headerReferencesActionIcon {
    margin: 0 0 0 5px;
 }

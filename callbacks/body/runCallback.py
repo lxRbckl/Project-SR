@@ -18,8 +18,8 @@ class Run:
       # self.onStepChangeCallback() # <-
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
-      # self.onStatusChangeCallback() # <-
-      # self.onResultChangeCallback() # <-
+      self.onStatusChangeCallback() # <-
+      self.onResultChangeCallback() # <-
 
       self.notifier = notifier
       self.stepsModel = stepsModel
@@ -184,7 +184,8 @@ class Run:
          if (startClick == 0): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
 
-            print("STATUS TRIGGERED", ctx.triggered) # remove
+            print("STATUS TRIGGERED") # remove
+            print('statusChildren', statusChildren) # remove
 
             rStartLoading = True
             result = self.stepsModel.runStep()
@@ -237,7 +238,6 @@ class Run:
 
          # increment current step on success
 
-         rContinueDisabled = True
          rStartLoading = startLoading
          rStepChildren = stepChildren
          rNotificationChildren = None
@@ -246,8 +246,8 @@ class Run:
 
          if (startLoading):
 
-            print('RESULT TRIGGERED', ctx.triggered) # REMOVE
+            print('RESULT TRIGGERED') # REMOVE
             flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
 
 
-         return [rProgressValue, rStartLoading, rNotificationChildren, rContinueDisabled, rStepChildren, rStatusChildren]
+         return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]

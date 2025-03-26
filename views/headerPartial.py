@@ -70,6 +70,7 @@ class Header:
 
                         disabled = True,
                         id = "headerSettingsActionIconId",
+                        className = "headerSettingsActionItem",
                         children = DashIconify(icon = iconSettings, width = 20)
 
                      ),
