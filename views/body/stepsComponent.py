@@ -45,7 +45,7 @@ class Steps:
             className = "stepsResultCol",
             children = dmc.Button(
 
-                children = None,
+                children = "potato",
                 disabled = True,
                 className = "test",
                 size = "compact-sm",

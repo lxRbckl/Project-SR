@@ -2,7 +2,7 @@ from config import (app, iconWarning)
 
 from dash import html
 from time import sleep
-from dash import (Input, Output, State, ctx, ALL)
+from dash import (Input, Output, State, ctx, ALL, callback_context)
 
 
 class Run:
@@ -165,14 +165,13 @@ class Run:
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
-            Output({"type" : "result-btn", "index" : ALL}, "children", allow_duplicate = True)
+            Output({"type" : "result-btn", "index" : ALL}, "children")
 
          ]
 
       )
       def func(startClick, retryClick, statusChildren, startLoading, resultChildren):
 
-         # run controller command, record results back to stepsModel object
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
@@ -184,14 +183,8 @@ class Run:
          if (startClick == 0): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
 
-            print("\n\nSTATUS TRIGGERED")
-            print('startLoading', startLoading)
-            print('resultChildren', resultChildren)
-
             rStartLoading = True
             result = self.stepsModel.runStep()
-
-            print('result', result) # remove
 
             # if (failure) <
             # else (then success) <
@@ -199,13 +192,17 @@ class Run:
 
                rRetryDisabled = False
                rContinueDisabled = False
-               rResultChildren[self.stepsModel.currentStep] = False
+               rResultChildren[self.stepsModel.currentStep] = "check"
 
+               for i in range(len(rResultChildren)):
+
+                  rResultChildren[i] = "check"
 
             else: pass
 
             # >
 
+         print('status', len(rResultChildren), rResultChildren[0])
          return [rStartLoading, rRetryDisabled, rContinueDisabled, rResultChildren]
 
 
@@ -242,7 +239,7 @@ class Run:
       )
       def func(continueClick, resultChildren, startLoading, optionsValues, stepChildren, statusChildren):
 
-         # increment current step on success
+         print('result', len(resultChildren), resultChildren) # remove
 
          rStartLoading = startLoading
          rStepChildren = stepChildren
@@ -252,12 +249,9 @@ class Run:
 
          if (startLoading):
 
-            print('\n\nRESULT TRIGGERED')
-            print('startLoading', startLoading)
-            print('resultChildren', resultChildren)
-            print('stepChildren', stepChildren)
+            # print('RESULT TRIGGERED') # REMOVE
 
-            # flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
+            flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
 
 
          return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]
