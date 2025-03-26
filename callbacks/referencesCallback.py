@@ -88,6 +88,7 @@ class References:
         )
         def func(referencesClick):
 
+            print('referencesOnClickCallback()') # Remove
             makedirs(referencesParentDir, exist_ok = True)
             print('making', referencesParentDir)
             makedirs(referencesChildDir, exist_ok = True)
