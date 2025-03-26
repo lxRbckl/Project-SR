@@ -33,12 +33,15 @@ iconCompleted = "fluent-mdl2:completed-solid"
 
 
 parentDir = dirname(getcwd())
+print('parentDir', parentDir) # remove
 currentDir = basename(getcwd())
+print('currentDir', currentDir) # remove
 assetDir = join(parentDir, currentDir, "assets")
 referencesChildDir = join("assets", "references")
 referencesParentDir = join(parentDir, "references")
 tesseract = join(parentDir, "Tesseract", "tesseract.exe")
 guideFile = join(parentDir, currentDir, "assets", "guide.md")
+print('config guideFile', guideFile)
 referencesChildCompleteDir = join(parentDir, currentDir, referencesChildDir)
 
 
