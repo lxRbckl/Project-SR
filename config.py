@@ -1,5 +1,5 @@
 from os import getcwd
-from os.path import (dirname, join)
+from os.path import (dirname, join, abspath, basename)
 from dash import (Dash, _dash_renderer)
 from dash_mantine_components import styles
 from dash_bootstrap_components import themes
@@ -32,8 +32,12 @@ iconWindow = "iconamoon:screen-full-fill"
 iconCompleted = "fluent-mdl2:completed-solid"
 
 
-currentDir = "Project-SR"
-parentDir = dirname(getcwd())
+# currentDir = "Project-SR"
+currentDir = dirname(abspath(__file__))
+print('currentDir', currentDir) # remove
+
+# parentDir = dirname(getcwd(__file__))
+parentDir = dirname(dirname(abspath(__file__)))
 print('parentDir', parentDir) # remove
 
 assetDir = join(parentDir, currentDir, "assets")
@@ -62,5 +66,5 @@ app = Dash(
       styles.NOTIFICATIONS
 
    ]
-   
+
 )
