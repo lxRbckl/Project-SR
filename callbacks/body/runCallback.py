@@ -112,11 +112,16 @@ class Run:
       @app.callback(
 
          prevent_initial_call = True,
-         inputs = Input("runStopButtonId", "n_clicks"),
+         inputs = [
+
+            Input("bodyAccordionId", "value"),
+            Input("runStopButtonId", "n_clicks")
+
+         ],
          output = Output("runStartButtonId", "loading")
 
       )
-      def func(stopClick): return False
+      def func(accordionValue, stopClick): return False
 
 
    def onStepChangeCallback(self):
@@ -180,7 +185,7 @@ class Run:
          rStartLoading = startLoading
          rResultChildren = resultChildren
 
-         if (startClick == 0): self.stepsModel.currentStep = 0
+         if ((startClick == 0) and (self.stepsModel.currentStep != 0)): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
 
             rStartLoading = True
@@ -192,17 +197,14 @@ class Run:
 
                rRetryDisabled = False
                rContinueDisabled = False
-               rResultChildren[self.stepsModel.currentStep] = "check"
+               rResultChildren[self.stepsModel.currentStep] = False
 
-               for i in range(len(rResultChildren)):
-
-                  rResultChildren[i] = True
-
-            else: pass
+            else: rResultChildren[self.stepsModel.currentStep] = True
 
             # >
 
-         print('status', len(rResultChildren), rResultChildren)
+         else: pass
+
          return [rStartLoading, rRetryDisabled, rContinueDisabled, rResultChildren]
 
 
@@ -239,8 +241,6 @@ class Run:
       )
       def func(continueClick, resultChildren, startLoading, optionsValues, stepChildren, statusChildren):
 
-         print('result', len(resultChildren), resultChildren) # remove
-
          rStartLoading = startLoading
          rStepChildren = stepChildren
          rNotificationChildren = None
@@ -249,8 +249,8 @@ class Run:
 
          if (startLoading):
 
-            # print('RESULT TRIGGERED') # REMOVE
-
             flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
+
+         else: pass
 
          return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]

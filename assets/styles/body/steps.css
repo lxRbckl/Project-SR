@@ -13,12 +13,12 @@
 }
 
 .stepsResultCol {
-   /*display: none;*/
+   display: none;
 }
 
 .stepsStatusButton {
    margin: 5px;
-   padding: 2px;
+   padding: 5px;
    color: var(--colorBlack);
    border: var(--borderGray);
 }
