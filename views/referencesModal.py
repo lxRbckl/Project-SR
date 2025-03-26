@@ -104,7 +104,7 @@ class References:
 
                                         size = "xs",
                                         n_clicks = 0,
-                                        disabled = True,  # <-
+                                        disabled = True, # <-
                                         children = "Export",
                                         loaderProps = loaderStyle,
                                         id = "referencesExportButtonId"
