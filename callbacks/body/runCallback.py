@@ -11,12 +11,15 @@ class Run:
    def __init__(self, notifier, controller, stepsModel, stepsComponent):
       """  """
 
+
+      self.startOnLoadingCallback()
+
       self.stopOnClickCallback()
       # self.onStepChangeCallback() # <-
       self.stepsOnInputCallback()
       self.windowOnValueCallback()
-      self.onStatusChangeCallback() # <-
-      self.onResultChangeCallback() # <-
+      # self.onStatusChangeCallback() # <-
+      # self.onResultChangeCallback() # <-
 
       self.notifier = notifier
       self.stepsModel = stepsModel
@@ -85,6 +88,24 @@ class Run:
          return [False, (windowValue == None)]
 
 
+   def startOnLoadingCallback(self):
+      """  """
+
+      @app.callback(
+
+         prevent_initial_call = True,
+         inputs = Input("runStartButtonId", "loading"),
+         output = [
+
+            Output("runStopButtonId", "disabled", allow_duplicate = True),
+            Output("runStartButtonId", "n_clicks", allow_duplicate = True)
+
+         ]
+
+      )
+      def func(startLoading): return [(startLoading == False), 0]
+
+
    def stopOnClickCallback(self):
       """  """
 
@@ -92,15 +113,10 @@ class Run:
 
          prevent_initial_call = True,
          inputs = Input("runStopButtonId", "n_clicks"),
-         output = [
-
-            Output("runStartButtonId", "loading"),
-            Output("runStartButtonId", "n_clicks")
-
-         ]
+         output = Output("runStartButtonId", "loading")
 
       )
-      def func(stopClick): return [False, 0]
+      def func(stopClick): return False
 
 
    def onStepChangeCallback(self):
@@ -134,7 +150,6 @@ class Run:
          state = [
 
             State("runStartButtonId", "loading"),
-            State("runContinueButtonId", "disabled"),
             State({"type" : "result-btn", "index" : ALL}, "children"),
 
          ],
@@ -155,20 +170,21 @@ class Run:
          ]
 
       )
-      # def func(startClick, retryClick, startLoading, retryDisabled, continueDisabled, resultChildren):
-      def func(startClick, retryClick, statusChildren, startLoading, continueDisabled, resultChildren):
+      def func(startClick, retryClick, statusChildren, startLoading, resultChildren):
 
          # run controller command, record results back to stepsModel object
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
          rRetryDisabled = True
+         rContinueDisabled = True
          rStartLoading = startLoading
-         rResutlChildren = resultChildren
-         rContinueDisabled = continueDisabled
+         rResultChildren = resultChildren
 
-         if (startClick == 1): self.stepsModel.currentStep = 0
+         if (startClick == 0): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
+
+            print("STATUS TRIGGERED", ctx.triggered) # remove
 
             rStartLoading = True
             result = self.stepsModel.runStep()
@@ -183,7 +199,7 @@ class Run:
 
             # >
 
-         return [rStartLoading, rRetryDisabled, rContinueDisabled, rResutlChildren]
+         return [rStartLoading, rRetryDisabled, rContinueDisabled, rResultChildren]
 
 
    def onResultChangeCallback(self):
@@ -194,7 +210,6 @@ class Run:
          prevent_initial_call = True,
          state = [
 
-            State("runProgressId", "value"),
             State("runStartButtonId", "loading"),
             State("buildOptionsMultiSelectId", "values"),
             State({"type" : "step-row", "index" : ALL}, "children"),
@@ -210,16 +225,15 @@ class Run:
          output = [
 
             Output("runProgressId", "value", allow_duplicate = True),
-            Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("notificationDiv", "children", allow_duplicate = True),
-            Output("runContinueButtonId", "disabled", allow_duplicate = True),
+            Output("runStartButtonId", "loading", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
-            Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True),
+            Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
 
          ]
 
       )
-      def func(continueClick, resultChildren, progressValue, startLoading, optionsValues, stepChildren, statusChildren):
+      def func(continueClick, resultChildren, startLoading, optionsValues, stepChildren, statusChildren):
 
          # increment current step on success
 
@@ -227,12 +241,12 @@ class Run:
          rStartLoading = startLoading
          rStepChildren = stepChildren
          rNotificationChildren = None
-         rProgressValue = progressValue
          rStatusChildren = statusChildren
+         rProgressValue = self.stepsModel.currentStep
 
          if (startLoading):
 
-            print('TRIGGERED') # REMOVE
+            print('RESULT TRIGGERED', ctx.triggered) # REMOVE
             flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
 
 

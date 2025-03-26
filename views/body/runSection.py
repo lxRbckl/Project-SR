@@ -75,6 +75,7 @@ class Run:
                      dmc.Button(
 
                         size = "xs",
+                        n_clicks = 0,
                         loading = False,
                         disabled = True,
                         children = "Start",

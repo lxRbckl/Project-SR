@@ -299,3 +299,14 @@ class References:
                 # execute export
 
             return [rNotificationChildren, (not self._childHasReferences())]
+
+
+# import shutil
+# import os
+#
+# # Define the source and destination paths
+# source_path = '/path/to/source/folder/file.txt'
+# destination_path = '/path/to/destination/folder/file.txt'
+#
+# # Copy the file
+# shutil.copy(source_path, destination_path)

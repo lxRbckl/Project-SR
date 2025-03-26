@@ -18,6 +18,7 @@ class Steps:
         self.errorOnSteps = "Invalid input."
         self.errorInvalidFlag = lambda f: f"Flag \"{f}\" not recognized."
         self.errorInvalidCommand = lambda c: f"Command \"{c}\" not recognized."
+        self.errorInvalidParameters = lambda p, c: f"Parameters \"{p}\" not recognized for \"{c}\"."
 
 
     def _clearSteps(self):
@@ -79,8 +80,12 @@ class Steps:
     def runStep(self):
         """  """
 
-        command = self.steps[self.currentStep]["command"]
-        parameters = self.steps[self.currentStep]["parameters"]
+        try:
 
-        a, b, c, d = (parameters + [None] * 4)[:4]
-        return self.controller.commands[command](a, b, c, d)
+            command = self.steps[self.currentStep]["command"]
+            parameters = self.steps[self.currentStep]["parameters"]
+
+            a, b, c, d = (parameters + [None] * 4)[:4]
+            return self.controller.commands[command](a, b, c, d)
+
+        except TypeError: return self.errorInvalidParameters(c = command, p = parameters)
