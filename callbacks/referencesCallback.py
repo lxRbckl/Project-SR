@@ -6,7 +6,7 @@ from base64 import b64decode
 from os import (remove, listdir, makedirs)
 from dash import (Input, Output, State, ctx, ALL)
 
-from config import (app, iconCopy, iconTrash, iconSuccess, referencesChildDir, referencesParentDir)
+from config import (app, iconCopy, iconError, iconTrash, iconSuccess, referencesChildDir, referencesParentDir)
 
 
 class References:
@@ -25,15 +25,18 @@ class References:
 
         self.onUploadSleep = 0.5
         self.onDeleteSleep = 0.5
+        self.referenceTitles = []
         self.copyMessageSuccess = "Reference was copied to clipboard."
         self.deleteMessageSuccess = "Reference was deleted from folder."
-        self.uploadMessageSuccess = lambda u: f"Reference {u} was uploaded successfully."
+        self.uploadMessageFailure = lambda r: f"The reference {r} already exists!"
+        self.uploadMessageSuccess = lambda r: f"The reference {r} was uploaded successfully."
         self.parseContext = lambda c: loads(c.triggered[0]["prop_id"].replace(".n_clicks", ""))["index"]
 
 
     def _buildReferences(self):
         """  """
 
+        self.referenceTitles = listdir(referencesChildDir)
         return [
 
             self.referencesModal.addReference(
@@ -43,7 +46,7 @@ class References:
 
             )
 
-        for ref in listdir(referencesChildDir)]
+        for ref in self.referenceTitles]
 
 
     def referencesOnClickCallback(self):
@@ -79,18 +82,22 @@ class References:
         )
         def func(copyClick):
 
-            if (len(ctx.triggered) == 1):
+            rNotificationChildren = None
+
+            if ((len(ctx.triggered) == 1) and (copyClick.count(True) > 0)):
 
                 reference = self.parseContext(ctx)
                 copy(reference)
 
-                return self.notifier.notify(
+                rNotificationChildren = self.notifier.notify(
 
                     icon = iconCopy,
                     duration = 4000,
                     message = self.copyMessageSuccess
 
                 )
+
+            return rNotificationChildren
 
 
     def deleteOnClickCallback(self):
@@ -118,7 +125,7 @@ class References:
 
             rNotificationChildren = []
 
-            if (len(ctx.triggered) == 1):
+            if ((len(ctx.triggered) == 1) and (deleteClick.count(True) > 0)):
 
                 file = self.parseContext(ctx)
                 remove(join(referencesChildDir, file))
@@ -157,18 +164,29 @@ class References:
         def func(uploadContents, uploadFilenames):
 
             returnNotifications = []
-            for file, content in zip(uploadFilenames, uploadContents):
+            for filename, content in zip(uploadFilenames, uploadContents):
 
-                data = content.encode("utf-8").split(b";base64,")[1]
-                with open(join(referencesChildDir, file), "wb") as f:
+                if (filename not in self.referenceTitles):
 
-                    f.write(b64decode(data))
+                    data = content.encode("utf-8").split(b";base64,")[1]
+                    with open(join(referencesChildDir, filename), "wb") as f:
 
-                returnNotifications.append(self.notifier.notify(
+                        f.write(b64decode(data))
 
-                    duration = 4000,
-                    icon = iconSuccess,
-                    message = self.uploadMessageSuccess(file)
+                    returnNotifications.append(self.notifier.notify(
+
+                        duration = 4000,
+                        icon = iconSuccess,
+                        message = self.uploadMessageSuccess(filename)
+
+                    ))
+
+                else: returnNotifications.append(self.notifier.notify(
+
+                    color = "red",
+                    duration = 5000,
+                    icon = iconError,
+                    message = self.uploadMessageFailure(filename)
 
                 ))
 

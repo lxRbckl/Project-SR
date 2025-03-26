@@ -46,7 +46,7 @@ class References:
                     justify = "between",
                     children = [
 
-                        # (upload, (icon, load, backup) <
+                        # (upload, (load, folder, backup) <
                         dbc.Col(
 
                             width = "auto",
@@ -79,6 +79,15 @@ class References:
                                     dmc.Button(
 
                                         size = "xs",
+                                        children = "Load",
+                                        loaderProps = loaderStyle,
+                                        id = "referencesLoadButtonId",
+                                        className = "referencesLoadButton"
+
+                                    ),
+                                    dmc.Button(
+
+                                        size = "xs",
                                         className = "referencesFolderButton",
                                         children = DashIconify(
 
@@ -86,15 +95,6 @@ class References:
                                             icon = iconFolder
 
                                         )
-
-                                    ),
-                                    dmc.Button(
-
-                                        size = "xs",
-                                        children = "Load",
-                                        loaderProps = loaderStyle,
-                                        id = "referencesLoadButtonId",
-                                        className = "referencesLoadButton"
 
                                     ),
                                     dmc.Button(

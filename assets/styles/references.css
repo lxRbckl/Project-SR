@@ -11,16 +11,16 @@
     background-color: var(--colorWhite);
 }
 
-.referencesFolderButton {
-    border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+.referencesLoadButton {
+
 }
 
-.referencesLoadButton {
-    border-radius: 0;
+.referencesFolderButton {
+    margin: 0 5px 0 5px;
 }
 
 .referencesBackupButton {
-    border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+
 }
 
 .referencesImagesRow {
