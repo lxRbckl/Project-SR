@@ -63,9 +63,9 @@ class Build:
 
                 (Output("buildCreateButtonId", "loading"), True, False),
                 (Output("buildClearButtonId", "disabled"), True, False),
+                (Output("buildPasteButtonId", "disabled"), True, False),
                 (Output("runWindowSelectId", "disabled"), True, False),
-                (Output("buildCopyButtonId", "disabled"), True, False),
-                (Output("buildPasteButtonId", "disabled"), True, False)
+                (Output("buildCopyButtonId", "disabled"), True, False)
 
             ],
             output = [
@@ -83,7 +83,6 @@ class Build:
         )
         def func(createClick, accordionValue, stepsChildren, textareaValue):
 
-            # rStopNClick = 0
             rProgressMax = 0
             rStartNClick = 0
             rWindowValue = None

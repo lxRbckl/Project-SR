@@ -12,6 +12,7 @@ class Guide:
       """  """
 
       self.filedata = None
+      print('guideFile', guideFile) # remove
       with open(guideFile, 'r') as fin: self.filedata = fin.read()
 
 
