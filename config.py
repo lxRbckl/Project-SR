@@ -1,8 +1,8 @@
 from os import getcwd
-from os.path import (dirname, join, abspath, basename)
 from dash import (Dash, _dash_renderer)
 from dash_mantine_components import styles
 from dash_bootstrap_components import themes
+from os.path import (dirname, join, abspath, basename)
 
 
 port = 8050
@@ -36,17 +36,17 @@ parentDir = dirname(dirname(abspath(__file__)))
 currentDir = basename(dirname(abspath(__file__)))
 
 assetDir = join(parentDir, currentDir, "assets")
-referencesChildDir = join("assets", "references")
 referencesParentDir = join(parentDir, "references")
+referencesChildPartialDir = join("assets", "references")
 tesseract = join(parentDir, "Tesseract", "tesseract.exe")
 guideFile = join(parentDir, currentDir, "assets", "guide.md")
-referencesChildCompleteDir = join(parentDir, currentDir, referencesChildDir)
+referencesChildCompleteDir = join(parentDir, currentDir, referencesChildPartialDir)
 
 print('parentDir', parentDir)
 print('currentDir', currentDir, '\n')
 
 print('assetDir', assetDir)
-print('referencesChildDir', referencesChildDir)
+print('referencesChildPartialDir', referencesChildPartialDir)
 print('referencesParentDir', referencesParentDir)
 print('guideFile', guideFile)
 print('referencesChildCompleteDir', referencesChildCompleteDir)

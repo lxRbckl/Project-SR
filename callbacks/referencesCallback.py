@@ -13,8 +13,8 @@ from config import (
     iconError,
     iconTrash,
     iconSuccess,
-    referencesChildDir,
     referencesParentDir,
+    referencesChildPartialDir,
     referencesChildCompleteDir
 
 )
@@ -63,7 +63,7 @@ class References:
             self.referencesModal.addReference(
 
                 name = ref,
-                ref = join(referencesChildDir, ref)
+                ref = join(referencesChildPartialDir, ref)
 
             )
 
@@ -89,9 +89,7 @@ class References:
         def func(referencesClick):
 
             makedirs(referencesChildCompleteDir, exist_ok = True)
-            print('making', referencesChildCompleteDir)
             makedirs(referencesParentDir, exist_ok = True)
-            print('making', referencesParentDir)
             return [0, 0, self._buildReferences(), True]
 
 
@@ -152,7 +150,7 @@ class References:
             if ((len(ctx.triggered) == 1) and (deleteClick.count(True) > 0)):
 
                 file = self.parseContext(ctx)
-                remove(join(referencesChildDir, file))
+                remove(join(referencesChildCompleteDir, file))
                 rNotificationChildren.append(self.notifier.notify(
 
                     icon = iconTrash,

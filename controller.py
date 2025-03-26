@@ -15,7 +15,7 @@ from pyautogui import (
 
 )
 
-from config import (tesseract, referencesChildDir)
+from config import (tesseract, referencesChildPartialDir)
 
 
 class Controller:
@@ -197,7 +197,7 @@ class Controller:
 
                 grayscale = self.useGrayscale,
                 haystackImage = self.screenshot,
-                needleImage = join(referencesChildDir, image)
+                needleImage = join(referencesChildPartialDir, image)
 
             ))
 

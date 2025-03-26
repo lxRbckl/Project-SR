@@ -1,6 +1,7 @@
+from os import system
+
 from controller import Controller
 from config import (app, port, debug)
-
 from models.body.stepsModel import Steps as stepsModel
 
 from callbacks.body.runCallback import Run as runCallback
