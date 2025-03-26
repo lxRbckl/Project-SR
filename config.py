@@ -33,7 +33,7 @@ iconCompleted = "fluent-mdl2:completed-solid"
 
 
 # currentDir = "Project-SR"
-currentDir = dirname(abspath(__file__))
+currentDir = basename(dirname(abspath(__file__)))
 print('currentDir', currentDir) # remove
 
 # parentDir = dirname(getcwd(__file__))
