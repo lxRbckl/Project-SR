@@ -88,10 +88,10 @@ class References:
         )
         def func(referencesClick):
 
+            makedirs(referencesChildCompleteDir, exist_ok = True)
+            print('making', referencesChildCompleteDir)
             makedirs(referencesParentDir, exist_ok = True)
             print('making', referencesParentDir)
-            makedirs(referencesChildDir, exist_ok = True)
-            print('making', referencesChildDir)
             return [0, 0, self._buildReferences(), True]
 
 
@@ -192,8 +192,7 @@ class References:
                 if (filename not in self.referenceTitles):
 
                     data = content.encode("utf-8").split(b";base64,")[1]
-                    print('upload referencesChildDir', referencesChildDir) # remove
-                    with open(join(referencesChildDir, filename), "wb") as f:
+                    with open(join(referencesChildCompleteDir, filename), "wb") as f:
 
                         f.write(b64decode(data))
 
