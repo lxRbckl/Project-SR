@@ -47,6 +47,7 @@ class Steps:
 
                 children = None,
                 disabled = True,
+                className = "test",
                 size = "compact-sm",
                 id = {"type" : "result-btn", "index" : f"result-{index}"}
 

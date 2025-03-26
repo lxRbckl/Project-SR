@@ -184,17 +184,23 @@ class Run:
          if (startClick == 0): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
 
-            print("STATUS TRIGGERED") # remove
-            print('statusChildren', statusChildren) # remove
+            print("\n\nSTATUS TRIGGERED")
+            print('startLoading', startLoading)
+            print('resultChildren', resultChildren)
 
             rStartLoading = True
             result = self.stepsModel.runStep()
+
+            print('result', result) # remove
 
             # if (failure) <
             # else (then success) <
             if (result):
 
-               pass
+               rRetryDisabled = False
+               rContinueDisabled = False
+               rResultChildren[self.stepsModel.currentStep] = False
+
 
             else: pass
 
@@ -246,8 +252,12 @@ class Run:
 
          if (startLoading):
 
-            print('RESULT TRIGGERED') # REMOVE
-            flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
+            print('\n\nRESULT TRIGGERED')
+            print('startLoading', startLoading)
+            print('resultChildren', resultChildren)
+            print('stepChildren', stepChildren)
+
+            # flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
 
 
          return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]
