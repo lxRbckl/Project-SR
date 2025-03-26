@@ -2,7 +2,7 @@ from os import getcwd
 from dash import (Dash, _dash_renderer)
 from dash_mantine_components import styles
 from dash_bootstrap_components import themes
-from os.path import (dirname, basename, join)
+from os.path import (dirname, basename, join, abspath)
 
 
 port = 8050
@@ -32,6 +32,7 @@ iconWindow = "iconamoon:screen-full-fill"
 iconCompleted = "fluent-mdl2:completed-solid"
 
 
+print('absolute path', abspath(__file__))
 parentDir = dirname(getcwd())
 print('parentDir', parentDir) # remove
 currentDir = basename(getcwd())
