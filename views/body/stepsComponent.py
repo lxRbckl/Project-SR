@@ -15,27 +15,6 @@ class Steps:
         pass
 
 
-    def setStatus(self, status = "Pending"):
-        """  """
-
-        try:
-
-            return DashIconify(
-
-                width = 18,
-                icon = {
-
-                    "Pending" : iconPending,
-                    "Running" : iconRunning,
-                    "Completed" : iconCompleted
-
-                }[status]
-
-            )
-
-        except KeyError: return None
-
-
     def _buildStepResult(self, index):
         """  """
 
@@ -45,7 +24,7 @@ class Steps:
             className = "stepsResultCol",
             children = dmc.Button(
 
-                children = "potato",
+                children = None,
                 disabled = True,
                 className = "test",
                 size = "compact-sm",
@@ -55,6 +34,18 @@ class Steps:
             )
 
         )
+
+
+    def setStepStatus(self, status = "Pending"):
+        """  """
+
+        return DashIconify(icon = {
+
+            "Pending" : iconPending,
+            "Running" : iconRunning,
+            "Completed" : iconCompleted
+
+        }[status])
 
 
     def _buildStepStatus(self, index):
@@ -68,7 +59,7 @@ class Steps:
 
                 disabled = True,
                 size = "compact-sm",
-                children = self.setStatus(),
+                children = self.setStepStatus(),
                 className = "stepsStatusButton",
                 id = {"type" : "status-btn", "index" : f"status-{index}"}
 
@@ -186,7 +177,7 @@ class Steps:
             id = {"type" : "step-row", "index" : f"step-{index}"},
             children = [
 
-                self._buildStepResult(step),
+                self._buildStepResult(index),
                 self._buildStepStatus(index),
                 self._buildStepCommand(
 

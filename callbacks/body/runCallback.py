@@ -165,7 +165,7 @@ class Run:
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
-            Output({"type" : "result-btn", "index" : ALL}, "children")
+            Output({"type" : "result-btn", "index" : ALL}, "children", allow_duplicate = True)
 
          ]
 
@@ -196,13 +196,13 @@ class Run:
 
                for i in range(len(rResultChildren)):
 
-                  rResultChildren[i] = "check"
+                  rResultChildren[i] = True
 
             else: pass
 
             # >
 
-         print('status', len(rResultChildren), rResultChildren[0])
+         print('status', len(rResultChildren), rResultChildren)
          return [rStartLoading, rRetryDisabled, rContinueDisabled, rResultChildren]
 
 
@@ -252,6 +252,5 @@ class Run:
             # print('RESULT TRIGGERED') # REMOVE
 
             flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
-
 
          return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]
