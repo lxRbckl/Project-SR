@@ -33,6 +33,7 @@ iconCompleted = "fluent-mdl2:completed-solid"
 
 
 print('absolute path', abspath(__file__))
+print('other path', abspath(getcwd()))
 parentDir = dirname(getcwd())
 print('parentDir', parentDir) # remove
 currentDir = basename(getcwd())
