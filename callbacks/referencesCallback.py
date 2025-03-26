@@ -193,6 +193,7 @@ class References:
                 if (filename not in self.referenceTitles):
 
                     data = content.encode("utf-8").split(b";base64,")[1]
+                    print('upload referencesChildDir', referencesChildDir) # remove
                     with open(join(referencesChildDir, filename), "wb") as f:
 
                         f.write(b64decode(data))
