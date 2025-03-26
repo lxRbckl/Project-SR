@@ -33,7 +33,7 @@ class Notification:
         width = 20,
         show = "show",
         color = "blue",
-        duration = False,
+        duration = 5000,
         icon = iconNotification
     ):
         """  """

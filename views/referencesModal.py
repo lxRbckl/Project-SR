@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (iconTrash, iconUpload, iconCopy, iconMedia, loaderStyle, iconFolder)
+from config import (iconTrash, iconUpload, iconCopy, loaderStyle, iconAlbum)
 
 
 class References:
@@ -79,20 +79,21 @@ class References:
                                     dmc.Button(
 
                                         size = "xs",
-                                        children = "Load",
+                                        children = "Import",
                                         loaderProps = loaderStyle,
-                                        id = "referencesLoadButtonId",
-                                        className = "referencesLoadButton"
+                                        id = "referencesImportButtonId"
 
                                     ),
                                     dmc.Button(
 
                                         size = "xs",
+                                        disabled = False,
+                                        id = "referencesFolderButtonId",
                                         className = "referencesFolderButton",
                                         children = DashIconify(
 
-                                            width = 16,
-                                            icon = iconFolder
+                                            width = 20,
+                                            icon = iconAlbum
 
                                         )
 
@@ -100,10 +101,9 @@ class References:
                                     dmc.Button(
 
                                         size = "xs",
-                                        children = "Backup",
+                                        children = "Export",
                                         loaderProps = loaderStyle,
-                                        id = "referencesBackupButtonId",
-                                        className = "referencesBackupButton"
+                                        id = "referencesExportButtonId"
 
                                     )
 
@@ -143,7 +143,6 @@ class References:
             children = dmc.Card(
 
                 withBorder = True,
-                className = "referencesCard",
                 children = [
 
                     dmc.CardSection(

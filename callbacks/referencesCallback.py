@@ -3,10 +3,21 @@ from json import loads
 from os.path import join
 from clipboard import copy
 from base64 import b64decode
-from os import (remove, listdir, makedirs)
 from dash import (Input, Output, State, ctx, ALL)
+from os import (remove, listdir, makedirs, startfile)
 
-from config import (app, iconCopy, iconError, iconTrash, iconSuccess, referencesChildDir, referencesParentDir)
+from config import (
+
+    app,
+    iconCopy,
+    iconError,
+    iconTrash,
+    iconSuccess,
+    referencesChildDir,
+    referencesParentDir,
+    referencesChildCompleteDir
+
+)
 
 
 class References:
@@ -14,6 +25,10 @@ class References:
 
     def __init__(self, notifier, referencesModal):
         """  """
+
+        self.folderOnClickCallback()
+        self.exportOnClickCallback()
+        self.importOnClickCallback()
 
         self.copyOnClickCallback()
         self.deleteOnClickCallback()
@@ -26,6 +41,8 @@ class References:
         self.onUploadSleep = 0.5
         self.onDeleteSleep = 0.5
         self.referenceTitles = []
+        self.exportMessageSuccess = "Export was successful."
+        self.importMessageSuccess = "Import was successful."
         self.copyMessageSuccess = "Reference was copied to clipboard."
         self.deleteMessageSuccess = "Reference was deleted from folder."
         self.uploadMessageFailure = lambda r: f"The reference {r} already exists!"
@@ -33,10 +50,14 @@ class References:
         self.parseContext = lambda c: loads(c.triggered[0]["prop_id"].replace(".n_clicks", ""))["index"]
 
 
+    def _parentHasReferences(self): return (len(listdir(referencesParentDir)) > 0)
+    def _childHasReferences(self): return (len(listdir(referencesChildCompleteDir)) > 0)
+
+
     def _buildReferences(self):
         """  """
 
-        self.referenceTitles = listdir(referencesChildDir)
+        self.referenceTitles = listdir(referencesChildCompleteDir)
         return [
 
             self.referencesModal.addReference(
@@ -66,6 +87,7 @@ class References:
         )
         def func(referencesClick):
 
+            makedirs(referencesParentDir, exist_ok = True)
             makedirs(referencesChildDir, exist_ok = True)
             return [True, self._buildReferences()]
 
@@ -92,7 +114,6 @@ class References:
                 rNotificationChildren = self.notifier.notify(
 
                     icon = iconCopy,
-                    duration = 4000,
                     message = self.copyMessageSuccess
 
                 )
@@ -131,7 +152,6 @@ class References:
                 remove(join(referencesChildDir, file))
                 rNotificationChildren.append(self.notifier.notify(
 
-                    duration = 4000,
                     icon = iconTrash,
                     message = self.deleteMessageSuccess
 
@@ -175,7 +195,6 @@ class References:
 
                     returnNotifications.append(self.notifier.notify(
 
-                        duration = 4000,
                         icon = iconSuccess,
                         message = self.uploadMessageSuccess(filename)
 
@@ -184,7 +203,6 @@ class References:
                 else: returnNotifications.append(self.notifier.notify(
 
                     color = "red",
-                    duration = 5000,
                     icon = iconError,
                     message = self.uploadMessageFailure(filename)
 
@@ -192,3 +210,89 @@ class References:
 
             sleep(self.onUploadSleep)
             return [self._buildReferences(), returnNotifications]
+
+
+    def folderOnClickCallback(self):
+        """  """
+
+        @app.callback(
+
+            prevent_initial_call = True,
+            inputs = Input("referencesFolderButtonId", "n_clicks"),
+            output = Output("referencesFolderButtonId", "disabled")
+
+        )
+        def func(folderClick):
+
+            startfile(referencesParentDir)
+            return False
+
+
+    def importOnClickCallback(self):
+        """  """
+
+        @app.callback(
+
+            prevent_initial_call = True,
+            state = State("referencesRowId", "children"),
+            inputs = [
+
+                Input("referencesImportButtonId", "n_clicks"),
+                Input("referencesExportButtonId", "disabled")
+
+            ],
+            output = [
+
+                Output("notificationDiv", "children", allow_duplicate = True),
+                Output("referencesRowId", "children", allow_duplicate = True),
+                Output("referencesImportButtonId", "disabled", allow_duplicate = True)
+
+            ]
+
+        )
+        def func(importClick, exportClick, referencesChildren):
+
+            rNotificationChidlren = None
+            rReferencesChildren = referencesChildren
+
+            if (importClick or exportClick):
+
+                rReferencesChildren = self._buildReferences()
+                rNotificationChidlren = self.notifier.notify(self.importMessageSuccess)
+
+                # execute import
+
+            return [rNotificationChidlren, rReferencesChildren, (not self._parentHasReferences())]
+
+
+    def exportOnClickCallback(self):
+        """  """
+
+        @app.callback(
+
+            prevent_initial_call = True,
+            inputs = [
+
+                Input("referencesRowId", "children"),
+                Input("referencesExportButtonId", "n_clicks")
+
+            ],
+            output = [
+
+                Output("notificationDiv", "children", allow_duplicate = True),
+                Output("referencesExportButtonId", "disabled", allow_duplicate = True)
+
+            ]
+
+        )
+        def func(rowChildren, exportClick):
+
+            rNotificationChildren = None
+
+            if (exportClick):
+
+                rNotificationChildren = self.notifier.notify(self.exportMessageSuccess)
+
+                # execute export
+
+            return [rNotificationChildren, (not self._childHasReferences())]
