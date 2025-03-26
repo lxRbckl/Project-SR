@@ -89,7 +89,9 @@ class References:
         def func(referencesClick):
 
             makedirs(referencesParentDir, exist_ok = True)
+            print('making', referencesParentDir)
             makedirs(referencesChildDir, exist_ok = True)
+            print('making', referencesChildDir)
             return [0, 0, self._buildReferences(), True]
 
 
