@@ -27,6 +27,10 @@ set "PYTHON=%cd%\Python3.9.0\python.exe"
 %PYTHON% "%DIR%\app.py"
 ```
 
+```
+Ensure both install.bat and run.bat have either ANSI or UTF-8 encoding to run properly. You can do this via Notepad -> Save As.
+```
+
 ---
 
 ## Development
