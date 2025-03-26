@@ -33,15 +33,12 @@ iconCompleted = "fluent-mdl2:completed-solid"
 
 
 currentDir = "Project-SR"
-print('currentDir', currentDir) # remove
 parentDir = dirname(getcwd())
-print('parentDir', parentDir) # remove
 assetDir = join(parentDir, currentDir, "assets")
 referencesChildDir = join("assets", "references")
 referencesParentDir = join(parentDir, "references")
 tesseract = join(parentDir, "Tesseract", "tesseract.exe")
 guideFile = join(parentDir, currentDir, "assets", "guide.md")
-print('config guideFile', guideFile)
 referencesChildCompleteDir = join(parentDir, currentDir, referencesChildDir)
 
 

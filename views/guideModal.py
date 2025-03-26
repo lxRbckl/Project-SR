@@ -22,7 +22,7 @@ class Guide:
 
       return dmc.Modal(
 
-         size = "85%",
+         size = "75%",
          opened = None,
          centered = True,
          id = "guideModalId",

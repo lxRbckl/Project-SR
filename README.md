@@ -1,5 +1,5 @@
 ## Installation
-`echo @echo off > installer.bat`
+`echo @echo off > install.bat`
 ```
 @echo off
 
