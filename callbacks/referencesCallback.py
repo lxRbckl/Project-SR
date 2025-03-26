@@ -27,8 +27,8 @@ class References:
         """  """
 
         self.folderOnClickCallback()
-        self.exportOnClickCallback()
-        self.importOnClickCallback()
+        # self.exportOnClickCallback()
+        # self.importOnClickCallback()
 
         self.copyOnClickCallback()
         self.deleteOnClickCallback()
@@ -79,9 +79,10 @@ class References:
             inputs = Input("headerReferencesActionIconId", "n_clicks"),
             output = [
 
-                Output("referencesModalId", "opened"),
-                Output("referencesRowId", "children", allow_duplicate = True)
-
+                Output("referencesImportButtonId", "n_clicks", allow_duplicate = True),
+                Output("referencesExportButtonId", "n_clicks", allow_duplicate = True),
+                Output("referencesRowId", "children", allow_duplicate = True),
+                Output("referencesModalId", "opened")
             ]
 
         )
@@ -89,7 +90,7 @@ class References:
 
             makedirs(referencesParentDir, exist_ok = True)
             makedirs(referencesChildDir, exist_ok = True)
-            return [True, self._buildReferences()]
+            return [0, 0, self._buildReferences(), True]
 
 
     def copyOnClickCallback(self):
@@ -257,6 +258,7 @@ class References:
 
             if (importClick or exportClick):
 
+                print('import') # remove
                 rReferencesChildren = self._buildReferences()
                 rNotificationChidlren = self.notifier.notify(self.importMessageSuccess)
 
@@ -291,6 +293,7 @@ class References:
 
             if (exportClick):
 
+                print('export') # remove
                 rNotificationChildren = self.notifier.notify(self.exportMessageSuccess)
 
                 # execute export

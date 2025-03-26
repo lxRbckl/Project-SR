@@ -79,6 +79,8 @@ class References:
                                     dmc.Button(
 
                                         size = "xs",
+                                        n_clicks = 0,
+                                        disabled = True, # <-
                                         children = "Import",
                                         loaderProps = loaderStyle,
                                         id = "referencesImportButtonId"
@@ -101,6 +103,8 @@ class References:
                                     dmc.Button(
 
                                         size = "xs",
+                                        n_clicks = 0,
+                                        disabled = True,  # <-
                                         children = "Export",
                                         loaderProps = loaderStyle,
                                         id = "referencesExportButtonId"
