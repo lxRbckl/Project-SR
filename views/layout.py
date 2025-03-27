@@ -19,7 +19,7 @@ class Layout:
    ):
       """  """
 
-      self.layoutColWidth = 7
+      self.layoutColWidth = 8
 
       self.body = body
       self.guide = guide

@@ -26,6 +26,9 @@ class Run:
       self.controller = controller
       self.stepsComponent = stepsComponent
 
+      self.resultFailureMessage = ""
+      self.resultSuccessMessage = ""
+
       self.redirectTo = "Run"
       self.stepsOnWarningMessage = lambda c, l: f"There are {c} windows of {l} open."
 
@@ -168,7 +171,6 @@ class Run:
          ],
          output = [
 
-            Output("notificationDiv", "children", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
@@ -185,18 +187,17 @@ class Run:
 
          rRetryDisabled = True
          rContinueDisabled = True
-         rNotificationChildren = None
          rStartLoading = startLoading
          rStepClassName = stepClassName
          rResultChildren = resultChildren
 
          if ((startClick == 0) and (self.stepsModel.currentStep != 0)): self.stepsModel.currentStep = 0
-         if ((startClick > 0) or rStartLoading):
+         elif ((startClick > 0) or rStartLoading):
 
-            print('STATUS TRIGGERED\n')
+            print('\nSTATUS TRIGGERED')
 
             rStartLoading = True
-            result = self.stepsModel.runStep()
+            result = True # self.stepsModel.runStep()
 
             # if (failure) <
             # else (then success) <
@@ -218,7 +219,7 @@ class Run:
 
          else: pass
 
-         return [rNotificationChildren, rStartLoading, rRetryDisabled, rContinueDisabled, rStepClassName, rResultChildren]
+         return [rStartLoading, rRetryDisabled, rContinueDisabled, rStepClassName, rResultChildren]
 
 
    def onResultChangeCallback(self):
@@ -244,6 +245,7 @@ class Run:
          output = [
 
             Output("runProgressId", "value", allow_duplicate = True),
+            Output("notificationDiv", "children", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
             Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
@@ -255,15 +257,16 @@ class Run:
 
          rStartLoading = startLoading
          rStepChildren = stepChildren
+         rNotificationChildren = None
          rStatusChildren = statusChildren
          rProgressValue = self.stepsModel.currentStep
 
          if (startLoading):
 
-            print('RESULT TRIGGERED\n') # remove
+            print('\nRESULT TRIGGERED') # remove
 
             flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
 
          else: pass
 
-         return [rProgressValue, rStartLoading, rStepChildren, rStatusChildren]
+         return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]
