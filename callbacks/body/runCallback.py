@@ -195,7 +195,7 @@ class Run:
          if ((startClick == 0) and (self.stepsModel.currentStep != 0)): self.stepsModel.currentStep = 0
          elif ((startClick > 0) or rStartLoading):
 
-            print('\nSTATUS TRIGGERED')
+            print('\n\nSTATUS TRIGGERED')
             rStartLoading = True
             result = self.stepsModel.runStep()
             flags = self.stepsModel.getFlags()
@@ -204,7 +204,7 @@ class Run:
             # else (then success) <
             if (result):
 
-               print('STATUS FAILURE')
+               print('> STATUS FAILURE')
                rStepClassName[self.stepsModel.currentStep] += " runStepsRowFailure"
                rResultChildren[self.stepsModel.currentStep] = False
                rContinueDisabled = False
@@ -212,7 +212,7 @@ class Run:
 
             else:
 
-               print('STATUS SUCCESS')
+               print('> STATUS SUCCESS')
                rContinueDisabled = (not flags["pause"])
                rResultChildren[self.stepsModel.currentStep] = True
                rStepClassName[self.stepsModel.currentStep] += " runStepsRowSuccess"
@@ -264,19 +264,18 @@ class Run:
 
          if (startLoading):
 
-            print('\nRESULT TRIGGERED')
+            print('\n\nRESULT TRIGGERED')
 
             flags = self.stepsModel.getFlags()
             command = self.stepsModel.getCommand()
 
-            print(flags, '\n', command)
-            print('conditions', flags["skip"], (continueClick > 0), (not continueDisabled), resultChildren[self.stepsModel.currentStep])
+            print('conditions', flags["skip"], flags["pause"], (continueClick > 0), resultChildren[self.stepsModel.currentStep])
 
             # if (skip or continue or success) <
             # elif (pause or failure) <
             if (flags["skip"] or (continueClick > 0) or resultChildren[self.stepsModel.currentStep]):
 
-               print('RESULT NEXT')
+               print('> RESULT NEXT')
 
                # build notification <
                message = self.stepsModel.getMessage()
@@ -307,50 +306,10 @@ class Run:
 
             elif (flags["pause"] or (resultChildren[self.stepsModel.currentStep] == False)):
 
-               print('RESULT WAITING')
+               print('> RESULT WAITING')
                rStatusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Running")
 
             # >
-
-            # # if (skip, continue, paused, or success) <
-            # # else (then do not increment) <
-            # if (flags["skip"]
-            #    or (continueClick > 0)
-            #    or (not continueDisabled)
-            #    or resultChildren[self.stepsModel.currentStep]
-            # ):
-            #
-            #    print('RESULT SUCCESS')
-            #
-            #    message = self.stepsModel.getMessage()
-            #    rNotificationChildren = self.notifier.notify(
-            #
-            #       icon = iconCompleted,
-            #       message = message if (message) else f"Completed - {command}"
-            #
-            #    )
-            #
-            #    statusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Completed")
-            #
-            #    # if (last element) <
-            #    # else (then increment) <
-            #    if (self.stepsModel.currentStep == (self.stepsModel.totalSteps - 1)):
-            #
-            #       rStartLoading = False
-            #
-            #    else:
-            #
-            #       self.stepsModel.currentStep += 1
-            #       statusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Pending")
-            #
-            #    # >
-            #
-            # else:
-            #
-            #    print('RESULT FAILURE')
-            #    pass
-            #
-            # # >
 
          else: pass
 
