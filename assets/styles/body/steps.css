@@ -18,7 +18,7 @@
 
 .stepsStatusButton {
    margin: 5px;
-   padding: 5px;
+   padding: 0 3px 0 3px;
    color: var(--colorBlack);
    border: var(--borderGray);
 }

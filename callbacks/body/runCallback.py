@@ -193,6 +193,8 @@ class Run:
          if ((startClick == 0) and (self.stepsModel.currentStep != 0)): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
 
+            print('STATUS TRIGGERED\n')
+
             rStartLoading = True
             result = self.stepsModel.runStep()
 
@@ -257,6 +259,8 @@ class Run:
          rProgressValue = self.stepsModel.currentStep
 
          if (startLoading):
+
+            print('RESULT TRIGGERED\n') # remove
 
             flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
 

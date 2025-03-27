@@ -39,13 +39,18 @@ class Steps:
     def setStepStatus(self, status = "Pending"):
         """  """
 
-        return DashIconify(icon = {
+        return DashIconify(
 
-            "Pending" : iconPending,
-            "Running" : iconRunning,
-            "Completed" : iconCompleted
+            width = 20,
+            icon = {
 
-        }[status])
+                "Pending" : iconPending,
+                "Running" : iconRunning,
+                "Completed" : iconCompleted
+
+            }[status]
+
+        )
 
 
     def _buildStepStatus(self, index):

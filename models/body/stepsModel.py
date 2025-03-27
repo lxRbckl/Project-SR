@@ -21,6 +21,11 @@ class Steps:
         self.errorInvalidParameters = lambda p, c: f"Parameters \"{p}\" not recognized for \"{c}\"."
 
 
+    def getFlags(self): return self.steps[self.currentStep]["flags"]
+    def getCommand(self): return self.steps[self.currentStep]["command"]
+    def getParameters(self): return self.steps[self.currentStep]["parameters"]
+
+
     def _clearSteps(self):
         """  """
 
@@ -80,10 +85,9 @@ class Steps:
     def runStep(self):
         """  """
 
+        command = self.getCommand()
+        parameters = self.getParameters()
         try:
-
-            command = self.steps[self.currentStep]["command"]
-            parameters = self.steps[self.currentStep]["parameters"]
 
             a, b, c, d = (parameters + [None] * 4)[:4]
             return self.controller.commands[command](a, b, c, d)
