@@ -204,6 +204,7 @@ class Run:
                rRetryDisabled = False
                rContinueDisabled = False
                rResultChildren[self.stepsModel.currentStep] = False
+               rStepClassName[self.stepsModel.currentStep + 1] += " runStepsRowFailure"
 
             else:
 
@@ -214,7 +215,8 @@ class Run:
 
          else: pass
 
-         return [rStartLoading, rRetryDisabled, rContinueDisabled, rResultChildren, rStepClassName]
+         print('status end', rStepClassName)
+         return [rStartLoading, rRetryDisabled, rContinueDisabled, rStepClassName, rResultChildren]
 
 
    def onResultChangeCallback(self):
