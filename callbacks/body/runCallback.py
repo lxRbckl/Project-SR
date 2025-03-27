@@ -155,7 +155,8 @@ class Run:
          state = [
 
             State("runStartButtonId", "loading"),
-            State({"type" : "result-btn", "index" : ALL}, "children"),
+            State({"type" : "step-row", "index" : ALL}, "className"),
+            State({"type" : "result-btn", "index" : ALL}, "children")
 
          ],
          inputs = [
@@ -170,12 +171,13 @@ class Run:
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
+            Output({"type": "step-row", "index": ALL}, "className", allow_duplicate = True),
             Output({"type" : "result-btn", "index" : ALL}, "children", allow_duplicate = True)
 
          ]
 
       )
-      def func(startClick, retryClick, statusChildren, startLoading, resultChildren):
+      def func(startClick, retryClick, statusChildren, startLoading, stepClassName, resultChildren):
 
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
@@ -183,7 +185,10 @@ class Run:
          rRetryDisabled = True
          rContinueDisabled = True
          rStartLoading = startLoading
+         rStepClassName = stepClassName
          rResultChildren = resultChildren
+
+         print('rStepClassName', rStepClassName)
 
          if ((startClick == 0) and (self.stepsModel.currentStep != 0)): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
@@ -195,17 +200,21 @@ class Run:
             # else (then success) <
             if (result):
 
+               print('STATUS FAILURE')
                rRetryDisabled = False
                rContinueDisabled = False
                rResultChildren[self.stepsModel.currentStep] = False
 
-            else: rResultChildren[self.stepsModel.currentStep] = True
+            else:
+
+               print('STATUS SUCCESS')
+               rResultChildren[self.stepsModel.currentStep] = True
 
             # >
 
          else: pass
 
-         return [rStartLoading, rRetryDisabled, rContinueDisabled, rResultChildren]
+         return [rStartLoading, rRetryDisabled, rContinueDisabled, rResultChildren, rStepClassName]
 
 
    def onResultChangeCallback(self):

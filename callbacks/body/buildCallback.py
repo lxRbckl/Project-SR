@@ -29,7 +29,7 @@ class Build:
 
         self.messageClipboardCopied = "Text was copied from input."
         self.messageClipboardPasted = "Text was pasted from input."
-        self.messageCreateOnClick = "Make sure not to alter a production-level application window!"
+        self.messageCreateOnClick = "Make sure to not alter production-level applications!"
 
 
     def textareaOnInputCallback(self):
@@ -98,7 +98,6 @@ class Build:
                 rStepsChildren = self.stepsComponent.buildSteps(self.stepsModel.steps)
                 rNotificationChildren = self.notifier.notify(
 
-                    duration = 1000, # remove
                     color = "yellow",
                     icon = iconWarning,
                     message = self.messageCreateOnClick
