@@ -14,8 +14,8 @@ from config import (
     iconTrash,
     iconSuccess,
     referencesParentDir,
-    referencesChildPartialDir,
-    referencesChildCompleteDir
+    referencesChildSubDir,
+    referencesChildFullDir
 
 )
 
@@ -27,8 +27,8 @@ class References:
         """  """
 
         self.folderOnClickCallback()
-        # self.exportOnClickCallback()
-        # self.importOnClickCallback()
+        self.exportOnClickCallback()
+        self.importOnClickCallback()
 
         self.copyOnClickCallback()
         self.deleteOnClickCallback()
@@ -51,19 +51,19 @@ class References:
 
 
     def _parentHasReferences(self): return (len(listdir(referencesParentDir)) > 0)
-    def _childHasReferences(self): return (len(listdir(referencesChildCompleteDir)) > 0)
+    def _childHasReferences(self): return (len(listdir(referencesChildFullDir)) > 0)
 
 
     def _buildReferences(self):
         """  """
 
-        self.referenceTitles = listdir(referencesChildCompleteDir)
+        self.referenceTitles = listdir(referencesChildFullDir)
         return [
 
             self.referencesModal.addReference(
 
                 name = ref,
-                ref = join(referencesChildPartialDir, ref)
+                ref = join(referencesChildSubDir, ref)
 
             )
 
@@ -88,7 +88,7 @@ class References:
         )
         def func(referencesClick):
 
-            makedirs(referencesChildCompleteDir, exist_ok = True)
+            makedirs(referencesChildFullDir, exist_ok = True)
             makedirs(referencesParentDir, exist_ok = True)
             return [0, 0, self._buildReferences(), True]
 
@@ -150,7 +150,7 @@ class References:
             if ((len(ctx.triggered) == 1) and (deleteClick.count(True) > 0)):
 
                 file = self.parseContext(ctx)
-                remove(join(referencesChildCompleteDir, file))
+                remove(join(referencesChildFullDir, file))
                 rNotificationChildren.append(self.notifier.notify(
 
                     icon = iconTrash,
@@ -169,17 +169,14 @@ class References:
             prevent_initial_call = True,
             state = State("referencesUploadId", "filename"),
             inputs = Input("referencesUploadId", "contents"),
-            running = [
-
-                (Output("referencesLoadingOverlayId", "visible"), True, False)
-
-            ],
             output = [
 
                 Output("referencesRowId", "children", allow_duplicate = True),
                 Output("notificationDiv", "children", allow_duplicate = True)
 
-            ]
+            ],
+            running = (Output("referencesLoadingOverlayId", "visible"), True, False)
+
 
         )
         def func(uploadContents, uploadFilenames):
@@ -190,7 +187,7 @@ class References:
                 if (filename not in self.referenceTitles):
 
                     data = content.encode("utf-8").split(b";base64,")[1]
-                    with open(join(referencesChildCompleteDir, filename), "wb") as f:
+                    with open(join(referencesChildFullDir, filename), "wb") as f:
 
                         f.write(b64decode(data))
 
@@ -236,12 +233,8 @@ class References:
 
             prevent_initial_call = True,
             state = State("referencesRowId", "children"),
-            inputs = [
-
-                Input("referencesImportButtonId", "n_clicks"),
-                Input("referencesExportButtonId", "disabled")
-
-            ],
+            inputs = Input("referencesImportButtonId", "n_clicks"),
+            running = (Output("referencesLoadingOverlayId", "visible"), True, False),
             output = [
 
                 Output("notificationDiv", "children", allow_duplicate = True),
@@ -251,18 +244,17 @@ class References:
             ]
 
         )
-        def func(importClick, exportClick, referencesChildren):
+        def func(importClick, referencesChildren):
 
             rNotificationChidlren = None
             rReferencesChildren = referencesChildren
+            print('import', ctx.triggered, importClick, 'end')
 
-            if (importClick or exportClick):
+            if (len(ctx.triggered) == 1 and importClick > 0):
 
-                print('import') # remove
+                print('IMPORT EXECUTING')
                 rReferencesChildren = self._buildReferences()
                 rNotificationChidlren = self.notifier.notify(self.importMessageSuccess)
-
-                # execute import
 
             return [rNotificationChidlren, rReferencesChildren, (not self._parentHasReferences())]
 
@@ -273,12 +265,8 @@ class References:
         @app.callback(
 
             prevent_initial_call = True,
-            inputs = [
-
-                Input("referencesRowId", "children"),
-                Input("referencesExportButtonId", "n_clicks")
-
-            ],
+            inputs = Input("referencesExportButtonId", "n_clicks"),
+            running = (Output("referencesLoadingOverlayId", "visible"), True, False),
             output = [
 
                 Output("notificationDiv", "children", allow_duplicate = True),
@@ -287,16 +275,15 @@ class References:
             ]
 
         )
-        def func(rowChildren, exportClick):
+        def func(exportClick):
 
             rNotificationChildren = None
+            print('export', ctx.triggered, exportClick, 'end')
 
-            if (exportClick):
+            if (len(ctx.triggered) == 1 and exportClick > 0):
 
-                print('export') # remove
+                print('EXPORT EXECUTING')
                 rNotificationChildren = self.notifier.notify(self.exportMessageSuccess)
-
-                # execute export
 
             return [rNotificationChildren, (not self._childHasReferences())]
 

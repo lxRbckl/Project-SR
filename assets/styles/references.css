@@ -19,3 +19,8 @@
     border: var(--borderDottedGray);
     border-radius: var(--borderRadius);
 }
+
+.referencesDescriptionText {
+    margin: 0 0 5px 0;
+    text-align: right;
+}

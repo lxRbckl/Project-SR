@@ -5,14 +5,6 @@ from dash_bootstrap_components import themes
 from os.path import (dirname, join, abspath, basename)
 
 
-port = 8050
-debug = True
-emptyValue = ""
-projectVersion = "V1.0.0"
-projectName = "Project SR"
-loaderStyle = {"type" : "dots"}
-
-
 iconGuide = "tabler:book"
 iconWarning = "bxs:error"
 iconMedia = "pajamas:media"
@@ -32,24 +24,22 @@ iconWindow = "iconamoon:screen-full-fill"
 iconCompleted = "fluent-mdl2:completed-solid"
 
 
+port = 8050
+debug = True
+emptyValue = ""
+projectVersion = "V1.0.0"
+projectName = "Project SR"
+loaderStyle = {"type" : "dots"}
+
 parentDir = dirname(dirname(abspath(__file__)))
 currentDir = basename(dirname(abspath(__file__)))
 
 assetDir = join(parentDir, currentDir, "assets")
 referencesParentDir = join(parentDir, "references")
-referencesChildPartialDir = join("assets", "references")
+referencesChildSubDir = join("assets", "references")
 tesseract = join(parentDir, "Tesseract", "tesseract.exe")
 guideFile = join(parentDir, currentDir, "assets", "guide.md")
-referencesChildCompleteDir = join(parentDir, currentDir, referencesChildPartialDir)
-
-print('parentDir', parentDir)
-print('currentDir', currentDir, '\n')
-
-print('assetDir', assetDir)
-print('referencesChildPartialDir', referencesChildPartialDir)
-print('referencesParentDir', referencesParentDir)
-print('guideFile', guideFile)
-print('referencesChildCompleteDir', referencesChildCompleteDir)
+referencesChildFullDir = join(parentDir, currentDir, referencesChildSubDir)
 
 
 # Remove once Dash 3.x.x comes out #

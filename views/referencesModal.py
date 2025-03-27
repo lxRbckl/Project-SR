@@ -13,6 +13,7 @@ class References:
         """  """
 
         self.referenceColWidth = 4
+        self.folderMessage = "Reopen to fetch Import/Export updates"
 
 
     @property
@@ -46,7 +47,7 @@ class References:
                     justify = "between",
                     children = [
 
-                        # (upload, (load, folder, backup) <
+                        # upload <
                         dbc.Col(
 
                             width = "auto",
@@ -68,6 +69,10 @@ class References:
                             )
 
                         ),
+
+                        # >
+
+                        # (import, folder, export) <
                         dbc.Col(
 
                             width = "auto",
@@ -80,7 +85,7 @@ class References:
 
                                         size = "xs",
                                         n_clicks = 0,
-                                        disabled = True, # <-
+                                        disabled = None,
                                         children = "Import",
                                         loaderProps = loaderStyle,
                                         id = "referencesImportButtonId"
@@ -104,7 +109,7 @@ class References:
 
                                         size = "xs",
                                         n_clicks = 0,
-                                        disabled = True, # <-
+                                        disabled = None,
                                         children = "Export",
                                         loaderProps = loaderStyle,
                                         id = "referencesExportButtonId"
@@ -112,6 +117,22 @@ class References:
                                     )
 
                                 ]
+
+                            )
+
+                        ),
+
+                        # >
+
+                        # description <
+                        dbc.Col(
+
+                            width = 12,
+                            children = dmc.Text(
+
+                                    size = "xs",
+                                    children = self.folderMessage,
+                                    className = "referencesDescriptionText"
 
                             )
 
