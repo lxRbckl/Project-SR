@@ -268,37 +268,40 @@ class Run:
             flags = self.stepsModel.getFlags()
             command = self.stepsModel.getCommand()
 
-            # if (skip) <
-            # if (success) <
-            # elif (continued or paused) <
-            if (flags["skip"]):
+            # if (skip, continue, paused, or success) <
+            # else (then do not increment) <
+            if (flags["skip"]
+               or (continueClick > 0)
+               or (not continueDisabled)
+               or resultChildren[self.stepsModel.currentStep]
+            ):
 
-               self.stepsModel.currentStep += 1
+               message = self.stepsModel.getMessage()
+               rNotificationChildren = self.notifier.notify(
 
-            elif (resultChildren[self.stepsModel.currentStep]):
+                  icon = iconCompleted,
+                  message = message if (message) else f"Completed - {command}"
 
-               if (flags["alert"]):
+               )
 
-                  message = self.stepsModel.getMessage()
-                  rNotificationChildren = self.notifier.notify(
+               statusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Completed")
 
-                     color = "green",
-                     icon = iconCompleted,
-                     message = message if (message) else f"Success - {command}"
+               # if (last element) <
+               # else (then increment) <
+               if (self.stepsModel.currentStep == (self.stepsModel.totalSteps - 1)):
 
-                  )
+                  rStartLoading = False
 
+               else:
 
+                  self.stepsModel.currentStep += 1
+                  statusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Pending")
 
-            elif ((continueClick > 0) or (not continueDisabled)):
+               # >
 
-               pass
+            else: pass
 
             # >
-
-            # flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
-
-
 
          else: pass
 
