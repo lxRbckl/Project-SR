@@ -85,7 +85,7 @@ class References:
 
                                         size = "xs",
                                         n_clicks = 0,
-                                        disabled = None,
+                                        disabled = True, # <-
                                         children = "Import",
                                         loaderProps = loaderStyle,
                                         id = "referencesImportButtonId"
@@ -109,7 +109,7 @@ class References:
 
                                         size = "xs",
                                         n_clicks = 0,
-                                        disabled = None,
+                                        disabled = True, # <-
                                         children = "Export",
                                         loaderProps = loaderStyle,
                                         id = "referencesExportButtonId"

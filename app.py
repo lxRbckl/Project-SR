@@ -95,5 +95,7 @@ resultCallback(
 footerCallback()
 
 
+if (not debug): system(f"open http://127.0.0.1:{port}/")
+
 app.layout = layout.build
 app.run_server(debug = debug, port = port)

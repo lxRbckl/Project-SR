@@ -51,7 +51,7 @@ app = Dash(
 
    name = projectName,
    title = projectName,
-   assets_folder = assetDir,
+   assets_folder = str(assetDir),
    suppress_callback_exceptions = True,
    external_stylesheets = [
 

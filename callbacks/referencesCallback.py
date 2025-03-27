@@ -27,8 +27,8 @@ class References:
         """  """
 
         self.folderOnClickCallback()
-        self.exportOnClickCallback()
-        self.importOnClickCallback()
+        # self.exportOnClickCallback()
+        # self.importOnClickCallback()
 
         self.copyOnClickCallback()
         self.deleteOnClickCallback()
