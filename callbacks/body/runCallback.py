@@ -188,8 +188,6 @@ class Run:
          rStepClassName = stepClassName
          rResultChildren = resultChildren
 
-         print('rStepClassName', rStepClassName)
-
          if ((startClick == 0) and (self.stepsModel.currentStep != 0)): self.stepsModel.currentStep = 0
          if ((startClick > 0) or rStartLoading):
 
