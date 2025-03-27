@@ -20,6 +20,7 @@ class Steps:
         self.errorInvalidCommand = lambda c: f"Command \"{c}\" not recognized."
         self.errorInvalidParameters = lambda p, c: f"Parameters \"{p}\" not recognized for \"{c}\"."
 
+    def incrementCurrentStep(self): self.currentStep += 1
 
     def getFlags(self): return self.steps[self.currentStep]["flags"]
     def getCommand(self): return self.steps[self.currentStep]["command"]

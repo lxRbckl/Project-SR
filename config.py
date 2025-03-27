@@ -20,6 +20,7 @@ iconError = "material-symbols:error"
 iconPaste = "lucide:clipboard-paste"
 iconUpload = "material-symbols:upload"
 iconNotification = "lucide:notification"
+iconStop = "material-symbols:stop-circle"
 iconWindow = "iconamoon:screen-full-fill"
 iconCompleted = "fluent-mdl2:completed-solid"
 
