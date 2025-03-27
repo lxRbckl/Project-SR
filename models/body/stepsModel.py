@@ -10,6 +10,7 @@ class Steps:
         self.controller = controller
 
         self.steps = []
+        self.result = None
         self.totalSteps = 0
         self.currentStep = 0
         self.ignoreAlerts = False
@@ -91,6 +92,11 @@ class Steps:
         try:
 
             a, b, c, d = (parameters + [None] * 4)[:4]
-            return self.controller.commands[command](a, b, c, d)
+            runResult = self.controller.commands[command](a, b, c, d)
+
+            # if anything has returned, then it has failed. #
+            self.result = True if (runResult) else False
+            return self.result
+
 
         except TypeError: return self.errorInvalidParameters(c = command, p = parameters)

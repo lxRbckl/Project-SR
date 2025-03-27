@@ -275,6 +275,8 @@ class Run:
 
             # if (success) <
             # if (continued or paused) <
+            if ()
+
             if ((continueClick > 0) or (not continueDisabled)):
 
                pass
