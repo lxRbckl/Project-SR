@@ -168,6 +168,7 @@ class Run:
          ],
          output = [
 
+            Output("notificationDiv", "children", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
@@ -184,6 +185,7 @@ class Run:
 
          rRetryDisabled = True
          rContinueDisabled = True
+         rNotificationChildren = None
          rStartLoading = startLoading
          rStepClassName = stepClassName
          rResultChildren = resultChildren
@@ -214,8 +216,7 @@ class Run:
 
          else: pass
 
-         print('status end', rStepClassName)
-         return [rStartLoading, rRetryDisabled, rContinueDisabled, rStepClassName, rResultChildren]
+         return [rNotificationChildren, rStartLoading, rRetryDisabled, rContinueDisabled, rStepClassName, rResultChildren]
 
 
    def onResultChangeCallback(self):
@@ -241,7 +242,6 @@ class Run:
          output = [
 
             Output("runProgressId", "value", allow_duplicate = True),
-            Output("notificationDiv", "children", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
             Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
@@ -253,7 +253,6 @@ class Run:
 
          rStartLoading = startLoading
          rStepChildren = stepChildren
-         rNotificationChildren = None
          rStatusChildren = statusChildren
          rProgressValue = self.stepsModel.currentStep
 
@@ -263,4 +262,4 @@ class Run:
 
          else: pass
 
-         return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]
+         return [rProgressValue, rStartLoading, rStepChildren, rStatusChildren]
