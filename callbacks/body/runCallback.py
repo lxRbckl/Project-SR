@@ -1,6 +1,5 @@
-from config import (app, iconWarning)
+from config import (app, iconWarning, iconCompleted)
 
-from dash import html
 from time import sleep
 from dash import (Input, Output, State, ctx, ALL, callback_context)
 
@@ -197,7 +196,6 @@ class Run:
          elif ((startClick > 0) or rStartLoading):
 
             print('\nSTATUS TRIGGERED')
-
             rStartLoading = True
             result = self.stepsModel.runStep()
             flags = self.stepsModel.getFlags()
@@ -210,7 +208,6 @@ class Run:
                rStepClassName[self.stepsModel.currentStep] += " runStepsRowFailure"
                rResultChildren[self.stepsModel.currentStep] = False
                rContinueDisabled = (flags["pause"] == True)
-               rContinueDisabled = flags["skip"]
                rRetryDisabled = False
 
             else:
@@ -263,25 +260,41 @@ class Run:
          rStartLoading = startLoading
          rNotificationChildren = None
          rStatusChildren = statusChildren
-         rProgressValue = self.stepsModel.currentStep
 
          if (startLoading):
 
             print('\nRESULT TRIGGERED')
 
             flags = self.stepsModel.getFlags()
+            command = self.stepsModel.getCommand()
 
-            # if (flags["alert"]): rNotificationChildren = self.notifier.notify(self.stepsModel.getFlags())
-
+            # if (skip) <
             # if (success) <
-            # if (continued or paused) <
-            if ()
+            # elif (continued or paused) <
+            if (flags["skip"]):
 
-            if ((continueClick > 0) or (not continueDisabled)):
+               self.stepsModel.currentStep += 1
+
+            elif (resultChildren[self.stepsModel.currentStep]):
+
+               if (flags["alert"]):
+
+                  message = self.stepsModel.getMessage()
+                  rNotificationChildren = self.notifier.notify(
+
+                     color = "green",
+                     icon = iconCompleted,
+                     message = message if (message) else f"Success - {command}"
+
+                  )
+
+
+
+            elif ((continueClick > 0) or (not continueDisabled)):
 
                pass
 
-
+            # >
 
             # flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
 
@@ -289,4 +302,4 @@ class Run:
 
          else: pass
 
-         return [rProgressValue, rNotificationChildren, rStartLoading, rRetryNClicks, rStatusChildren]
+         return [self.stepsModel.currentStep, rNotificationChildren, rStartLoading, rRetryNClicks, rStatusChildren]
