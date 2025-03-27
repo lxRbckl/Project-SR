@@ -265,7 +265,9 @@ class Run:
 
             print('\nRESULT TRIGGERED') # remove
 
-            flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
+            # flags = self.stepsModel.steps[self.stepsModel.currentStep]["flags"]
+
+
 
          else: pass
 

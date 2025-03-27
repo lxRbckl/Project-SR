@@ -25,7 +25,6 @@ class Build:
         self.redirectTo = "Run"
         self.clipboardPause = 0.3
         self.createPauseDuration = 0.75
-        self.clipboardNotifyDuration = 5000
 
         self.messageClipboardCopied = "Text was copied from input."
         self.messageClipboardPasted = "Text was pasted from input."
@@ -181,7 +180,7 @@ class Build:
 
             return [
 
-                self.notifier.notify(icon = icon, duration = self.clipboardNotifyDuration, message = message),
+                self.notifier.notify(icon = icon, message = message),
                 text,
                 None,
                 None
