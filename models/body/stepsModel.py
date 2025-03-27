@@ -23,6 +23,7 @@ class Steps:
 
     def getFlags(self): return self.steps[self.currentStep]["flags"]
     def getCommand(self): return self.steps[self.currentStep]["command"]
+    def getMessage(self): return self.steps[self.currentStep]["message"]
     def getParameters(self): return self.steps[self.currentStep]["parameters"]
 
 

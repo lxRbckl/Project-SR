@@ -173,6 +173,7 @@ class Run:
 
             Output("runStartButtonId", "loading", allow_duplicate = True),
             Output("runRetryButtonId", "disabled", allow_duplicate = True),
+            Output("runContinueButtonId", "n_clicks", allow_duplicate = True),
             Output("runContinueButtonId", "disabled", allow_duplicate = True),
             Output({"type": "step-row", "index": ALL}, "className", allow_duplicate = True),
             Output({"type" : "result-btn", "index" : ALL}, "children", allow_duplicate = True)
@@ -185,6 +186,7 @@ class Run:
          # self.stepsModel.ignoreAlerts = ("Ignore Alerts" in buildOptions)
          # self.stepsModel.overrideInputs = ("Override Inputs" in buildOptions)
 
+         rContinueNClicks = 0
          rRetryDisabled = True
          rContinueDisabled = True
          rStartLoading = startLoading
@@ -197,17 +199,19 @@ class Run:
             print('\nSTATUS TRIGGERED')
 
             rStartLoading = True
-            result = True # self.stepsModel.runStep()
+            result = self.stepsModel.runStep()
+            flags = self.stepsModel.getFlags()
 
             # if (failure) <
             # else (then success) <
             if (result):
 
                print('STATUS FAILURE')
-               rRetryDisabled = False
-               rContinueDisabled = False
-               rResultChildren[self.stepsModel.currentStep] = False
                rStepClassName[self.stepsModel.currentStep] += " runStepsRowFailure"
+               rResultChildren[self.stepsModel.currentStep] = False
+               rContinueDisabled = (flags["pause"] == True)
+               rContinueDisabled = flags["skip"]
+               rRetryDisabled = False
 
             else:
 
@@ -219,7 +223,7 @@ class Run:
 
          else: pass
 
-         return [rStartLoading, rRetryDisabled, rContinueDisabled, rStepClassName, rResultChildren]
+         return [rStartLoading, rRetryDisabled, rContinueNClicks, rContinueDisabled, rStepClassName, rResultChildren]
 
 
    def onResultChangeCallback(self):
@@ -231,8 +235,8 @@ class Run:
          state = [
 
             State("runStartButtonId", "loading"),
+            State("runContinueButtonId", "disabled"),
             State("buildOptionsMultiSelectId", "values"),
-            State({"type" : "step-row", "index" : ALL}, "children"),
             State({"type" : "status-btn", "index" : ALL}, "children")
 
          ],
@@ -247,23 +251,33 @@ class Run:
             Output("runProgressId", "value", allow_duplicate = True),
             Output("notificationDiv", "children", allow_duplicate = True),
             Output("runStartButtonId", "loading", allow_duplicate = True),
-            Output({"type" : "step-row", "index" : ALL}, "children", allow_duplicate = True),
+            Output("runRetryButtonId", "n_clicks", allow_duplicate = True),
             Output({"type" : "status-btn", "index" : ALL}, "children", allow_duplicate = True)
 
          ]
 
       )
-      def func(continueClick, resultChildren, startLoading, optionsValues, stepChildren, statusChildren):
+      def func(continueClick, resultChildren, startLoading, continueDisabled, optionsValues, statusChildren):
 
+         rRetryNClicks = 0
          rStartLoading = startLoading
-         rStepChildren = stepChildren
          rNotificationChildren = None
          rStatusChildren = statusChildren
          rProgressValue = self.stepsModel.currentStep
 
          if (startLoading):
 
-            print('\nRESULT TRIGGERED') # remove
+            print('\nRESULT TRIGGERED')
+
+            flags = self.stepsModel.getFlags()
+
+            # if (flags["alert"]): rNotificationChildren = self.notifier.notify(self.stepsModel.getFlags())
+
+            # if (success) <
+            # if (continued or paused) <
+            if ((continueClick > 0) or (not continueDisabled)):
+
+               pass
 
 
 
@@ -273,4 +287,4 @@ class Run:
 
          else: pass
 
-         return [rProgressValue, rNotificationChildren, rStartLoading, rStepChildren, rStatusChildren]
+         return [rProgressValue, rNotificationChildren, rStartLoading, rRetryNClicks, rStatusChildren]
