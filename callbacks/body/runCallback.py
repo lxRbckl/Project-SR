@@ -204,12 +204,13 @@ class Run:
                rRetryDisabled = False
                rContinueDisabled = False
                rResultChildren[self.stepsModel.currentStep] = False
-               rStepClassName[self.stepsModel.currentStep + 1] += " runStepsRowFailure"
+               rStepClassName[self.stepsModel.currentStep] += " runStepsRowFailure"
 
             else:
 
                print('STATUS SUCCESS')
                rResultChildren[self.stepsModel.currentStep] = True
+               rStepClassName[self.stepsModel.currentStep] += " runStepsRowSuccess"
 
             # >
 
