@@ -42,5 +42,10 @@
 .runProgress {
    max-height: 8px;
    margin: 5px 0 0 0;
+   color: red !important;
    border-radius: var(--borderRadius);
+}
+
+.progress-bar {
+   color: red !important;
 }

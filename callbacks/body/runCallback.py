@@ -207,12 +207,13 @@ class Run:
                print('STATUS FAILURE')
                rStepClassName[self.stepsModel.currentStep] += " runStepsRowFailure"
                rResultChildren[self.stepsModel.currentStep] = False
-               rContinueDisabled = (flags["pause"] == True)
+               rContinueDisabled = False
                rRetryDisabled = False
 
             else:
 
                print('STATUS SUCCESS')
+               rContinueDisabled = (not flags["pause"])
                rResultChildren[self.stepsModel.currentStep] = True
                rStepClassName[self.stepsModel.currentStep] += " runStepsRowSuccess"
 
@@ -268,6 +269,10 @@ class Run:
             flags = self.stepsModel.getFlags()
             command = self.stepsModel.getCommand()
 
+            print(flags, '\n', command)
+
+            print('conditions', flags["skip"], (continueClick > 0), (not continueDisabled), resultChildren[self.stepsModel.currentStep])
+
             # if (skip, continue, paused, or success) <
             # else (then do not increment) <
             if (flags["skip"]
@@ -275,6 +280,8 @@ class Run:
                or (not continueDisabled)
                or resultChildren[self.stepsModel.currentStep]
             ):
+
+               print('RESULT SUCCESS')
 
                message = self.stepsModel.getMessage()
                rNotificationChildren = self.notifier.notify(
@@ -299,7 +306,10 @@ class Run:
 
                # >
 
-            else: pass
+            else:
+
+               print('RESULT FAILURE')
+               pass
 
             # >
 

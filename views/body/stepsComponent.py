@@ -41,7 +41,7 @@ class Steps:
 
         return DashIconify(
 
-            width = 20,
+            width = 16,
             icon = {
 
                 "Pending" : iconPending,

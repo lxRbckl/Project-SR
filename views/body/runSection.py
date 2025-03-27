@@ -142,8 +142,8 @@ class Run:
                   # progress <
                   dbc.Progress(
 
-                     value = 0,
                      max = None,
+                     value = None,
                      id = "runProgressId",
                      class_name = "runProgress"
 
