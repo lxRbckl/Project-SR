@@ -191,28 +191,29 @@ class Run:
          rStartLoading = startLoading
          rStepClassName = stepClassName
          rResultChildren = resultChildren
+         self.stepsModel.currentStep = self.stepsModel.getCurrentStep(rResultChildren)
 
          if ((startClick == 0) and (self.stepsModel.currentStep != 0)): self.stepsModel.currentStep = 0
-         elif ((startClick > 0) or rStartLoading):
+         elif ((startClick > 0) or rStartLoading or (retryClick > 0)):
 
             rStartLoading = True
             result = self.stepsModel.runStep()
-            flags = self.stepsModel.getFlags()
+            flags = self.stepsModel.getStepAttribute("flags")
 
             print('\n\nSTATUS TRIGGERED',
                   self.stepsModel.currentStep,
-                  result,
-                  flags)
+                  flags,
+                  statusChildren)
 
             # if (failure) <
             # else (then success) <
             if (result):
 
                print('> FAILURE')
-               rStepClassName[self.stepsModel.currentStep] += " runStepsRowFailure"
-               rResultChildren[self.stepsModel.currentStep] = False
-               rContinueDisabled = False
                rRetryDisabled = False
+               rContinueDisabled = False
+               rResultChildren[self.stepsModel.currentStep] = False
+               rStepClassName[self.stepsModel.currentStep] += " runStepsRowFailure"
 
             else:
 
@@ -265,16 +266,18 @@ class Run:
          rStartLoading = startLoading
          rNotificationChildren = None
          rStatusChildren = statusChildren
+         self.stepsModel.currentStep = self.stepsModel.getCurrentStep(statusChildren)
 
          if (startLoading):
 
-            flags = self.stepsModel.getFlags()
-            command = self.stepsModel.getCommand()
+            flags = self.stepsModel.getStepAttribute("flags")
+            command = self.stepsModel.getStepAttribute("command")
 
             print('\n\nRESULT TRIGGERED',
                   self.stepsModel.currentStep,
                   flags["skip"],
                   flags["pause"],
+                  rStatusChildren,
                   (continueClick > 0),
                   resultChildren[self.stepsModel.currentStep])
 
@@ -285,7 +288,7 @@ class Run:
                print('> NEXT')
 
                # build notification <
-               message = self.stepsModel.getMessage()
+               message = self.stepsModel.getStepAttribute("message")
                rNotificationChildren = self.notifier.notify(
 
                   icon = iconCompleted,
@@ -309,9 +312,7 @@ class Run:
                   print('> INCREMENT')
 
                   statusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Completed")
-
-                  self.stepsModel.currentStep += 1
-                  statusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Running")
+                  statusChildren[self.stepsModel.currentStep + 1] = self.stepsComponent.setStepStatus("Running")
 
                   print(self.stepsModel.currentStep, ">>>>>>>")
 

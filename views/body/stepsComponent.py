@@ -3,7 +3,7 @@ from dash_iconify import DashIconify
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 
-from config import (iconPending, iconRunning, iconCompleted)
+from config import (iconStop, iconPending, iconRunning, iconCompleted)
 
 
 class Steps:
@@ -44,6 +44,7 @@ class Steps:
             width = 16,
             icon = {
 
+                "stopped" : iconStop,
                 "Pending" : iconPending,
                 "Running" : iconRunning,
                 "Completed" : iconCompleted

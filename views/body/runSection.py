@@ -87,6 +87,7 @@ class Run:
                      dmc.Button(
 
                         size = "xs",
+                        n_clicks = 0,
                         disabled = True,
                         children = "Retry",
                         id = "runRetryButtonId",
@@ -111,6 +112,7 @@ class Run:
                   dmc.Button(
 
                      size = "xs",
+                     n_clicks = 0,
                      disabled = True,
                      children = "Continue",
                      id = "runContinueButtonId",

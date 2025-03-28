@@ -20,12 +20,23 @@ class Steps:
         self.errorInvalidCommand = lambda c: f"Command \"{c}\" not recognized."
         self.errorInvalidParameters = lambda p, c: f"Parameters \"{p}\" not recognized for \"{c}\"."
 
-    def incrementCurrentStep(self): self.currentStep += 1
 
-    def getFlags(self): return self.steps[self.currentStep]["flags"]
-    def getCommand(self): return self.steps[self.currentStep]["command"]
-    def getMessage(self): return self.steps[self.currentStep]["message"]
-    def getParameters(self): return self.steps[self.currentStep]["parameters"]
+    def getCurrentStep(self, status):
+        """  """
+
+        # try (if increment) <
+        # except (then start) <
+        try:
+
+            print(status)
+            print(status.index("Running")) # remove
+            return status.index("Running")
+        except ValueError: return 0
+
+        # >
+
+
+    def getStepAttribute(self, attr): return self.steps[self.currentStep][attr]
 
 
     def _clearSteps(self):
@@ -87,8 +98,8 @@ class Steps:
     def runStep(self):
         """ if anything has returned, then it has failed. """
 
-        command = self.getCommand()
-        parameters = self.getParameters()
+        command = self.getStepAttribute("command")
+        parameters = self.getStepAttribute("parameters")
         try:
 
             a, b, c, d = (parameters + [None] * 4)[:4]
