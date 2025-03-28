@@ -21,19 +21,15 @@ class Steps:
         self.errorInvalidParameters = lambda p, c: f"Parameters \"{p}\" not recognized for \"{c}\"."
 
 
-    def getCurrentStep(self, status):
+    def getCurrentStep(self, result):
         """  """
 
-        # try (if increment) <
-        # except (then start) <
         try:
 
-            print(status)
-            print(status.index("Running")) # remove
-            return status.index("Running")
-        except ValueError: return 0
+            if (result.count(None) == self.totalSteps): print('getCurrentStep', 0); return 0
+            else: print('getCurrentStep', result.index(None)); return result.index(None)
 
-        # >
+        except ValueError: return 0
 
 
     def getStepAttribute(self, attr): return self.steps[self.currentStep][attr]

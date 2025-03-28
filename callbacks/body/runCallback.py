@@ -201,6 +201,8 @@ class Run:
             flags = self.stepsModel.getStepAttribute("flags")
 
             print('\n\nSTATUS TRIGGERED',
+                  self.stepsModel.getStepAttribute("command"),
+                  self.stepsModel.getStepAttribute("parameters"),
                   self.stepsModel.currentStep,
                   flags,
                   statusChildren)
@@ -266,7 +268,7 @@ class Run:
          rStartLoading = startLoading
          rNotificationChildren = None
          rStatusChildren = statusChildren
-         self.stepsModel.currentStep = self.stepsModel.getCurrentStep(statusChildren)
+         self.stepsModel.currentStep = self.stepsModel.getCurrentStep(resultChildren)
 
          if (startLoading):
 
@@ -275,6 +277,8 @@ class Run:
 
             print('\n\nRESULT TRIGGERED',
                   self.stepsModel.currentStep,
+                  self.stepsModel.getStepAttribute("command"),
+                  self.stepsModel.getStepAttribute("parameters"),
                   flags["skip"],
                   flags["pause"],
                   rStatusChildren,
@@ -313,8 +317,6 @@ class Run:
 
                   statusChildren[self.stepsModel.currentStep] = self.stepsComponent.setStepStatus("Completed")
                   statusChildren[self.stepsModel.currentStep + 1] = self.stepsComponent.setStepStatus("Running")
-
-                  print(self.stepsModel.currentStep, ">>>>>>>")
 
                # >
 
